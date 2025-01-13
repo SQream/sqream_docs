@@ -18,11 +18,11 @@ Compatibility Matrix
 +=========================+========================================================================+
 | Supported OS            | RHEL 8.9                                                               |
 +-------------------------+------------------------------------------------------------------------+
-| supported Nvidia driver | CUDA version 12.x                                                      |
+| supported Nvidia driver | CUDA version 12.3.2                                                    |
 +-------------------------+------------------------------------------------------------------------+
 | Storage version         |   57                                                                   |
 +-------------------------+------------------------------------------------------------------------+
-| Driver compatibility    | * JDBC 5.4.1                                                           |
+| Driver compatibility    | * JDBC 5.4.2                                                           |
 |                         | * ODBC 4.4.4                                                           | 
 |                         | * NodeJS 4.2.4                                                         |
 |                         | * .NET 5.0.0                                                           |
@@ -30,11 +30,14 @@ Compatibility Matrix
 |                         | * SQLAlchemy 1.4                                                       |
 |                         | * Spark 5.0.0                                                          |
 |                         | * SQLoader As A Service 8.3                                            |
+|                         | * Java CLI 2.0                                                         |
 +-------------------------+------------------------------------------------------------------------+
 
 New Features and Enhancements
 -----------------------------
-This release does not include any new features or enhancements 
+► :ref:`Alter Default Permissions<alter_default_permissions>` is now enhanced to include support for ``USER DEFINED FUNCTIONS``.
+
+► Enahnced Regular Expresseion (RegEx) support.
 
 Known Issues
 ------------
@@ -47,16 +50,38 @@ Version 4.10 resolved Issues
 +--------------+---------------------------------------------------------------------------------------------------------------------+
 | **SQ No.**   | **Description**                                                                                                     |
 +==============+=====================================================================================================================+
-| SQ-19055     | Illegal memory access was encountered error                                                                         |
+| SQ-19275     | Error in core-min_maxFder                                                                                           |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-19053     | Workers connectivity issues                                                                                         |
+| SQ-19048     | Error when logging in with LDAP                                                                                     |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-19051     | Compression related metadata issue                                                                                  |
+| SQ-18800     | Running Create Table As Select from a table with delete predicates causes worker abnormal behavior                  |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-18745     | Cannot grant select to a role on a table                                                                            |
+| SQ-18797     | Worker failure leaves orphan locks                                                                                  |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-16877     | Query run time is longer than expected                                                                              |
+| SQ-18752     | SQDB release with python 3.11                                                                                       |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18621     | Failure following a delete query                                                                                    |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18555     | Enhance set parameter command efficiency                                                                            |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18553     | Metering Service - Data read/write usage reports                                                                    |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18504     | Access Control Permissions - Functions                                                                              |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18301     | Essential Regular Expression                                                                                        |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18253     | A network insert query fails                                                                                        |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-17787     | Error in ChunkCache0                                                                                                |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-17715     | Regular Expressions (Regex) Enhancements                                                                            |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-16436     | Right function error                                                                                                |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-14398     | Improve orphan locks handling                                                                                       |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+
+
 
 
 Deprecations
@@ -71,6 +96,10 @@ Starting October 2024, support for the Haskell CLI is discontinued, and it is re
 * As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
 
 * REHL 8.x is now officially supported.
+
+► **DateTime2 Alias**
+
+Starting April 2025, The alias ``DateTime2`` for the ``DateTime`` Data Type is being deprecated to simplify our data model and make way for the introduction of a new data type named ``DateTime2``. While ``DateTime2`` will remain functional as an alias until April 2025, we recommend updating your code to use ``DateTime`` directly to ensure compatibility. 
 
 Upgrading to Version 4.10
 -------------------------

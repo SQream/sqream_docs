@@ -19,7 +19,7 @@ Client Driver Downloads
      - Notes
      - Operating System
    * - **SQream DB Java CLI**
-     - `SQream DB Java Command Line Interface <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_ 
+     - `SQream DB Java Command Line Interface <https://sq-ftp-public.s3.us-east-1.amazonaws.com/jdbc-console_release_jdbc-console-2.0.0-v1.zip>`_ 
      - :ref:`sqream_sql_cli_reference` 
      - Replaces the Deprecated Haskell Command Line Tool
      - All
@@ -34,7 +34,7 @@ Client Driver Downloads
      -
      - All
    * - **JDBC**
-     - `sqream-jdbc 5.4.1 <https://sq-ftp-public.s3.us-east-1.amazonaws.com/jdbc-driver_sqream-jdbc-5.4.1.jar>`_
+     - `sqream-jdbc 5.4.2 <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqream-jdbc-5.4.2.jar>`_
      - :ref:`java_jdbc`
      - Recommended installation via ``mvn``
      - All
