@@ -45,7 +45,7 @@ Syntax
       
       | DELIMITER = '{ delimiter }'
 	  
-	  | RECORD_DELIMITER = '{ record delimiter }'
+      | RECORD_DELIMITER = '{ record delimiter }'
       
       | ERROR_LOG = '{ local filepath }'
       
