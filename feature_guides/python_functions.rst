@@ -15,7 +15,7 @@ To enable UDFs, in your :ref:`legacy configuration file<current_method_modificat
 Before You Begin
 =================
 
-* Ensure you have Python 3.9 or newer installed
+* Ensure you have Python 3.11 or newer installed
 
 * Enable UDFs by setting the ``enablePythonUdfs`` configuration flag to ``true`` in your :ref:`legacy configuration file<current_method_modification_methods>`
 
@@ -44,10 +44,7 @@ To find which version of Python is installed for use by SQreamDB, create and run
    .  $$ LANGUAGE PYTHON;
    executed
    master=> SELECT py_version();
-   py_version                                                                           
-   -------------------------------------------------------------------------------------
-   Python version: 3.9.13 (default, Jul 22 2019, 11:03:54) [GCC 5.4.0].
-   Path: /opt/sqream/python-3.9.13
+   "Python version: 3.11.7 (main, Dec 22 2024, 18:29:20) [GCC 11.1.0]. Path: /usr/local"
 
 Using Modules
 ---------------------
