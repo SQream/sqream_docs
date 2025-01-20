@@ -27,7 +27,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # -- Project information -----------------------------------------------------
 
 project = 'SQreamDB'
-copyright = '2024 SQreamDB'
+copyright = '2025 SQreamDB'
 author = 'SQreamDB Documentation'
 
 

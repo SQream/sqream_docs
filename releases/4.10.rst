@@ -4,7 +4,7 @@
 Release Notes 4.10
 *****************
 
-The 4.10 release notes were released on Novemebr 28th, 2024
+The 4.10 release notes were released on January 20th, 2025
 
 .. contents:: 
    :local:
@@ -38,6 +38,8 @@ New Features and Enhancements
 ► :ref:`Alter Default Permissions<alter_default_permissions>` is now enhanced to include support for ``USER DEFINED FUNCTIONS``.
 
 ► Enahnced Regular Expresseion (RegEx) support.
+
+► Python version for :ref:`Python User Defined Functions<python_functions>` has been upgraded to Python 3.11.
 
 Known Issues
 ------------
