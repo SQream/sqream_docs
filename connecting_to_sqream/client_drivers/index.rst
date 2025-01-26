@@ -19,7 +19,7 @@ Client Driver Downloads
      - Notes
      - Operating System
    * - **SQream DB Java CLI**
-     - `SQream DB Java Command Line Interface <https://sq-ftp-public.s3.us-east-1.amazonaws.com/jdbc-console_release_jdbc-console-2.0.0-v1.zip>`_ 
+     - `SQream DB Java Command Line Interface <https://sq-ftp-public.s3.us-east-1.amazonaws.com/jdbc-console_release_jdbc-console-2.1-v1.zip>`_ 
      - :ref:`sqream_sql_cli_reference` 
      - Replaces the Deprecated Haskell Command Line Tool
      - All

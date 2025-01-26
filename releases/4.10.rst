@@ -30,7 +30,7 @@ Compatibility Matrix
 |                         | * SQLAlchemy 1.4                                                       |
 |                         | * Spark 5.0.0                                                          |
 |                         | * SQLoader As A Service 8.3.1                                          |
-|                         | * Java CLI 2.0                                                         |
+|                         | * Java CLI 2.1                                                         |
 +-------------------------+------------------------------------------------------------------------+
 
 New Features and Enhancements
