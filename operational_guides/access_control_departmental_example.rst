@@ -120,12 +120,14 @@ After the group roles have been created, you can now create user roles for each 
    GRANT  LOGIN  TO  ecodd;
    GRANT  PASSWORD  'Passw0rd!'  TO ecodd;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  ecodd;
+   GRANT  USAGE  ON  SERVICE  sqream  TO  ecodd;
    GRANT my_schema_database_designers TO ecodd;
 
    CREATE  ROLE  ebachmann;
    GRANT  LOGIN  TO  ebachmann;
    GRANT  PASSWORD  'Passw0rd!!!'  TO ebachmann;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  ebachmann;
+   GRANT  USAGE  ON  SERVICE  sqream  TO ebachmann;
    GRANT my_database_designers TO ebachmann;
 
    -- If a user already exists, we can assign that user directly to the group
@@ -138,18 +140,21 @@ After the group roles have been created, you can now create user roles for each 
    GRANT  LOGIN  TO  jbarker;
    GRANT  PASSWORD  'action_jacC%k'  TO jbarker;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  jbarker;
+   GRANT  USAGE  ON  SERVICE  sqream  TO jbarker;
    GRANT my_schema_readers TO jbarker;
    
    CREATE  ROLE  lbream;
    GRANT  LOGIN  TO  lbream;
    GRANT  PASSWORD  'artichoke123O$'  TO lbream;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  lbream;
+   GRANT  USAGE  ON  SERVICE  sqream  TO lbream;
    GRANT my_schema_readers TO lbream;
    
    CREATE  ROLE  pgregory;
    GRANT  LOGIN  TO  pgregory;
    GRANT  PASSWORD  'c1ca6aG$'  TO pgregory;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  pgregory;
+   GRANT  USAGE  ON  SERVICE  sqream  TO pgregory;
    GRANT my_schema_readers TO pgregory;
 
    -- Create users in the security officers group
@@ -158,6 +163,7 @@ After the group roles have been created, you can now create user roles for each 
    GRANT  LOGIN  TO  hoover;
    GRANT  PASSWORD  'mint*Rchip'  TO hoover;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  hoover;
+   GRANT  USAGE  ON  SERVICE  sqream  TO hoover;
    GRANT my_schema_security_officers TO hoover;
 
 
