@@ -6,7 +6,7 @@ Client Platforms
  
 SQreamDB is designed to work with the most common database tools and interfaces, allowing you direct access through a variety of drivers, connectors, visualization tools, and utilities.
 
-.. figure:: /_static/images/connectivity_ecosystem.png
+.. figure:: /_static/images/SQream_Architecture_Turbo Booster.png
    :align: right
    :width: 800
 
