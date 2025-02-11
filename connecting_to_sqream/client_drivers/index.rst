@@ -64,7 +64,7 @@ Client Driver Downloads
      - 
      - All
    * - **Tableau**
-     - `Tableau Connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ 
+     - `Tableau Connector <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqreamDB-v1.1.taco>`_ 
      - :ref:`tableau`  
      - 
      - All
