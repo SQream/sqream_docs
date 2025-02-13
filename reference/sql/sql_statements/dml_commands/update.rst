@@ -77,13 +77,13 @@ To be able to follow the examples, create these two tables:
 +----+--------+--------------+	
 | id | name   | records_sold |
 +====+========+==============+
-| 1  | Israel | null         |
+| 1  | Israel | 0            |
 +----+--------+--------------+
-| 2  | UK     | null         |
+| 2  | UK     | 0            |
 +----+--------+--------------+
-| 3  | USA    | null         |
+| 3  | USA    | 0            |
 +----+--------+--------------+
-| 4  | Sweden | null         |
+| 4  | Sweden | 0            |
 +----+--------+--------------+
 
 **bands**
@@ -103,10 +103,10 @@ To be able to follow the examples, create these two tables:
 .. code-block:: postgres
 
 	create or replace table countries ( id int, name text, records_sold int); 
-	insert into countries values (1, 'Israel', null); 
-	insert into countries values (2, 'UK', null); 
-	insert into countries values (3, 'USA', null); 
-	insert into countries values (4, 'Sweden', null); 
+	insert into countries values (1, 'Israel', 0); 
+	insert into countries values (2, 'UK', 0); 
+	insert into countries values (3, 'USA', 0); 
+	insert into countries values (4, 'Sweden', 0); 
    
 	create or replace table bands ( id int, name text, country_id int); 
 	insert into bands values (1, 'The Beatles', 2); 
@@ -178,7 +178,8 @@ The following shows an example of updating tables that contain multi-table expre
 Triggering a Cleanup
 --------------------
 
-When an ``UPDATE`` statement is executed, it creates a new table that contains the updated data, while the original table remains intact. As a result, residual data may be left behind, and a cleanup operation is necessary to ensure the database remains in a consistent state.
+When an ``UPDATE`` statement is executed, it creates new chunks that contain the updated data. As a result, residual data may be left behind, and a cleanup operation is necessary to complete the physical removal of data. 
+This cleanup is usually done automatically overnight, but you can choose to do so yourself to remove the redundant files immediately.
 
  
 The following is the syntax for triggering a cleanup:
