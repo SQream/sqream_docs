@@ -307,7 +307,8 @@ Using the ``||`` (Concatenate) function with two different data types requires e
 ``UNNEST``
 """"""""""
 
-It is possible to use the ``UNNEST`` operator within a statement only once.
+The ``UNNEST`` function is computationally intensive; therefore, it is recommended to use up to 10 ``UNNEST`` clauses per statement as a best practice.
+To improve performance, consider filtering the SQL results before applying UNNEST to reduce data volume and optimize query runtime.
 
 Window
 """"""
