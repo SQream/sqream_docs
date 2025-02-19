@@ -295,8 +295,8 @@ Please note that SQLAlchemy does not support the ``ARRAY`` data type.
 Functions
 ---------
 
-``|| (Concatenate)``
-""""""""""""""""""""
+|| (Concatenate)
+""""""""""""""""
 
 Using the ``||`` (Concatenate) function with two different data types requires explicit casting.
 
@@ -304,10 +304,11 @@ Using the ``||`` (Concatenate) function with two different data types requires e
 
 	SELECT (clmn1, 4::tinyint) || (clmn2, 5::tinyint) FROM my_array;
 	
-``UNNEST``
-""""""""""
+UNNEST
+""""""
 
-It is possible to use the ``UNNEST`` operator within a statement only once.
+The ``UNNEST`` function is computationally intensive; therefore, it is recommended to use up to 10 ``UNNEST`` clauses per statement as a best practice.
+To improve performance, consider filtering the results before applying ``UNNEST`` to reduce data volume and optimize query runtime.
 
 Window
 """"""
