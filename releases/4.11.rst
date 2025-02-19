@@ -1,0 +1,120 @@
+.. _4.11:
+
+*****************
+Release Notes 4.11
+*****************
+
+The 4.11 release notes were released on March 30th, 2025
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Compatibility Matrix
+--------------------
+ 
++-------------------------+------------------------------------------------------------------------+
+| System Requirement      | Details                                                                |
++=========================+========================================================================+
+| Supported OS            | RHEL 8.9                                                               |
++-------------------------+------------------------------------------------------------------------+
+| supported Nvidia driver | CUDA version 12.3.2                                                    |
++-------------------------+------------------------------------------------------------------------+
+| Storage version         |   58                                                                   |
++-------------------------+------------------------------------------------------------------------+
+| Driver compatibility    | * JDBC 5.4.2                                                           |
+|                         | * ODBC 4.4.4                                                           | 
+|                         | * NodeJS 4.2.4                                                         |
+|                         | * .NET 5.0.0                                                           |
+|                         | * Pysqream 5.3.0                                                       |
+|                         | * SQLAlchemy 1.4                                                       |
+|                         | * Spark 5.0.0                                                          |
+|                         | * SQLoader As A Service 8.3.1                                          |
+|                         | * Java CLI 2.2                                                         |
++-------------------------+------------------------------------------------------------------------+
+
+New Features and Enhancements
+-----------------------------
+► :ref:`Alter Default Permissions<alter_default_permissions>` is now enhanced to include support for ``USER DEFINED FUNCTIONS``.
+
+► Enahnced Regular Expresseion (RegEx) support.
+
+► Python version for :ref:`Python User Defined Functions<python_functions>` has been upgraded to Python 3.11.
+
+Known Issues
+------------
+
+:ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`
+
+Version 4.11 resolved Issues
+---------------------------
+
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| **SQ No.**   | **Description**                                                                                                     |
++==============+=====================================================================================================================+
+| SQ-18800     | Running Create Table As Select from a table with delete predicates causes worker abnormal behavior                  | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18797     | Worker failure leaves orphan locks                                                                                  | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18555     | Enhance set parameter command efficiency                                                                            | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18504     | Access Control Permissions - Functions                                                                              | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18253     | A network insert query fails                                                                                        | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-16436     | Right function error                                                                                                | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-14398     | Improve orphan locks handling                                                                                       | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+
+
+
+
+Deprecations
+-------------------
+
+► **Haskell CLI**
+
+Starting October 2024, support for the Haskell CLI is discontinued, and it is replaced by the :ref:`Multi Platform CLI<multi_platform_cli>` that is compatible with the Haskell CLI with the added value of ``Table-View`` and cross platform compatability.
+
+► **CentOS Linux 7.x**
+
+* As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
+
+* REHL 8.x is now officially supported.
+
+► **DateTime2 Alias**
+
+Starting April 2025, The alias ``DateTime2`` for the ``DateTime`` Data Type is being deprecated to simplify our data model and make way for the introduction of a new data type named ``DateTime2``. While ``DateTime2`` will remain functional as an alias until April 2025, we recommend updating your code to use ``DateTime`` directly to ensure compatibility. 
+
+Upgrading to Version 4.11
+-------------------------
+
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      select backup_metadata('out_path');
+	  
+   .. tip:: SQreamDB recommends storing the generated back-up locally in case needed.
+   
+   SQreamDB runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQreamDB services.
+
+3. Copy the recently created back-up file.
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+5. Navigate to the new SQreamDB package bin folder.
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      ./upgrade_storage <levelDB path>
+	
+
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  
