@@ -85,7 +85,7 @@ Starting October 2024, support for the Haskell CLI is discontinued, and it is re
 
 ► **DateTime2 Alias**
 
-Starting April 2025, The alias ``DateTime2`` for the ``DateTime`` Data Type is being deprecated to simplify our data model and make way for the introduction of a new data type named ``DateTime2``. While ``DateTime2`` will remain functional as an alias until April 2025, we recommend updating your code to use ``DateTime`` directly to ensure compatibility. 
+As of April 2025, The alias ``DateTime2`` for the ``DateTime`` Data Type has been deprecated to simplify our data model and make way for the introduction of a new data type named ``DateTime2``. 
 
 Upgrading to Version 4.11
 -------------------------
