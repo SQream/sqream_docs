@@ -40,7 +40,7 @@ Syntax
 
 ``DATE`` values are formatted as string literals. 
 
-The following is an example of the DATETIME syntax:
+The following is an example of the DATE syntax:
 
 .. code-block:: console
      
@@ -64,7 +64,7 @@ SQream attempts to guess if the string literal is a date or datetime based on co
 Size
 ^^^^^^
 
-A ``DATE`` column is 4 bytes in length, while a ``DATETIME`` column is 8 bytes in length.
+A ``DATE`` column is 4 bytes, while a ``DATETIME`` column is 8 bytes.
 
 However, the size of these values is compressed by SQream DB.
 

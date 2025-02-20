@@ -69,5 +69,10 @@ SQreamDB compresses all columns and types. The data size noted is the maximum da
      - Date and time pairing in UTC
      - 8 bytes
      - ``'1955-11-05 01:24:00.000'``
-     -  ``TIMESTAMP``, ``DATETIME2``
+     -  ``TIMESTAMP``
+   * - ``DATETIME2``
+     - Date and time in nanosecond precision including UTC offset
+     - 16 bytes
+     - ``'1955-11-05 01:24:00.000000000 +00:00:00'``
+     -  NA
 
