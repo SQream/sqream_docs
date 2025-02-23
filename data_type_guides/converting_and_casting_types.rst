@@ -51,20 +51,20 @@ The listed table of supported casts also applies to the :ref:`sql_data_type_arra
    :widths: auto
    :header-rows: 1
 
-* - **FROM / TO**
-  - **BOOL**
-  - **TINYINT**/**SMALLINT**/**INT**/**BIGINT**
-  - **REAL/FLOAT**
-  - **NUMERIC**
-  - **DATE**/**DATETIME**/**DATETIME2**
-  - **TEXT**
-* - **BOOL**
-  - N/A
-  - ✓
-  - ✗
-  - ✗  
-  - ✗
-  - ✓
+	* - **FROM / TO**
+	  - **BOOL**
+	  - **TINYINT**/**SMALLINT**/**INT**/**BIGINT**
+	  - **REAL/FLOAT**
+	  - **NUMERIC**
+	  - **DATE**/**DATETIME**/**DATETIME2**
+	  - **TEXT**
+	* - **BOOL**
+	  - N/A
+	  - ✓
+	  - ✗
+	  - ✗  
+	  - ✗
+	  - ✓
   
 +-----------------------------------------------+-----------+-----------------------------------------------+-------------------+---------------+---------------------------------------+-----------------------+
 | **FROM / TO**									| **BOOL**	| **TINYINT**/**SMALLINT**/**INT**/**BIGINT**	| **REAL/FLOAT**	| **NUMERIC**	| **DATE**/**DATETIME**/**DATETIME2**	| **TEXT**				|
