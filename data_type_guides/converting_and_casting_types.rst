@@ -65,6 +65,13 @@ The listed table of supported casts also applies to the :ref:`sql_data_type_arra
      - ✗
      - ✗
      - ✓
+   * - **TINYINT**/**SMALLINT**/**INT**/**BIGINT**
+     - ✓
+     - N/A
+     - ✓
+     - ✓
+     - ✗
+     - ✓
 
 Value Dependent Conversions
 ---------------------------
