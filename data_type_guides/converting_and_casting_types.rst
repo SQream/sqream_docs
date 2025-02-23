@@ -93,6 +93,13 @@ The listed table of supported casts also applies to the :ref:`sql_data_type_arra
      - ✗
      - ✓
      - ✓
+   * - **TEXT**
+     - ✓
+     - ✓
+     - ✓
+     - ✓
+     - ✓
+     - N/A
 
 Value Dependent Conversions
 ---------------------------
