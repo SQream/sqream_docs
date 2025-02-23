@@ -53,18 +53,11 @@ The listed table of supported casts also applies to the :ref:`sql_data_type_arra
 
    * - **FROM / TO**
      - **BOOL**
-     - **TINYINT**/**SMALLINT**/**INT**/**BIGINT**
-	 - **REAL/FLOAT**
-	 - **NUMERIC**
-	 - **DATE**/**DATETIME**/**DATETIME2**
-	 - **TEXT**
-   * - **BOOL**
-     - N/A
-     - ✓
-     - ✗
-	 - ✗  
-	 - ✗
-     - ✓
+     - **TINYINT** / **SMALLINT** / **INT** / **BIGINT**
+     - **REAL / FLOAT**
+     - **NUMERIC**
+     - **DATE** / **DATETIME** / **DATETIME2**
+     - **TEXT**
 
 Value Dependent Conversions
 ---------------------------
