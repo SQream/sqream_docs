@@ -47,6 +47,10 @@ Supported Casts
 
 The listed table of supported casts also applies to the :ref:`sql_data_type_array` data type. For instance, you can cast a ``NUMERIC[]`` array to a ``TEXT[]`` array.
 
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+
 * - **FROM / TO**
   - **BOOL**
   - **TINYINT**/**SMALLINT**/**INT**/**BIGINT**
@@ -61,6 +65,7 @@ The listed table of supported casts also applies to the :ref:`sql_data_type_arra
   - ✗  
   - ✗
   - ✓
+  
 +-----------------------------------------------+-----------+-----------------------------------------------+-------------------+---------------+---------------------------------------+-----------------------+
 | **FROM / TO**									| **BOOL**	| **TINYINT**/**SMALLINT**/**INT**/**BIGINT**	| **REAL/FLOAT**	| **NUMERIC**	| **DATE**/**DATETIME**/**DATETIME2**	| **TEXT**				|
 +===============================================+===========+===============================================+===================+===============+=======================================+=======================+
