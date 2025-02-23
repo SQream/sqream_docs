@@ -56,14 +56,14 @@ The listed table of supported casts also applies to the :ref:`sql_data_type_arra
      - **TINYINT**/**SMALLINT**/**INT**/**BIGINT**
      - **REAL/FLOAT**
 	 - **NUMERIC**
-     - **DATE**/**DATETIME**/**DATETIME2**
+	 - **DATE**/**DATETIME**/**DATETIME2**
      - **TEXT**
    * - **BOOL**
      - N/A
      - ✓
      - ✗
 	 - ✗  
-     - ✗
+	 - ✗
      - ✓
 
 Value Dependent Conversions
