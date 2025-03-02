@@ -53,9 +53,7 @@ The following is an example of the correct output:
 
 .. code-block:: text
 
-|   a                            |
-+--------------------------------+
-|   1955-11-05 01:24:00.000 -0800|
+ 1955-11-05 01:24:00.000 -0800
    
 
 
