@@ -54,8 +54,13 @@ Client Driver Downloads
      - 
      - All
    * - **Python**
-     - `pysqream v5.3.0 <https://github.com/SQream/pysqream/releases>`_
+     - `pysqream <https://pypi.org/project/pysqream/>`_
      - :ref:`pysqream`
+     - Recommended installation via ``pip``
+     - All
+   * - **Python-SQLAlchemy**
+     - `pysqream-sqlalchemy <https://pypi.org/project/pysqream-sqlalchemy/>`_
+     - :ref:`pysqream<sqlalchemy>`
      - Recommended installation via ``pip``
      - All
    * - **SQreamNet**
