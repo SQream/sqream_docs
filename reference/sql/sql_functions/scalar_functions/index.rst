@@ -29,6 +29,7 @@ The **Built-In Scalar Functions** page describes functions that return one value
    * :ref:`curdate`
    * :ref:`current_date`
    * :ref:`current_timestamp`
+   * :ref:`current_timestamp2`
    * :ref:`dateadd`
    * :ref:`datediff`
    * :ref:`datepart`
