@@ -4,7 +4,7 @@
 DATEADD
 **************************
 
-Adds or subtracts an interval to ``DATE`` or ``DATETIME`` value.
+Adds or subtracts an interval to ``DATE`` , ``DATETIME`` or ``DATETIME2`` value.
 
 .. note:: SQream DB does not support the ``INTERVAL`` ANSI syntax. Use ``DATEADD`` to add or subtract date intervals.
 
@@ -26,6 +26,8 @@ Syntax
       | MINUTE | MI | N
       | SECOND | SS | S
       | MILLISECOND | MS
+      | MICROSECOND | MU
+      | NANOSECOND | NS
 
 Arguments
 ============
@@ -41,7 +43,7 @@ Arguments
    * - ``number``
      - An integer expression
    * - ``date_expr``
-     - A ``DATE`` or ``DATETIME`` expression
+     - A ``DATE`` , ``DATETIME`` or ``DATETIME2`` expression
 
 
 Valid date parts
@@ -81,6 +83,12 @@ Valid date parts
    * - ``MILLISECOND``
      - ``MS``
      - Milliseconds (0-999)
+   * - ``MICROSECOND``
+     - ``MU``
+     - Microseconds (0-999)
+   * - ``NANOSECOND``
+     - ``NS``
+     - Nanoseconds (0-999)
 
 .. note::
  * The first day of the week is Sunday, when used with ``weekday``.
@@ -89,6 +97,8 @@ Returns
 ============
 
 * If ``HOUR``, ``MINUTE``, ``SECOND``, or ``MILLISECOND`` are added to a ``DATE``, the return type will be ``DATETIME``.
+
+* If ``MICROSECOND`` or ``NANOSECOND`` are added to a ``DATE`` or ``DATETIME``, the return type will be ``DATETIME2``.
 
 * For all other date parts, the return type is the same as the argument supplied.
 

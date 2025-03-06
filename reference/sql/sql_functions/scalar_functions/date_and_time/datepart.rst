@@ -27,8 +27,8 @@ Syntax
       | MINUTE | MI | N
       | SECOND | SS | S
       | MILLISECOND | MS
-	  | MICROSECOND | MU
-	  | NANOSECOND | NS
+      | MICROSECOND | MU
+      | NANOSECOND | NS
 
 Arguments
 ============
