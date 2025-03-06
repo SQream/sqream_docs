@@ -6,7 +6,7 @@ TRUNC
 
 Rounds a number to its integer representation towards 0.
 
-.. note:: This function is overloaded. The function :ref:`TRUNC<date_trunc>` can also modify the precision of ``DATE`` and ``DATETIME`` values.
+.. note:: This function is overloaded. The function :ref:`TRUNC<date_trunc>` can also modify the precision of ``DATE``, ``DATETIME`` and ``DATETIME2``  values.
 
 See also :ref:`ROUND<round>`.
 
