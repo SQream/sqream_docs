@@ -4,7 +4,7 @@
 Date and Time TRUNC
 **************************
 
-Truncates a ``DATE`` , ``DATETIME` or ``DATETIME2`` value to a specified resolution.
+Truncates a ``DATE`` , ``DATETIME`` or ``DATETIME2`` value to a specified resolution.
 
 For example, truncating a ``DATE`` down to the nearest month returns the date of the first day of the month.
 
