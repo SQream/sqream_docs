@@ -336,12 +336,6 @@ Flag List
      - Sets the hash table size of the CpuReduce.
      - uint
      - ``10000``
-   * - ``externalTableBlobEstimate``
-     - ?
-     - Session
-     - ?
-     - ?
-     - ?
    * - ``maxPinnedPercentageOfTotalRAM``
      - SUPERUSER
      - Session

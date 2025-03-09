@@ -4,7 +4,7 @@
 DATEDIFF
 **************************
 
-Calculates the difference between two ``DATE`` or ``DATETIME`` expressions, in terms of a specific date part.
+Calculates the difference between two ``DATE`` , ``DATETIME``or ``DATETIME2`` expressions, in terms of a specific date part.
 
 .. note:: Results are given in integers, rather than ``INTERVAL``, which SQream DB does not support.
 
@@ -26,6 +26,8 @@ Syntax
       | MINUTE | MI | N
       | SECOND | SS | S
       | MILLISECOND | MS
+      | MICROSECOND | MU
+      | NANOSECOND | NS
 
 Arguments
 ============
@@ -39,7 +41,7 @@ Arguments
    * - ``interval``
      - An interval representing a date part. See the table below or the syntax reference above for valid date parts
    * - ``date_expr1``, ``date_expr2``
-     - A ``DATE`` or ``DATETIME`` expression. The function calculates ``date_expr2 - date_expr1``.
+     - A ``DATE``,  ``DATETIME`` or ``DATETIME2`` expression. The function calculates ``date_expr2 - date_expr1``.
 
 
 Valid date parts
@@ -79,6 +81,12 @@ Valid date parts
    * - ``MILLISECOND``
      - ``MS``
      - Milliseconds (0-999)
+   * - ``MICROSECOND``
+     - ``MU``
+     - Microseconds (0-999)
+   * - ``NANOSECOND``
+     - ``NS``
+     - Nanoseconds (0-999)
 
 
 Returns
@@ -104,7 +112,6 @@ For these examples, consider the following table and contents:
    
    INSERT INTO cool_dates VALUES ('Marty McFly goes back to this time','1955-11-05','1955-11-05 01:21:00.000')
        , ('Marty McFly came from this time', '1985-10-26', '1985-10-26 01:22:00.000')
-       , ('Vesuvius erupts', '79-08-24', '79-08-24 13:00:00.000')
        , ('1997 begins', '1997-01-01', '1997-01-01')
        , ('1997 ends', '1997-12-31','1997-12-31 23:59:59.999');
 
@@ -120,11 +127,10 @@ In years
    master=> SELECT d AS original_date, DATEDIFF(YEAR, CURRENT_DATE, d) AS "was ... years ago" FROM cool_dates;
    original_date | was ... years ago
    --------------+------------------
-   1955-11-05    |               -64
-   1985-10-26    |               -34
-   0079-08-24    |             -1940
-   1997-01-01    |               -22
-   1997-12-31    |               -22
+   1955-11-05    |               -70
+   1985-10-26    |               -40
+   1997-01-01    |               -28
+   1997-12-31    |               -28
 
 In days
 ^^^^^^^^^^^^^
@@ -136,7 +142,6 @@ In days
    --------------+-----------------
    1955-11-05    |           -23408
    1985-10-26    |           -12460
-   0079-08-24    |          -708675
    1997-01-01    |            -8375
    1997-12-31    |            -8011
 
@@ -155,6 +160,5 @@ In hours
    --------------------+---------------------+------------------
    2019-12-07 22:35:50 | 1955-11-05 01:21:00 |           -561813
    2019-12-07 22:35:50 | 1985-10-26 01:22:00 |           -299061
-   2019-12-07 22:35:50 | 0079-08-24 13:00:00 |         -17008209
    2019-12-07 22:35:50 | 1997-01-01 00:00:00 |           -201022
    2019-12-07 22:35:50 | 1997-12-31 23:59:59 |           -192263
