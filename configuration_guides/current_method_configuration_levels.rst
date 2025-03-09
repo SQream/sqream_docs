@@ -360,4 +360,10 @@ Flag List
      - Terminates queries that have exceeded a predefined time limit in the queue.
      - integer
      - Default value: 0. Minimum values: 1 minute. Maximum value: 4320 minutes (72 hours) 
+   * - ``timezone``
+     - Anyone
+     - Session 
+     - The timezone flag dictates the timezone context used when SQDB encounters ``DATETIME2`` values during data ingestion. This includes overriding any existing timezone information within those values.
+     - Text
+     - Default value: ``null``. ``local`` local system timezone of the SQDB server. ``+hh:mm`` or ``-hh:mm`` explicitly defines the timezone for all incoming ``DATETIME2`` values, overriding any existing timezone information.
 
