@@ -4,7 +4,7 @@
 EOMONTH
 **************************
 
-Returns a ``DATE`` , ``DATETIME` or ``DATETIME2`` value, reset to midnight on the last day of the month.
+Returns a ``DATE`` , ``DATETIME`` or ``DATETIME2`` value, reset to midnight on the last day of the month.
 
 .. note:: This function is provided for SQL Server compatibility.
 
@@ -26,7 +26,7 @@ Arguments
    * - Parameter
      - Description
    * - ``date_expr``
-     - A ``DATE``, ``DATETIME` or ``DATETIME2`` expression
+     - A ``DATE``, ``DATETIME`` or ``DATETIME2`` expression
 
 
 Returns
