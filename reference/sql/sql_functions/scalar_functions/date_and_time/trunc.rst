@@ -4,12 +4,12 @@
 Date and Time TRUNC
 **************************
 
-Truncates a ``DATE`` or ``DATETIME`` value to a specified resolution.
+Truncates a ``DATE`` , ``DATETIME` or ``DATETIME2`` value to a specified resolution.
 
 For example, truncating a ``DATE`` down to the nearest month returns the date of the first day of the month.
 
 .. note:: * This function is overloaded. The function :ref:`TRUNC<trunc>` can also round numbers towards zero.
-          * Specifying the ``MILLISECOND`` interval with the ``TRUNC`` function is redundant, as there is nothing smaller than milliseconds. 
+          * Specifying the ``NANOSECOND`` interval with the ``TRUNC`` function is redundant, as there is nothing smaller than nanoseconds. 
 
 Syntax
 ==========
@@ -28,6 +28,8 @@ Syntax
       | MINUTE | MI | N
       | SECOND | SS | S
       | MILLISECOND | MS
+      | MICROSECOND | MU
+      | NANOSECOND | NS
 
 Arguments
 ============
@@ -39,7 +41,7 @@ Arguments
    * - Parameter
      - Description
    * - ``date_expr``
-     - A ``DATE`` or ``DATETIME`` expression
+     - A ``DATE`` , ``DATETIME`` or ``DATETIME2`` expression
    * - ``interval``
      - An interval representing a date part. See the table below or the syntax reference above for valid date parts. If not specified, sets the value to to midnight and returns a ``DATETIME``.
 
@@ -81,6 +83,12 @@ Valid date parts
    * - ``MILLISECOND``
      - ``MS``
      - Milliseconds (0-999)
+   * - ``MICROSECOND``
+     - ``MU``
+     - Microseconds (0-999)
+   * - ``NANOSECOND``
+     - ``NS``
+     - Nanoseconds (0-999)
 
 Returns
 ============
@@ -90,11 +98,13 @@ If no date part is specified, the return type is ``DATETIME``. Otherwise, the re
 Notes
 ========
 
-* All date parts work on a ``DATETIME``.
+* All date parts work on a ``DATETIME2``.
 
-* The ``HOUR``, ``MINUTE``, ``SECOND``, and ``MILLISECOND`` date parts work only on ``DATETIME``. Using them on ``DATE`` will result in an error.
+* The ``HOUR``, ``MINUTE``, ``SECOND``, and ``MILLISECOND`` date parts work on ``DATETIME`` or ``DATETIME2``. Using them on ``DATE`` will result in an error.
 
-* If no date part is specified, the ``DATE`` or ``DATETIME`` value will be set to midnight on the date value. See examples below
+* The ``MICROSECOND`` and ``NANOSECOND`` date parts work only on ``DATETIME2``. Using them on ``DATE`` or ``DATETIME`` will result in an error.
+
+* If no date part is specified, the ``DATE``, ``DATETIME`` or ``DATETIME2`` value will be set to midnight on the date value. See examples below
 
 * See also :ref:`EOMONTH<eomonth>` to find the last day of the month.
 
