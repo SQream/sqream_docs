@@ -22,24 +22,12 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | Storage version         |   58                                                                   |
 +-------------------------+------------------------------------------------------------------------+
-| Driver compatibility    | * JDBC 5.4.2                                                           |
-|                         | * ODBC 4.4.4                                                           | 
-|                         | * NodeJS 4.2.4                                                         |
-|                         | * .NET 5.0.0                                                           |
-|                         | * Pysqream 5.3.0                                                       |
-|                         | * SQLAlchemy 1.4                                                       |
-|                         | * Spark 5.0.0                                                          |
-|                         | * SQLoader As A Service 8.3.1                                          |
-|                         | * Java CLI 2.2                                                         |
-+-------------------------+------------------------------------------------------------------------+
+
 
 New Features and Enhancements
 -----------------------------
-► :ref:`Alter Default Permissions<alter_default_permissions>` is now enhanced to include support for ``USER DEFINED FUNCTIONS``.
+► SQDB's new ``DATETIME2`` data type delivers nanosecond precision and timezone control, for reliable and accurate time-based data..
 
-► Enahnced Regular Expresseion (RegEx) support.
-
-► Python version for :ref:`Python User Defined Functions<python_functions>` has been upgraded to Python 3.11.
 
 Known Issues
 ------------
@@ -52,25 +40,24 @@ Version 4.11 resolved Issues
 +--------------+---------------------------------------------------------------------------------------------------------------------+
 | **SQ No.**   | **Description**                                                                                                     |
 +==============+=====================================================================================================================+
-| SQ-18800     | Running Create Table As Select from a table with delete predicates causes worker abnormal behavior                  | 
+| SQ-18621     | ``DELETE`` statement causes Worker stability issue                                                                  | 
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-18797     | Worker failure leaves orphan locks                                                                                  | 
+| SQ-19275     | Compression issue                                                                                                   | 
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-18555     | Enhance set parameter command efficiency                                                                            | 
+| SQ-19485     | Issue using ``COPY FROM`` JSON file containing ``ARRAY`` data                                                       | 
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-18504     | Access Control Permissions - Functions                                                                              | 
+| SQ-19534     | Issue with ``ARRAY`` containing large ``TEXT``                                                                      | 
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-18253     | A network insert query fails                                                                                        | 
+| SQ-19541     | Issue using ``DISTINCT`` clause on ``ARRAY``                                                                        | 
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-16436     | Right function error                                                                                                | 
+| SQ-19571     | ``LZ4`` is not permitted for ``FLOAT`` cell of ``ARRAY``                                                            | 
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-14398     | Improve orphan locks handling                                                                                       | 
+| SQ-19635     | ``DICT`` Compression issue                                                                                          | 
 +--------------+---------------------------------------------------------------------------------------------------------------------+
 
 
 
-
-Deprecations
+Deprecation
 -------------------
 
 ► **Haskell CLI**
@@ -79,9 +66,7 @@ Starting October 2024, support for the Haskell CLI is discontinued, and it is re
 
 ► **CentOS Linux 7.x**
 
-* As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
-
-* REHL 8.x is now officially supported.
+* As of June 2024, CentOS Linux 7.x has reached its End of Life and is no longer supported by SQreamDB. 
 
 ► **DateTime2 Alias**
 
