@@ -4,7 +4,7 @@
 EXTRACT
 **************************
 
-Extracts a date or time part from a ``DATE`` or ``DATETIME`` value.
+Extracts a date or time part from a ``DATE`` , ``DATETIME` or ``DATETIME2`` value.
 
 .. note:: SQream DB also supports the SQL Server :ref:`DATEPART<datepart>` syntax, which contains more date parts for use.
 
@@ -25,6 +25,8 @@ Syntax
       | MINUTE
       | SECOND
       | MILLISECONDS
+      | MICROSECOND | MU
+      | NANOSECOND | NS
 
 Arguments
 ============
@@ -38,7 +40,7 @@ Arguments
    * - ``interval``
      - An interval representing a date part. See the table below or the syntax reference above for valid date parts
    * - ``date_expr``
-     - A ``DATE`` or ``DATETIME`` expression
+     - A ``DATE`` , ``DATETIME`` or ``DATETIME2`` expression
 
 
 Valid date parts
@@ -68,6 +70,12 @@ Valid date parts
      - Seconds (0.0-59.0)
    * - ``MILLISECONDS``
      - Milliseconds (0.0-999.0)
+   * - ``MICROSECOND``
+     - ``MU``
+     - Microseconds (0-999)
+   * - ``NANOSECOND``
+     - ``NS``
+     - Nanoseconds (0-999)
 
 Returns
 ============
@@ -77,7 +85,9 @@ Returns
 Notes
 ========
 
-* The ``HOUR``, ``MINUTE``, ``SECOND``, and ``MILLISECOND`` date parts work only on ``DATETIME``. Using them on ``DATE`` will result in an error.
+* The ``HOUR``, ``MINUTE``, ``SECOND``, and ``MILLISECOND`` date parts work on ``DATETIME`` or ``DATETIME2``. Using them on ``DATE`` will result in an error.
+* The ``MICROSECOND`` and ``NANOSECOND`` date parts work only on ``DATETIME2``. Using them on ``DATE`` or ``DATETIME`` will result in an error.
+
 
 Examples
 ===========
