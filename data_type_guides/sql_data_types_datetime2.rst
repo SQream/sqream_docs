@@ -22,7 +22,7 @@ The following is an example of the DATETIME2 syntax:
 
 .. code-block:: console
      
-   ``1955-11-05 01:24:00.000000000 +00:00:00``
+   ``1955-11-05 01:24:00.000000000 +00:00``
 
 
 ``DATETIME2`` values are formatted as string literals conforming to `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_.
@@ -45,7 +45,7 @@ The following is an example of the Date syntax:
    
    CREATE TABLE important_dates (a DATETIME2);
 
-   INSERT INTO important_dates VALUES ('1955-11-05 01:24:00.000000000 -08:00:00');
+   INSERT INTO important_dates VALUES ('1955-11-05 01:24:00.000000000 -08:00');
 
    SELECT * FROM important_dates;
    
@@ -53,7 +53,7 @@ The following is an example of the correct output:
 
 .. code-block:: text
 
-   1955-11-05 01:24:00.000000000 -08:00:00
+ 1955-11-05 01:24:00.000 -0800
    
 
 
@@ -69,8 +69,8 @@ The following table shows the possible ``DATETIME2`` value conversions:
    * - Type
      - Details
    * - ``TEXT``
-     - ``'1997-01-01'`` → ``'1997-01-01 00:00:00.000000 +00:00:00'``, ``'1955-11-05 01:24'`` → ``'1955-11-05 01:24:00.000000 +00:00:00'``
+     - ``'1997-01-01'`` → ``'1997-01-01 00:00:00.000000 +00:00'``, ``'1955-11-05 01:24'`` → ``'1955-11-05 01:24:00.000000 +00:00'``
    * - ``DATE``
-     - ``'1997-01-01'`` → ``'1997-01-01 00:00:00.000000 +00:00:00'``
+     - ``'1997-01-01'`` → ``'1997-01-01 00:00:00.000000 +00:00'``
    * - ``DATETIME``
-     - ``'1955-11-05 01:24'`` → ``'1955-11-05 01:24:00.000000 +00:00:00'``
+     - ``'1955-11-05 01:24'`` → ``'1955-11-05 01:24:00.000000 +00:00'``

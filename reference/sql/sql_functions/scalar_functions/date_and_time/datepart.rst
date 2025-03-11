@@ -4,7 +4,7 @@
 DATEPART
 **************************
 
-Extracts a date or time part from a ``DATE`` or ``DATETIME`` value.
+Extracts a date or time part from a ``DATE``, ``DATETIME`` or ``DATETIME2`` value.
 
 .. note:: SQream DB also supports the ANSI :ref:`EXTRACT<extract>` syntax.
 
@@ -27,6 +27,8 @@ Syntax
       | MINUTE | MI | N
       | SECOND | SS | S
       | MILLISECOND | MS
+      | MICROSECOND | MU
+      | NANOSECOND | NS
 
 Arguments
 ============
@@ -40,7 +42,7 @@ Arguments
    * - ``interval``
      - An interval representing a date part. See the table below or the syntax reference above for valid date parts
    * - ``date_expr``
-     - A ``DATE`` or ``DATETIME`` expression
+     - A ``DATE``, ``DATETIME`` or ``DATETIME2`` expression
 
 
 Valid date parts
@@ -86,6 +88,12 @@ Valid date parts
    * - ``MILLISECOND``
      - ``MS``
      - Milliseconds (0-999)
+   * - ``MICROSECOND``
+     - ``MU``
+     - Microseconds (0-999)
+   * - ``NANOSECOND``
+     - ``NS``
+     - Nanoseconds (0-999)
 
 .. note::
  * The first day of the week is Sunday, when used with ``WEEKDAY``.
@@ -95,12 +103,6 @@ Returns
 
 * An integer representing the date part value
 
-Notes
-========
-
-* All date parts work on a ``DATETIME``.
-
-* The ``HOUR``, ``MINUTE``, ``SECOND``, and ``MILLISECOND`` date parts work only on ``DATETIME``. Using them on ``DATE`` will result in an error.
 
 Examples
 ===========
