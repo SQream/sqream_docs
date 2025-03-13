@@ -75,8 +75,7 @@ Release Notes
    :glob:
    :hidden:
 
+   releasePolicy
    4.0_index
-   2022.1_index
-
    
  
