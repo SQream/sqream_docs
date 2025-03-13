@@ -44,7 +44,7 @@ Client Driver Downloads
      - Recommended installation via ``npm``
      - All
    * - **ODBC**
-     - For the **ODBC installer**, please contact your `SQreamDB representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_
+     - `Windows ODBC Installer <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqream_odbc_jdbc_installer_25072022_x86_64bit_windows.zip>`_ , `Linux ODBC <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqream_odbc_v4.4_x86_64_linux.tar.gz>`_
      - :ref:`Windows<install_odbc_windows>`, :ref:`Linux<install_odbc_linux>`
      - 
      - Windows, Linux
