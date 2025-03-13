@@ -20,7 +20,7 @@ End of Support Timeline
 End of Support (EOS) for each version is scheduled one year after the version's release date.
 After the EOS date, no further updates or bug fixes will be provided for that version, and customers will be encouraged to upgrade to a supported version to receive continued updates and support.
 
-Blue Releases Timeline
+SQDB Releases Timeline
 ======================
 
 .. list-table:: 
@@ -39,7 +39,7 @@ Blue Releases Timeline
      - January 20th 2025
      - March 31st 2025
      - December 31st 2025
-	 * - ``4.9``
+   * - ``4.9``
      - November 29th 2024
      - January 20th 2025
      - December 31st 2025
