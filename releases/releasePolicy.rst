@@ -54,7 +54,7 @@ SQDB Releases Timeline
    * - ``4.5``
      - December 5th 2023
      - March 5th 2024
-     - June 30th 2025
+     - September 30th 2025
    * - ``4.3``
      - June 11th 2023
      - September 11th 2023
