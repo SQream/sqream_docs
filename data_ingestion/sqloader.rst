@@ -636,7 +636,7 @@ Using the ``loadTypeName`` parameter, you can define how you wish records' chang
    
    * - Loading Type
      - Parameter Option
-	 - Supported Databases
+     - Supported Databases
      - Description
    * - Full Table
      - ``full``
