@@ -636,16 +636,20 @@ Using the ``loadTypeName`` parameter, you can define how you wish records' chang
    
    * - Loading Type
      - Parameter Option
+	 - Supported Databases
      - Description
    * - Full Table
      - ``full``
+	 - All
      - The entire data of the source table is loaded into SQreamDB
    * - Change Data Capture (CDC)
      - ``cdc``
-     - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT``, ``UPDATE``, and ``DELETE`` statements. SQLoader recognizes tables by table name and metadata. Supported for Oracle only
+	 - Oracle
+     - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT``, ``UPDATE``, and ``DELETE`` statements. SQLoader recognizes tables by table name and metadata. 
    * - Incremental
      - ``inc``
-     - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata. Supported for Oracle and Postgresql
+	 - Oracle, Postgresql, SqreamDB
+     - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata.
 	
 
 
