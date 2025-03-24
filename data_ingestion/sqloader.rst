@@ -630,7 +630,7 @@ Using the ``loadTypeName`` Parameter
 
 Using the ``loadTypeName`` parameter, you can define how you wish records' changes to be made to data in order to track inserts, updates, and deletes for data synchronization and auditing purposes.
 
-.. list-table:: 
+.. list-table::
    :widths: auto
    :header-rows: 1
    
@@ -651,8 +651,6 @@ Using the ``loadTypeName`` parameter, you can define how you wish records' chang
      - Oracle, PostgreSQL, SQreamDB
      - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata.
 	
-
-
 	
 Using the SQLoader Service Web Interface
 ----------------------------------------
@@ -702,7 +700,7 @@ The following summary table DDL uses Oracle syntax.
 
 .. code-block:: sql
 
-  # Use this DDL to create summary tables on none SQDB databases 
+  # Use this DDL to create summary tables on non-SQDB databases 
 	CREATE TABLE public.SQLOAD_SUMMARY (
 	 DB_NAME TEXT(200 BYTE) VISIBLE,
 	 SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
@@ -831,14 +829,14 @@ See :ref:`load_type_name`
 	
 	#To be used for SQDB
 	CREATE TABLE cdc_tracking (
-	 DB_NAME TEXT,
-	 SCHEMA_NAME TEXT,
-	 TABLE_NAME TEXT,
-	 TABLE_NAME_FULL TEXT,
-	 LAST_UPDATED_DTTM DATE ,
-	 LAST_VAL_INT NUMBER DEFAULT 0,
-	 LAST_VAL_TS DATETIME,
-	 LAST_VAL_DT DATETIME
+	  DB_NAME TEXT,
+	  SCHEMA_NAME TEXT,
+	  TABLE_NAME TEXT,
+	  TABLE_NAME_FULL TEXT,
+	  LAST_UPDATED_DTTM DATE ,
+	  LAST_VAL_INT NUMBER DEFAULT 0,
+	  LAST_VAL_TS DATETIME,
+	  LAST_VAL_DT DATETIME
 	);
 	
 	CREATE TABLE public.CDC_TABLES (
