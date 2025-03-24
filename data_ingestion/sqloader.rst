@@ -15,7 +15,7 @@ The **SQLoader** is a Java service that enables you to ingest data into SQreamDB
 * SAP HANA
 * Sybase
 * Teradata
-* SQreamDB 4.5.15 or later (Full Load only)
+* SQreamDB 4.5.15 or later
 
 .. contents:: 
    :local:
