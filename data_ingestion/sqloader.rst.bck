@@ -65,7 +65,7 @@ Getting All Configuration and JAR Files
 
    .. code-block:: console
 
-	https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqloader-release-v1.5.tar.gz
+	https://storage.cloud.google.com/cicd-storage/sqloader_release/sqloader-release-v1.1.zip
 
 #. Extract the ``.tar`` file using the following command:
 
@@ -636,21 +636,23 @@ Using the ``loadTypeName`` parameter, you can define how you wish records' chang
    
    * - Loading Type
      - Parameter Option
-     - Supported Databases
+	 - Supported Databases
      - Description
    * - Full Table
      - ``full``
-     - All supported DBs
+	 - All
      - The entire data of the source table is loaded into SQreamDB
    * - Change Data Capture (CDC)
      - ``cdc``
-     - Oracle
+	 - Oracle
      - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT``, ``UPDATE``, and ``DELETE`` statements. SQLoader recognizes tables by table name and metadata. 
    * - Incremental
      - ``inc``
-     - Oracle, PostgreSQL, SQreamDB
+	 - Oracle, Postgresql, SqreamDB
      - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata.
 	
+Please see below 
+
 	
 Using the SQLoader Service Web Interface
 ----------------------------------------
@@ -674,10 +676,6 @@ SQLoader Service Web Interface Features
 Creating Summary and Catalog Tables
 ===================================
 
-.. contents:: 
-   :local:
-   :depth: 1
-
 The summary and catalog tables are pre-aggregated tables that store summarized or aggregated data.
 
 Creating a Summary Table
@@ -700,7 +698,7 @@ The following summary table DDL uses Oracle syntax.
 
 .. code-block:: sql
 
-  # Use this DDL to create summary tables on non-SQDB databases 
+  # Use this DDL to create summary tables on none SQDB databases 
 	CREATE TABLE public.SQLOAD_SUMMARY (
 	 DB_NAME TEXT(200 BYTE) VISIBLE,
 	 SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
@@ -799,6 +797,22 @@ See :ref:`load_type_name`
 	  LAST_VAL_DT DATE VISIBLE
 	);
 
+.. code-block:: sql
+	
+	#To be used for SQDB
+	CREATE TABLE cdc_tracking (
+	 DB_NAME TEXT,
+	 SCHEMA_NAME TEXT,
+	 TABLE_NAME TEXT,
+	 TABLE_NAME_FULL TEXT,
+	 LAST_UPDATED_DTTM DATE ,
+	 LAST_VAL_INT NUMBER DEFAULT 0,
+	 LAST_VAL_TS DATETIME,
+	 LAST_VAL_DT DATETIME
+	);
+
+.. code-block:: sql
+
 	CREATE TABLE public.CDC_TABLES (
 	  DB_NAME TEXT(200 BYTE) VISIBLE,
 	  SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
@@ -824,47 +838,6 @@ See :ref:`load_type_name`
 	  COLUMN_NAME TEXT(200 BYTE) VISIBLE,
 	  IS_NULLABLE NUMBER VISIBLE DEFAULT 0
 	);
-
-.. code-block:: sql
-	
-	#To be used for SQDB
-	CREATE TABLE cdc_tracking (
-	  DB_NAME TEXT,
-	  SCHEMA_NAME TEXT,
-	  TABLE_NAME TEXT,
-	  TABLE_NAME_FULL TEXT,
-	  LAST_UPDATED_DTTM DATE ,
-	  LAST_VAL_INT NUMBER DEFAULT 0,
-	  LAST_VAL_TS DATETIME,
-	  LAST_VAL_DT DATETIME
-	);
-	
-	CREATE TABLE public.CDC_TABLES (
-	  DB_NAME TEXT(200),
-	  SCHEMA_NAME TEXT(200),
-	  TABLE_NAME TEXT(200),
-	  TABLE_NAME_FULL TEXT(200),
-	  TABLE_NAME_CDC TEXT(200),
-	  INC_COLUMN_NAME TEXT(200),
-	  INC_COLUMN_TYPE TEXT(200),
-	  LOAD_TYPE TEXT(200),
-	  FREQ_TYPE TEXT(200),
-	  FREQ_INTERVAL BIGINT,
-	  IS_ACTIVE INT DEFAULT 0,
-	  STATUS_LOAD INT DEFAULT 0,
-	  INC_GAP_VALUE INT DEFAULT 0
-	);
-
-	CREATE TABLE public.CDC_TABLE_PRIMARY_KEYS (
-	  DB_NAME TEXT(200),
-	  SCHEMA_NAME TEXT(200),
-	  TABLE_NAME TEXT(200),
-	  TABLE_NAME_FULL TEXT(200),
-	  CONSTRAINT_NAME TEXT(200),
-	  COLUMN_NAME TEXT(200),
-	  IS_NULLABLE INT DEFAULT 0
-	);
-
 
 
 Data Type Mapping 
