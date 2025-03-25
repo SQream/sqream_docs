@@ -4,8 +4,8 @@
 ``||`` (Concatenate)
 **************************
 
-Concatenate two strings or string arrays to create a longer string
-The :ref:`concat_function` provides alternative syntax for CONCAT and requires at least two arguments.
+Concatenate two strings or string arrays to create a longer string.
+
 
 Syntax
 ==========
@@ -38,6 +38,8 @@ Notes
 * Both values must be strings, and can't be ``NULL``. If ``NULLS`` are expected, use :ref:`coalesce`.
 
 * SQream DB removes the trailing spaces from strings by default, which may lead to unexpected results. See the examples for more information.
+
+* The :ref:`concat_function` provides alternative syntax for CONCAT and requires at least two arguments.
 
 Examples
 ===========
