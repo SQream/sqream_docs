@@ -61,11 +61,7 @@ Installation and Connectivity
 Getting All Configuration and JAR Files
 ---------------------------------------
 
-#. Download the SQLoader zip file:
-
-   .. code-block:: console
-
-	https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqloader-release-v1.5.tar.gz
+#. Download the `SQLoader zip file` <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqloader-release-v1.5.tar.gz>`_:
 
 #. Extract the ``.tar`` file using the following command:
 
