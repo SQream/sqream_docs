@@ -4,7 +4,7 @@
 CONCAT function
 **************************
 
-Concatenates one or more strings, or concatenates one or more binary values.
+Concatenates one or more strings, string arrays or concatenates one or more binary values.
 
 Syntax
 ==========

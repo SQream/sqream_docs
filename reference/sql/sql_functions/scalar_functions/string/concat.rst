@@ -4,7 +4,7 @@
 ``||`` (Concatenate)
 **************************
 
-Concatenate two strings to create a longer string
+Concatenate two strings or string arrays to create a longer string
 The :ref:`concat_function` provides alternative syntax for CONCAT and requires at least two arguments.
 
 Syntax
