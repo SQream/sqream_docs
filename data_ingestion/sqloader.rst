@@ -65,7 +65,7 @@ Getting All Configuration and JAR Files
 
    .. code-block:: console
 
-	https://storage.cloud.google.com/cicd-storage/sqloader_release/sqloader-release-v1.1.zip
+	https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqloader-release-v1.5.tar.gz
 
 #. Extract the ``.tar`` file using the following command:
 
