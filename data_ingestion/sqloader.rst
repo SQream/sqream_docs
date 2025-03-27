@@ -689,50 +689,55 @@ The following summary table DDL uses Oracle syntax.
 
   .. code-block:: sql
 
-    REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL    
-    CLIENT_IP TEXT (200 BYTE) VISIBLE DEFAULT NULL
-    REQUESTED_HOST TEXT (200 BYTE) VISIBLE DEFAULT NULL
-    ACQUIRED_HOST TEXT (200 BYTE) VISIBLE DEFAULT NULL
+	request_id            varchar2(200) default NULL,
+	client_ip             varchar2(200) default NULL,
+	requested_host        varchar2(200) default NULL,
+	acquired_host         varchar2(200) default NULL
 
 .. code-block:: sql
 
-  # Use this DDL to create summary tables on non-SQDB databases 
-	CREATE TABLE public.SQLOAD_SUMMARY (
-	 DB_NAME TEXT(200 BYTE) VISIBLE,
-	 SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
-	 TABLE_NAME TEXT(200 BYTE) VISIBLE,
-	 TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
-	 LOAD_TYPE TEXT(200 BYTE) VISIBLE,
-	 UPDATED_DTTM_FROM DATE VISIBLE,
-	 UPDATED_DTTM_TO DATE VISIBLE,
-	 LAST_VAL_INT NUMBER(22,0) VISIBLE,
-	 LAST_VAL_TS TIMESTAMP(6) VISIBLE,
-	 START_TIME TIMESTAMP(6) VISIBLE,
-	 FINISH_TIME TIMESTAMP(6) VISIBLE,
-	 ELAPSED_SEC NUMBER VISIBLE,
-	 ROW_COUNT NUMBER VISIBLE,
-	 SQL_FILTER TEXT(200 BYTE) VISIBLE,
-	 PARTITION TEXT(200 BYTE) VISIBLE,
-	 STMT_TYPE TEXT(200 BYTE) VISIBLE,
-	 STATUS TEXT(200 BYTE) VISIBLE,
-	 LOG_FILE TEXT(200 BYTE) VISIBLE,
-	 DB_URL TEXT(200 BYTE) VISIBLE,
-	 PARTITION_COUNT NUMBER VISIBLE DEFAULT 0,
-	 THREAD_COUNT NUMBER VISIBLE DEFAULT 1,
-	 ELAPSED_MS NUMBER VISIBLE DEFAULT 0,
-	 STATUS_CODE NUMBER VISIBLE DEFAULT 0,
-	 ELAPSED_SOURCE_MS NUMBER(38,0) DEFAULT NULL,
-	 ELAPSED_SOURCE_SEC NUMBER(38,0) DEFAULT NULL,
-	 ELAPSED_TARGET_MS NUMBER(38,0) DEFAULT NULL,
-	 ELAPSED_TARGET_SEC NUMBER(38,0) DEFAULT NULL,
-	 TARGET_DB_URL TEXT (200 BYTE) DEFAULT NULL,
-	 SQLOADER_VERSION TEXT (200 BYTE) DEFAULT NULL,
-	 CLIENT_IP TEXT (200 BYTE) DEFAULT NULL,
-	 REQUESTED_HOST TEXT (200 BYTE) DEFAULT NULL,
-	 ACQUIRED_HOST TEXT (200 BYTE) DEFAULT NULL,
-	 REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL
+  # Use this DDL to create summary tables on Oracle database 
+	create table sqload_summary (
+	  db_name               varchar2(200 byte),
+	  schema_name           varchar2(200 byte),
+	  table_name            varchar2(200 byte),
+	  table_name_full       varchar2(200 byte),
+	  load_type             varchar2(200 byte),
+	  updated_dttm_from     date,
+	  updated_dttm_to       date,
+	  last_val_int          number(22,0),
+	  last_val_ts           date,
+	  start_time            timestamp (6),
+	  finish_time           timestamp (6),
+	  elapsed_sec           number(*,0),
+	  row_count             number(*,0),
+	  sql_filter            varchar2(800 byte),
+	  partition             varchar2(200 byte),
+	  stmt_type             varchar2(200 byte),
+	  status                varchar2(200 byte),
+	  log_file              varchar2(200 byte),
+	  db_url                varchar2(400 byte),
+	  partition_count       number(*,0) default 0,
+	  thread_count          number(*,0) default 1,
+	  elapsed_ms            number(*,0) default 0,
+	  status_code           number(*,0) default 0,
+	  elapsed_source_ms     number(38,0) default NULL,
+	  elapsed_source_sec    number(38,0) default NULL,
+	  elapsed_target_ms     number(38,0) default NULL,
+	  elapsed_target_sec    number(38,0) default NULL,
+	  target_db_url         varchar2(200) default NULL,
+	  sqloader_version      varchar2(20) default NULL,
+	  host                  varchar2(200) default NULL,
+	  request_id            varchar2(200) default NULL,
+	  client_ip             varchar2(200) default NULL,
+	  requested_host        varchar2(200) default NULL,
+	  acquired_host         varchar2(200) default NULL
 	);
-  
+
+	create index sqload_summary_idx1 on sqload_summary (db_name,schema_name,table_name);
+	create index sqload_summary_idx2 on sqload_summary (start_time);
+	create index sqload_summary_idx3 on sqload_summary (finish_time);
+	  
 .. code-block:: sql
 
   # Use this DDL to create summary tables SQDB databases 
@@ -784,42 +789,46 @@ See :ref:`load_type_name`
 .. code-block:: sql
 
     #To be used for Oracle
-    CREATE TABLE public.CDC_TRACKING (
-	  DB_NAME TEXT(200 BYTE) VISIBLE,
-	  SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
-	  LAST_UPDATED_DTTM DATE VISIBLE,
-	  LAST_VAL_INT NUMBER(22,0) VISIBLE DEFAULT 0,
-	  LAST_VAL_TS TIMESTAMP(6) VISIBLE,
-	  LAST_VAL_DT DATE VISIBLE
-	);
+	create table cdc_tables (
+	  db_name               varchar2(200 byte),
+	  schema_name           varchar2(200 byte),
+	  table_name            varchar2(200 byte),
+	  table_name_full       varchar2(200 byte),
+	  table_name_cdc        varchar2(200 byte),
+	  inc_column_name       varchar2(200 byte),
+	  inc_column_type       varchar2(200 byte),
+	  load_type             varchar2(200 byte),
+	  freq_type             varchar2(200 byte),
+	  freq_interval         number(22,0),
+	  is_active             number(*,0) default 0,
+	  status_load           number(*,0));
 
-	CREATE TABLE public.CDC_TABLES (
-	  DB_NAME TEXT(200 BYTE) VISIBLE,
-	  SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME_CDC TEXT(200 BYTE) VISIBLE,
-	  INC_COLUMN_NAME TEXT(200 BYTE) VISIBLE,
-	  INC_COLUMN_TYPE TEXT(200 BYTE) VISIBLE,
-	  LOAD_TYPE TEXT(200 BYTE) VISIBLE,
-	  FREQ_TYPE TEXT(200 BYTE) VISIBLE,
-	  FREQ_INTERVAL NUMBER(22,0) VISIBLE,
-	  IS_ACTIVE NUMBER VISIBLE DEFAULT 0,
-	  STATUS_LOAD NUMBER VISIBLE DEFAULT 0,
-	  INC_GAP_VALUE NUMBER VISIBLE DEFAULT 0
-	);
+	create index cdc_tables_idx1 on cdc_tables (db_name,table_name_full);
+ 
+	create table cdc_table_primary_keys (
+	  db_name               varchar2(200 byte),
+	  schema_name           varchar2(200 byte),
+	  table_name            varchar2(200 byte),
+	  table_name_full       varchar2(200 byte),
+	  constraint_name       varchar2(200 byte),
+	  column_name           varchar2(200 byte),
+	  is_nullable           number(*,0));
 
-	CREATE TABLE public.CDC_TABLE_PRIMARY_KEYS (
-	  DB_NAME TEXT(200 BYTE) VISIBLE,
-	  SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
-	  CONSTRAINT_NAME TEXT(200 BYTE) VISIBLE,
-	  COLUMN_NAME TEXT(200 BYTE) VISIBLE,
-	  IS_NULLABLE NUMBER VISIBLE DEFAULT 0
-	);
+	create index cdc_table_primary_keys_idx1 on cdc_table_primary_keys (db_name,table_name_full);
+
+
+	create table cdc_tracking (
+	  db_name               varchar2(200 byte),
+	  schema_name           varchar2(200 byte),
+	  table_name            varchar2(200 byte),
+	  table_name_full       varchar2(200 byte),
+	  last_updated_dttm     date,
+	  last_val_int          number(22,0) default 0,
+	  last_val_ts           timestamp (6),
+	  last_val_dt           date);
+
+	create index cdc_tracking_idx1 on cdc_tracking (db_name,table_name_full);
+
 
 .. code-block:: sql
 	
