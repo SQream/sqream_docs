@@ -124,12 +124,11 @@ SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the
 Before You Begin
 ----------------
 
-Download `pysqream-sqlalchemy <https://pypi.org/project/pysqream-sqlalchemy/1.3/>`_
+Download `pysqream-sqlalchemy <https://pypi.org/project/pysqream-sqlalchemy/>`_
 
 Limitation
 -----------
 
-* Supports `Pysqream 3.2.5 <https://pypi.org/project/pysqream/3.2.5/>`_
 * Does not support the ``ARRAY`` data type
 
 
