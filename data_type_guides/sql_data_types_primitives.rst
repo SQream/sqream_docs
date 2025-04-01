@@ -39,7 +39,7 @@ SQreamDB compresses all columns and types. The data size noted is the maximum da
      - Integer (-9,223,372,036,854,775,808 - 9,223,372,036,854,775,807)
      - 8 bytes
      - ``36124441255243``
-     - ``NUMBER``
+     - 
    * - ``REAL``
      - Floating point (inexact)
      - 4 bytes
@@ -59,7 +59,7 @@ SQreamDB compresses all columns and types. The data size noted is the maximum da
      -  38 digits
      - 16 bytes
      - ``0.12324567890123456789012345678901234567``
-     - ``DECIMAL``
+     - ``DECIMAL``, ``NUMBER``
    * - ``DATE``
      - Date
      - 4 bytes
