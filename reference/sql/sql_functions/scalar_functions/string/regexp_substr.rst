@@ -4,7 +4,7 @@
 REGEXP_SUBSTR
 **************************
 
-Returns the occurence of a regex match.
+Returns the occurrence of a regex match.
 
 
 See also: :ref:`regexp_instr`, :ref:`regexp_count`.
@@ -14,7 +14,7 @@ Syntax
 
 .. code-block:: postgres
 
-   REGEXP_SUBSTR( string_expr, string_test_expr [ , start_index [ , occurence ] ] ) --> INT
+   REGEXP_SUBSTR( string_expr, string_test_expr [ , start_index [ , occurrence ] ] ) --> TEXT
 
 Arguments
 ============
@@ -31,10 +31,10 @@ Arguments
      - Test pattern
    * - ``start_index``
      - The character index offset to start counting from. Defaults to 1
-   * - ``occurence``
-     - Which occurence to search for. Defaults to 1
+   * - ``occurrence``
+     - Which occurrence to search for. Defaults to 1
    * - ``return_position``
-     - Setes the position within the string to return. Using 0, the function returns the string position of the first character of the substring that matches the pattern. Defaults to 0
+     - Sets the position within the string to return. Using 0, the function returns the string position of the first character of the substring that matches the pattern. Defaults to 0
 
 Supported RegEx Patterns
 ========================
@@ -51,13 +51,13 @@ Supported RegEx Patterns
      - Match the beginning of a string
 
    * - ``[^]``
-     - Characters that do not match the speciifed string
+     - Characters that do not match the specified string
 	 
    * - ``$``
      - Match the end of a string
 
    * - ``.``
-     - Match any character (including whitespace such as carriage return and newline)
+     - Match any character (including white-space such as carriage return and newline)
 
    * - ``*``
      - Match the preceding pattern zero or more times
@@ -84,10 +84,10 @@ Supported RegEx Patterns
      - ``OR`` clause
 
    * - ``\``
-     - Treating the subsequent characters in the expression as ordinary characters rather than metacharacters
+     - Treating the subsequent characters in the expression as ordinary characters rather than meta-characters
    
    * - ``\n``
-     - Matching the nth (``1``-``9``) preceding subexpression grouped within parentheses
+     - Matching the nth (``1``-``9``) preceding sub-expression grouped within parentheses
 	 
    * - ``*?``
      - Occurs zero or more times
