@@ -211,7 +211,7 @@ Filter and reduce table sizes prior to joining on them
 
    SELECT store_name,
           SUM(amount)
-   FROM dimention dim
+   FROM dimension dim
      JOIN fact ON dim.store_id = fact.store_id
    WHERE p_date BETWEEN '2019-07-01' AND '2019-07-31'
    GROUP BY store_name;
@@ -222,7 +222,7 @@ Can be rewritten as:
 
    SELECT store_name,
           sum_amount
-   FROM dimention AS dim
+   FROM dimension AS dim
      INNER JOIN (SELECT SUM(amount) AS sum_amount,
                         store_id
                  FROM fact
