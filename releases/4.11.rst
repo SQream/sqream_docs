@@ -4,7 +4,7 @@
 Release Notes 4.11
 *****************
 
-The 4.11 release notes were released on April 3rd, 2025
+The 4.11 release notes were released on April 9th, 2025
 
 .. contents:: 
    :local:
