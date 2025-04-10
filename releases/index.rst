@@ -4,8 +4,6 @@
 Release Notes
 *************
 
-:ref:`Version 4.12 - May 15th, 2025<4.12>`
-
 :ref:`Version 4.11 - April 9th, 2025<4.11>`
 
 :ref:`Version 4.10 - January 20, 2025<4.10>`
