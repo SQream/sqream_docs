@@ -51,7 +51,7 @@ Version 4.12 resolved Issues
 Deprecation
 -------------------
 
-► **Column ``DDL`` permission**
+► **Column DDL permission**
 
 Column ``DDL`` permission is now deprecated as its functionality is fully included within the table ``DDL`` permission. Upon upgrading to this version, all existing column ``DDL`` permissions will be automatically revoked.
 
