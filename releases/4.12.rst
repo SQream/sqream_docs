@@ -26,9 +26,9 @@ Compatibility Matrix
 
 New Features and Enhancements
 -----------------------------
-► SQDB's new ``DATETIME2`` data type delivers nanosecond precision and timezone notation, for reliable and accurate time-based data.
+► Metadata partitioning.
 
-► Array decompress to run on GPU (Performance improvement).
+► PUT.
 
 
 Known Issues
@@ -51,9 +51,13 @@ Version 4.12 resolved Issues
 Deprecation
 -------------------
 
+► **Column ``DDL`` permission**
+
+Column ``DDL`` permission is now deprecated as its functionality is fully included within the table ``DDL`` permission. Upon upgrading to this version, all existing column ``DDL`` permissions will be automatically revoked.
+
 ► **Haskell CLI**
 
-Starting October 2024, support for the Haskell CLI is discontinued, and it is replaced by the :ref:`Multi Platform CLI<multi_platform_cli>` that is compatible with the Haskell CLI with the added value of ``Table-View`` and cross platform compatability.
+Starting October 2024, support for the Haskell CLI is discontinued, and it is replaced by the :ref:`Multi Platform CLI<multi_platform_cli>` that is compatible with the Haskell CLI with the added value of ``Table-View`` and cross platform compatibility.
 
 ► **CentOS Linux 7.x**
 
