@@ -7,7 +7,9 @@ Logging
 Locating the Log Files
 ======================
 
-The :ref:`storage cluster<storage_cluster>` contains a ``logs`` directory. Each worker produces a log file in its own directory, which can be identified by the worker's hostname and port.
+The ``logs`` directory path is controlled by a ``DefaultPathToLogs`` cluster flag (legacy config). By default it is set to ``~/tmp_log``, the best practice is to set it to ``<cluster home>/logs``.
+
+Each worker produces a log file in its own directory, which can be identified by the worker's hostname and port.
 
 .. TODO: expand this by giving some use caes for working with log files directly in sqream (troubleshooting, performance analysis, monitoring, that kind of thing. Stick to things customers actually use and/or we instruct them to do with the logs, not theoretical things they could do with the logs
 
