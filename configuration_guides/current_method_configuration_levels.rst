@@ -164,24 +164,12 @@ Flag List
      - Checks for CUDA errors after producing each chunk.
      - boolean
      - ``FALSE``
-   * - ``enableLogDebug`` 
-     - SUPERUSER
-     - Session
-     - Enables creating and logging in the clientLogger_debug file.
-     - boolean
-     - ``TRUE``	 
    * - ``enableNvprofMarkers`` 
      - SUPERUSER
      - Session
      - Activates the Nvidia profiler (nvprof) markers.
      - boolean
-     - ``FALSE``
-   * - ``endLogMessage`` 
-     - SUPERUSER
-     - Session
-     - Appends a string at the end of every log line.
-     - string
-     - ``EOM`` 
+     - ``FALSE`` 
    * - ``extentStorageFileSizeMB`` 
      - SUPERUSER
      - Cluster
@@ -217,55 +205,7 @@ Flag List
      - Session
      - Sets the buffer size.
      - uint
-     - ``524288``
-   * - ``logClientLevel``
-     - SUPERUSER
-     - Cluster
-     - Used to control which :ref:`log level<information_level>` should appear in the logs. Value range: ``0`` - ``6``
-     - int
-     - Default value: ``4``
-	 
-	Acceptable values:
-	 	 
-	``0`` - Only SYSTEM level logs
-	 
-	``1`` - SYSTEM and FATAL
-	
-	``2`` - SYSTEM, FATAL, and ERROR level logs
-	 
-	``3`` - SYSTEM, FATAL, ERROR, and WARNING level logs
-	 
-	``4`` - SYSTEM, FATAL, ERROR, WARNING, and INFO level logs
-	 
-	``5`` - SYSTEM, FATAL, ERROR, WARNING, INFO, and DEBUG level logs
-	 
-	``6`` - SYSTEM, FATAL, ERROR, WARNING, INFO, DEBUG, and TRACE level logs
-   * - ``logFileRotateTimeFrequency``
-     - SUPERUSER
-     - Cluster
-     - Specifies when the system begins writing to a new log file. SQreamDB recommends using the ``logFileRotateTimeFrequency`` flag (rather than the ``logMaxFilesSizeMB`` flag) to configure when a new log file is created, as this flag does not limit the number of log files.
-     - string
-     - ``daily``. Acceptable values: ``daily``, ``weekly``, or ``monthly``
-   * - ``logMaxFilesSizeMB``
-     - SUPERUSER
-     - Cluster
-     - Specifies when the system begins writing to a new log file. When configured with the ``logMaxFilesSizeMB`` flag, the system maintains up to 13 log files. Once the 13th file is complete, the oldest log file is overwritten by the newly created log file. SQreamDB recommends using the ``logFileRotateTimeFrequency`` flag to configure when a new log file is created, as this flag does not limit the number of log files.
-     - int
-     - ``100`` (Megabyte)
-   * - ``logSysLevel`` 
-     - Anyone
-     - Session
-     - 
-	   Determines the client log level:
-	   0 - L_SYSTEM,
-	   1 - L_FATAL,
-	   2 - L_ERROR,
-	   3 - L_WARN,
-	   4 - L_INFO,
-	   5 - L_DEBUG,
-	   6 - L_TRACE	   
-     - uint
-     - ``100000``	
+     - ``524288``	
    * - ``maxAvgBlobSizeToCompressOnGpu`` 
      - Anyone
      - Session
@@ -336,12 +276,6 @@ Flag List
      - Sets the hash table size of the CpuReduce.
      - uint
      - ``10000``
-   * - ``externalTableBlobEstimate``
-     - ?
-     - Session
-     - ?
-     - ?
-     - ?
    * - ``maxPinnedPercentageOfTotalRAM``
      - SUPERUSER
      - Session
@@ -360,4 +294,10 @@ Flag List
      - Terminates queries that have exceeded a predefined time limit in the queue.
      - integer
      - Default value: 0. Minimum values: 1 minute. Maximum value: 4320 minutes (72 hours) 
+   * - ``timezone``
+     - Anyone
+     - Session 
+     - The timezone flag dictates the timezone context used when SQDB encounters ``DATETIME2`` values during data ingestion. This includes overriding any existing timezone information within those values.
+     - Text
+     - Default value: ``null``. ``local`` local system timezone of the SQDB server. ``+hh:mm`` or ``-hh:mm`` explicitly defines the timezone for all incoming ``DATETIME2`` values, overriding any existing timezone information.
 
