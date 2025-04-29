@@ -7,7 +7,7 @@ Logging
 Locating the Log Files
 ======================
 
-The ``logs`` directory path is controlled by a ``DefaultPathToLogs`` cluster flag (legacy config). By default it is set to "~/tmp_logs", the best practice is to set it to ``<cluster home>/logs``.
+The ``logs`` directory path is controlled by a ``DefaultPathToLogs`` cluster flag (legacy config). By default it is set to ``~/tmp_log``, the best practice is to set it to ``<cluster home>/logs``.
 
 Each worker produces a log file in its own directory, which can be identified by the worker's hostname and port.
 
