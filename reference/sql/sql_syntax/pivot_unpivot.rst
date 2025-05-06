@@ -20,7 +20,7 @@ Syntax
 	FROM <from_clause>
 	[
 	  PIVOT
-	  (<pivot_expression> 
+	  (<pivot_expression1> AS <pivot_expression1_name> [, <pivot_expression2> AS <pivot_expression2_name>, .... , <pivot_expressionN> AS <pivot_expressionN_name>]
 		FOR <column_name>
 		IN ([<expression1> AS] <name1>, [<expression2> AS] <name2>, ... , [<expressionN> AS] <nameN>)
 	  )
@@ -85,7 +85,7 @@ The ``PIVOT`` operation creates a new table with ProductName as the first column
 		FROM Sales
 	) AS SourceTable
 	PIVOT (
-		SUM(Revenue)
+		SUM(Revenue) AS RevenueSum
 		FOR SalesDate IN ("2024-01-01", "2024-01-02")
 	) AS PivotTable;
 
