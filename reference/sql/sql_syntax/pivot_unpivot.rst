@@ -20,7 +20,7 @@ Syntax
 	FROM <from_clause>
 	[
 	  PIVOT
-	  (<pivot_expression1> AS <pivot_expression1_name>, .... , <pivot_expressionN> AS <pivot_expressionN_name>
+	  (<pivot_expression1> AS <pivot_expression1_name> [, <pivot_expression2> AS <pivot_expression2_name>, .... , <pivot_expressionN> AS <pivot_expressionN_name>]
 		FOR <column_name>
 		IN ([<expression1> AS] <name1>, [<expression2> AS] <name2>, ... , [<expressionN> AS] <nameN>)
 	  )
