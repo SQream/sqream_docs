@@ -26,9 +26,13 @@ Compatibility Matrix
 
 New Features and Enhancements
 -----------------------------
-► Metadata partitioning.
+► Metadata partitioning significantly reduces statement execution time by intelligently leveraging previously created metadata partitions for efficient data skipping.
 
-► PUT.
+► New SQL syntax for ``PUT``, ``GET``, and ``REMOVE`` statements empowers you to directly write and read files to and from the SQDB cluster, leveraging its robust access control system.
+
+► We've upgraded our platform to Java 17, bringing performance enhancements and the latest security features.
+
+► The ``PIVOT`` functionality has been updated to now support multi-column pivoting.
 
 
 Known Issues
@@ -42,9 +46,12 @@ Version 4.12 resolved Issues
 +--------------+---------------------------------------------------------------------------------------------------------------------+
 | **SQ No.**   | **Description**                                                                                                     |
 +==============+=====================================================================================================================+
-| SQ-xxxxx     | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx                                                                 | 
+| SQ-19869     | Queries with numerous STDDEV aggregations are experiencing long compilation time.                                   | 
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-
+| SQ-19879     | Default permissions for saved queries are not automatically created upon new database creation.                     | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-20146     | The ``PIVOT`` function does not allow renaming of pivoted columns using aliases.                                    | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
 
 
 
