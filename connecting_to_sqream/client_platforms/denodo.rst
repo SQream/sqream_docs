@@ -12,7 +12,7 @@ Before You Begin
 It is essential that you have the following installed:
 
 * Denodo 8.0
-* Java 1.8
+* Java 17
 
 Setting Up a Connection to SQreamDB
 ===================================

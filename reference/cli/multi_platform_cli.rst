@@ -13,7 +13,7 @@ SQreamDB comes with a built-in client for executing SQL statements either intera
 Before You Begin
 ================
 
-Sqream SQL requires Java 8
+Sqream SQL requires Java 17
 
 Installing Sqream SQL
 =====================

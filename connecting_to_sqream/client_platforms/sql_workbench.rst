@@ -43,17 +43,8 @@ This section applies to Linux and MacOS only.
 Install Java Runtime 
 --------------------
 
-Both SQL Workbench and the SQream DB JDBC driver require Java 1.8 or newer. You can install either Oracle Java or OpenJDK.
+Both SQL Workbench and the SQream DB JDBC driver require Java 17 or newer. You can install either Oracle Java or OpenJDK.
 
-**Oracle Java**
-
-Download and install Java 8 from Oracle for your platform - https://www.java.com/en/download/manual.jsp
-
-**OpenJDK**
-
-For Linux and BSD, see https://openjdk.java.net/install/
-
-For Windows, SQream recommends Zulu 8 https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk
 
 Get the SQream DB JDBC Driver
 -----------------------------

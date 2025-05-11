@@ -4,7 +4,7 @@
 JDBC
 ****
 
-The SQream JDBC driver lets you connect to SQream using many Java applications and tools. This page describes how to write a Java application using the JDBC interface. The JDBC driver requires Java 1.8 or newer.
+The SQream JDBC driver lets you connect to SQream using many Java applications and tools. This page describes how to write a Java application using the JDBC interface. The JDBC driver requires Java 17 or newer.
 
 .. contents:: 
    :local:
@@ -22,13 +22,8 @@ The **Installing the JDBC Driver** section describes the following:
 Prerequisites
 -------------
 
-The SQream JDBC driver requires Java 1.8 or newer, and SQream recommends using Oracle Java or OpenJDK.:
+The SQream JDBC driver requires Java 17 or newer, and SQream recommends using Oracle Java or OpenJDK.:
 
-* **Oracle Java** - Download and install `Java 8 <https://www.java.com/en/download/manual.jsp>`_ from Oracle for your platform.
-   
-* **OpenJDK** - Install `OpenJDK <https://openjdk.java.net/install/>`_
-   
-* **Windows** - SQream recommends installing `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_
 
 Getting the JAR file
 --------------------
