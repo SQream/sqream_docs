@@ -52,7 +52,7 @@ Inserting encrypt player salary (``INT`` data type)
 .. code-block:: psql
 
 	INSERT INTO NBA (player_name, team_name, jersey_number, position, age, height, weight, college, salary)
-	VALUES ('Jayson Christopher Tatum', 'Boston Celtics', 0, 'SF', 25, '6-8', 210 , 'Duke', ENCRYPT ( 32600060 , '6a8431f6e9c2777ee356c0b8aa3c12c0c63bdf366ac3342c4c9184b51697b47f');
+	VALUES ('Jayson Christopher Tatum', 'Boston Celtics', 0, 'SF', 25, '6-8', 210 , 'Duke', ENCRYPT ( 32600060 , '6a8431f6e9c2777ee356c0b8aa3c12c0c63bdf366ac3342c4c9184b51697b47f'));
 
 Similar example using ``COPY FROM``
 
