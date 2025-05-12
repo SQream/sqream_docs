@@ -61,6 +61,7 @@ Deprecation
 ► **Column DDL permission**
 
 Column ``DDL`` permission is now deprecated as its functionality is fully included within the table ``DDL`` permission. Upon upgrading to this version, all existing column ``DDL`` permissions will be automatically revoked.
+If you are upgrading from a release using the old behavior, please contact SQream support prior to performing the upgrade.
 
 ► **Haskell CLI**
 
