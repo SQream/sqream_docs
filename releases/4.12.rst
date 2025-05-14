@@ -28,7 +28,7 @@ New Features and Enhancements
 -----------------------------
 ► :ref:`Metadata partitioning<accelerating_filtered_statements>` significantly reduces statement execution time by intelligently leveraging previously created metadata partitions for efficient data skipping.
 
-► New SQL syntax for :ref:`PUT<put>``, :ref:`GET<get>`, and :ref:`REMOVE<remove>` statements empowers you to directly write and read files to and from the SQDB cluster, leveraging its robust access control system.
+► New SQL syntax for :ref:`PUT<put>`, :ref:`GET<get>`, and :ref:`REMOVE<remove>` statements empowers you to directly write and read files to and from the SQDB cluster, leveraging its robust access control system.
 
 ► We've upgraded our platform to Java 17, bringing performance enhancements and the latest security features.
 
