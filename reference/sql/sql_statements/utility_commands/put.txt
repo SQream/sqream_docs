@@ -1,12 +1,12 @@
 :orphan:
 
-.. _get:
+.. _pet:
 
 ***
-GET
+PUT
 ***
 
-The ``GET`` function addresses the need to transfer data files stored within the database's internal staging area to a user's local file system.
+The ``PUT`` function addresses the need to transfer data files stored in a user's local file system to the database's internal staging area.
 
 
 Syntax
@@ -14,7 +14,7 @@ Syntax
 
 .. code-block:: postgres
 
-	GET <'SQDB-cluster-relative-file-path'> TO <'local-file-path'>
+	PUT <'local-file-path'> INTO <'SQDB-cluster-relative-file-path'> [OVERWRITE]
 
 Parameters
 ==========
@@ -25,10 +25,13 @@ Parameters
    
    * - Parameter
      - Description
-   * - ``SQDB-cluster-relative-file-path``
-     - Source File path - relative to the defined SQDB cluster staging area.
    * - ``local-file-path``
-     - Destination File path - on the executing client machine.
+     - Source File path - on the executing client machine.
+   * - ``SQDB-cluster-relative-file-path``
+     - Destination File path - relative to the defined SQDB cluster staging area.
+   * - ``OVERWRITE``
+     - When used existing files will be overridden.
+   
 
 Important Considerations
 ========================

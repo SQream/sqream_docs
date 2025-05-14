@@ -124,7 +124,7 @@ The following table shows the Utility commands:
    * - :ref:`export_open_snapshots`
      - Lists and saves information about all currently open snapshots to a specified file
    * - :ref:`GET<get>`
-     - Transfer data files stored within the database's internal staging areas to a user's local file system.
+     - Transfer data files stored within the database's internal staging area to a user's local file system.
    * - :ref:`get_chunk_info`
      - Retrieves information of specific chunks
    * - :ref:`GET DDL<get_ddl>`
@@ -151,6 +151,8 @@ The following table shows the Utility commands:
      - Enables you to specify the LDAP attributes you want the SQreamDB role catalog table to show   
    * - :ref:`LIST SAVED QUERIES<list_saved_queries>`
      - Lists previously saved query names, one per row
+   * - :ref:`PUT<put>`
+     - Transfer data files stored within a user's local file system to the database's internal staging area.
    * - :ref:`RECHUNK<rechunk>`
      - Enables you to merge small data chunks into larger ones 
    * - :ref:`RECOMPILE SAVED QUERY<recompile_saved_query>`
