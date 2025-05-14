@@ -31,7 +31,7 @@ Syntax
 
 .. code-block:: postgres
 
-	SELECT recalculate_metadata_partition('<schema_name>', '<table_name>', '<column_name>', ['true'/'false'])
+	SELECT recalculate_metadata_partition('<schema_name>', '<table_name>', '<column_name>', ['true'/'false']);
 
 Parameters
 ==========
@@ -71,5 +71,5 @@ A new catalog statement is available to list the existing Metadata Partitions an
 
 .. code-block:: postgres
 
-SELECT db_name, schema_name, table_name, column_name, last_update, total_chunks_per_column, total_metadata partitoned_chunks_per_column
-FROM sqream_catalog.metadata_partitions;
+	SELECT db_name, schema_name, table_name, column_name, last_update, total_chunks_per_column, total_metadata partitoned_chunks_per_column
+	FROM sqream_catalog.metadata_partitions;
