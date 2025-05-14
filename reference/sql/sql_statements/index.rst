@@ -159,6 +159,8 @@ The following table shows the Utility commands:
      - Recompiles a saved query that has been invalidated due to a schema change
    * - :ref:`RECOMPILE VIEW<recompile_view>`
      - Recreate a view after schema changes
+   * - :ref:`REMOVE<remove>`
+     - Delete data files stored within the database's internal staging area.
    * - :ref:`REMOVE LOCK<remove_lock>`
      - Clears locks
    * - :ref:`REMOVE STATEMENT LOCKS<remove_statement_locks>`
