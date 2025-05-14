@@ -31,7 +31,7 @@ Syntax
 
 .. code-block:: postgres
 
-	SELECT recalculate_metadata_partition('<schema_name>', '<table_name>', '<column1_name>', ... , '<columnN_name>', ['true'/'false'])
+	SELECT recalculate_metadata_partition('<schema_name>', '<table_name>', '<column_name>', ['true'/'false'])
 
 Parameters
 ==========
@@ -47,9 +47,9 @@ Parameters
    * - ``table_name``
      - The name of the table
    * - ``column_name``
-     - A list of column names to create metadata partitions for - a minimum of one column must be specified 
+     - The name of the column
    * - ``case_sensitive_flag``
-     - ``'false'`` (default) ignore case sensitivity. ``'true'`` for case sensitive.
+     - optional input - ``'false'`` (default) ignore case sensitivity. ``'true'`` for case sensitivity.
 
 
 Important Considerations
@@ -60,38 +60,16 @@ Important Considerations
       * ``INSERT`` New chunks will be added, and a full scan of these new chunks will be performed until the Metadata Partition is updated.
       * ``DELETE`` The existing metadata partition might still be used, potentially leading to false positives (pointing to non-existent chunks) - which will later get filtered out from the statement results.
       * ``UPDATE`` The existing metadata partition will become irrelevant and will not be used.
-      * **Rechunk/ReExtent:** These operations will require dropping and recreating the Metadata Partition.
+      * ``CLEANUP_CHUNKS``, ``CLEANUP_EXTENNTS``, ``RECHUNK`` These operations will require dropping and recreating the Metadata Partition.
   * The ``recalculate_metadata_partition`` utility is designed to be CPU-based, ensuring that it does not impact GPU-intensive workloads.
 
 
-### Monitoring Metadata Partitions
+Monitoring Metadata Partitions
+==============================
 
 A new catalog statement is available to list the existing Metadata Partitions and their status:
 
-```sql
--- Example catalog statement (specific syntax may vary, please refer to your Studio documentation)
+.. code-block:: postgres
+
 SELECT db_name, schema_name, table_name, column_name, last_update, total_chunks_per_column, total_metadata partitoned_chunks_per_column
 FROM sqream_catalog.metadata_partitions;
-```
-
-Your Studio interface will also incorporate this catalog statement, providing a user-friendly way to view and manage your Metadata Partitions.
-
-### Backward Compatibility and Upgrade
-
-  * This feature is backward compatible. Existing statements will continue to function correctly after the upgrade.
-  * Upon upgrading to a version that supports Metadata Partitioning, you will need to manually execute the `recalculate_metadata_partition` function for each column you want to benefit from this optimization.
-  * Future upgrades and modifications to the metadata metadata partitoning mechanism will be seamlessly integrated into the standard storage upgrade process.
-
-### Performance Expectations
-
-statements with filters on large tables (1 trillion rows or more) are expected to exhibit a significant reduction in metadata scan time. The runtime of these statements should demonstrate minimal growth as the table size increases, aiming for no more than a 1% increase in runtime per trillion rows added. This improvement will address the current bottleneck where metadata scans can take tens of seconds on very large tables.
-
-### Security
-
-The `recalculate_metadata_partition` function is protected and requires `SUPERUSER` privileges to execute, ensuring that only authorized users can manage these critical metadata structures.
-
-### Storage Implications
-
-The introduction of Metadata Partitions is expected to have a negligible impact on storage overhead (less than 1% increase in overall metadata size).
-
-By leveraging Metadata Partitions, you can expect a substantial improvement in the performance of your filtered statements, especially on large datasets, leading to a more responsive and efficient data analysis experience.
