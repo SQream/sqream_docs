@@ -1,6 +1,6 @@
 :orphan:
 
-.. _pet:
+.. _put:
 
 ***
 PUT
