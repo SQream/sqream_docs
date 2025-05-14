@@ -123,6 +123,8 @@ The following table shows the Utility commands:
      - Returns a static query plan, which can be used to debug query plans
    * - :ref:`export_open_snapshots`
      - Lists and saves information about all currently open snapshots to a specified file
+   * - :ref:`GET<get>`
+     - Transfer data files stored within the database's internal staging areas to a user's local file system.
    * - :ref:`get_chunk_info`
      - Retrieves information of specific chunks
    * - :ref:`GET DDL<get_ddl>`
