@@ -36,7 +36,7 @@ Important Considerations
 	* The command is limited to a single file copy per execution.
 	* File extensions are limited to supported FDWs.
 	* The command execution is CPU based and does not use GPU Workers.
-	* Up to 50 concurrent ''PUT`` / ``GET`` / ``REMOVE`` operation are supported per SQDB cluster.
+	* Up to 50 concurrent ``PUT`` / ``GET`` / ``REMOVE`` operation are supported per SQDB cluster.
 	* File size may be up to 25MB.
 	
 
