@@ -14,7 +14,7 @@ Syntax
 
 .. code-block:: postgres
 
-	REMOVE <'SQDB-cluster-relative-file-path'>
+	REMOVE <'SQDB-cluster-relative-file-path'>;
 
 Parameters
 ==========
@@ -31,15 +31,12 @@ Parameters
 
 Important Considerations
 ========================
-	* The SQDB cluster staging area is configured using the ``stagingAreaRootPath`` flag.
+	* The SQDB cluster staging area's root path is configured using the ``stagingAreaRootPath`` flag. By default, this area is created within the defined ``storageClusterPath`` as a subdirectory named staging_area. This ``staging_area`` directory contains two subdirectories: ``content``, intended for user-uploaded data, and ``temp``, reserved for internal system operations.
 	* The command is limited to a single file deletion per execution.
 	* File extensions are limited to supported FDWs.
 	* The command execution is CPU based and does not use GPU Workers.
 	* Up to 50 concurrent ``PUT`` / ``GET`` / ``REMOVE`` operation are supported per SQDB cluster.
 	
-
-
-
 
 Permissions
 =============

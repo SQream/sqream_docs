@@ -14,7 +14,7 @@ Syntax
 
 .. code-block:: postgres
 
-	GET <'SQDB-cluster-relative-file-path'> TO <'local-file-path'>
+	GET <'SQDB-cluster-relative-file-path'> TO <'local-file-path'>;
 
 Parameters
 ==========
@@ -32,16 +32,13 @@ Parameters
 
 Important Considerations
 ========================
-	* The SQDB cluster staging area is configured using the ``stagingAreaRootPath`` flag.
+    * File size may be up to 25MB.
+	* The SQDB cluster staging area's root path is configured using the ``stagingAreaRootPath`` flag. By default, this area is created within the defined ``storageClusterPath`` as a subdirectory named staging_area. This ``staging_area`` directory contains two subdirectories: ``content``, intended for user-uploaded data, and ``temp``, reserved for internal system operations.
 	* The command is limited to a single file copy per execution.
 	* File extensions are limited to supported FDWs.
 	* The command execution is CPU based and does not use GPU Workers.
 	* Up to 50 concurrent ``PUT`` / ``GET`` / ``REMOVE`` operation are supported per SQDB cluster.
-	* File size may be up to 25MB.
 	
-
-
-
 
 Permissions
 =============

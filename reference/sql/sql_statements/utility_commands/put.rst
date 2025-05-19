@@ -14,7 +14,7 @@ Syntax
 
 .. code-block:: postgres
 
-	PUT <'local-file-path'> INTO <'SQDB-cluster-relative-file-path'> [OVERWRITE]
+	PUT <'local-file-path'> INTO <'SQDB-cluster-relative-file-path'> [OVERWRITE];
 
 Parameters
 ==========
@@ -41,9 +41,6 @@ Important Considerations
 	* File extensions are limited to supported FDWs.
 	* The command execution is CPU based and does not use GPU Workers.
 	* Up to 50 concurrent ``PUT`` / ``GET`` / ``REMOVE`` operation are supported per SQDB cluster.
-
-	
-
 
 
 
