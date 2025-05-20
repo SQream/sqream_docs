@@ -826,8 +826,8 @@ See :ref:`load_type_name`
 	  last_updated_dttm     date,
 	  last_val_int          number(22,0) default 0,
 	  last_val_ts           timestamp (6),
-	  last_val_dt           date),
-	  filter                varchar2(2000 byte);
+	  last_val_dt           date,
+	  filter                varchar2(2000 byte));
 
 	create index cdc_tracking_idx1 on cdc_tracking (db_name,table_name_full);
 
