@@ -134,6 +134,8 @@ When configuring the operating system, several basic settings related to creatin
 Creating a ``sqream`` User
 ----------------------------
 
+**NOTE: the default shell of the sqream user must be bash**
+
 **The sqream user must have the same UID and GID across all servers in your cluster.**
 
 If the ``sqream`` user does not have the same UID and GID across all servers and there is no critical data stored under ``/home/sqream``, it is recommended to delete the ``sqream`` user and sqream group from your servers. Subsequently, create new ones with the same ID, using the following command:
