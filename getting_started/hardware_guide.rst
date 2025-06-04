@@ -24,7 +24,7 @@ SQreamDB recommends rackmount servers by server manufacturers Dell, Lenovo, HP, 
 
 A typical SQreamDB cluster includes one or more nodes, consisting of:
 
-* Two-socket enterprise processors, such as Intel® Xeon® Gold processors or the IBM® POWER9 processors, providing the high performance required for compute-bound database workloads.
+* Two-socket enterprise processors, such as Intel® Xeon® Gold processors, providing the high performance required for compute-bound database workloads.
 
 * NVIDIA Tesla GPU accelerators, with up to 5,120 CUDA and Tensor cores, running on PCIe or fast NVLINK busses, delivering high core count, and high-throughput performance on massive datasets.
 
@@ -60,7 +60,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
         NVIDIA 2x A100, H100, or L40S
     
    * - Operating System
-     - Red Hat Enterprise Linux v8.9 or Amazon Linux 2
+     - Red Hat Enterprise Linux v8.9/8.10
 
 .. note:: If you are using internal storage, your volumes must be formatted as xfs.
 
