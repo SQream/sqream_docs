@@ -4,7 +4,7 @@
 Release Notes 4.12
 *****************
 
-The 4.12 release notes were released on May 15th, 2025
+The 4.12 release notes were released on May 27th, 2025
 
 .. contents:: 
    :local:
@@ -104,5 +104,5 @@ Upgrading to Version 4.12
 	
 
 
-  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/upgrade_guide/version_upgrade.html>`_ procedure.
   
