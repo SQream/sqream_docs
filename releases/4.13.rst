@@ -1,0 +1,108 @@
+.. _4.13:
+
+*****************
+Release Notes 4.12
+*****************
+
+The 4.12 release notes were released on May 27th, 2025
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Compatibility Matrix
+--------------------
+ 
++-------------------------+------------------------------------------------------------------------+
+| System Requirement      | Details                                                                |
++=========================+========================================================================+
+| Supported OS            | RHEL 8.9                                                               |
++-------------------------+------------------------------------------------------------------------+
+| supported Nvidia driver | CUDA version 12.3.2                                                    |
++-------------------------+------------------------------------------------------------------------+
+| Storage version         |   59                                                                   |
++-------------------------+------------------------------------------------------------------------+
+
+
+New Features and Enhancements
+-----------------------------
+► :ref:`Metadata partitioning<accelerating_filtered_statements>` significantly reduces statement execution time by intelligently leveraging previously created metadata partitions for efficient data skipping.
+
+► New SQL syntax for :ref:`PUT<put>`, :ref:`GET<get>`, and :ref:`REMOVE<remove>` statements empowers you to directly write and read files to and from the SQDB cluster, leveraging its robust access control system.
+
+► We've upgraded our platform to Java 17, bringing performance enhancements and the latest security features.
+
+► The ``PIVOT`` functionality has been updated to now support multi-column pivoting.
+
+
+Known Issues
+------------
+
+:ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`
+
+Version 4.12 resolved Issues
+---------------------------
+
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| **SQ No.**   | **Description**                                                                                                     |
++==============+=====================================================================================================================+
+| SQ-19869     | Queries with numerous STDDEV aggregations are experiencing long compilation time.                                   | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-19879     | Default permissions for saved queries are not automatically created upon new database creation.                     | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-20146     | The ``PIVOT`` function does not allow renaming of pivoted columns using aliases.                                    | 
++--------------+---------------------------------------------------------------------------------------------------------------------+
+
+
+
+Deprecation
+-------------------
+
+► **Column DDL permission**
+
+Column ``DDL`` permission is now deprecated as its functionality is fully included within the table ``DDL`` permission. Upon upgrading to this version, all existing column ``DDL`` permissions will be automatically revoked.
+If you are upgrading from a release using the old behavior, please contact SQream support prior to performing the upgrade.
+
+► **Haskell CLI**
+
+Starting October 2024, support for the Haskell CLI is discontinued, and it is replaced by the :ref:`Multi Platform CLI<multi_platform_cli>` that is compatible with the Haskell CLI with the added value of ``Table-View`` and cross platform compatibility.
+
+► **CentOS Linux 7.x**
+
+* As of June 2024, CentOS Linux 7.x has reached its End of Life and is no longer supported by SQreamDB. 
+
+► **DateTime2 Alias**
+
+As of April 2025, the alias ``DateTime2`` for the ``DateTime`` Data Type has been deprecated to simplify our data model and make way for the introduction of a new data type named ``DateTime2``. 
+
+Upgrading to Version 4.12
+-------------------------
+
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      select backup_metadata('out_path');
+	  
+   .. tip:: SQreamDB recommends storing the generated back-up locally in case needed.
+   
+   SQreamDB runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQreamDB services.
+
+3. Copy the recently created back-up file.
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+5. Navigate to the new SQreamDB package bin folder.
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      ./upgrade_storage <levelDB path>
+	
+
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/upgrade_guide/version_upgrade.html>`_ procedure.
+  
