@@ -41,6 +41,7 @@ Important Considerations
 	* File extensions are limited to supported FDWs.
 	* The command execution is CPU based and does not use GPU Workers.
 	* Up to 50 concurrent ``PUT`` / ``GET`` / ``REMOVE`` operation are supported per SQDB cluster.
+	* The feature is supported for the following drivers: PySQream, JDBC, ODBC
 
 
 
