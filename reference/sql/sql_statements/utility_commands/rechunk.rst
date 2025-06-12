@@ -36,6 +36,33 @@ Example
 
    SELECT rechunk('public', 't');
 
+
+Rechunk Encrypted Columns
+=========================
+
+For tables with encrypted columns, RECHUNK requires the encryption keys for each encrypted column.
+
+Syntax
+==========
+
+.. code-block:: postgres
+
+   RECHUNK('<schema>', '<table>', '<col1>', '<key1>', '<col2>', '<key2>', ...);
+
+Example
+==========
+
+.. code-block:: postgres
+
+   CREATE TABLE sc.tbl (
+       x TEXT ENCRYPT,
+       y TEXT,
+       z TEXT ENCRYPT
+   );
+
+   RECHUNK('sc', 'tbl', 'x', '[key-for-x]', 'z', '[key-for-z]');
+
+
 Permissions
 =============
 
