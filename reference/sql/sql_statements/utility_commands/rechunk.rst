@@ -38,7 +38,7 @@ Example
 
 
 Rechunk Encrypted Columns
-~~~~~~~~~~~~~~~~~~~~~~~~~
+=========================
 
 For tables with encrypted columns, RECHUNK requires the encryption keys for each encrypted column.
 
