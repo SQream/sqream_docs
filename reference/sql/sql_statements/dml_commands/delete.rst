@@ -97,6 +97,11 @@ The following table describes the parameters used for executing the ``DELETE`` s
      - An expression that returns Boolean values using columns, such as ``<column> = <value>``. Rows that match the expression will be deleted.
 
 
+Limitations
+===========
+
+**Encrypted Columns:** ``CLEANUP_CHUNKS`` does not support tables with encrypted columns. Use :ref:`RECHUNK <rechunk>` instead.
+
 
 
 Examples
