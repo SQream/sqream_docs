@@ -506,10 +506,10 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
      - Optional
      - 
      - The name of the file that contains all column names. Columns must be separated using ``\n``. Expected file type is ``.txt`` 
-   * - ``columns``
+   * - ``selectedColumns``
      - Optional
      - All columns
-     - The name or names of columns to be loaded into SQreamDB ("col1,col2, ..."). For column names containing uppercase characters, maintain the uppercase format, avoid using double quotes or apostrophes, and ensure that the ``caseSensitive`` parameter is set to true
+     - The name or names of columns to be loaded into SQreamDB ("col1,col2, ..."). For column names containing uppercase characters, maintain the uppercase format, avoid using double quotes or apostrophes, and ensure that the ``caseSensitive`` parameter is set to true. **Note:** In versions prior to 8.5, the ``selectedColumns`` parameter was named ``columns``.
    * - ``count``
      - Optional
      - ``true``
