@@ -83,6 +83,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
    releases/index
    troubleshooting/index
    glossary
+   ai_ml/index
 
 ..
    Indices and tables
