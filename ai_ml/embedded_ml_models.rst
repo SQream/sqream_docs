@@ -459,14 +459,13 @@ Command Line Parameters
 Usage Notes & Limitations
 --------------------------
 
-- Based on DMLC’s XGBoost.
-- Training and inference can read directly from a table or query.
-- At least 2 columns needed (features + label).
-- Label must be last column.
-- `model_predict` not allowed inside subqueries.
-- Only one label column supported.
-- Input features must be `Nullable Float`.
-- Model is stored under `database.schema`.
-- Export still under development.
-- Max recommended: 8K features.
-
+* Based on DMLC’s XGBoost.
+* Training and inference can be read directly from a table or a query expression.
+* At least 2 columns should be provided for training (feature column and a label).
+* The label column is the last column in the chunk’s input for training.
+* The model will be saved under database.schema hierarchy, like any other SQream object.
+* `model_predict` doesn’t work within sub-query.
+* Model export functionality is in development.
+* Input feature types are Nullable Float.
+* Support only single label at this stage, label should appear last.
+* Up to 8K features limit is recommended in this current version.
