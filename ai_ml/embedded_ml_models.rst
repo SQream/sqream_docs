@@ -4,6 +4,11 @@
 Embedded ML Models
 ******************
 
+SQream offers support for embedded and Python-based ML models.
+
+AISQream empowers users to build and train machine learning models, including Linear Regression and XGBoost, directly within the database using SQL.
+
+
 Linear Regression
 =================
 
@@ -185,7 +190,7 @@ Parameters
      - boolean
      - false by default
 
-**Tree Booster Parameters (for gbtree or dart)**
+**Booster Parameters (applicable when booster is set to gbtree or dart)**
 
 .. list-table::
    :widths: 30 30 40
@@ -193,105 +198,102 @@ Parameters
 
    * - Parameter Name
      - Values
-     - Comments
+     - Description
    * - eta, learning_rate
      - float [0, 1]
-     - Step size shrinkage, default = 0.3
+     - Step size shrinkage used in update to prevent overfitting. Optional, default = 0.3
    * - gamma, min_split_loss
-     - float
-     - Minimum loss reduction required to make partition, default = 0
+     - float [0, MAX_FLOAT]
+     - Minimum loss reduction required to make a further partition on a leaf node of the tree. Optional, default = 0
    * - max_depth
      - int
-     - Default = 6
+     - Maximum tree depth. Default = 6
    * - min_child_weight
      - int
-     - Default = 1
+     - Minimum sum of instance weight in a child. Default = 1
    * - max_delta_step
      - int
-     - Default = 0
+     - Maximum delta step. Default = 0
    * - subsample
      - float (0,1]
-     - Default = 1
+     - Row sampling rate. Default = 1
    * - sampling_method
      - uniform, gradient_based
-     - Default = uniform
+     - Sampling strategy. Default = uniform
    * - colsample_bytree / bylevel / bynode
-     - float (0, 1]
-     - Default = 1
+     - float (0,1]
+     - Feature sampling. Default = 1
    * - lambda, reg_lambda
      - float
-     - L2 regularization, default = 1
+     - L2 regularization. Default = 1
    * - alpha, reg_alpha
      - float
-     - L1 regularization, default = 1
+     - L1 regularization. Default = 1
    * - tree_method
      - auto, exact, approx, hist
-     - Default = auto
+     - Algorithm for growing trees. Default = auto
    * - scale_pos_weight
      - float
-     - Default = 1
+     - Control for imbalanced data. Default = 1
    * - refresh_leaf
      - boolean
-     - Default = True
+     - Whether to refresh leaf value after training. Default = True
    * - process_type
      - default, update
-     - Default = default
+     - Type of boosting process. Default = default
    * - grow_policy
      - depthwise, lossguide
-     - Default = depthwise
+     - Tree growth policy. Default = depthwise
    * - max_leaves
      - int
-     - Default = 0
+     - Maximum number of leaves. Default = 0
    * - max_bin
      - int
-     - Default = 256
+     - Number of bins for histogram. Default = 256
    * - num_parallel_tree
      - int
-     - Default = 1
+     - Number of parallel trees. Default = 1
 
-**Dart Booster Parameters**
+
+**Additional parameters for Dart Booster**
 
 .. list-table::
    :widths: 30 30 40
    :header-rows: 1
 
+   * - Parameter Name
+     - Values
+     - Description
    * - sample_type
      - uniform, weighted
-     - Default = uniform
+     - Sampling method for trees to drop. Default = uniform
    * - normalize_type
      - tree, forest
-     - Default = tree
+     - Normalization method. Default = tree
    * - rate_drop
      - float
-     - Default = 0.0
-   * - one_drop
-     - bool
-     - Default = false
+     - Dropout rate for trees. Default = 0
    * - skip_drop
      - float
-     - Default = 0.0
+     - Probability of skipping dropout. Default = 0
 
-**Linear Booster Parameters**
+
+**Parameters for Linear Booster**
 
 .. list-table::
    :widths: 30 30 40
    :header-rows: 1
 
-   * - lambda, reg_lambda
-     - float
-     - Default = 0
-   * - alpha, reg_alpha
-     - float
-     - Default = 0
+   * - Parameter Name
+     - Values
+     - Description
    * - updater
      - shotgun, coord_descent
-     - Default = shotgun
+     - Optimization algorithm. Default = shotgun
    * - feature_selector
-     - cyclic, shuffle, random, greedy
-     - Default = cyclic
-   * - top_k
-     - int
-     - Default = 0 (all features)
+     - cyclic, shuffle, greedy, thrifty
+     - Feature selection strategy. Default = cyclic
+
 
 **Learning Task Parameters**
 
@@ -318,13 +320,14 @@ Parameters
 Usage Notes & Limitations
 --------------------------
 
-- Based on DMLC’s XGBoost
-- Training and inference can use tables or query expressions
-- At least 2 columns needed (feature + label)
-- Label column must be last
-- Model is saved under `database.schema`
-- `model_predict` doesn’t work in sub-queries
-- Only one label supported
-- Input features must be `Nullable Float`
-- Max 8K features recommended
+- Based on DMLC’s XGBoost.
+- Training and inference can read directly from a table or query.
+- At least 2 columns needed (features + label).
+- Label must be last column.
+- `model_predict` not allowed inside subqueries.
+- Only one label column supported.
+- Input features must be `Nullable Float`.
+- Model is stored under `database.schema`.
+- Export still under development.
+- Max recommended: 8K features.
 
