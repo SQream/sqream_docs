@@ -82,8 +82,9 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
    data_type_guides/index
    releases/index
    troubleshooting/index
+   ai_ml/index   
    glossary
-   ai_ml/index
+   
 
 ..
    Indices and tables
