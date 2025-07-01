@@ -11,8 +11,7 @@ This is an **alpha version** of AISQream. Expect limitations and ongoing develop
    :glob: 
 
    about
-   linear_regression
-   xgboost
+   embedded_ml_models
    python_training
    validation
    python_modules
