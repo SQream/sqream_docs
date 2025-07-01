@@ -7,8 +7,8 @@ AISQream Documentation
 This is an **alpha version** of AISQream. Expect limitations and ongoing development. 
 
 .. toctree::
-   :maxdepth: 2
-   :titlesonly:  
+   :maxdepth: 1
+   :glob: 
 
    about
    linear_regression
