@@ -105,217 +105,356 @@ XGBoost
 AISQream empowers users to train and use XGBoost models directly within the database using SQL.
 
 Syntax
-------
+^^^^^^
 
-.. code-block:: sql
+**Create and train model**
 
-   --# Create and train model
-   CREATE [OR REPLACE] MODEL [database.schema.]model_name
-   OPTIONS(model_option_list)
-   AS {query_statement};
+.. code:: sql
 
-.. code-block:: text
+    CREATE [OR REPLACE] MODEL [database.schema.]model_name
+    OPTIONS(model_option_list)
+    AS {query_statement};
 
-   model_option_list:
-     MODEL_TYPE = 'XGBOOST',
-     MODEL_PATH = 'PATH/TO/MODEL/JSON/TO/CREATE/WITH_NAME_OF_MODEL_INCLUDED.json'  -- must for xgboost
-     [VERBOSITY] = {silent | info | warning | debug}
-     [BOOSTER] = { 'GBTREE' | 'GBLINEAR' | 'DART' }
-     [, treeBoosterParams]
-     [, dartParams]
-     [, linearBoosterParams]
+``model_option_list``:
 
---# Inference
+.. code:: sql
 
-.. code-block:: sql
+    MODEL_TYPE = 'XGBOOST',
 
-   SELECT model_predict(
-       [database.schema.]model_name,
-       feature_col1 [,feature_column2, ...])
-   FROM {query_statement};
+    MODEL_PATH = 'PATH/TO/MODEL/JSON/TO/CREATE/WITH_NAME_OF_MODEL_INCLUDED.json' -- must for xgboost
 
---# DROP
+    [VERBOSITY] = {silent | info | warning | debug}
 
-.. code-block:: sql
+    [BOOSTER] = { 'GBTREE' | 'GBLINEAR' | 'DART' }
 
-   DROP MODEL [database.schema.]model_name;
+    [,treeBoosterParams]
 
-Example
--------
+    [,dartParams]
 
-.. code-block:: sql
+    [,linearBoosterParams]
 
-   CREATE MODEL mod
-   OPTIONS
-   (
-       model_type = 'xgboost',
-       path = '/home/sqream/mod.json', -- full path
-       max_depth = 10,
-       eta = 0.3,
-       max_bin = 100,
-       verbosity = 'SILENT',
-       tree_method = 'APPROX'
-   ) AS
-   SELECT * FROM t_train;
+``treeBoosterParams``: (applicable when BOOSTER = { 'GBTREE' | 'DART' }`)
 
+.. code:: sql
+
+    [,ETA | LEARNING_RATE] : float
+    [,GAMMA | MIN_SPLIT_LOSS]
+    [...]
+    -- please view the parameters table under Booster Parameters section
+
+``dartParams``:
+
+.. code:: sql
+
+    [,SAMPLE_TYPE] = { 'UNIFORM' | 'WEIGHTED' }
+    [...]
+    -- please view the parameters table under Additional parameters for Dart Booster section
+
+``linearBoosterParams``:
+
+.. code:: sql
+
+    [UPDATER] = { 'SHOTGUN' | 'COORD_DESCENT' }
+    [...]
+    -- please view the parameters table under Additional parameters for Linear Booster section
+
+**Inference**
+
+.. code:: sql
+
+    SELECT model_predict(
+    [database.schema.]model_name,
+    feature_col1 [,feature_column2, ...])
+    FROM {query_statement};
+
+**DROP**
+
+.. code:: sql
+
+    DROP MODEL [database.schema.]model_name;
+
+Example:
+^^^^^^^^
+
+.. code:: sql
+
+    CREATE MODEL mod
+    OPTIONS
+    ( model_type = 'xgboost'
+    , path='/home/sqream/mod.json' --full path
+    , max_depth = 10, eta = 0.3, max_bin=100
+    , verbosity= 'SILENT', tree_method='APPROX'
+    ) AS
+    SELECT * from t_train;
 Parameters
 ----------
 
-**Global Configuration**
+XGBoost Parameters — XGBoost 2.1.3 documentation. The parameters can be divided into global parameters (appear in the syntax), general parameters (available per booster) and learning task parameters.
+
+
+Global Configuration
+""""""""""""""""""""
 
 .. list-table::
-   :widths: 30 30 40
    :header-rows: 1
 
    * - Parameter Name
      - Values
      - Comments
    * - verbosity
-     - silent, info, warning, debug
-     - Optional, default is silent
+     - "silent, info, warning, debug"
+     - "Optional, default is silent"
 
-**General Parameters**
+General Parameters
+""""""""""""""""""
 
 .. list-table::
-   :widths: 30 30 40
    :header-rows: 1
 
    * - Parameter Name
      - Values
      - Comments
    * - booster
-     - gbtree, gblinear, dart
-     - Default is gbtree
+     - "gbtree, gblinear or dart"
+     - "gbtree and dart use tree based models while gblinear uses linear functions. Default is gbtree."
    * - disable_default_eval_metric
      - boolean
-     - false by default
+     - "false by default."
 
-**Booster Parameters (applicable when booster is set to gbtree or dart)**
+Booster Parameters (applicable when booster is set to gbtree or dart)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. list-table::
-   :widths: 30 30 40
    :header-rows: 1
 
    * - Parameter Name
      - Values
-     - Description
-   * - eta, learning_rate
-     - float [0, 1]
-     - Step size shrinkage used in update to prevent overfitting. Optional, default = 0.3
-   * - gamma, min_split_loss
-     - float [0, MAX_FLOAT]
-     - Minimum loss reduction required to make a further partition on a leaf node of the tree. Optional, default = 0
+     - Comments
+   * - "eta, learning_rate"
+     - "float [0, 1]"
+     - "Step size shrinkage used in update to prevent overfitting. Optional, default = 0.3."
+   * - "gamma, min_split_loss"
+     - "float [0, MAX_FLOAT]"
+     - "Minimum loss reduction required to make a further partition on a leaf node of the tree. Optional, default = 0."
    * - max_depth
-     - int
-     - Maximum tree depth. Default = 6
+     - "int [0, MAX_INT]"
+     - "Maximum depth of a tree. Optional, default = 6."
    * - min_child_weight
-     - int
-     - Minimum sum of instance weight in a child. Default = 1
+     - "int [0, MAX_INT]"
+     - "Minimum sum of instance weight (hessian) needed in a child. Optional, default = 1."
    * - max_delta_step
-     - int
-     - Maximum delta step. Default = 0
+     - "int [0, MAX_INT]"
+     - "Maximum delta step we allow each leaf output to be. Optional, default = 0. If the value is set to 0, it means there is no constraint."
    * - subsample
-     - float (0,1]
-     - Row sampling rate. Default = 1
+     - "float (0,1]"
+     - "Subsample ratio of the training instances. Optional, default = 1. Setting it to 0.5 means that XGBoost would randomly sample half of the training data prior to growing trees."
    * - sampling_method
-     - uniform, gradient_based
-     - Sampling strategy. Default = uniform
-   * - colsample_bytree / bylevel / bynode
-     - float (0,1]
-     - Feature sampling. Default = 1
-   * - lambda, reg_lambda
-     - float
-     - L2 regularization. Default = 1
-   * - alpha, reg_alpha
-     - float
-     - L1 regularization. Default = 1
+     - "uniform, gradient_based"
+     - "Optional, default= uniform."
+   * - colsample_bytree
+     - "float (0, 1]"
+     - "This is a family of parameters for subsampling of columns. All colsample_by* parameters have a range of (0, 1] specify the fraction of columns to be subsampled. Optional, default = 1."
+   * - colsample_bylevel
+     - "float (0, 1]"
+     -
+   * - colsample_bynode
+     - "float (0, 1]"
+     -
+   * - "lambda, reg_lambda"
+     - "float [0, MAX_FLOAT]"
+     - "L1 regularization term on weights. Increasing this value will make the model more conservative. Optional, default = 1."
+   * - "alpha, reg_alpha"
+     - "float [0, MAX_FLOAT]"
+     - "L2 regularization term on weights. Increasing this value will make the model more conservative. Optional, default = 1."
    * - tree_method
-     - auto, exact, approx, hist
-     - Algorithm for growing trees. Default = auto
+     - "auto, exact, approx, hist"
+     - "The tree construction algorithm used in XGBoost. See description in the reference paper and Tree Methods. Optional, default = auto."
    * - scale_pos_weight
      - float
-     - Control for imbalanced data. Default = 1
+     - "Control the balance of positive and negative weights. Optional, default = 1."
    * - refresh_leaf
      - boolean
-     - Whether to refresh leaf value after training. Default = True
+     - "This is a parameter of the refresh updater. When this flag is True, tree leafs as well as tree nodes’ stats are updated. When it is False, only node stats are updated. Optional, default = True."
    * - process_type
-     - default, update
-     - Type of boosting process. Default = default
+     - "default, update"
+     - "A type of boosting process to run. Optional, default = default. default: The normal boosting process which creates new trees. update: Starts from an existing model and only updates its trees."
    * - grow_policy
-     - depthwise, lossguide
-     - Tree growth policy. Default = depthwise
+     - "depthwise, lossguide"
+     - "Controls a way new nodes are added to the tree. Currently supported only if tree_method is set to hist or approx. Optional, default= depthwise."
    * - max_leaves
      - int
-     - Maximum number of leaves. Default = 0
+     - "Maximum number of nodes to be added. Not used by exact tree method. Optional, default = 0."
    * - max_bin
      - int
-     - Number of bins for histogram. Default = 256
+     - "Only used if tree_method is set to hist or approx. Maximum number of discrete bins to bucket continuous features. Optional, default = 256."
    * - num_parallel_tree
      - int
-     - Number of parallel trees. Default = 1
+     - "Number of parallel trees constructed during each iteration. This option is used to support boosted random forest. Optional, default = 1."
 
-
-**Additional parameters for Dart Booster**
+Additional parameters for Dart Booster
+""""""""""""""""""""""""""""""""""""""
 
 .. list-table::
-   :widths: 30 30 40
    :header-rows: 1
 
    * - Parameter Name
      - Values
-     - Description
+     - Comments
    * - sample_type
-     - uniform, weighted
-     - Sampling method for trees to drop. Default = uniform
+     - "uniform, weighted"
+     - "Type of sampling algorithm. uniform: dropped trees are selected uniformly. weighted: dropped trees are selected in proportion to weight. Optional, default = uniform."
    * - normalize_type
-     - tree, forest
-     - Normalization method. Default = tree
+     - "tree, forest"
+     - "Type of normalization algorithm. Optional, default = tree."
    * - rate_drop
      - float
-     - Dropout rate for trees. Default = 0
+     - "Dropout rate. Optional, default = 0.0."
+   * - one_drop
+     - bool
+     - "When this flag is enabled, at least one tree is always dropped during the dropout. Optional, default = false."
    * - skip_drop
      - float
-     - Probability of skipping dropout. Default = 0
+     - "Probability of skipping the dropout procedure during a boosting iteration. Optional, default = 0.0."
 
-
-**Parameters for Linear Booster**
+Parameters for Linear Booster
+"""""""""""""""""""""""""""""
 
 .. list-table::
-   :widths: 30 30 40
    :header-rows: 1
 
    * - Parameter Name
      - Values
-     - Description
+     - Comments
+   * - "lambda, reg_lambda"
+     - "float [0, MAX_FLOAT]"
+     - "L2 regularization term on weights. Increasing this value will make the model more conservative. Optional, default = 0."
+   * - "alpha, reg_alpha"
+     - "float [0, MAX_FLOAT]"
+     - "L1 regularization term on weights. Increasing this value will make the model more conservative. Optional, default = 0."
    * - updater
-     - shotgun, coord_descent
-     - Optimization algorithm. Default = shotgun
+     - "shotgun, coord_descent"
+     - "Optional, default= shotgun."
    * - feature_selector
-     - cyclic, shuffle, greedy, thrifty
-     - Feature selection strategy. Default = cyclic
+     - "cyclic, shuffle, random, greedy"
+     - "Feature selection and ordering method. Optional, default = cyclic."
+   * - top_k
+     - int
+     - "The number of top features to select in greedy and thrifty feature selector. The value of 0 means using all the features. Optional, default = 0."
 
-
-**Learning Task Parameters**
+Learning Task Parameters
+""""""""""""""""""""""""
 
 .. list-table::
-   :widths: 30 30 40
    :header-rows: 1
 
+   * - Parameter Name
+     - Values
+     - Comments
    * - objective
-     - e.g. reg_squarederror, binary_logistic, etc.
-     - Default: reg_squarederror
+     - "reg_squarederror, reg_squaredlogerror, reg_logistic, reg_pseudohubererror, reg_absoluteerror, reg_quantileerror, binary_logistic, binary_logitraw, binary_hinge, count_poisson, survival_cox, survival_aft, rank_ndcg, rank_map, rank_pairwise, reg_gamma, reg_tweedie"
+     - "Optional, default = reg_squarederror."
    * - base_score
      - float
-     - Initial prediction score
+     - "The initial prediction score of all instances, global bias. If base_margin is supplied, base_score will not be added. Default is not passing any params."
    * - eval_metric
-     - e.g. rmse, logloss, etc.
-     - Varies by objective
+     - "reg_squarederror, reg_squaredlogerror, reg_logistic, reg_pseudohubererror, reg_absoluteerror, reg_quantileerror, binary_logistic, binary_logitraw, binary_hinge, count_poisson, survival_cox, survival_aft, rank_ndcg, rank_map, rank_pairwise, reg_gamma, reg_tweedie, rmse (root mean square error)"
+     - "Optional, default according to objective: rmsle default metric of reg_squaredlogerror, mphe default metric of reg_pseudohubererror objective."
    * - seed
-     - int
-     - Default = 0
+     -
+     - "Random number seed. Optional, default = 0."
    * - seed_per_iteration
      - boolean
-     - Default = false
+     - "Seed PRNG deterministically via iterator number. Optional, default = false."
+
+Parameters for Tweedie Regression
+"""""""""""""""""""""""""""""""""
+
+.. list-table::
+   :header-rows: 1
+
+   * - Parameter Name
+     - Values
+     - Comments
+   * - tweedie_variance_power
+     - "float (1,2)"
+     - "Parameter that controls the variance of the Tweedie distribution range. Optional, default=1.5."
+
+Parameter for using Pseudo-Huber
+""""""""""""""""""""""""""""""""
+
+.. list-table::
+   :header-rows: 1
+
+   * - Parameter Name
+     - Values
+     - Comments
+   * - huber_slope
+     - float
+     - "A parameter used for Pseudo-Huber loss to define the δ term. Optional, default = 1.0."
+
+Parameter for using Quantile Loss
+"""""""""""""""""""""""""""""""""
+
+.. list-table::
+   :header-rows: 1
+
+   * - Parameter Name
+     - Values
+     - Comments
+   * - quantile_alpha
+     - "float [0, 1]"
+     - "A scalar or a list of targeted quantiles. Optional, default = 0.5."
+
+Parameter for using AFT Survival Loss survival: AFT and Negative Log Likelihood of AFT metric
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. list-table::
+   :header-rows: 1
+
+   * - Parameter Name
+     - Values
+     - Comments
+   * - aft_loss_distribution
+     - "normal, logistic or extreme"
+     - Optional
+
+Parameters for learning to rank
+"""""""""""""""""""""""""""""""
+
+.. list-table::
+   :header-rows: 1
+
+   * - Parameter Name
+     - Values
+     - Comments
+   * - lambdarank_pair_method
+     - "mean, topk"
+     - "Optional, default = topk."
+   * - lambdarank_num_pair_per_sample
+     - "int [1, MAX_INT]"
+     - "It specifies the number of pairs sampled for each document when pair method is mean. Optional."
+   * - lambdarank_normalization
+     -
+     - "Specify whether we need to debias input click data. Optional, default = true."
+   * - lambdarank_bias_norm
+     - float
+     - "Lp normalization for position debiasing, default is L2. Only relevant when lambdarank_unbiased is set to true. Optional, default = 2.0."
+   * - ndcg_exp_gain
+     -
+     - "Whether we should use the exponential gain function for NDCG. Optional, default = true."
+
+Command Line Parameters
+"""""""""""""""""""""""
+
+.. list-table::
+   :header-rows: 1
+
+   * - Parameter Name
+     - Values
+     - Comments
+   * - epoch_count
+     - int
+     - "The number of rounds for boosting. Optional, default 10."
 
 Usage Notes & Limitations
 --------------------------
