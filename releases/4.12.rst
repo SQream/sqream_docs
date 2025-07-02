@@ -108,5 +108,5 @@ Upgrading to Version 4.12
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/upgrade_guide/version_upgrade.html>`_ procedure.
 
 
-  .. note:: Column DDL permission is now deprecated as its functionality is fully included within the table DDL permission. For more info please refer to `Deprecation_`
+  .. note:: Column DDL permission is now deprecated as its functionality is fully included within the table DDL permission. For more info please refer to `Deprecation`_
   
