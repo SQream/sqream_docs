@@ -4,7 +4,7 @@
 Release Notes 4.12
 *****************
 
-The 4.12 release notes were released on May 27th, 2025
+The 4.12 release notes were released on July 3rd, 2025
 
 .. contents:: 
    :local:
@@ -20,19 +20,19 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | supported Nvidia driver | CUDA version 12.3.2                                                    |
 +-------------------------+------------------------------------------------------------------------+
-| Storage version         |   59                                                                   |
+| Storage version         |   62                                                                   |
 +-------------------------+------------------------------------------------------------------------+
 
 
 New Features and Enhancements
 -----------------------------
-► :ref:`Metadata partitioning<accelerating_filtered_statements>` significantly reduces statement execution time by intelligently leveraging previously created metadata partitions for efficient data skipping.
+► :ref:`Metadata partitioning<accelerating_filtered_statements>` significantly reduces statement execution time when metadata contains millions of keys by intelligently leveraging previously created metadata partitions for efficient data skipping.
 
-► New SQL syntax for :ref:`PUT<put>`, :ref:`GET<get>`, and :ref:`REMOVE<remove>` statements empowers you to directly write and read files to and from the SQDB cluster, leveraging its robust access control system.
+► New SQL syntax for :ref:`PUT<put>`, :ref:`GET<get>`, and :ref:`REMOVE<remove>` statements empowers users to directly write and read files to and from the SQDB cluster, leveraging its robust access control system.
 
-► We've upgraded our platform to Java 17, bringing performance enhancements and the latest security features.
+► We've upgraded our platform to Java 17, delivering enhanced performance and the latest security features.
 
-► The ``PIVOT`` functionality has been updated to now support multi-column pivoting.
+► The :ref:`PIVOT<pivot_unpivot>` functionality has been updated to support multi-column pivoting.
 
 
 Known Issues
