@@ -32,7 +32,7 @@ New Features and Enhancements
 
 ► We've upgraded our platform to Java 17, delivering enhanced performance and the latest security features.
 
-► The ``PIVOT`` functionality has been updated to support multi-column pivoting.
+► The :ref:`PIVOT<pivot>` functionality has been updated to support multi-column pivoting.
 
 
 Known Issues
