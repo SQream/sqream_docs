@@ -17,4 +17,5 @@ This is an **alpha version** of AISQream. Expect limitations and ongoing develop
    validation_functions
    python_modules
    catalog_tables
+   security_req
    
