@@ -16,8 +16,6 @@ AISQream empowers users to build and train machine learning models, including Li
 Linear Regression
 =================
 
-AISQream empowers users to build and train machine learning models, including Linear Regression, directly within the database using SQL.
-
 Syntax
 ------
 
@@ -94,21 +92,20 @@ Usage Notes & Limitations
 --------------------------
 
 - Based on Nvidia RAPIDS Linear Regression.
-- Training and inference support direct use of table or query expression.
-- At least 2 columns must be provided for training (feature column and a label).
-- The label column must be the last column in the input.
-- The model is saved in `database.schema` like any other SQream object.
-- `model_predict` does not work within sub-queries.
-- Model export functionality is still under development.
-- Recommended limit: up to 8000 features in this version.
+- Training and inference can be read directly from a table or a query expression.
+- At least 2 columns should be provided for training (feature column and a label).
+- The label column is the last column in the chunk’s input for training.
+- The model will be saved under database.schema hierarchy, like any other SQream object.
+- model_predict doesn’t work within sub-query.
+- Model export functionality is in development.
+- Up to 8K features limit is recommended in this current version.
+
 
 
 .. _XGBoost:
 
 XGBoost
 =======
-
-AISQream empowers users to train and use XGBoost models directly within the database using SQL.
 
 Syntax
 ^^^^^^

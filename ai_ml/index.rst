@@ -12,6 +12,7 @@ This is an **alpha version** of AISQream. Expect limitations and ongoing develop
 
    about
    embedded_ml_models
+   model_training_via_python
    python_training
    validation
    python_modules
