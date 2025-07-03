@@ -8,6 +8,10 @@ SQream offers support for embedded and Python-based ML models.
 
 AISQream empowers users to build and train machine learning models, including Linear Regression and XGBoost, directly within the database using SQL.
 
+`Linear_Regression`_
+`XXGBoost`_
+
+.. _Linear_Regression:
 
 Linear Regression
 =================
@@ -98,6 +102,8 @@ Usage Notes & Limitations
 - Model export functionality is still under development.
 - Recommended limit: up to 8000 features in this version.
 
+
+.. _XGBoost:
 
 XGBoost
 =======
