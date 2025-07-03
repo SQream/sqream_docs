@@ -15,4 +15,5 @@ This is an **alpha version** of AISQream. Expect limitations and ongoing develop
    model_training_via_python
    export_model
    validation_functions
+   python_modules
    
