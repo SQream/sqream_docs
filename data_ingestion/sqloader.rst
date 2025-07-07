@@ -61,7 +61,7 @@ Installation and Connectivity
 Getting All Configuration and JAR Files
 ---------------------------------------
 
-#. Download the `SQLoader binary <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqloader-release-v1.5.tar.gz>`_:
+#. Download the `SQLoader binary <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqloader_release_sqloader-release-v8.5.tar.gz>`_:
 
 #. Extract the ``.tar`` file using the following command:
 
@@ -618,6 +618,14 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
      - Optional
      - ``true``
      - Allows control over the validation of table existence during the load.
+   * - ``warnOnIncLoadFilterChanges``
+     - Optional
+     - ``true``
+     - Warns if the filter was changed since the last load and fails the load. If set to false - it accepts the new filter an updates it, future filters will be compared to this one from now on, until changed again.
+   * - ``autoCreateNewNullableColumn``
+     - Optional
+     - ``false``
+     - Allows adding new columns to an INC load automatically, if the source table has new columns. If during an INC load, new columns exist in the source table. When the parameter is set to false - there will be a warning and the load would fail. When the parameter is set to true, then the new columns will be added to the target table as well.
 	 
 .. _load_type_name:
 
