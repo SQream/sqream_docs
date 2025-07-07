@@ -618,6 +618,16 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
      - Optional
      - ``true``
      - Allows control over the validation of table existence during the load.
+   * - ``warnOnIncLoadFilterChanges``
+     - Optional
+     - ``true``
+     - Warns if the filter was changed since the last load and fails the load. If set to false - it accepts the new filter an updates it, future filters will be compared to this one from now on, until changed again.
+   * - ``autoCreateNewNullableColumn``
+     - Optional
+     - ``false``
+     - Allows adding new columns to an INC load automatically, if the source table has new columns. If during an INC load, new columns exist in the source table :
+	 when the parameter is set to false - there will be a warning and the load would fail. 
+	 if the arameter is set to true, then the new columns will be added to the target table as well.
 	 
 .. _load_type_name:
 
