@@ -23,7 +23,8 @@ Compatibility Matrix
 | Storage version         | 62                                                                                     |
 +-------------------------+----------------------------------------------------------------------------------------+
 | Driver compatibility    | The new features in this version are coupled with changes in the following components: |
-|                         | * ODBC 5.0.0                                                                           | 
+|                         |                                                                                        |
+|                         | * ODBC 5.0.0                                                                           |
 |                         | * JDBC 6.1.0                                                                           |
 |                         | * Pysqream 6.2.0                                                                       |
 |                         | * Java CLI 2.7                                                                         |
