@@ -625,9 +625,9 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
    * - ``autoCreateNewNullableColumn``
      - Optional
      - ``false``
-     - Allows adding new columns to an INC load automatically, if the source table has new columns. If during an INC load, new columns exist in the source table :
-	 when the parameter is set to false - there will be a warning and the load would fail. 
-	 if the arameter is set to true, then the new columns will be added to the target table as well.
+     - Allows adding new columns to an INC load automatically, if the source table has new columns. If during an INC load, new columns exist in the source table.
+	   When the parameter is set to false - there will be a warning and the load would fail. 
+	   When the parameter is set to true, then the new columns will be added to the target table as well.
 	 
 .. _load_type_name:
 
