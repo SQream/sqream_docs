@@ -25,7 +25,7 @@ Compatibility Matrix
 | Driver compatibility    | The new features in this version are coupled with changes in the following components: |
 |                         |                                                                                        |
 |                         | * ODBC 5.0.0                                                                           |
-|                         | * JDBC 6.1.0                                                                           |
+|                         | * JDBC 6.2.0                                                                           |
 |                         | * Pysqream 6.2.0                                                                       |
 |                         | * Java CLI 2.7                                                                         |
 |                         | * SQLoader As A Service 8.5.0                                                          |
