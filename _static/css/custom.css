@@ -52,7 +52,32 @@ kbd
 /* Hide the entire Read the Docs version selector */
 .rst-versions {
     display: none !important;
+    visibility: hidden !important; /* Add visibility hidden as well */
+    opacity: 0 !important; /* Fade out if it's animating */
+    pointer-events: none !important; /* Disable interaction */
 }
+
+.rst-current-version {
+    display: none !important;
+    visibility: hidden !important; /* Add visibility hidden as well */
+    opacity: 0 !important; /* Fade out if it's animating */
+    pointer-events: none !important; /* Disable interaction */
+}
+
+.rst-other-versions {
+    display: none !important;
+    visibility: hidden !important; /* Add visibility hidden as well */
+    opacity: 0 !important; /* Fade out if it's animating */
+    pointer-events: none !important; /* Disable interaction */
+}
+
+.version-switch {
+    display: none !important;
+    visibility: hidden !important; /* Add visibility hidden as well */
+    opacity: 0 !important; /* Fade out if it's animating */
+    pointer-events: none !important; /* Disable interaction */
+}
+
 
 /* Hide "GitHub" sections from versions menu */
 div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(3) {
