@@ -52,9 +52,26 @@ kbd
 /* Hide the entire Read the Docs version selector */
 .rst-versions {
     display: none !important;
-    visibility: hidden !important; /* Add visibility hidden as well */
-    opacity: 0 !important; /* Fade out if it's animating */
-    pointer-events: none !important; /* Disable interaction */
+    visibility: hidden !important; /* Ensure it's not just off-screen */
+    opacity: 0 !important;       /* Make it fully transparent */
+    height: 0 !important;        /* Collapse its space */
+    padding: 0 !important;       /* Remove any padding */
+    margin: 0 !important;        /* Remove any margin */
+    border: none !important;     /* Remove any borders */
+    overflow: hidden !important; /* Hide any overflowing content */
+    pointer-events: none !important; /* Disable any interaction */
+}
+
+.switch-menus {
+    display: none !important;
+    visibility: hidden !important; /* Ensure it's not just off-screen */
+    opacity: 0 !important;       /* Make it fully transparent */
+    height: 0 !important;        /* Collapse its space */
+    padding: 0 !important;       /* Remove any padding */
+    margin: 0 !important;        /* Remove any margin */
+    border: none !important;     /* Remove any borders */
+    overflow: hidden !important; /* Hide any overflowing content */
+    pointer-events: none !important; /* Disable any interaction */
 }
 
 .rst-current-version {
