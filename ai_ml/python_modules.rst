@@ -5,12 +5,12 @@ Python modules (Python Scalar Functions)
 
 SQream's Python Module enables users to integrate custom Python code and functions directly. This allows for advanced data manipulation and custom machine learning operations, all accelerated by GPU.
 
-:ref:`Syntax<syntax>`
-:ref:`Examples<examples>`
-`Configurations`_
-`Logs`_
-:ref:`How to run Python module service<How_to>`
-:ref:`User notes & limitations<User_notes>`
+* :ref:`Syntax<syntax>`
+* :ref:`Examples<examples>`
+* `Configurations`_
+* `Logs`_
+* :ref:`How to run Python module service<How_to>`
+* :ref:`User notes & limitations<User_notes>`
 
 
 .. _syntax:
