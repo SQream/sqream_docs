@@ -191,7 +191,7 @@ Also, Python module’s logs are on Python module execution level. In case of mu
 
 In SQream:
 
-.. image:: https://placehold.co/700x300/F0F0F0/333333?text=Placeholder+Image+of+SQream+Console+Output
+.. image:: /_static/images/log_output_example.png
    :alt: SQream Console Output Example
 
 Show node info: (Can see statement’s python execution on node id level)
