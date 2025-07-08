@@ -49,6 +49,10 @@ kbd
   text-shadow:0 1px 0 #fff;
 }
 
+.highlight .err {
+    color: #F00;
+}
+
 /* Hide the entire Read the Docs version selector */
 .rst-versions {
     display: none !important;
