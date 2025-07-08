@@ -21,18 +21,18 @@ if os.environ.get("READTHEDOCS", "") == "True":
         html_context = {}
     html_context["READTHEDOCS"] = True
 
-import sphinx_rtd_theme
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # -- Project information -----------------------------------------------------
 
-project = 'SQreamDB'
-copyright = '2025 SQreamDB'
-author = 'SQreamDB Documentation'
+project = 'SQream AI ML'
+copyright = '2024 SQream'
+author = 'SQream Documentation'
 
 
-# The full version, including alpha/beta/rc tags
-release = '4.12'
+html_title = "SQream AI ML Documentation"
+
+sphinxemoji_style = 'twemoji'
+
 
 # -- General configuration ---------------------------------------------------
 
@@ -40,11 +40,16 @@ release = '4.12'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "sphinx_rtd_theme",
-    "notfound.extension", # 404 handling
-    "sphinx_favicon"
+    #"notfound.extension", # 404 handling
+    "sphinx_copybutton",
+    "sphinx_inline_tabs",
+    "sphinx_favicon",
+    "sphinxemoji.sphinxemoji",
+    "sphinx_design" 
 ]
-
+ 
+notfound_urls_prefix = '/en/latest/'
+ 
 # Mark 'index' as the main page
 master_doc = 'index'
 
@@ -62,20 +67,27 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = "furo"
+html_static_path = ['_static']
 
-
+images_dir = os.path.join(html_static_path[0], 'images')
+html_static_path.append(images_dir)
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+
+favicons = [
+    "Favicon - Documentation.png"
+]
 
 html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
-html_logo = '_static/images/SQream_logo_without background-15.png'
+
+
+
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
@@ -83,27 +95,35 @@ html_logo = '_static/images/SQream_logo_without background-15.png'
 show_authors = False
 
 # Hide "Sphinx" details
+
 html_show_sphinx = False
-
-
-# The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'autumn'
-
 html_show_copyright = True
 
-# RTD theme specifics
+
+
+#Hide the sidebar
+html_sidebars = {}
+
+
+
+
+# furo theme specifics
 
 html_theme_options = {
-   'logo_only': True # Hide "SQream DB" title and only show logo
-   , 'display_version': False # Display version at the top
-   , 'style_external_links': True # Show little icon next to external links
-   , 'style_nav_header_background': '#133148' # SQream teal
-   , 'navigation_depth': -1
-   , 'collapse_navigation': False
-   , 'titles_only': True
-   , 'flyout_display': 'attached'
-
+     'top_of_page_button': "edit"
+   , 'dark_logo': 'images/SQream_logo_dark_mode.png'
+   , 'light_logo': 'images/SQream_logo_bright_mode.png'
+   , "sidebar_hide_name": True
+   , "footer_icons": 'None'
+   , "light_css_variables": {
+        "font-stack": "Arial, sans-serif",
+        "font-stack--monospace": "Courier, monospace"
+   , "sticky_navigation": True        
+    }
 }
+   
+
+
 
 latex_engine = 'xelatex'
 
@@ -115,7 +135,7 @@ latex_elements = {
 
 # For version replaces in some pages (like client drivers page)
 
-base_version = release.split('-')[0]
-rst_epilog = """
-.. |latest_version| replace:: v{}
-""".format(base_version)
+#base_version = release.split('-')[0]
+#rst_epilog = """
+#.. |latest_version| replace:: v{}
+#""".format(base_version)
