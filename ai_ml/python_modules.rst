@@ -199,7 +199,7 @@ Show node info: (Can see statement’s python execution on node id level)
 
 Python module logs:
 
-.. image:: https://placehold.co/700x300/F0F0F0/333333?text=Placeholder+Image+of+Python+Module+Logs
+.. image:: /_static/images/python_module_logs.png
    :alt: Python Module Logs Example
 
 .. note::
@@ -243,7 +243,7 @@ Run Python module service:
 
 Python module service is working when it is listening to its relevant port:
 
-.. image:: https://placehold.co/700x300/F0F0F0/333333?text=Placeholder+Image+of+Python+Module+Service+Listening
+.. image:: /_static/images/python_module_service.png
    :alt: Python Module Service Listening Example
 
 User notes & limitations:
