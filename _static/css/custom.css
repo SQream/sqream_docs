@@ -49,8 +49,10 @@ kbd
   text-shadow:0 1px 0 #fff;
 }
 
+/* Override Pygments highlighting for "error" elements in code blocks */
 .highlight .err {
-    color: #F00;
+    color: inherit !important; /* Change to inherit the normal code text color */
+    background-color: transparent !important; /* Remove the red background */
 }
 
 /* Hide the entire Read the Docs version selector */
