@@ -85,6 +85,9 @@ show_authors = False
 # Hide "Sphinx" details
 html_show_sphinx = False
 
+#Hide the sidebar
+html_sidebars = {}
+
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'autumn'
