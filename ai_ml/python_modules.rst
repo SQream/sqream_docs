@@ -5,6 +5,16 @@ Python modules (Python Scalar Functions)
 
 SQream's Python Module enables users to integrate custom Python code and functions directly. This allows for advanced data manipulation and custom machine learning operations, all accelerated by GPU.
 
+:ref:`Syntax<syntax>`
+:ref:`Examples<examples>`
+`Configurations`_
+`Logs`_
+:ref:`How to run Python module service<How_to>`
+:ref:`User notes & limitations<User_notes>`
+
+
+.. _syntax:
+
 Syntax
 ^^^^^^
 
@@ -32,6 +42,8 @@ Syntax
 ``path`` ::= Valid path within module directory
 ``sql_data_type`` ::= INT | BIGINT | SMALLINT | DECIMAL precision scale| NUMERIC precision scale | FLOAT | REAL | DOUBLE | TEXT | DATE | DATETIME | BOOLEAN
 ``handler_name`` ::= name of function within the python script file
+
+.. _examples:
 
 Examples
 ^^^^^^^^
@@ -99,6 +111,8 @@ Execute python module:
     select arith_module.mySub(x,y) from t;
     --yields: 0, 0, 0, 2
 
+.. _Configurations:
+
 Configurations:
 ^^^^^^^^^^^^^^^
 
@@ -134,6 +148,8 @@ Service’s configuration is located in etc/python_service_config.json:
 .. note::
    Worker flag means it can’t be changed while the worker is up, the change will occur only after Sqream workers restart.
    Python module flags must match Sqream worker’s flags mentioned above.
+
+.. _Logs:
 
 Logs:
 ^^^^^
@@ -209,6 +225,8 @@ Python module logs:
    * Statement ID
    * Node ID (Execution tree identifier from show node info)
 
+.. _How_to:
+
 How to run Python module service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -245,6 +263,8 @@ Python module service is working when it is listening to its relevant port:
 
 .. image:: /_static/images/python_module_service.png
    :alt: Python Module Service Listening Example
+
+.. _User_notes:
 
 User notes & limitations:
 ^^^^^^^^^^^^^^^^^^^^^^^
