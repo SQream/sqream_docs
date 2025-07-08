@@ -26,13 +26,11 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # -- Project information -----------------------------------------------------
 
-project = 'SQreamDB'
+project = 'SQream AI ML'
 copyright = '2025 SQreamDB'
 author = 'SQreamDB Documentation'
 
 
-# The full version, including alpha/beta/rc tags
-release = '4.12'
 
 # -- General configuration ---------------------------------------------------
 
@@ -86,6 +84,9 @@ show_authors = False
 html_show_sphinx = False
 
 
+#Hide the sidebar
+html_sidebars = {}
+
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'autumn'
 
@@ -102,6 +103,12 @@ html_theme_options = {
    , 'collapse_navigation': False
    , 'titles_only': True
    , 'flyout_display': 'attached'
+   , "sidebar_hide_name": True
+   , "footer_icons": 'None'
+   , "light_css_variables": {
+        "font-stack": "Arial, sans-serif",
+        "font-stack--monospace": "Courier, monospace"
+   , "sticky_navigation": True        
 
 }
 
