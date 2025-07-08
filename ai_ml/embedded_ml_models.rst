@@ -7,9 +7,8 @@ Embedded ML Models
 SQream offers support for embedded and Python-based ML models.
 AISQream empowers users to build and train machine learning models, including Linear Regression and XGBoost, directly within the database using SQL.
 
-:ref:`Linear Regression<Linear_Regression>`
-
-`XGBoost`_
+* :ref:`Linear Regression<Linear_Regression>`
+* `XGBoost`_
 
 .. _Linear_Regression:
 
