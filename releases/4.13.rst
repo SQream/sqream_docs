@@ -4,7 +4,7 @@
 Release Notes 4.13
 *****************
 
-The 4.13 release notes were released on July 27th, 2025
+The 4.13 release notes were released on July 17th, 2025
 
 .. contents:: 
    :local:
@@ -16,23 +16,25 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | System Requirement      | Details                                                                |
 +=========================+========================================================================+
-| Supported OS            | RHEL 8.9                                                               |
+| Supported OS            | RHEL 8.9 / 8.10                                                        |
 +-------------------------+------------------------------------------------------------------------+
-| supported Nvidia driver | CUDA version 12.3.2                                                    |
+| supported Nvidia driver | CUDA version 12.3.2 / 12.6.1                                           |
 +-------------------------+------------------------------------------------------------------------+
-| Storage version         |   59                                                                   |
+| Storage version         |   62                                                                   |
 +-------------------------+------------------------------------------------------------------------+
 
 
 New Features and Enhancements
 -----------------------------
-► :ref:`Metadata partitioning<accelerating_filtered_statements>` significantly reduces statement execution time by intelligently leveraging previously created metadata partitions for efficient data skipping.
+► Update SQream Log structure, include query identifier section that will enable the user to filter by query efficiently.
 
-► New SQL syntax for :ref:`PUT<put>`, :ref:`GET<get>`, and :ref:`REMOVE<remove>` statements empowers you to directly write and read files to and from the SQDB cluster, leveraging its robust access control system.
+► Allow setting a custom escape character in the CSV FDW.
 
-► We've upgraded our platform to Java 17, bringing performance enhancements and the latest security features.
+► Show node info will also show the "WITH" alias / table alias name and not only the table name.
 
-► The ``PIVOT`` functionality has been updated to now support multi-column pivoting.
+► Support running SQream on RHEL 8.10.
+
+► Enhance Null/ NaN/ NaT handling in PySQream.
 
 
 Known Issues
@@ -43,17 +45,34 @@ Known Issues
 Version 4.13 resolved Issues
 ---------------------------
 
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| **SQ No.**   | **Description**                                                                                                     |
-+==============+=====================================================================================================================+
-| SQ-19869     | Queries with numerous STDDEV aggregations are experiencing long compilation time.                                   | 
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-19879     | Default permissions for saved queries are not automatically created upon new database creation.                     | 
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-20146     | The ``PIVOT`` function does not allow renaming of pivoted columns using aliases.                                    | 
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-2834576   | sdlfkjsdfgvb.                                 									     | 
-+--------------+---------------------------------------------------------------------------------------------------------------------+
++-----------------------------+--------------------------------------------------------------------------------------------+
+| **SQ No.**                  | **Description**                                                                            |
++=============================+============================================================================================+
+| SQ-20616                    | Handled cases where statements remained in stopped state                                   |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20489                    | Improved stability for clientcmd queries on worker                                         |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20475                    | Fixed type check issue when using pivot on text literal                                    |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20401                    | Enhanced support for queries combining constant text and table data                        |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20399                    | Encryption Support Stability Improvement                                                   |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20366                    | Stability improvement for select chunk_id() queries                                        |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20100                    | COPY FROM support for uppercase column names                                               |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-19857                    | Improved performance for catalog queries                                                   |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-19308                    | Resolved Worker Unavailability Caused by Blobs Exceeding maxBlobSize                       |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-16663                    | Resolved Issue with Creating and Inserting into Clustered Tables                           |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-8440                     | Fixed LAG/LEAD Window Function error when using Text with Offset                           |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20471, SQ-20414,         | Improve stability for array data type                                                      |
+| SQ-20367, SQ-19792          |                                                                                            |
++-----------------------------+--------------------------------------------------------------------------------------------+
 
 
 
