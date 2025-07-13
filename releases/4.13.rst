@@ -26,8 +26,6 @@ Compatibility Matrix
 
 New Features and Enhancements
 -----------------------------
-► Update SQream Log structure, include query identifier section that will enable the user to filter by query efficiently.
-
 ► Allow setting a custom escape character in the CSV FDW.
 
 ► Show node info will also show the "WITH" alias / table alias name and not only the table name.
