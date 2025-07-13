@@ -36,9 +36,9 @@ SQDB Releases Timeline
      - Maintenance Mode
      - End of Support
    * - ``4.13``
-     - July 27th 2025
-     - TBD
-     - July 27th 2026
+     - July 17th 2025
+     - October 17th 2025
+     - July 17th 2026
    * - ``4.12``
      - July 3rd 2025
      - October 3rd 2025
