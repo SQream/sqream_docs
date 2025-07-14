@@ -108,15 +108,17 @@ For effective :ref:`health_monitoring`, it's essential that logs are saved in ``
    * - ``1``
      - ``INFO``
      - Statement start information
-     - 
-         * ``"Query before parsing`` (statement handle opened)
-         * ``"SELECT * FROM nba WHERE ""Team"" NOT LIKE ""Portland%%"""`` (statement preparing)
+     - ``"SELECT * FROM nba WHERE ""Team"" NOT LIKE ""Portland%%"""`` (statement preparing)
    * - ``2``
      - ``INFO``
      - Statement passed to another worker for execution
      - 
          * ``"Reconstruct query before parsing"``
          * ``"SELECT * FROM nba WHERE ""Team"" NOT LIKE ""Portland%%"""`` (statement preparing on node)
+   * - ``3``
+     - ``INFO``
+     - Statement before parsing
+     - ``"Query before parsing`` (statement handle opened)
    * - ``4``
      - ``INFO``
      - Statement has entered execution
