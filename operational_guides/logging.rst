@@ -118,7 +118,7 @@ For effective :ref:`health_monitoring`, it's essential that logs are saved in ``
    * - ``3``
      - ``INFO``
      - Statement before parsing
-     - ``"Query before parsing`` (statement handle opened)
+     - ``"Query before parsing"`` (statement handle opened)
    * - ``4``
      - ``INFO``
      - Statement has entered execution
