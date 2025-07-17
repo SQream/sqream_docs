@@ -32,7 +32,7 @@ New Features and Enhancements
 
 ► Support running SQream on RHEL 8.10.
 
-► Enhance Null/ NaN/ NaT handling in PySQream.
+► Enhance Null/NaN/NaT handling in PySQream.
 
 
 Known Issues
