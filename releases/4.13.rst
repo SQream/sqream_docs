@@ -4,7 +4,7 @@
 Release Notes 4.13
 *****************
 
-The 4.13 release notes were released on July 17th, 2025
+The 4.13 release notes were released on July 21, 2025
 
 .. contents:: 
    :local:

@@ -36,34 +36,34 @@ SQDB Releases Timeline
      - Maintenance Mode
      - End of Support
    * - ``4.13``
-     - July 17th 2025
-     - October 17th 2025
-     - July 17th 2026
+     - July 21, 2025
+     - October 21, 2025
+     - July 21, 2026
    * - ``4.12``
-     - July 3rd 2025
-     - October 3rd 2025
-     - July 3rd 2026
+     - July 3, 2025
+     - October 3, 2025
+     - July 3, 2026
    * - ``4.11``
-     - April 9th 2025
-     - May 27th 2025
-     - April 9th 2026
+     - April 9, 2025
+     - May 27, 2025
+     - April 9, 2026
    * - ``4.10``
-     - January 20th 2025
-     - April 9th 2025
-     - January 20th 2026
+     - January 20, 2025
+     - April 9, 2025
+     - January 20, 2026
    * - ``4.9``
-     - November 29th 2024
-     - February 29th 2025
-     - November 29th 2025
+     - November 29, 2024
+     - February 29, 2025
+     - November 29, 2025
    * - ``4.8``
-     - October 6th 2024
-     - January 6th 2025
-     - October 6th 2025
+     - October 6, 2024
+     - January 6, 2025
+     - October 6, 2025
    * - ``4.5``
-     - December 5th 2023
-     - March 5th 2024
-     - September 30th 2025
+     - December 5, 2023
+     - March 5, 2024
+     - September 30, 2025
    * - ``4.3``
-     - June 11th 2023
-     - September 11th 2023
-     - June 11th 2024
+     - June 11, 2023
+     - September 11, 2023
+     - June 11, 2024

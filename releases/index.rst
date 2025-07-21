@@ -4,7 +4,7 @@
 Release Notes
 *************
 
-:ref:`Version 4.13 - July 17th, 2025<4.13>`
+:ref:`Version 4.13 - July 21, 2025<4.13>`
 
 :ref:`Version 4.12 - July 3rd, 2025<4.12>`
 
