@@ -26,7 +26,6 @@ Compatibility Matrix
 
 New Features and Enhancements
 -----------------------------
-► Allow setting a custom escape character in the CSV FDW.
 
 ► Show node info will also show the "WITH" alias / table alias name and not only the table name.
 
