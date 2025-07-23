@@ -5,12 +5,14 @@ Query Healer
 ************
  
 
-The **Query Healer** periodically examines the progress of running statements, creating a log entry for all statements exceeding a defined time period.   
+The **Query Healer** periodically examines the progress of running statements and connections, creating a log entry for all statements exceeding a defined time period and connections with no data transfer over a specified time.
+It can also take action based on its findings, for two issues - a stuck query or a hung connection.
+The query healer runs on a separate thread on each worker, this is able to take action if the worker it is coupled with has a problem.
 
 Configuration
 -------------
 
-The following worker flags are required to configure the Query Healer:
+The following worker flags are required to configure the Query Healer. These are all worker level flags:
 
 .. list-table:: 
    :widths: auto
@@ -18,12 +20,19 @@ The following worker flags are required to configure the Query Healer:
 
    * - Flag
      - Description
-   * - ``is_healer_on``
+   * - ``isHealerOn``
      - The :ref:`is_healer_on` enables and disables the Query Healer.
-   * - ``maxStatementInactivitySeconds``
-     - The :ref:`max_statement_inactivity_seconds` worker level flag defines the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU. The default setting is five hours.
    * - ``healerDetectionFrequencySeconds``
-     - The :ref:`healer_detection_frequency_seconds` worker level flag triggers the healer to examine the progress of running statements. The default setting is one hour. 
+     - The :ref:`healer_detection_frequency_seconds` triggers the healer to examine the progress of running statements. The default setting is one hour.
+   * - ``maxStatementInactivitySeconds``
+     - The :ref:`max_statement_inactivity_seconds` defines the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU. If a statement did not make any progress during this time, it is considerd stuck. The default setting is five hours.
+   * - ``healerRunActionAutomatically``
+     - The healerRunActionAutomatically triggers the healer to take action once it detects a problem. In order for the healer to take an automatic correction action, this flag needs to be true, AND the flag that relates to the detected problem. The default setting is true. 
+   * - ``healerActionGracefulShutdown``
+     - The healerActionGracefulShutdown triggers the healer to restart a stuck worker automatically (both this flag AND healerRunActionAutomatically need to be true). The default setting is false. 
+   * - ``healerActionCleanupConnection``
+     - The healerActionCleanupConnection triggers the healer to close a hung connection automatically (both this flag AND healerRunActionAutomatically need to be true). The default setting is true. 
+
 
 Query Log
 ---------
