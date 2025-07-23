@@ -27,11 +27,11 @@ The following worker flags are required to configure the Query Healer. These are
    * - ``maxStatementInactivitySeconds``
      - The :ref:`max_statement_inactivity_seconds` defines the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU. If a statement did not make any progress during this time, it is considerd stuck. The default setting is five hours.
    * - ``healerRunActionAutomatically``
-     - The :ref:'healer_run_action_automatically' triggers the healer to take action once it detects a problem. In order for the healer to take an automatic correction action, this flag needs to be true, AND the flag that relates to the detected problem. The default setting is true. 
+     - The :ref:`healer_run_action_automatically` triggers the healer to take action once it detects a problem. In order for the healer to take an automatic correction action, this flag needs to be true, AND the flag that relates to the detected problem. The default setting is true. 
    * - ``healerActionGracefulShutdown``
-     - The :ref:'healer_action_graceful_shutdown' triggers the healer to restart a stuck worker automatically (both this flag AND healerRunActionAutomatically need to be true). The default setting is false. 
+     - The :ref:`healer_action_graceful_shutdown` triggers the healer to restart a stuck worker automatically (both this flag AND healerRunActionAutomatically need to be true). The default setting is false. 
    * - ``healerActionCleanupConnection``
-     - The :ref:'healer_action_cleanup_connection' triggers the healer to close a hung connection automatically (both this flag AND healerRunActionAutomatically need to be true). The default setting is true. 
+     - The :ref:`healer_action_cleanup_connection` triggers the healer to close a hung connection automatically (both this flag AND healerRunActionAutomatically need to be true). The default setting is true. 
 
 
 Query Log
