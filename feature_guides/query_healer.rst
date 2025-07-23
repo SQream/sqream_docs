@@ -5,9 +5,9 @@ Query Healer
 ************
  
 
-The **Query Healer** periodically examines the progress of running statements and connections, creating a log entry for all statements exceeding a defined time period and connections with no data transfer over a specified time.
+The **Query Healer** periodically examines the progress of running statements and connections, creating a log entry for all statements deemed stuck (exceeding a defined time period with no progress) and connections with no data transfer over a specified time.
 It can also take action based on its findings, for two issues - a stuck query or a hung connection.
-The query healer runs on a separate thread on each worker, this is able to take action if the worker it is coupled with has a problem.
+The query healer runs on a separate thread of each worker, enables it to take action if the worker it is on has a problem.
 
 Configuration
 -------------
