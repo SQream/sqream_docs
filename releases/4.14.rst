@@ -20,16 +20,9 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | supported Nvidia driver | CUDA version 12.3.2 / 12.6.1                                           |
 +-------------------------+------------------------------------------------------------------------+
-| Storage version         | 63                                                                     |
+| Storage version         | 64                                                                     |
 +-------------------------+------------------------------------------------------------------------+
 
-
-New Features and Enhancements
------------------------------
-
-► Show node info will also show the "WITH" alias / table alias name and not only the table name.
-
-► Enhance Null/NaN/NaT handling in PySQream.
 
 
 Known Issues
@@ -43,27 +36,29 @@ Version 4.14 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | **SQ No.**                  | **Description**                                                                            |
 +=============================+============================================================================================+
-| SQ-20475                    | Fixed type check issue when using pivot on text literal                                    |
+| SQ-3140                     | Support for custom escape characters in CSV FDW                                            |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20401                    | Enhanced support for queries combining constant text and table data                        |
+| SQ-19308                    | Enhanced handling of data loads exceeding maxBlobSize                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20399                    | Encryption Support Stability Improvement                                                   |
+| SQ-20607                    | Improved support for SQL queries with CTE                                                  |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20100                    | COPY FROM support for uppercase column names                                               |
+| SQ-20608                    | Improved handling of schema references in CTE queries                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-19857                    | Improved performance for catalog queries                                                   |
+| SQ-20642                    | Reduced execution time for DELETE statements                                               |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-19308                    | Resolved Worker Unavailability Caused by Blobs Exceeding maxBlobSize                       |
+| SQ-20669                    | Refined GROUP BY handling for array-indexed values                                         |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-16663                    | Resolved Issue with Creating and Inserting into Clustered Tables                           |
+| SQ-20679                    | Stability improvements in CUDF under certain conditions                                    |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-8440                     | Fixed LAG/LEAD Window Function error when using Text with Offset                           |
+| SQ-20789                    | Faster query execution through optimized compilation                                       |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20567                    | Added new log message type                                                                 |
+| SQ-20801                    | Improved performance for queries using UNNEST                                              |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20471, SQ-20414,         | Fixed errors related to array data type related to casting                                 |
-| SQ-20367, SQ-19792          |                                                                                            |
+| SQ-20828                    | Enhanced reliability of query preparation process                                          |
 +-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20844                    | Optimized memory usage when loading Parquet files                                          |
++-----------------------------+--------------------------------------------------------------------------------------------+
+
 
 
 
