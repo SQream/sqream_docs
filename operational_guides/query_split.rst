@@ -355,7 +355,7 @@ In this case, we need to adjust the number of instance to get the right size spl
 	
 	
 Usage Notes & Limitations
----------------------------
+=========================
 
 * Limitation of split query instances to 1000.
 
