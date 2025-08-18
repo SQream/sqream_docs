@@ -352,6 +352,29 @@ Date as Number best practices
 When date is stored as number, using the number of workers as the instances number may not result in the expected way.
 e.g. if date run from 20210101 to 20210630 splitting to 8 will result in 6 relevant splits, as SQream only checks min and max and splits accordingly (20210630-20210101)/8. we get an instance of empty data with dates ranging from 20210432 to 20210499 (not really dates, but real numbers).
 In this case, we need to adjust the number of instance to get the right size splits. In the above example we need to split to 64, and each worker will run 3 splits with actual data.
+
+Known Issue
+------------
+
+When running queries with the -c flag in jdbc-console, adding a space between -c and the query string causes the command to fail.
+
+Example – works without space
+
+.. code-block:: sql
+
+	java -jar jdbc-console-3.5.jar --user sqream --pass sqream \
+	--port 5001 -d master --host=192.168.4.122 \
+	-c"@@SetResult minMax SELECT 1 as min, 2 as max;"
+
+Example – fails with space
+
+.. code-block:: sql
+
+	java -jar jdbc-console-3.5.jar --user sqream --pass sqream \
+	--port 5001 -d master --host=192.168.4.122 \
+	-c "@@SetResult minMax SELECT 1 as min, 2 as max;"
+
+
 	
 	
 Usage Notes & Limitations
