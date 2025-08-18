@@ -360,7 +360,7 @@ When running queries with the -c flag in jdbc-console, adding a space between -c
 
 Example – works without space
 
-.. code-block:: sql
+.. code-block:: java
 
 	java -jar jdbc-console-3.5.jar --user sqream --pass sqream \
 	--port 5001 -d master --host=192.168.4.122 \
@@ -368,7 +368,7 @@ Example – works without space
 
 Example – fails with space
 
-.. code-block:: sql
+.. code-block:: java
 
 	java -jar jdbc-console-3.5.jar --user sqream --pass sqream \
 	--port 5001 -d master --host=192.168.4.122 \
