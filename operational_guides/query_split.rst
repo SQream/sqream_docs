@@ -6,7 +6,7 @@ Query Split
 
 The split query operation optimizes long-running queries by executing them in parallel on different GPUs and/or Workers, reducing overall runtime. This involves breaking down a complex query into parallel executions on small data subsets. To ensure an ordered result set aligned with the original complex query, two prerequisites are essential. First, create an empty table mirroring the original result set's structure. Second, define the ``@@SetResult`` operator to split the query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column, as these types are compatible with the operator's ``min`` and ``max`` variables.   
 
-Splitting is exclusive to the UI, utilizing Meta-scripting, a unique UI feature. Keep in mind that not all queries benefit, as this method introduces overhead runtime. 
+Splitting is exclusive to the CLI and UI, utilizing Meta-scripting, a unique CLI & UI feature. Keep in mind that not all queries benefit, as this method introduces overhead runtime. 
 
 .. contents::
    :local:
@@ -29,7 +29,7 @@ Creating an empty table mirroring the original query result set's structure usin
 	)
 	   -- A false_filter example: 1=2
 	
-Defining the ``@@setresult`` operator to split the original query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column with ``min`` and ``max`` variables. If the column you're splitting by is used in a ``WHERE`` clause in the original query, use a ``WHERE`` clause when setting the ``SetResult`` operator as well.
+Defining the @@setresult operator to split the original query using an INTEGER, BIGINT, DATE, or DATETIME column with min and max variables. If the column you're splitting by is used in a WHERE clause in the original query, use a WHERE clause when setting the SetResult operator as well. The name you alias in the @@SetResult section is the name you reference in the @@SplitQueryBy... section. For example, aliasing as minMax allows you to reference it as minMax[0].min. The @@SetResult operator has a single-row limitation; an error is thrown for 0 or more than 1 row to prevent a huge memory buffer.
 
 .. code-block:: sql
 	
@@ -352,10 +352,41 @@ Date as Number best practices
 When date is stored as number, using the number of workers as the instances number may not result in the expected way.
 e.g. if date run from 20210101 to 20210630 splitting to 8 will result in 6 relevant splits, as SQream only checks min and max and splits accordingly (20210630-20210101)/8. we get an instance of empty data with dates ranging from 20210432 to 20210499 (not really dates, but real numbers).
 In this case, we need to adjust the number of instance to get the right size splits. In the above example we need to split to 64, and each worker will run 3 splits with actual data.
+
+Known Issue
+------------
+
+When running queries with the -c flag in jdbc-console, adding a space between -c and the query string causes the command to fail.
+
+Example – works without space
+
+.. code-block:: java
+
+	java -jar jdbc-console-3.5.jar --user sqream --pass sqream \
+	--port 5001 -d master --host=192.168.4.122 \
+	-c"@@SetResult minMax SELECT 1 as min, 2 as max;"
+
+Example – fails with space
+
+.. code-block:: java
+
+	java -jar jdbc-console-3.5.jar --user sqream --pass sqream \
+	--port 5001 -d master --host=192.168.4.122 \
+	-c "@@SetResult minMax SELECT 1 as min, 2 as max;"
+
+
 	
 	
+Usage Notes & Limitations
+=========================
+
+* Limitation of split query instances to 1000.
+
+* The number of splits should not exceed the number of available workers. If you split a query to more instances than the number of distinct values in the split column, you will have idle splits.
 	
-	
+* Stopping a splitted query can leave the database in an inconsistent state. Since each split is a separate, parallel process, halting the main command may not stop all of them immediately. This can result in a partial data load, where some data is successfully inserted while other parts are not. Consequently, a user would need to manually clean up the incomplete data or re-run the entire operation from scratch, which adds significant overhead and complexity to the process.
+
+* For documenting the usage of date and datetime types, it is essential to always enclose the from and to values in single quotes, such as '${from}' and '${to}'. This is a crucial best practice as it ensures the database correctly interprets the string values as dates or datetimes, preventing syntax errors and guaranteeing the queries execute successfully. The single quotes are a requirement for these specific data types and should always be included in the examples and instructions provided to users.	
 	
 	
 	
