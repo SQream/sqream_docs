@@ -6,7 +6,6 @@ Python User-Defined Functions
 
 User-Defined Functions (UDFs) offer streamlined statements, enabling the creation of a function once, storing it in the database, and calling it multiple times within a statement. Additionally, UDFs can be shared among roles, created by a database administrator and utilized by others. Furthermore, they contribute to code simplicity by allowing independent modifications in SQream DB without altering program source code.
 
-To enable UDFs, in your :ref:`legacy configuration file<current_method_modification_methods>`, set the ``enablePythonUdfs`` configuration flag to ``true``.
 
 .. contents::
    :local:
