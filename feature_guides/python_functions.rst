@@ -14,7 +14,7 @@ User-Defined Functions (UDFs) offer streamlined statements, enabling the creatio
 Before You Begin
 =================
 
-* Ensure you have Python 3.11 or newer installed
+* Ensure you have Python 3.9 or newer installed
 
 .. note::  This feature is deprecated on Q3 2025, and would be replaced by an enhanced implementation. Please consult SQream support for usage.
 
