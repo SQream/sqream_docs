@@ -17,7 +17,7 @@ Before You Begin
 
 * Ensure you have Python 3.11 or newer installed
 
-* Enable UDFs by setting the ``enablePythonUdfs`` configuration flag to ``true`` in your :ref:`legacy configuration file<current_method_modification_methods>`
+.. note::  This feature is deprecated on Q3 2025, and would be replaced by an enhanced implementation. Please consult SQream support for usage.
 
 SQreamDB's UDF Support
 =============================
