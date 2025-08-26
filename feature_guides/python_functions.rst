@@ -176,7 +176,7 @@ In some cases, the user-defined function provides benefits like sharing extended
 
 Use user-defined functions sparingly in the ``WHERE`` clause. SQream DB can't optimize the function's usage, and it will be called once for every value. If possible, you should narrow down the number of results before the UDF is called by using a subquery.
 
-Note: Arrays are not supported in Python UDFs for arguments or return values. Use scalar types (e.g., INT, FLOAT, TEXT).
+.. note:: Arrays are not supported in Python UDFs for arguments or return values. Use scalar types (e.g., INT, FLOAT, TEXT).
 
 
 
