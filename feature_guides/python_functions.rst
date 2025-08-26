@@ -6,6 +6,7 @@ Python User-Defined Functions
 
 User-Defined Functions (UDFs) offer streamlined statements, enabling the creation of a function once, storing it in the database, and calling it multiple times within a statement. Additionally, UDFs can be shared among roles, created by a database administrator and utilized by others. Furthermore, they contribute to code simplicity by allowing independent modifications in SQream DB without altering program source code.
 
+To enable UDFs, in your :ref:`legacy configuration file<current_method_modification_methods>`, set the ``enablePythonUdfs`` configuration flag to ``true``.
 
 .. contents::
    :local:
@@ -16,7 +17,7 @@ Before You Begin
 
 * Ensure you have Python 3.11 or newer installed
 
-.. note::  This feature is deprecated on Q3 2025, and would be replaced by an enhanced implementation. Please consult SQream support for usage.
+* Enable UDFs by setting the ``enablePythonUdfs`` configuration flag to ``true`` in your :ref:`legacy configuration file<current_method_modification_methods>`
 
 SQreamDB's UDF Support
 =============================
@@ -174,6 +175,8 @@ Although user-defined functions add flexibility, they may have some performance 
 In some cases, the user-defined function provides benefits like sharing extended functionality which makes it very appealing.
 
 Use user-defined functions sparingly in the ``WHERE`` clause. SQream DB can't optimize the function's usage, and it will be called once for every value. If possible, you should narrow down the number of results before the UDF is called by using a subquery.
+
+Note: Arrays are not supported in Python UDFs for arguments or return values. Use scalar types (e.g., INT, FLOAT, TEXT).
 
 
 
