@@ -11,6 +11,7 @@ This is an **alpha version** of AISQream. Expect limitations and ongoing develop
    :glob: 
 
    about
+   HW_requirements
    embedded_ml_models
    model_training_via_python
    export_model
