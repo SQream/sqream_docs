@@ -93,7 +93,7 @@ Before You Begin
 
 * Once the BIOS settings have been set, you must install the operating system.
 
-* A SQreamDB installation requires RHEL8.8/8.9
+* Make sure you use a supported OS version as listed on the release notes of the installed version.
 
 * Verify the exact RHEL8 version with your storage vendor to avoid driver incompatibility.
 
