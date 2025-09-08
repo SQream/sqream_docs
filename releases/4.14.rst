@@ -74,6 +74,10 @@ Version 4.14 resolved Issues
 Deprecation
 -------------------
 
+► **Flag maxBlobSizeNetworkInsert depracted**
+
+* Instead use maxBlobSize 
+
 ► **Column DDL permission**
 
 Column ``DDL`` permission is now deprecated as its functionality is fully included within the table ``DDL`` permission. Upon upgrading to this version, all existing column ``DDL`` permissions will be automatically revoked.
