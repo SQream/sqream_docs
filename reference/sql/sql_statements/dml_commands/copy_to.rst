@@ -54,6 +54,8 @@ The following is the correct syntax for using the **COPY TO** statement:
       | MAX_FILE_SIZE = '{ size_in_bytes }'
 	  
       | ENFORCE_SINGLE_FILE = { true | false }
+ 
+      | QUOTE = { 'C' | E'\ooo' }
 
 
   delimiter ::= string
@@ -94,6 +96,10 @@ The following table shows the ``COPY_TO`` elements:
      - Sets the maximum file size (bytes). Default value: 16*2^20 (16MB).
    * - ``ENFORCE_SINGLE_FILE``
      - Enforces the maximum file size (bytes). Permitted values: ``true`` - creates one file of unlimited size, ``false`` - permits creating several files together limited by the ``MAX_FILE_SIZE``. When set to ``true``, the single file size is not limited by the ``MAX_FILE_SIZE`` setting. When set to ``false``, the combined file sizes cannot exceed the ``MAX_FILE_SIZE``. Default value: ``TRUE``.
+   * - ``QUOTE``
+     - ``"``
+     - 
+     - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in ``COPY FROM`` and foreign tables. The following characters cannot be an alternative quote character: ``"-.:\\0123456789abcdefghijklmnopqrstuvwxyzN"``
 
 Usage Notes
 ===========
