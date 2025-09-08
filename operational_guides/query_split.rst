@@ -4,7 +4,7 @@
 Query Split
 ************
 
-The split query operation optimizes long-running queries by executing them in parallel on different GPUs and/or Workers, reducing overall runtime. This involves breaking down a complex query into parallel executions on small data subsets. To ensure an ordered result set aligned with the original complex query, two prerequisites are essential. First, create an empty table mirroring the original result set's structure. Second, define the ``@@SetResult`` operator to split the query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column, as these types are compatible with the operator's ``min`` and ``max`` variables.   
+The split query operation optimizes long-running queries by executing them in parallel on different GPUs and/or Workers, reducing overall runtime. This involves breaking down a complex query into parallel executions on small data subsets. To ensure an ordered result set aligned with the original complex query, two prerequisites are essential. First, create an empty table mirroring the original result set's structure. Second, define the ``@@SetResult`` operator to split the query using an ``INTEGER``, ``DATE``, `DATETIME`` or ``DATETIME2`` column, as these types are compatible with the operator's ``min`` and ``max`` variables.   
 
 Splitting is exclusive to the CLI and UI, utilizing Meta-scripting, a unique CLI & UI feature. Keep in mind that not all queries benefit, as this method introduces overhead runtime. 
 
@@ -29,7 +29,7 @@ Creating an empty table mirroring the original query result set's structure usin
 	)
 	   -- A false_filter example: 1=2
 	
-Defining the @@setresult operator to split the original query using an INTEGER, BIGINT, DATE, or DATETIME column with min and max variables. If the column you're splitting by is used in a WHERE clause in the original query, use a WHERE clause when setting the SetResult operator as well. The name you alias in the @@SetResult section is the name you reference in the @@SplitQueryBy... section. For example, aliasing as minMax allows you to reference it as minMax[0].min. The @@SetResult operator has a single-row limitation; an error is thrown for 0 or more than 1 row to prevent a huge memory buffer.
+Defining the @@setresult operator to split the original query using an INTEGER, BIGINT, DATE, DATETIME or DATETIME2 column with min and max variables. If the column you're splitting by is used in a WHERE clause in the original query, use a WHERE clause when setting the SetResult operator as well. The name you alias in the @@SetResult section is the name you reference in the @@SplitQueryBy... section. For example, aliasing as minMax allows you to reference it as minMax[0].min. The @@SetResult operator has a single-row limitation; an error is thrown for 0 or more than 1 row to prevent a huge memory buffer.
 
 .. code-block:: sql
 	
@@ -88,6 +88,18 @@ Defining the operator that determines the number of instances (splits) based on 
 	  WHERE <column_to_split_by> BETWEEN '${from}' and '${to}'
 	)
 	
+* **DATETIME2 column:** use the ``@@SplitQueryByDateTime2`` operator
+
+.. code-block:: sql
+	
+	@@SplitQueryByDateTime2 instances = <number of instances>, from = minMax[0].min, to = minMax[0].max
+	INSERT INTO <final_result_table>
+	(
+	  SELECT 
+	   -- Original query..
+	  WHERE <column_to_split_by> BETWEEN '${from}' and '${to}'
+	)
+
 Gathering results:
 
 .. code-block:: sql
