@@ -29,7 +29,7 @@ To insert data returned by a Python Table Function into an existing table, you u
 
 
 
-2. The <table_function_clause>
+2. The ``<table_function_clause>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This clause defines the execution of your Python function. It has the following structure:
@@ -39,20 +39,20 @@ This clause defines the execution of your Python function. It has the following 
 
     table(<table_function>([cursor(<sub_query>)], <literal_param>*));
 
-table(): This is the main function wrapper that tells SQream to execute the Python function.
+``table()``: This is the main function wrapper that tells SQream to execute the Python function.
 
-<table_function>: This is the fully qualified name of the Python function, including the module name. For example, arr_varif.final_array.
+``<table_function>``: This is the fully qualified name of the Python function, including the module name. For example, ``arr_varif.final_array``.
 
-cursor(<sub_query>): This is an optional argument that passes the result of a subquery (any valid SELECT statement) to your Python function. The data is provided to the Python function as a Pandas DataFrame.
+``cursor(<sub_query>)``: This is an optional argument that passes the result of a subquery (any valid ``SELECT`` statement) to your Python function. The data is provided to the Python function as a Pandas DataFrame.
 
-<literal_param>*: These are optional string literals that are passed as additional arguments to your Python function. They must be defined in the module's literal_parameters option and will be cast to strings in the Python code.
+``<literal_param>*``: These are optional string literals that are passed as additional arguments to your Python function. They must be defined in the module's literal_parameters option and will be cast to strings in the Python code.
 
 
 
 3. Defining a Python Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before you can use a Python Table Function, you must define it in SQream using a module. The CREATE OR REPLACE MODULE command is used for this purpose.
+Before you can use a Python Table Function, you must define it in SQream using a module. The ``CREATE OR REPLACE MODULE`` command is used for this purpose.
 
 Example:
 Based on your provided code, here is an example of defining a module with multiple entry points:
@@ -81,17 +81,17 @@ Based on your provided code, here is an example of defining a module with multip
         ]
     );
 
-path: Specifies the file path to your Python script on the server.
+``path``: Specifies the file path to your Python script on the server.
 
-entry_points: A list of the Python functions within the script that can be called from SQream.
+``entry_points``: A list of the Python functions within the script that can be called from SQream.
 
-name: The name of the Python function.
+``name``: The name of the Python function.
 
-arguments: A list of the data types of the columns that the Python function expects from the cursor() subquery.
+``arguments``: A list of the data types of the columns that the Python function expects from the cursor() subquery.
 
-returns table(...): The schema of the table that the Python function will return. The column names and data types must match the DataFrame returned by your Python code.
+``returns table(...)``: The schema of the table that the Python function will return. The column names and data types must match the DataFrame returned by your Python code.
 
-gpu=true/false: Determines whether the function will be executed on the GPU or the CPU.
+``gpu=true/false``: Determines whether the function will be executed on the GPU or the CPU.
 
 
 
@@ -99,7 +99,7 @@ gpu=true/false: Determines whether the function will be executed on the GPU or t
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Example 1: Passing a Subquery
-This example demonstrates how to use cursor() to pass an entire table's data to a Python function.
+This example demonstrates how to use ``cursor()`` to pass an entire table's data to a Python function.
 
 Python Function:
 
@@ -163,11 +163,11 @@ The string literal 'param1' is passed to the function.
 .. code:: sql
 
     SELECT * FROM table(test3.empty_boi('param1'));
-    Note: The name of the Python function in the SELECT statement (empty_boi) does not match the name in the module definition (empty_df) in your example. These names must match for the query to work correctly.
+    Note: The name of the Python function in the ``SELECT`` statement (``empty_boi``) does not match the name in the module definition (``empty_df``) in your example. These names must match for the query to work correctly.
 
 
 
 5. Return Values
 ^^^^^^^^^^^^^^^^^^^^^
 
-Your Python function must return a Pandas DataFrame. The column names and data types of this DataFrame must exactly match the schema defined in the returns table(...) clause of the module's entry point.
+Your Python function must return a Pandas DataFrame. The column names and data types of this DataFrame must exactly match the schema defined in the ``returns table(...)`` clause of the module's entry point.
