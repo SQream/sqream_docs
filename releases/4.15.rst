@@ -1,0 +1,128 @@
+.. _4.15:
+
+*****************
+Release Notes 4.15
+*****************
+
+The 4.15 release notes were released on October 09, 2025
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Compatibility Matrix
+--------------------
+ 
++-------------------------+------------------------------------------------------------------------+
+| System Requirement      | Details                                                                |
++=========================+========================================================================+
+| Supported OS            | RHEL 8.9 / 8.10                                                        |
++-------------------------+------------------------------------------------------------------------+
+| supported Nvidia driver | CUDA version 12.3.2 / 12.6.1                                           |
++-------------------------+------------------------------------------------------------------------+
+| Storage version         | 64                                                                     |
++-------------------------+------------------------------------------------------------------------+
+
+
+
+Known Issues
+------------
+
+:ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`
+
+Version 4.15 resolved Issues
+---------------------------
+
++-----------------------------+--------------------------------------------------------------------------------------------+
+| **SQ No.**                  | **Description**                                                                            |
++=============================+============================================================================================+
+| SQ-3140                     | Support for custom escape characters in CSV FDW                                            |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-19308                    | Enhanced handling of data loads exceeding maxBlobSize                                      |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20547                    | Expanded logging for external storage                                                      |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20607                    | Improved support for SQL queries with CTE                                                  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20608                    | Improved handling of schema references in CTE queries                                      |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20609                    | Reliable execution of complex CTE queries                                                  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20642                    | Reduced execution time for DELETE statements                                               |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20669                    | Refined GROUP BY handling for array-indexed values                                         |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20679                    | Stability improvements in CUDF under certain conditions                                    |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20766                    | Improved cross-version compression compatibility                                           |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20789                    | Faster query execution through optimized compilation                                       |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20801                    | Improved performance for queries using UNNEST                                              |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20823                    | Greater stability in multi-field data sorting                                              |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20828                    | Enhanced reliability of query preparation process                                          |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20844                    | Optimized memory usage when loading Parquet files                                          |
++-----------------------------+--------------------------------------------------------------------------------------------+
+
+
+
+
+
+Deprecation
+-------------------
+
+► **Flag maxBlobSizeNetworkInsert depracted**
+
+* Instead use maxBlobSize 
+
+► **Column DDL permission**
+
+Column ``DDL`` permission is now deprecated as its functionality is fully included within the table ``DDL`` permission. Upon upgrading to this version, all existing column ``DDL`` permissions will be automatically revoked.
+If you are upgrading from a release using the old behavior, please contact SQream support prior to performing the upgrade.
+
+► **Haskell CLI**
+
+Starting October 2024, support for the Haskell CLI is discontinued, and it is replaced by the :ref:`Multi Platform CLI<multi_platform_cli>` that is compatible with the Haskell CLI with the added value of ``Table-View`` and cross platform compatibility.
+
+► **CentOS Linux 7.x**
+
+* As of June 2024, CentOS Linux 7.x has reached its End of Life and is no longer supported by SQreamDB. 
+
+► **DateTime2 Alias**
+
+As of April 2025, the alias ``DateTime2`` for the ``DateTime`` Data Type has been deprecated to simplify our data model and make way for the introduction of a new data type named ``DateTime2``. 
+
+Upgrading to Version 4.15
+-------------------------
+
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      select backup_metadata('out_path');
+	  
+   .. tip:: SQreamDB recommends storing the generated back-up locally in case needed.
+   
+   SQreamDB runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQreamDB services.
+
+3. Copy the recently created back-up file.
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+5. Navigate to the new SQreamDB package bin folder.
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      ./upgrade_storage <levelDB path>
+	
+
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/upgrade_guide/version_upgrade.html>`_ procedure.
+  
