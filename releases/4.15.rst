@@ -16,11 +16,11 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | System Requirement      | Details                                                                |
 +=========================+========================================================================+
-| Supported OS            | RHEL 8.9 / 8.10                                                        |
+| Supported OS            | RHEL 8.9 / 8.10 / 9.x???                                               |
 +-------------------------+------------------------------------------------------------------------+
-| supported Nvidia driver | CUDA version 12.3.2 / 12.6.1                                           |
+| supported Nvidia driver | CUDA version 12.3.2 / 12.6.1??                                         |
 +-------------------------+------------------------------------------------------------------------+
-| Storage version         | 64                                                                     |
+| Storage version         | 65????                                                                 |
 +-------------------------+------------------------------------------------------------------------+
 
 
@@ -36,35 +36,31 @@ Version 4.15 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | **SQ No.**                  | **Description**                                                                            |
 +=============================+============================================================================================+
-| SQ-3140                     | Support for custom escape characters in CSV FDW                                            |
+| SQ-19587, SQ-20891          | Improved support for foreign tables                                                        |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-19308                    | Enhanced handling of data loads exceeding maxBlobSize                                      |
+| SQ-19887                    | Adding RHEL 9.x support?????? feature                                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20547                    | Expanded logging for external storage                                                      |
+| SQ-20671                    | Adding support for arrays in window functions???????? feature                              |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20607                    | Improved support for SQL queries with CTE                                                  |
+| SQ-20689                    | Enhanced performance for catalog queries                                                   |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20608                    | Improved handling of schema references in CTE queries                                      |
+| SQ-20890                    | Enhanced reliability of the DELETE proceduce                                               |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20609                    | Reliable execution of complex CTE queries                                                  |
+| SQ-20898                    | Stability improvements for SQLoader                                                        |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20642                    | Reduced execution time for DELETE statements                                               |
+| SQ-20927                    | Optimized memory usage when loading parquet files                                          |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20669                    | Refined GROUP BY handling for array-indexed values                                         |
+| SQ-20961                    | Stability improvements in queries using UNNEST                                             |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20679                    | Stability improvements in CUDF under certain conditions                                    |
+| SQ-20981, SQ-21081          | Stability improvements filtering via EXISTS                                                |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20766                    | Improved cross-version compression compatibility                                           |
+| SQ-20997                    | Greater performance for PIVOT queries                                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20789                    | Faster query execution through optimized compilation                                       |
+| SQ-21067                    | Stability improvements for storage upgrade process                                         |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20801                    | Improved performance for queries using UNNEST                                              |
+| SQ-21121                    | Enhanced reliability of queries using window functions                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20823                    | Greater stability in multi-field data sorting                                              |
-+-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20828                    | Enhanced reliability of query preparation process                                          |
-+-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20844                    | Optimized memory usage when loading Parquet files                                          |
+| SQ-21125                    | Adding support for disabling server_picker ssl port??????? feature                         |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 
 
