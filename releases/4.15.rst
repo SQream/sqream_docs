@@ -23,10 +23,12 @@ Compatibility Matrix
 | Storage version         | 65                                                                     |
 +-------------------------+------------------------------------------------------------------------+
 
-New Features (GIL)
+New Features
 ------------
-RHEL 9 support
-SQ-21125 - Adding support for disabling server_picker ssl port
+
+► RHEL 9 Support: Full support has been added for running on Red Hat Enterprise Linux 9 (RHEL 9).
+
+► SSL Port Control (SQ-21125): Added a configuration option to disable the SSL port functionality within the server picker feature.
 
 
 
