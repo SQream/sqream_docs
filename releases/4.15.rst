@@ -26,8 +26,7 @@ Compatibility Matrix
 New Features (GIL)
 ------------
 RHEL 9 support
-SQ-20671 - Adding support for arrays in window functions
-SQ-21125 - Adding support for disabling server_picker ssl port??????? feature                         
+SQ-21125 - Adding support for disabling server_picker ssl port
 
 
 
@@ -46,8 +45,6 @@ Version 4.15 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-20689                    | Enhanced performance for catalog queries                                                   |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20732                    | Compression inprovements in some cases                                                     |
-+-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-20830                    | Service "compiling" is displayed as a service name during the compilation phase            |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-20890                    | Enhanced reliability of the DELETE proceduce                                               |
@@ -58,15 +55,13 @@ Version 4.15 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-20961                    | Stability improvements in queries using UNNEST                                             |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20981, SQ-21081          | Stability improvements filtering via EXISTS                                                |
+| SQ-21081                    | Stability improvements filtering via EXISTS                                                |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-20997                    | Improved performance for PIVOT queries                                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-21067                    | Stability improvements for storage upgrade process                                         |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-21076                    | Improved performance of "unnest" function                                                  |
-+-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21081                    | Improved the mechanism for running Delete .... where exists ....                           |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-21121                    | Enhanced reliability of queries using window functions                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
