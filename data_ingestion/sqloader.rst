@@ -61,7 +61,7 @@ Installation and Connectivity
 Getting All Configuration and JAR Files
 ---------------------------------------
 
-#. Download the `SQLoader binary <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqloader-release/sqloader-release-v8.7.tar.gz>`_:
+#. Download the `SQLoader binary <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqloader-release/sqloader-release-v8.8.tar.gz>`_:
 
 #. Extract the ``.tar`` file using the following command:
 
