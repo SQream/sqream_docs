@@ -85,16 +85,16 @@ Example:
 
 ``python <SQREAM_MCP_DIR>/setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream``
 
-.. list-table:: 
+  .. list-table:: 
      :widths: auto
      :header-rows: 1
    
      * - Linux / Mac
        - Windows
      * - cd <SQREAM_MCP_DIR>
-       - python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
-	 * - cd <SQREAM_MCP_DIR>
-	   - py setup_sqreamdb_mcp.py” host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
+         python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
+	   - cd <SQREAM_MCP_DIR>
+	     py setup_sqreamdb_mcp.py” host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
 			
 Example:
 python <SQREAM_MCP_DIR>/setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream
