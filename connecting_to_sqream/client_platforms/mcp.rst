@@ -36,42 +36,48 @@ Installation steps
 #. Download Claude for Windows / Mac - `Claude download <https://claude.ai/download>`_. 
 
 
-#.  Download Sqream MCP server package - `download <http://artifactory.host-98.sq.l/artifactory/webapp/#/artifacts/browse/tree/General/mcp_server/releases>`_. 
+#. Download Sqream MCP server package - `download <http://artifactory.host-98.sq.l/artifactory/webapp/#/artifacts/browse/tree/General/mcp_server/releases>`_. 
+
+**Note**:During this installation guide - <SQREAM_MCP_DIR> will represents location: <extracted package path>/sqreamdb_mcp_server_<VERSION>/sqreamdb-mcp-server
+
+#. Server setup
+There are 2 ways to setup Sqream MCP server - Automated and manual.  Each of those steps requires to configure Sqream worker connection details Claude will communicate with:
+
+Connection Parameters
 
   .. list-table:: 
      :widths: auto
      :header-rows: 1
    
-     * - Field name
+     * - Parameter
        - Description
-       - Value
        - Example
-     * - Name
-       - The name of the data source
+     * - ``host``
+       - SQreamDB server hostname or IP
+       - ``192.168.4.68``
+     * - ``port``
+       - SQreamDB/Server_picker server port
+       - ``5000`` 
+     * - ``database``
+       - Database name to connect to
+       - ``master``
+     * - ``username``
+       - SQreamDB username
        - ``sqream``
-       -
-     * - Database URI
-       - The URI that specifies the location and details of the database or data source to be connected
-       - ``jdbc:Sqream://<host_and_port>/<database_name>;[<optional_parameters>; ...]`` 
-       -
-     * - Transaction isolation
-       - The level of isolation used to manage concurrent transactions in the database connection, ensuring data consistency and integrity
-       - ``Database default``
-       -
-     * - Authentication
-       - Authentication method
-       - ``Use login and password``
-       -
-     * - Login
-       - The SQreamDB role 
-       - 
-       - ``SqreamRole``
-     * - Password
-       - The SQreamDB role password
-       - 
-       - ``SqreamRolePassword2023``
-	   
-5. To verify your newly created connection, select the **Test connection** button.
+     * - ``password``
+       - SQreamDB password 
+       - ``Sqream``
+     * - ``clustered``
+       - set to true if server picker is used
+       - ``false``
+
+**Note**:**clustered** is optional and should be used if server picker port is used as your port
+   
+Automated Setup
+
+Run the setup script with your SQreamDB connection parameters:
+``python setup_sqreamdb_mcp.py host=<hostname> port=<port> database=<database> username=<username> password=<password>``
+
 
 Notes
 ==========
