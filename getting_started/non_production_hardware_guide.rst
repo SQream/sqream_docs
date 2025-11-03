@@ -28,7 +28,7 @@ Development Desktop
    * - GPU
      - 1x NVIDIA RTX A4000 16GB
    * - Operating System
-     - Red Hat Enterprise Linux v8.8
+     - Red Hat Enterprise Linux v8.9 / v8.10
 
 
 Lab Server
@@ -51,4 +51,4 @@ Lab Server
    * - GPU
      - 1xNVIDIA A40 or A10
    * - Operating System
-     - Red Hat Enterprise Linux v8.8 
+     - Red Hat Enterprise Linux v8.9 / v8.10 
