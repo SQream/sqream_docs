@@ -1,17 +1,23 @@
-.. _MCP:
+.. _mcp:
 
 ***************
-Denodo Platform
+MCP | Integrating SQream DB and Anthropic Claude
 ***************
 
-Denodo Platform is a data virtualization solution that enables integration, access, and real-time data delivery from disparate on-premises and cloud-based sources.
+The MCP server will establish a robust framework for integrating third-party services and AI models directly with the SQream database.
 
-Before You Begin
+Features
 ================
 
-It is essential that you have the following installed:
+* **Direct SQL Execution**: Run queries against SQreamDB from Claude
 
-* Denodo 9.1 or Denodo 8.0u20240926
+* **Documentation Access**: Built-in access to SQreamDB syntax and functions
+
+* **Query Optimization**: Get help with performance tuning
+
+* **Schema Exploration**: Browse tables, columns, and database structure
+
+* **Data Type Support**: Full support for SQreamDB data types and functions
 
 
 Setting Up a Connection to SQreamDB
