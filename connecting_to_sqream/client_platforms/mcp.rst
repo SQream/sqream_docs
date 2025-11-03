@@ -75,15 +75,9 @@ Connection Parameters:
    
 Automated Setup:
 
-Run the setup script with your SQreamDB connection parameters:
+Go to your SQREAM_MCP_DIR and run the setup script with your SQreamDB connection parameters:
 
 ``python setup_sqreamdb_mcp.py host=<hostname> port=<port> database=<database> username=<username> password=<password>``
-
-
-
-Example:
-
-``python <SQREAM_MCP_DIR>/setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream``
 
   .. list-table:: 
      :widths: auto
@@ -91,15 +85,13 @@ Example:
    
      * - Linux / Mac
        - Windows
-     * - roy
-         selinko
-       - roy2
-	 selinko2
+     * - python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
+       - py setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
 
-
-			
 Example:
-python <SQREAM_MCP_DIR>/setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream
+
+``python <SQREAM_MCP_DIR>/setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream``
+
 
 The script will :
 * Create a Python virtual environment
