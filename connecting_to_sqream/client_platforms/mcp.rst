@@ -20,14 +20,23 @@ Features
 * **Data Type Support**: Full support for SQreamDB data types and functions
 
 
-Setting Up a Connection to SQreamDB
+Prerequisites
 ===================================
 
-#. In the Design Studio, click the menu File > New > Data Source > JDBC and select SqreamDB.
+* Python 3.11 or higher (3.11 recommended)
 
-   A connection dialog box is displayed.
+* Access to a SQreamDB instance
 
-#. Under the **Configuration** tab, select the **Connection** tab and fill in the data source information:
+* Claude Desktop application
+
+
+Installation steps
+===================================
+
+#. Download Claude for Windows / Mac - `Claude download <https://claude.ai/download>`_. 
+
+
+#.  Download Sqream MCP server package - `download <http://artifactory.host-98.sq.l/artifactory/webapp/#/artifacts/browse/tree/General/mcp_server/releases>`_. 
 
   .. list-table:: 
      :widths: auto
