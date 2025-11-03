@@ -43,7 +43,7 @@ Installation steps
 #. Server setup
 There are 2 ways to setup Sqream MCP server - Automated and manual.  Each of those steps requires to configure Sqream worker connection details Claude will communicate with:
 
-Connection Parameters
+Connection Parameters:
 
   .. list-table:: 
      :widths: auto
@@ -73,10 +73,43 @@ Connection Parameters
 
 **Note**:**clustered** is optional and should be used if server picker port is used as your port
    
-Automated Setup
+Automated Setup:
 
 Run the setup script with your SQreamDB connection parameters:
+
 ``python setup_sqreamdb_mcp.py host=<hostname> port=<port> database=<database> username=<username> password=<password>``
+
+
+
+Example:
+
+``python <SQREAM_MCP_DIR>/setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream``
+
+.. list-table:: 
+     :widths: auto
+     :header-rows: 1
+   
+     * - Linux / Mac
+       - Windows
+     * - ``cd <SQREAM_MCP_DIR>``
+		 ``python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>``
+       - ``cd <SQREAM_MCP_DIR>``
+		 ``py setup_sqreamdb_mcp.py” host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>``
+
+Example:
+
+python <SQREAM_MCP_DIR>/setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream
+
+The script will :
+
+* Create a Python virtual environment
+
+* Install all required dependencies
+
+* Configure Claude Desktop to use the SQreamDB MCP server
+
+* Set up the connection parameters
+
 
 
 Notes
