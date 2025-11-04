@@ -38,7 +38,7 @@ Installation steps
 
 #. Download Sqream MCP server package - `download <http://artifactory.host-98.sq.l/artifactory/webapp/#/artifacts/browse/tree/General/mcp_server/releases>`_. 
 
-**Note**:During this installation guide - <SQREAM_MCP_DIR> will represents location: <extracted package path>/sqreamdb_mcp_server_<VERSION>/sqreamdb-mcp-server
+**Note**: During this installation guide - <SQREAM_MCP_DIR> will represents location: <extracted package path>/sqreamdb_mcp_server_<VERSION>/sqreamdb-mcp-server
 
 #. Server setup
 There are 2 ways to setup Sqream MCP server - Automated and manual.  Each of those steps requires to configure Sqream worker connection details Claude will communicate with:
@@ -71,7 +71,7 @@ Connection Parameters:
        - set to true if server picker is used
        - ``false``
 
-**Note**:**clustered** is optional and should be used if server picker port is used as your port
+**Note**: **clustered** is optional and should be used if server picker port is used as your port
    
 Automated Setup:
 
@@ -93,7 +93,8 @@ Example:
 ``python <SQREAM_MCP_DIR>/setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream``
 
 
-The script will :
+The script will:
+
 * Create a Python virtual environment
 
 * Install all required dependencies
@@ -103,7 +104,52 @@ The script will :
 * Set up the connection parameters
 
 
+Manual Setup:
 
+#. Create virtual environment:
+
+  .. list-table:: 
+     :widths: auto
+     :header-rows: 1
+   
+     * - Linux / Mac
+       - Windows
+     * - python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
+       - py setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
+
+#. Install dependencies:
+``pip install -r requirements.txt``
+
+#. Configure Claude Desktop:
+
+Add the MCP server configuration to your Claude Desktop settings:
+a. Find Python.exe location:
+``where python``
+
+b. Find sqreamdb_mcp_server location (shall be at <SQREAM_MCP_DIR>/sqreamdb_mcp_server.py)
+
+c. Change Claude config file (location: "C:\Users\<USER>\AppData\Roaming\Claude\claude_desktop_config.json") to:
+
+.. code-block:: console
+
+   {
+     "mcpServers": {
+       "sqreamdb": {
+         "command": "<PYTHON_LOCATION>",
+         "args": [
+           "<SQREAM_MCP_DIR>\\sqreamdb_mcp_server.py",
+           "host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>"
+         ]
+       }
+     }
+   }
+
+
+**Note**: Path shall be with escaping characters - Example:
+C:\Users\sagib\Desktop\sagib\sqreamdb_mcp_server_1.0.0_20251020\sqreamdb_mcp_server_1.0.0\sqreamdb_mcp_server.py
+
+
+#. Configure Claude Desktop:
 
 
 Notes
