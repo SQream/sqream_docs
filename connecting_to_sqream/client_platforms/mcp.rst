@@ -124,41 +124,37 @@ The script will:
 
 #. Configure Claude Desktop:
 
-Add the MCP server configuration to your Claude Desktop settings:
+   Add the MCP server configuration to your Claude Desktop settings:
 
-a. Find Python.exe location:
+   a. Find Python.exe location:
+      ``where python``
 
-``where python``
+   b. Find sqreamdb_mcp_server location (shall be at <SQREAM_MCP_DIR>/sqreamdb_mcp_server.py)
 
-b. Find sqreamdb_mcp_server location (shall be at <SQREAM_MCP_DIR>/sqreamdb_mcp_server.py)
+   c. Change Claude config file (location: C:\Users\<USER>\AppData\Roaming\Claude\claude_desktop_config.json) to:
 
-c. Change Claude config file (location: C:\Users\<USER>\AppData\Roaming\Claude\claude_desktop_config.json) to:
+      .. code-block:: console
 
-.. code-block:: console
+         {
+           "mcpServers": {
+             "sqreamdb": {
+               "command": "<PYTHON_LOCATION>",
+               "args": [
+                 "<SQREAM_MCP_DIR>\\sqreamdb_mcp_server.py",
+                 "host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>"
+               ]
+             }
+           }
+         }
 
-   {
-     "mcpServers": {
-       "sqreamdb": {
-         "command": "<PYTHON_LOCATION>",
-         "args": [
-           "<SQREAM_MCP_DIR>\\sqreamdb_mcp_server.py",
-           "host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>"
-         ]
-       }
-     }
-   }
+      .. note:: Path shall be with escaping characters - Example:
 
+         ::
+           
+            C:\Users\sagib\Desktop\sagib\sqreamdb_mcp_server_1.0.0_20251020\
+            sqreamdb_mcp_server_1.0.0\sqreamdb_mcp_server.py
 
-.. note:: Path shall be with escaping characters - Example:
-
-   ::
-   
-      C:\Users\sagib\Desktop\sagib\sqreamdb_mcp_server_1.0.0_20251020\
-      sqreamdb_mcp_server_1.0.0\sqreamdb_mcp_server.py
-
-
-
-#. Configure Claude Desktop:
+#. Save config file.
 
 Usage
 ===================================
