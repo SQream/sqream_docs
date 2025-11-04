@@ -35,44 +35,41 @@ Installation steps
 
 #. Download Claude for Windows / Mac - `Claude download <https://claude.ai/download>`_. 
 
-
 #. Download Sqream MCP server package - `download <http://artifactory.host-98.sq.l/artifactory/webapp/#/artifacts/browse/tree/General/mcp_server/releases>`_. 
 
-**Note**: During this installation guide - <SQREAM_MCP_DIR> will represents location: <extracted package path>/sqreamdb_mcp_server_<VERSION>/sqreamdb-mcp-server
-
-
 #. Server setup
-There are 2 ways to setup Sqream MCP server - Automated and manual.  Each of those steps requires to configure Sqream worker connection details Claude will communicate with:
 
-Connection Parameters:
+   There are 2 ways to setup Sqream MCP server - Automated and manual.  Each of those steps requires to configure Sqream worker connection details Claude will communicate with:
 
-  .. list-table:: 
-     :widths: auto
-     :header-rows: 1
-   
-     * - Parameter
-       - Description
-       - Example
-     * - ``host``
-       - SQreamDB server hostname or IP
-       - ``192.168.4.68``
-     * - ``port``
-       - SQreamDB/Server_picker server port
-       - ``5000`` 
-     * - ``database``
-       - Database name to connect to
-       - ``master``
-     * - ``username``
-       - SQreamDB username
-       - ``sqream``
-     * - ``password``
-       - SQreamDB password 
-       - ``Sqream``
-     * - ``clustered``
-       - set to true if server picker is used
-       - ``false``
+   Connection Parameters:
 
-**Note**: **clustered** is optional and should be used if server picker port is used as your port
+   .. list-table:: 
+      :widths: auto
+      :header-rows: 1
+
+      * - Parameter
+        - Description
+        - Example
+      * - ``host``
+        - SQreamDB server hostname or IP
+        - ``192.168.4.68``
+      * - ``port``
+        - SQreamDB/Server_picker server port
+        - ``5000``
+      * - ``database``
+        - Database name to connect to
+        - ``master``
+      * - ``username``
+        - SQreamDB username
+        - ``sqream``
+      * - ``password``
+        - SQreamDB password
+        - ``Sqream``
+      * - ``clustered``
+        - set to true if server picker is used
+        - ``false``
+
+   **Note**: **clustered** is optional and should be used if server picker port is used as your port
    
 Automated Setup:
 
