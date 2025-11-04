@@ -39,9 +39,8 @@ Installation steps
 
 #. Server setup
 
-   There are 2 ways to setup Sqream MCP server - Automated and manual.  Each of those steps requires to configure Sqream worker connection details Claude will communicate with:
-
-   Connection Parameters:
+   There are 2 ways to setup Sqream MCP server - Automated and manual.  
+   Each of those steps requires to configure Sqream worker connection details Claude will communicate with connection Parameters:
 
    .. list-table:: 
       :widths: auto
@@ -70,6 +69,9 @@ Installation steps
         - ``false``
 
    **Note**: **clustered** is optional and should be used if server picker port is used as your port
+   
+    .. note:: **clustered** is optional and should be used if server picker port is used as your port
+
    
 Automated Setup:
 
@@ -150,6 +152,9 @@ c. Change Claude config file (location: C:\Users\<USER>\AppData\Roaming\Claude\c
 
 **Note**: Path shall be with escaping characters - Example:
 C:\Users\sagib\Desktop\sagib\sqreamdb_mcp_server_1.0.0_20251020\sqreamdb_mcp_server_1.0.0\sqreamdb_mcp_server.py
+
+.. note:: Path shall be with escaping characters - Example:
+		  C:\Users\sagib\Desktop\sagib\sqreamdb_mcp_server_1.0.0_20251020\sqreamdb_mcp_server_1.0.0\sqreamdb_mcp_server.py
 
 
 #. Configure Claude Desktop:
