@@ -95,6 +95,8 @@ Example:
 
 
 The script will:
+
+
 * Create a Python virtual environment
 
 * Install all required dependencies
@@ -108,19 +110,18 @@ Manual Setup:
 
 #. Create virtual environment:
 
-  .. list-table:: 
-     :widths: auto
-     :header-rows: 1
-   
-     * - Linux / Mac
-       - Windows
-     * - python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
-       - py setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
+   .. list-table::
+      :widths: auto
+      :header-rows: 1
 
+      * - Linux / Mac
+        - Windows
+      * - python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
+        - py setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
 
 #. Install dependencies:
 
-``pip install -r requirements.txt``
+   ``pip install -r requirements.txt``
 
 
 #. Configure Claude Desktop:
