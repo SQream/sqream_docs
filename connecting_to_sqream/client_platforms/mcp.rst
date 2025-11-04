@@ -40,6 +40,7 @@ Installation steps
 
 **Note**: During this installation guide - <SQREAM_MCP_DIR> will represents location: <extracted package path>/sqreamdb_mcp_server_<VERSION>/sqreamdb-mcp-server
 
+
 #. Server setup
 There are 2 ways to setup Sqream MCP server - Automated and manual.  Each of those steps requires to configure Sqream worker connection details Claude will communicate with:
 
@@ -94,7 +95,6 @@ Example:
 
 
 The script will:
-
 * Create a Python virtual environment
 
 * Install all required dependencies
@@ -117,18 +117,23 @@ Manual Setup:
      * - python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
        - py setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
 
+
 #. Install dependencies:
+
 ``pip install -r requirements.txt``
+
 
 #. Configure Claude Desktop:
 
 Add the MCP server configuration to your Claude Desktop settings:
+
 a. Find Python.exe location:
+
 ``where python``
 
 b. Find sqreamdb_mcp_server location (shall be at <SQREAM_MCP_DIR>/sqreamdb_mcp_server.py)
 
-c. Change Claude config file (location: "C:\Users\<USER>\AppData\Roaming\Claude\claude_desktop_config.json") to:
+c. Change Claude config file (location: C:\Users\<USER>\AppData\Roaming\Claude\claude_desktop_config.json) to:
 
 .. code-block:: console
 
@@ -151,12 +156,45 @@ C:\Users\sagib\Desktop\sagib\sqreamdb_mcp_server_1.0.0_20251020\sqreamdb_mcp_ser
 
 #. Configure Claude Desktop:
 
+Usage
+===================================
 
-Notes
-==========
+#. **Restart Claude Desktop** after setup completion.
 
-* Denodo 9.1 and Denodo 8.0u20240926 already include an adapter for SQreamDB and its driver so they no longer have to download the driver. They do not have to fill in Database adapter, nor Driver class path, nor Driver class.
 
-* With the SQreamDB adapter, the user does not have to restart.
+#. **Start using SQreamDB queries** directly in Claude conversations
 
-* With the SQreamDB adapter, the Limitation mentioned above does not occur.
+
+#. Claude can:
+
+* Execute SQL queries against your SQreamDB
+
+* Access SQreamDB documentation and syntax
+
+* Help with database operations and optimization
+
+
+
+Troubleshooting
+===================
+
+Common Issues:
+
+#. **Python Version**: Ensure you're using Python 3.11 or higher
+
+
+#. **Connection Issues**: Verify your SQreamDB server is accessible and credentials are correct
+
+
+#. **Claude Desktop**: Make sure to restart Claude Desktop after setup
+
+
+Verification:
+
+#. Open Claude Desktop
+
+
+#. Ask Claude: "Can you connect to SQreamDB?"
+
+
+#. Claude should be able to access SQreamDB documentation and execute queries
