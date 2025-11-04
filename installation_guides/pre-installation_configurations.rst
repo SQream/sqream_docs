@@ -37,7 +37,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - Clustered to increase logical volume and provide redundancy.
    * - **Fan speed Thermal Configuration.**
      - Dell fan speed: **High Maximum**. Specified minimum setting: **60**. HPe thermal configuration: **Increased cooling**.
-     - NVIDIA Tesla GPUs are passively cooled and require high airflow to operate at full performance.
+     - NVIDIA Data Center GPUs are passively cooled and require high airflow to operate at full performance.
    * - **Power regulator or iDRAC power unit policy**   
      - HPe: **HP static high performance** mode enabled. Dell: **iDRAC power unit policy** (power cap policy) disabled.
      - Other power profiles (such as "balanced") throttle the CPU and diminishes performance. Throttling may also cause GPU failure.   

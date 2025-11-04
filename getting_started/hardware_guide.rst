@@ -205,7 +205,7 @@ SQreamDB relies on multi-core Intel Gold Xeon processors or IBM POWER9 processor
 GPU Compute and RAM
 -------------------
 
-The NVIDIA Tesla range of high-throughput GPU accelerators provides the best performance for enterprise environments. Most cards have ECC memory, which is crucial for delivering correct results every time. SQreamDB recommends the  NVIDIA Tesla A100 80GB GPU for the best performance and highest concurrent user support.
+The NVIDIA Data Center range of high-throughput GPU accelerators provides the best performance for enterprise environments. Most cards have ECC memory, which is crucial for delivering correct results every time. SQreamDB recommends the  NVIDIA Tesla A100 80GB GPU for the best performance and highest concurrent user support.
 
 GPU RAM, sometimes called GRAM or VRAM, is used for processing queries. It is possible to select GPUs with less RAM. However, the smaller GPU RAM results in reduced concurrency, as the GPU RAM is used extensively in operations like JOINs, ORDER BY, GROUP BY, and all SQL transforms.
 

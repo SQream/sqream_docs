@@ -16,7 +16,7 @@ To prepare your machine to install SQreamDB, do the following:
 	 
  * Verify that you have the following:
  
-   * An NVIDIA GPU - SQreamDB recommends using a Tesla GPU.
+   * An NVIDIA GPU - SQreamDB recommends using a Data Center GPU.
  
 
    * An SSH connection to your server.
