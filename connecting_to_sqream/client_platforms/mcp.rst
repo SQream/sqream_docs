@@ -35,7 +35,19 @@ Installation steps
 
 #. Download Claude for Windows / Mac - `Claude download <https://claude.ai/download>`_. 
 
-#. Download Sqream MCP server package - `download <http://artifactory.host-98.sq.l/artifactory/webapp/#/artifacts/browse/tree/General/mcp_server/releases>`_. 
+#. Download Sqream MCP server package - `download <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqreamdb-mcp-server-release/sqreamdb-mcp-server-v1.0.2.zip`_. 
+
+#. Unzip the server package
+
+.. note:: During this installation guide:
+
+   ::
+      <EXTRACTED_PACKAGE_PATH> - Will represent where the ZIP will be extracted to  
+      <SQREAM_MCP_DIR> - Will represent location:  
+      <EXTRACTED_PACKAGE_PATH>\sqreamdb_mcp_server_<VERSION>\sqreamdb-mcp-server
+
+Run in CMD:
+``python -m zipfile -e "C:\Users\<USER>\Downloads\sqreamdb_mcp_server_<version>.zip" "<EXTRACTED_PACKAGE_PATH>"``
 
 #. Server setup
 
@@ -71,11 +83,9 @@ Installation steps
    
 .. note:: **clustered** is optional and should be used if server picker port is used as your port
 
-   
 **Automated Setup**:
 
 Go to your SQREAM_MCP_DIR and run the setup script with your SQreamDB connection parameters:
-
 ``python setup_sqreamdb_mcp.py host=<hostname> port=<port> database=<database> username=<username> password=<password>``
 
   .. list-table:: 
@@ -102,7 +112,6 @@ The script will:
 * Configure Claude Desktop to use the SQreamDB MCP server
 
 * Set up the connection parameters
-
 
 **Manual Setup**:
 
@@ -150,7 +159,6 @@ The script will:
       .. note:: Path shall be with escaping characters - Example:
 
          ::
-           
             C:\Users\sagib\Desktop\sagib\sqreamdb_mcp_server_1.0.0_20251020\
             sqreamdb_mcp_server_1.0.0\sqreamdb_mcp_server.py
 
