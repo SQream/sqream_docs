@@ -139,7 +139,7 @@ The script will:
    a. Find Python.exe location:
       ``where python``
 
-   b. Find sqreamdb_mcp_server location (shall be at <SQREAM_MCP_DIR>/sqreamdb_mcp_server.py)
+   b. Find sqreamdb_mcp_server location (should be at <SQREAM_MCP_DIR>/sqreamdb_mcp_server.py)
 
    c. Change Claude config file (location: C:\Users\<USER>\AppData\Roaming\Claude\claude_desktop_config.json) to:
 
@@ -157,13 +157,12 @@ The script will:
            }
          }
 
-	  .. note:: Path shall be with escaping characters. Example:
+   .. note:: Path shall be with escaping characters. Example:
 
-	     .. code-block:: console
+      .. code-block:: console
 
-		    C:\\Users\\sqream\\Desktop\\sqream1\\sqreamdb_mcp_server_1.0.0_20251020\\
-		    sqreamdb_mcp_server_1.0.0\\sqreamdb_mcp_server.per_1.0.0\\sqreamdb_mcp_server.py
-
+         C:\\Users\\sqream\\Desktop\\sqream1\\sqreamdb_mcp_server_1.0.0_20251020\\
+         sqreamdb_mcp_server_1.0.0\\sqreamdb_mcp_server.per_1.0.0\\sqreamdb_mcp_server.py
 
 #. Save config file.
 
