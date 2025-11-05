@@ -91,8 +91,8 @@ Go to your SQREAM_MCP_DIR directory on your Windows/Mac machine and run the setu
 
   .. code-block:: console
 
-         cd <SQREAM_MCP_DIR>
-		 python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
+    cd <SQREAM_MCP_DIR>
+    python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
 
 Example:
 
