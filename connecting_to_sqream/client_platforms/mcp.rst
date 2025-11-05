@@ -157,10 +157,13 @@ The script will:
            }
          }
 
-      .. note:: Path shall be with escaping characters - Example::
+	  .. note:: Path shall be with escaping characters. Example:
 
-      C:\\Users\\sqream\\Desktop\\sqream1\\sqreamdb_mcp_server_1.0.0_20251020\\
-      sqreamdb_mcp_server_1.0.0\\sqreamdb_mcp_server.per_1.0.0\sqreamdb_mcp_server.py
+	     .. code-block:: console
+
+		    C:\\Users\\sqream\\Desktop\\sqream1\\sqreamdb_mcp_server_1.0.0_20251020\\
+		    sqreamdb_mcp_server_1.0.0\\sqreamdb_mcp_server.per_1.0.0\\sqreamdb_mcp_server.py
+
 
 #. Save config file.
 
