@@ -35,18 +35,19 @@ Installation steps
 
 #. Download Claude for Windows / Mac - `Claude download <https://claude.ai/download>`_. 
 
-#. Download Sqream MCP server package - `download <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqreamdb-mcp-server-release/sqreamdb-mcp-server-v1.0.2.zip`_. 
+#. Download Sqream MCP server package - `download <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqreamdb-mcp-server-release/sqreamdb-mcp-server-v1.0.2.zip>`_. 
 
 #. Unzip the server package
 
-.. note:: During this installation guide:
+.. note:: During this installation guide::
 
-   ::
       <EXTRACTED_PACKAGE_PATH> - Will represent where the ZIP will be extracted to  
       <SQREAM_MCP_DIR> - Will represent location:  
       <EXTRACTED_PACKAGE_PATH>\sqreamdb_mcp_server_<VERSION>\sqreamdb-mcp-server
 
-Run in CMD:
+
+Run in command line:
+
 ``python -m zipfile -e "C:\Users\<USER>\Downloads\sqreamdb_mcp_server_<version>.zip" "<EXTRACTED_PACKAGE_PATH>"``
 
 #. Server setup
@@ -92,7 +93,7 @@ Go to your SQREAM_MCP_DIR and run the setup script with your SQreamDB connection
      :widths: auto
      :header-rows: 1
    
-     * - Linux / Mac
+     * - Mac
        - Windows
      * - python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
        - py setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
@@ -121,7 +122,7 @@ The script will:
       :widths: auto
       :header-rows: 1
 
-      * - Linux / Mac
+      * - Mac
         - Windows
       * - python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
         - py setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
@@ -156,11 +157,10 @@ The script will:
            }
          }
 
-      .. note:: Path shall be with escaping characters - Example:
+      .. note:: Path shall be with escaping characters - Example::
 
-         ::
-            C:\Users\sagib\Desktop\sagib\sqreamdb_mcp_server_1.0.0_20251020\
-            sqreamdb_mcp_server_1.0.0\sqreamdb_mcp_server.py
+      C:\\Users\\sqream\\Desktop\\sqream1\\sqreamdb_mcp_server_1.0.0_20251020\\
+      sqreamdb_mcp_server_1.0.0\\sqreamdb_mcp_server.per_1.0.0\sqreamdb_mcp_server.py
 
 #. Save config file.
 
