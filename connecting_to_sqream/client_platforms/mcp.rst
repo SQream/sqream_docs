@@ -86,17 +86,13 @@ Run in command line:
 
 **Automated Setup**:
 
-Go to your SQREAM_MCP_DIR and run the setup script with your SQreamDB connection parameters:
+Go to your SQREAM_MCP_DIR directory on your Windows/Mac machine and run the setup script with your SQreamDB connection parameters:
 ``python setup_sqreamdb_mcp.py host=<hostname> port=<port> database=<database> username=<username> password=<password>``
 
-  .. list-table:: 
-     :widths: auto
-     :header-rows: 1
-   
-     * - Mac
-       - Windows
-     * - python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
-       - py setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
+  .. code-block:: console
+
+         cd <SQREAM_MCP_DIR>
+		 python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
 
 Example:
 
