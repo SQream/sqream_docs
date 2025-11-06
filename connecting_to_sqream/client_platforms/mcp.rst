@@ -87,9 +87,11 @@ Installation steps
    
 .. note:: **clustered** is optional and should be used if server picker port is used as your port
 
-|**Automated Setup**:
-|Go to your SQREAM_MCP_DIR directory on your Windows/Mac machine and run the setup script with your SQreamDB connection parameters:
-|``python setup_sqreamdb_mcp.py host=<hostname> port=<port> database=<database> username=<username> password=<password>``
+**Automated Setup**:
+
+Go to your SQREAM_MCP_DIR directory on your Windows/Mac machine and run the setup script with your SQreamDB connection parameters:
+
+``python setup_sqreamdb_mcp.py host=<hostname> port=<port> database=<database> username=<username> password=<password>``
 
 Example:
 
