@@ -108,7 +108,8 @@ The script will:
 
 * Set up the connection parameters
 
-**Manual Setup**:
+**Manual Setup**
+
 #. Create virtual environment:
 
    .. code-block:: console
@@ -117,11 +118,11 @@ The script will:
       python -m venv sqreamdb_mcp_env
       sqreamdb_mcp_env\Scripts\activate
 
-
 #. Install dependencies:
 
-   ``pip install -r requirements.txt``
+   .. code-block:: console
 
+      pip install -r requirements.txt
 
 #. Configure Claude Desktop:
 
@@ -153,9 +154,9 @@ The script will:
       .. code-block:: console
 
          C:\\Users\\sqream\\Desktop\\sqream1\\sqreamdb_mcp_server_1.0.0_20251020\\
-         sqreamdb_mcp_server_1.0.0\\sqreamdb_mcp_server.per_1.0.0\\sqreamdb_mcp_server.py
+         sqreamdb_mcp_server_1.0.0\\sqreamdb_mcp_server.py
 
-#. Save config file.
+#. Save configuration file.
 
 Usage
 ===================================
