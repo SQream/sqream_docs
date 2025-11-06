@@ -37,22 +37,24 @@ Installation steps
 
 #. Download Sqream MCP server package - `download <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqreamdb-mcp-server-release/sqreamdb-mcp-server-v1.0.2.zip>`_. 
 
-#. Unzip the server package
+#. Unzip the server package.
 
-.. note:: During this installation guide::
+   .. note::
+      During this installation guide:
 
-      <EXTRACTED_PACKAGE_PATH> - Will represent where the ZIP will be extracted to  
-      <SQREAM_MCP_DIR> - Will represent location:  
-      <EXTRACTED_PACKAGE_PATH>\sqreamdb_mcp_server_<VERSION>\sqreamdb-mcp-server
+      - <EXTRACTED_PACKAGE_PATH> will represent where the ZIP will be extracted to  
+      - <SQREAM_MCP_DIR> will represent location:  
+        <EXTRACTED_PACKAGE_PATH>\sqreamdb_mcp_server_<VERSION>\sqreamdb-mcp-server
 
+   Run in command line:
 
-Run in command line:
+   .. code-block:: console
 
-``python -m zipfile -e "C:\Users\<USER>\Downloads\sqreamdb_mcp_server_<version>.zip" "<EXTRACTED_PACKAGE_PATH>"``
+      python -m zipfile -e "C:\Users\<USER>\Downloads\sqreamdb_mcp_server_<version>.zip" "<EXTRACTED_PACKAGE_PATH>"
 
 #. Server setup
 
-   There are two ways to setup Sqream MCP server - Automated and manual.  
+   There are two ways to setup Sqream MCP server - Automated and manual.\    
    Each of those steps requires to configure Sqream worker connection details Claude will communicate with connection Parameters:
 
    .. list-table:: 
@@ -84,12 +86,13 @@ Run in command line:
    
 .. note:: **clustered** is optional and should be used if server picker port is used as your port
 
-**Automated Setup**:\
+**Automated Setup**:
 
 Go to your SQREAM_MCP_DIR directory on your Windows/Mac machine and run the setup script with your SQreamDB connection parameters:
+
 ``python setup_sqreamdb_mcp.py host=<hostname> port=<port> database=<database> username=<username> password=<password>``
 
-Example:\
+Example:
 
 ``python setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream``
 
