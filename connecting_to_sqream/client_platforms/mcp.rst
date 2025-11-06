@@ -54,7 +54,7 @@ Installation steps
 
 #. Server setup
 
-   There are two ways to setup Sqream MCP server - Automated and manual.
+   There are two ways to setup Sqream MCP server - automated and manual.
    
    Each of those steps requires to configure Sqream worker connection details Claude will communicate with connection Parameters:
 
@@ -133,7 +133,7 @@ The script will:
 
    b. Find sqreamdb_mcp_server location (should be at <SQREAM_MCP_DIR>/sqreamdb_mcp_server.py)
 
-   c. Change Claude config file (location: C:\Users\<USER>\AppData\Roaming\Claude\claude_desktop_config.json) to:
+   c. Change Claude config file from this similar path "C:\Users\<USER>\AppData\Roaming\Claude\claude_desktop_config.json" to:
 
       .. code-block:: console
 
