@@ -23,7 +23,7 @@ Features
 Prerequisites
 ===================================
 
-* Python 3.11 or higher (3.11 recommended)
+* Python 3.11.X or 3.12.X
 
 * Access to a SQreamDB instance
 
@@ -90,18 +90,12 @@ Go to your SQREAM_MCP_DIR directory on your Windows/Mac machine and run the setu
 
 ``python setup_sqreamdb_mcp.py host=<hostname> port=<port> database=<database> username=<username> password=<password>``
 
-.. code-block:: console
-
-  cd <SQREAM_MCP_DIR>
-  python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
-
 Example:
 
-``python <SQREAM_MCP_DIR>/setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream``
+``python setup_sqreamdb_mcp.py host=1.2.3.4 port=5000 database=master username=sqream password=sqream``
 
 
 The script will:
-
 
 * Create a Python virtual environment
 
@@ -115,14 +109,12 @@ The script will:
 
 #. Create virtual environment:
 
-   .. list-table::
-      :widths: auto
-      :header-rows: 1
+   .. code-block:: console
 
-      * - Mac
-        - Windows
-      * - python setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
-        - py setup_sqreamdb_mcp.py host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>
+      cd "<SQREAM_MCP_DIR>"
+      python -m venv sqreamdb_mcp_env
+      sqreamdb_mcp_env\Scripts\activate
+
 
 #. Install dependencies:
 
