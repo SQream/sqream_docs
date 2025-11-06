@@ -133,21 +133,25 @@ The script will:
 
    b. Find sqreamdb_mcp_server location (should be at <SQREAM_MCP_DIR>/sqreamdb_mcp_server.py)
 
-   c. Change Claude config file from this similar path "C:\Users\<USER>\AppData\Roaming\Claude\claude_desktop_config.json" to:
+   c. Change Claude config file from this similar path:
 
-      .. code-block:: console
+   ``C:\\Users\\<USER>\\AppData\\Roaming\\Claude\\claude_desktop_config.json``
 
-         {
-           "mcpServers": {
-             "sqreamdb": {
-               "command": "<PYTHON_LOCATION>",
-               "args": [
-                 "<SQREAM_MCP_DIR>\\sqreamdb_mcp_server.py",
-                 "host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>"
-               ]
-             }
-           }
-         }
+   to:
+
+   .. code-block:: console
+
+      {
+        "mcpServers": {
+          "sqreamdb": {
+            "command": "<PYTHON_LOCATION>",
+            "args": [
+              "<SQREAM_MCP_DIR>\\sqreamdb_mcp_server.py",
+              "host=<IP> port=<PORT> database=<DATABASE> username=<USER> password=<PASSWORD>"
+            ]
+          }
+        }
+      }
 
    .. note:: Path shall be with escaping characters. Example:
 
