@@ -4,7 +4,9 @@
 MCP | Integrating SQream DB and Anthropic Claude
 ***************
 
-The MCP server will establish a robust framework for integrating third-party services and AI models directly with the SQream database.
+Model Context Protocol (MCP), is an open standard introduced by Anthropic in November 2024. It standardizes how AI systems (like LLMs and agents) interact with external tools and data sources.
+This intrface allows you to query your data using natural language, using Claude as LLM.
+The installation is done on the client machine.
 
 Features
 ================
@@ -20,24 +22,24 @@ Features
 * **Data Type Support**: Full support for SQreamDB data types and functions
 
 
-Prerequisites
+Prerequisites - client side
 ===================================
 
-* Python 3.11.X or 3.12.X
+* Python 3.11.X or 3.12.X installed
 
 * Access to a SQreamDB instance
 
-* Claude Desktop application
+* Claude Desktop application installed
 
 
-Installation steps
+Client installation steps
 ===================================
 
 #. Download Claude for Windows / Mac - `Claude download <https://claude.ai/download>`_. 
 
 #. Download Sqream MCP server package - `download <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqreamdb-mcp-server-release/sqreamdb-mcp-server-v1.0.2.zip>`_. 
 
-#. Unzip the server package.
+#. Unzip the sqreamdb-mcp-server-v1.0.2.zip package.
 
    .. note::
       During this installation guide:
@@ -52,7 +54,7 @@ Installation steps
 
       python -m zipfile -e "C:\Users\<USER>\Downloads\sqreamdb_mcp_server_<version>.zip" "<EXTRACTED_PACKAGE_PATH>"
 
-#. Server setup
+#. MCP-server setup
 
    There are two ways to setup Sqream MCP server - automated and manual.
    
@@ -108,7 +110,9 @@ The script will:
 
 * Set up the connection parameters
 
-**Manual Setup**
+
+
+**In case you could not use the anutomated setup**, perform the following manual setup procedure:
 
 #. Create virtual environment:
 
