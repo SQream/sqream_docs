@@ -237,8 +237,9 @@ Installing Recommended Tools
       sudo dnf install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils dos2unix
 	  
 **For SQreamDB version 4.4 or newer, install Python 3.9.13.**
+**For SQreamDB version 4.10.1 or newer, install Python 3.11. **
   
-1. Download the Python 3.9.13 source code tarball file from the following URL into the ``/home/sqream`` directory:
+1. Download the Python 3.9.13 / 3.11 source code tarball file from the following URL into the ``/home/sqream`` directory:
 
    .. code-block:: console
 
