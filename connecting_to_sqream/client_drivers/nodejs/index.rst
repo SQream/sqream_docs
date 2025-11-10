@@ -380,3 +380,7 @@ For example:
    ));
    console.log(json); // [{"test": "1"}]
 
+ARRAY is not supported
+----------------------
+
+The Node.JS connector does not support ARRAY data types.
