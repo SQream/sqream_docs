@@ -236,7 +236,7 @@ Installing Recommended Tools
 
       sudo dnf install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils dos2unix
 	  
-**For SQreamDB version 4.10.1 or newer, install Python 3.11. **
+** For SQreamDB version 4.10.1 or newer, install Python 3.11. **
   
 1. Download the Python 3.11.7 source code tarball file from the following URL into the ``/home/sqream`` directory:
 
@@ -557,6 +557,8 @@ Installing the NVIDIA CUDA Driver
 ==================================
 
 After configuring your operating system, you must install the NVIDIA CUDA driver.
+
+.. note:: If your Linux GUI runs on the server, it must be stopped before installing the CUDA drivers.
 
 .. warning:: If your Linux GUI runs on the server, it must be stopped before installing the CUDA drivers.
 
