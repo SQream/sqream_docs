@@ -640,7 +640,7 @@ Disable Nouveau, which is the default operating system driver.
 Installing the CUDA Driver
 --------------------------
   
-The current recommendation is for CUDA 12.3.2.
+The current recommendation is for CUDA 12.6.1.
   
 .. contents:: 
    :local:
