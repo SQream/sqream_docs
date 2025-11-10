@@ -236,7 +236,7 @@ Installing Recommended Tools
 
       sudo dnf install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils dos2unix
 	  
-** For SQreamDB version 4.10.1 or newer, install Python 3.11. **
+**For SQreamDB version 4.10.1 or newer, install Python 3.11.**
   
 1. Download the Python 3.11.7 source code tarball file from the following URL into the ``/home/sqream`` directory:
 
@@ -558,7 +558,8 @@ Installing the NVIDIA CUDA Driver
 
 After configuring your operating system, you must install the NVIDIA CUDA driver.
 
-.. note:: If your Linux GUI runs on the server, it must be stopped before installing the CUDA drivers.
+.. note:: SQreamDB requires only CUDA driver, and does not require CUDA toolkit to be installed
+
 
 .. warning:: If your Linux GUI runs on the server, it must be stopped before installing the CUDA drivers.
 
@@ -673,8 +674,8 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
 	  .. code-block:: console
 	  
-		 wget https://developer.download.nvidia.com/compute/cuda/12.3.2/local_installers/cuda-repo-rhel8-12-3-local-12.3.2_545.23.08-1.x86_64.rpm
-		 sudo dnf localinstall cuda-repo-rhel8-12-3-local-12.3.2_545.23.08-1.x86_64.rpm
+		 wget https://developer.download.nvidia.com/compute/CUDA/12.3.2/local_installers/CUDA-repo-rhel8-12-3-local-12.3.2_545.23.08-1.x86_64.rpm
+		 sudo dnf localinstall CUDA-repo-rhel8-12-3-local-12.3.2_545.23.08-1.x86_64.rpm
 		 
 	  .. code-block:: console
 	  
@@ -719,13 +720,7 @@ Tune Up NVIDIA Performance when Driver Installed from the Repository
 
       sudo systemctl enable nvidia-persistenced
 	  
-5. For **H100/A100**, add the following lines:
-
-   .. code-block:: console
-
-      nvidia-persistenced
-		 
-6. Reboot the server and run the **NVIDIA System Management Interface (NVIDIA SMI)**:
+5. Reboot the server and run the **NVIDIA System Management Interface (NVIDIA SMI)**:
 
    .. code-block:: console
 
@@ -742,15 +737,13 @@ Tune Up NVIDIA Performance when Driver Installed from the Runfile
 
         sudo chmod +x /etc/rc.local	  
 	  
-2. Edit the ``/etc/yum.repos.d/cuda-10-1-local.repo`` file:
+2. Edit the ``/etc/rc.local`` file:
 
      .. code-block:: console
 
         sudo vim /etc/rc.local		 
 		 
 3. Add the following lines:
-
-   * **For H100/A100**:
 
       .. code-block:: console
 
