@@ -28,6 +28,8 @@ Business Intelligence (BI) Tools
 
 :ref:`Denodo<denodo>`
 
+:ref:`Mcp<mcp>`
+
 :ref:`MicroStrategy<micro_strategy>`
 
 :ref:`Power BI Desktop<power_bi>`
@@ -55,6 +57,7 @@ Data Analysis and Programming Languages
 
    denodo
    informatica
+   mcp
    microstrategy
    pentaho
    php
