@@ -4,7 +4,7 @@
 About SQream
 ************
 
-SQream is a data analytics company that helps organizations break through barriers to ask the biggest, most important questions from their data.
+SQream is A data analytics company that helps organizations break through barriers to ask the biggest, most important questions from their data.
 Our GPU-based technology empowers businesses to overcome dataset limits and query complexity to analyze exponentially more data and get substantially faster insights at dramatic cost-savings.
 By leveraging SQream's advanced analytics capabilities for AI/ML, enterprises can stay ahead of their competitors while reducing hardware usage.
 SQream fuels AI Factories by providing GPU-accelerated software to streamline massive data processing and ML development, enabling faster insights and scalable AI at every stage.
