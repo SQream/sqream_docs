@@ -113,7 +113,7 @@ In SQream:
 Show node info: (Can see statement’s python execution on node id level):
 
 .. image:: /_static/images/python_module_service_sni.png
-   :alt: Python Module - Show node info Example
+   :alt: Python Module - Show Node Info Example
 
 
 Python module logs:
