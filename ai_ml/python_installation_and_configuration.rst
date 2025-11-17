@@ -178,11 +178,6 @@ Environmental:
 * Python code would run with default Linux privileges therefore could be potentially dangerous and need to be handled with caution.
 * As mentioned above - In this version there can be a python module service per worker.
 
-Python module syntax:
-"""""""""""""""""""""
-
-* ``Param_types`` field may be empty - for example a function that returns timestamp.
-* By default, ``param_types`` and ``return_type`` are nullable, mirroring the behavior of DDL statements. To enforce non-null input or output parameters, users must explicitly specify this requirement.
 
 Python module execution notes:
 """"""""""""""""""""""""""""""
@@ -198,5 +193,4 @@ Unsupported functionalities:
 """"""""""""""""""""""""""""
 
 * Nested Python module calls are not supported, functions that call other Python module functions, etc.
-* Array data type - isn’t supported in this version.
 * Currently will be supported only on current DB.
