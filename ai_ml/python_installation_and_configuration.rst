@@ -110,7 +110,7 @@ In SQream:
 .. image:: /_static/images/log_output_example.png
    :alt: SQream Console Output Example
 
-Show node info: (Can see statement’s python execution on node id level)::
+Show node info: (Can see statement’s python execution on node id level):
 
 .. image:: /_static/images/python_module_service_sni.png
    :alt: Python Module - Show node info Example
