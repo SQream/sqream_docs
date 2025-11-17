@@ -1,10 +1,10 @@
 .. _python_table_functions:
 
-Python Table Functions
+Python Functions
 ------------------------
 
 
-Python Table Functions in SQream allow you to execute custom Python logic on your data and return the results as a new table. This functionality integrates the power of Python's data processing libraries (like Pandas) directly into your SQL queries.
+Python Functions in SQream allow you to execute custom Python logic on your data and return the results as a new table. This functionality integrates the power of Python's data processing libraries (like Pandas) directly into your SQL queries.
 
 
 

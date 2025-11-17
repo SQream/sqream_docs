@@ -1,115 +1,15 @@
 .. _python_modules:
 
-Python modules (Python Scalar Functions)
+Python modules - Installation & Configuration
 ----------------------------------------
 
 SQream's Python Module enables users to integrate custom Python code and functions directly. This allows for advanced data manipulation and custom machine learning operations, all accelerated by GPU.
 
-* :ref:`Syntax<syntax>`
-* :ref:`Examples<examples>`
 * `Configurations`_
 * `Logs`_
 * :ref:`How to run Python module service<How_to>`
 * :ref:`User notes & limitations<User_notes>`
 
-
-.. _syntax:
-
-Syntax
-^^^^^^
-
-.. code:: sql
-
-    CREATE OR REPLACE MODULE module_name
-        OPTIONS
-        ( path = '...'
-        , entry_points =
-            [
-                [ name = 'handler_name'
-                , param_types = [sql_data_type, ...]
-                , return_type = sql_data_type
-                , gpu_acceleration = {TRUE|FALSE}
-      ]
-    , [ name = 'handler_name2'
-      , param_types = [sql_data_type, ...]
-      , return_type = sql_data_type
-      ]
-    ...]
-    );
-
-``module_name`` ::= identifier
-``gpu_acceleration`` ::= Boolean
-``path`` ::= Valid path within module directory
-``sql_data_type`` ::= INT | BIGINT | SMALLINT | DECIMAL precision scale| NUMERIC precision scale | FLOAT | REAL | DOUBLE | TEXT | DATE | DATETIME | BOOLEAN
-``handler_name`` ::= name of function within the python script file
-
-.. _examples:
-
-Examples
-^^^^^^^^
-
-Example 1 - Python module creation in Sqream:
-
-.. code:: sql
-
-    CREATE OR REPLACE MODULE my_module OPTIONS (
-        path = '/home/sagib/py_udf.py',
-        entry_points = [
-            [ name = 'upper' ,
-                param_types = [text] ,
-                return_type = text ,
-                gpu_acceleration = TRUE ],
-            [ name = 'lower' ,
-                param_types = [text] ,
-                return_type = text ,
-                gpu_acceleration = FALSE]
-        ]);
-
-Example 2 - Python module + Sqream execution:
-Create a Python file ‘/tmp/myArithmetic.py’:
-
-.. code:: python
-
-    import pandas as pd
-    def myAdd(df):
-        df['sum'] = df.iloc[:,0] + df.iloc[:, 1]
-        return df['sum']
-    def mysubtract(df):
-        df['sub'] = df.iloc[:,0] - df.iloc[:, 1]
-        return df['sub']
-
-In SQream - Create Python module:
-
-.. code:: sql
-
-    CREATE OR REPLACE MODULE arith_module OPTIONS
-        ( path = '/tmp/myArithmetic.py'
-        , entry_points =
-            [
-                [   NAME = 'myAdd',
-                    PARAM_TYPES =[INT, INT],
-                    RETURN_TYPE = INT,
-                    GPU_ACCELERATION = TRUE  ]
-                , [   NAME = 'mySub',
-                    PARAM_TYPES =[INT, INT],
-                    RETURN_TYPE = INT,
-                    GPU_ACCELERATION = FALSE  ]
-            ]
-        );
-
-Execute python module:
-
-.. code:: sql
-
-    create or replace table t (x int, y int);
-    insert into t values (1,1);
-    insert into t values (2,2);
-    insert into t values (3,3);
-    insert into t values (4,2);
-    select arith_module.myAdd(x,y) from t;
-    --yields: 2, 4, 6, 6
-    select arith_module.mySub(x,y) from t;
-    --yields: 0, 0, 0, 2
 
 .. _Configurations:
 
@@ -238,39 +138,32 @@ Python module logs:
 
 .. _How_to:
 
-How to run Python module service
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**How to install python module service**
 
-One-time installation
-"""""""""""""""""""""
 
-* Download Python module service supplied by Sqream.
-* Extract gzip package: ``tar -xvf <Python_module_package>;``
-* Create a virtual environment for service’s required python installations: ``python3.11 -m venv my_venv;``
-* ``source my_venv/bin/activate``
-* Install required python3.11 libraries, trigger ``requirements.txt`` installation file afterwards (will take few minutes): ``sudo yum install -y python3.11-devel; pip3.11 install -r requirements.txt``
+**One-time installation**
 
-.. note::
-   * Require Python3.11 as a pre-requisite.
-   * All installations are done on a created virtual environment and won’t impact python installations from outside.
-   * ``Requirements.txt`` contains python libraries which are a must for basic python module service functionality.
-   * In case more libraries are required (required by customer's python functions), those installations must be done in the virtual environment and manually by the customer / added to ``requirements.txt`` file.
+1. Create Python3.11 virtual environment:
+```
+python3.11 -m venv my_venv;
+source my_venv/bin/activate
+```
 
-Generate Protobuffers' required Python module service libraries:
-``bash make.sh;``
-After execution - some Python files got generated (for internal usage only:
-* ``py_modules_pb2.py``
-* ``py_modules_pb2_grpc.py``
-* ``sqream_gpu_alloc_pb2.py``
-* ``sqream_gpu_alloc_pb2_grpc.py``
-
-Run Python module service:
-""""""""""""""""""""""""""
-
-* Activate virtual environment: ``source my_venv/bin/activate``
-* Run python module service: ``python3.11 py_modules.py``
-
-Python module service is working when it is listening to its relevant port:
+2. Install required python3.11 libraries for requirements.txt installation, trigger requirements.txt installation file afterwards (will take few minutes):
+```
+sudo yum install -y python3.11-devel;
+pip3.11 install -r requirements.txt
+```
+  
+**Run Python module service**
+1. Activate virtual environment:
+```
+source my_venv/bin/activate
+```
+2. Run python module service:
+```
+python3.11 py_modules.py
+```
 
 .. image:: /_static/images/python_module_service.png
    :alt: Python Module Service Listening Example
