@@ -138,6 +138,7 @@ Python module logs:
 1. Create Python3.11 virtual environment:
 ```
 python3.11 -m venv my_venv;
+```
 source my_venv/bin/activate
 ```
 
@@ -145,7 +146,7 @@ source my_venv/bin/activate
 
 ```
 sudo yum install -y python3.11-devel;
-
+```
 pip3.11 install -r requirements.txt
 ```
   
@@ -157,12 +158,10 @@ source my_venv/bin/activate
 ```
 
 2. Run python module service:
+
 ```
 python3.11 py_modules.py
 ```
-
-.. image:: /_static/images/python_module_service.png
-   :alt: Python Module Service Listening Example
 
 .. _User_notes:
 
