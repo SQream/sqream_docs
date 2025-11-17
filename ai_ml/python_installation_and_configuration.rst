@@ -112,21 +112,13 @@ In SQream:
 
 Show node info: (Can see statement’s python execution on node id level)::
 
-    7,1,PushToNetworkQueue ,3,1,3,2025-04-20 20:08:49,-1,,,,2,0.0012
-    7,2,Rechunk ,3,1,3,2025-04-20 20:08:49,1,,,,2,0.0002
-    7,3,GpuToCpu ,3,1,3,2025-04-20 20:08:49,2,,,,2,0.0006
-    7,4,sqream::PythonModule,3,1,3,2025-04-20 20:08:49,3,,,,2,0.0173
-    7,5,sqream::PythonModule,3,1,3,2025-04-20 20:08:49,4,,,,2,0.1249
-    7,6,ReorderInput ,3,1,3,2025-04-20 20:08:49,5,,,,2,0.0001
-    7,7,GpuDecompress ,3,1,3,2025-04-20 20:08:49,6,,,,2,0.0001
-    7,8,CpuToGpu ,3,1,3,2025-04-20 20:08:49,7,,,,2,0.0092
-    7,9,Rechunk ,3,1,3,2025-04-20 20:08:49,8,,,,2,0.0002
-    7,10,CpuDecompress ,3,1,3,2025-04-20 20:08:49,9,,,,2,0.0001
-    7,11,ReadTable ,3,1,3,2025-04-20 20:08:49,10,0MB,,master.public.t,2,0.0018
+.. image:: /_static/images/python_module_service_sni.png
+   :alt: Python Module - Show node info Example
+
 
 Python module logs:
 
-.. image:: /_static/images/python_module_logs.png
+.. image:: /_static/images/python_module_service_logs.png
    :alt: Python Module Logs Example
 
 .. note::
@@ -150,16 +142,20 @@ source my_venv/bin/activate
 ```
 
 2. Install required python3.11 libraries for requirements.txt installation, trigger requirements.txt installation file afterwards (will take few minutes):
+
 ```
 sudo yum install -y python3.11-devel;
+
 pip3.11 install -r requirements.txt
 ```
   
 **Run Python module service**
 1. Activate virtual environment:
+
 ```
 source my_venv/bin/activate
 ```
+
 2. Run python module service:
 ```
 python3.11 py_modules.py
@@ -189,7 +185,6 @@ Python module syntax:
 Python module execution notes:
 """"""""""""""""""""""""""""""
 
-* Python module service in this version supports only functions that return scalar value (a single value). In Python perspective, a function that returns a dataframe that contains 1 column only. In the next version Python module will be able to return DF with multiple columns (table functions).
 * Python module’s main purpose is for batch processing, which means, python functions will occur chunk by chunk separately. For example, for ‘max’ function (which is aggregational function), instead of getting one maximum value from all chunks, we will get the maximum per chunk.
 * Chunk processing is limited to default chunk size (E.g. 1M), and cannot be customized when invoked.
 * In addition to memory constraints, we have no control over RAM memory consumed within the Python module which may cause runtime errors of OOM.
