@@ -137,33 +137,27 @@ Python module logs:
 
 1. Create Python3.11 virtual environment:
 
-``
-python3.11 -m venv my_venv;
-``
-``
-source my_venv/bin/activate
-``
+``python3.11 -m venv my_venv;``
+
+``source my_venv/bin/activate``
+
 
 2. Install required python3.11 libraries for requirements.txt installation, trigger requirements.txt installation file afterwards (will take few minutes):
 
-``
-sudo yum install -y python3.11-devel;
-``
-``
-pip3.11 install -r requirements.txt
-``
-  
+``sudo yum install -y python3.11-devel;``
+
+``pip3.11 install -r requirements.txt``
+ 
+
 **Run Python module service**
 1. Activate virtual environment:
 
-``
-source my_venv/bin/activate
-``
-``
+``source my_venv/bin/activate``
+
+
 2. Run python module service:
-``
-python3.11 py_modules.py
-``
+``python3.11 py_modules.py``
+
 
 .. _User_notes:
 
