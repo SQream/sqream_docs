@@ -135,14 +135,22 @@ Python module logs:
 
 **One-time installation**
 
-1. Create Python3.11 virtual environment:
+1. Get the lastest version of python module service & extract the package:
+
+   .. code-block:: bash
+
+      tar -xvf <PYTHON_MODULE_SERVICE_PACKAGE>;
+      cd python-module-service;
+
+
+2. Create Python3.11 virtual environment:
 
    .. code-block:: bash
 
       python3.11 -m venv my_venv
       source my_venv/bin/activate
 
-2. Install required Python3.11 libraries and run requirements.txt installation
+3. Install required Python3.11 libraries and run requirements.txt installation
    (this may take a few minutes):
 
    .. code-block:: bash
@@ -157,6 +165,7 @@ Python module logs:
 
    .. code-block:: bash
 
+      cd python-module-service;
       source my_venv/bin/activate
 
 2. Run Python module service:
