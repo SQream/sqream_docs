@@ -34,7 +34,7 @@ Client Driver Downloads
      -
      - All
    * - **JDBC**
-     - `sqream-jdbc <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqream-jdbc-release/sqream-jdbc-6.3.jar>`_
+     - `sqream-jdbc <https://sq-ftp-public.s3.us-east-1.amazonaws.com/sqream-jdbc-release/sqream-jdbc-6.4.jar>`_
      - :ref:`java_jdbc`
      - Recommended installation via ``mvn``
      - All
