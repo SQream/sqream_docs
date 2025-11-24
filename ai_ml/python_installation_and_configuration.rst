@@ -7,7 +7,7 @@ SQream's Python Module enables users to integrate custom Python code and functio
 
 * `Configurations`_
 * `Logs`_
-* :ref:`How to run Python module service<How_to>`
+* :ref:`How to install & run Python Server<How_to>`
 * :ref:`User notes & limitations<User_notes>`
 
 
@@ -54,7 +54,7 @@ Service’s configuration is located in etc/python_service_config.json:
 Logs:
 ^^^^^
 
-Python module service has a log configuration file. Logs can be either shown to screen, and also be exported to file (same as we have in Sqream’s log4cxx log configuration).
+Python module service has a log configuration file. Logs can be either shown to the console, and also be exported to file (same as we have in Sqream’s log4cxx log configuration).
 File path: ``etc/python_service_log_properties``.
 File content:
 
@@ -85,15 +85,15 @@ File content:
    * Formatter: In which format the logs will be shown.
    * args: Arguments which are required for the handler class (keep as it is in the example).
 
-   ``fileHandler`` - Responsible for logs that are been shown as console output, ``handler_fileHandler``: Handler that supplies additional configuration for log files exportation:
+   ``fileHandler`` - Responsible for logs being exported to a log file, ``handler_fileHandler``: Handler that supplies additional configuration for log files exportation:
    * Class: Handler category, in this case it will be RotatingFileHandler.
    * Level: Required log level (Supported levels: ERROR / WARNING / INFO / DEBUG).
    * Formatter: In which format the logs will be shown.
    * args: Arguments which are required for the handler class (keep as it is in the example). Based on the supplied example:
      * ``'py_module_service.log'`` - The location + file name of generated log file.
      * ``'a'`` - Means appending on the same file.
-     * ``1048576`` - Max file size in bytes.
-     * ``10`` - Keeping up to 10 log files, the rest will be deleted.
+     * ``1048576`` - Maximum file size: 1,048,576 bytes (1 MB).
+     * ``10`` - Retains 10 log files; older logs are deleted via rotation.
 
    ``formatter_standardFormatter``: Used for declaring formats for different uses:
    * ``format=%(asctime)s.%(msecs)03d|%(levelname)s|%(message)s`` - The log file that will be shown / exported.
@@ -135,7 +135,7 @@ Python module logs:
 
 **One-time installation**
 
-1. Get the lastest version of python module service & extract the package:
+1. Get the latest version of python module service & extract the package:
 
    .. code-block:: bash
 
@@ -185,6 +185,7 @@ Environmental:
 
 * Python version is limited to the SQream prerequisites compiled version, that means the user must align to the recent SQream version, and upgrading a python version, requires upgrading SQream package.
 * Python code would run with default Linux privileges therefore could be potentially dangerous and need to be handled with caution.
+* Python code runs using the privileges of the user account that the SQream worker process operates under.
 * As mentioned above - In this version there can be a python module service per worker.
 
 
@@ -193,13 +194,13 @@ Python module execution notes:
 
 * Python module’s main purpose is for batch processing, which means, python functions will occur chunk by chunk separately. For example, for ‘max’ function (which is aggregational function), instead of getting one maximum value from all chunks, we will get the maximum per chunk.
 * Chunk processing is limited to default chunk size (E.g. 1M), and cannot be customized when invoked.
-* In addition to memory constraints, we have no control over RAM memory consumed within the Python module which may cause runtime errors of OOM.
+* In addition to the defined memory limits, the Python module’s internal RAM usage cannot be controlled, which may lead to out-of-memory (OOM) runtime errors. These memory constraints apply to all RAM consumed by the custom code executed within the Python Server.
 * Python functions that would print to stdout would be visible only where Python module’s process is running.
 * Error handling should work properly, Python errors would get raised in Sqream as runtime errors.
-* Python module’s file path - Currently local paths are supported only.
+* Python module file path — Only local paths are currently supported. “Local paths” refer to paths that are either relative or absolute within the Python Server’s execution directory.
 
 Unsupported functionalities:
 """"""""""""""""""""""""""""
 
-* Nested Python module calls are not supported, functions that call other Python module functions, etc.
-* Currently will be supported only on current DB.
+* Nested Python module calls are not supported. In other words, a Python UDF cannot invoke another Python UDF or any additional function executed through the Python Server.
+* The functionality is currently limited to the active database and does not support cross-database access.
