@@ -6,9 +6,9 @@ Python modules - Installation & Configuration
 SQream's Python Module enables users to integrate custom Python code and functions directly. This allows for advanced data manipulation and custom machine learning operations, all accelerated by GPU.
 
 * `Configurations`_
-* `Logs`_
 * :ref:`How to install & run Python Server<How_to>`
 * :ref:`User notes & limitations<User_notes>`
+* `Logs`_
 
 
 .. _Configurations:
@@ -48,6 +48,83 @@ Service’s configuration is located in etc/python_service_config.json:
 .. note::
    Worker flag means it can’t be changed while the worker is up, the change will occur only after Sqream workers restart.
    Python module flags must match Sqream worker’s flags mentioned above.
+
+.. _How_to:
+
+**How to install python module service**
+
+
+**One-time installation**
+
+1. Get the latest version of python module service & extract the package:
+
+   .. code-block:: bash
+
+      tar -xvf <PYTHON_MODULE_SERVICE_PACKAGE>;
+      cd python-module-service;
+
+
+2. Create Python3.11 virtual environment:
+
+   .. code-block:: bash
+
+      python3.11 -m venv my_venv
+      source my_venv/bin/activate
+
+3. Install required Python3.11 libraries and run requirements.txt installation
+   (this may take a few minutes):
+
+   .. code-block:: bash
+
+      sudo yum install -y python3.11-devel
+      pip3.11 install -r requirements.txt
+
+
+**Run Python module service**
+
+1. Activate virtual environment:
+
+   .. code-block:: bash
+
+      cd python-module-service;
+      source my_venv/bin/activate
+
+2. Run Python module service:
+
+   .. code-block:: bash
+
+      python3.11 py_modules.py
+
+
+.. _User_notes:
+
+User notes & limitations:
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Environmental:
+""""""""""""""
+
+* Python version is limited to the SQream prerequisites compiled version, that means the user must align to the recent SQream version, and upgrading a python version, requires upgrading SQream package.
+* Python code would run with default Linux privileges therefore could be potentially dangerous and need to be handled with caution.
+* Python code runs using the privileges of the user account that the SQream worker process operates under.
+* As mentioned above - In this version there can be a python module service per worker.
+
+
+Python module execution notes:
+""""""""""""""""""""""""""""""
+
+* Python module’s main purpose is for batch processing, which means, python functions will occur chunk by chunk separately. For example, for ‘max’ function (which is aggregational function), instead of getting one maximum value from all chunks, we will get the maximum per chunk.
+* Chunk processing is limited to default chunk size (E.g. 1M), and cannot be customized when invoked.
+* In addition to the defined memory limits, the Python module’s internal RAM usage cannot be controlled, which may lead to out-of-memory (OOM) runtime errors. These memory constraints apply to all RAM consumed by the custom code executed within the Python Server.
+* Python functions that would print to stdout would be visible only where Python module’s process is running.
+* Error handling should work properly, Python errors would get raised in Sqream as runtime errors.
+* Python module file path — Only local paths are currently supported. “Local paths” refer to paths that are either relative or absolute within the Python Server’s execution directory.
+
+Unsupported functionalities:
+""""""""""""""""""""""""""""
+
+* Nested Python module calls are not supported. In other words, a Python UDF cannot invoke another Python UDF or any additional function executed through the Python Server.
+* The functionality is currently limited to the active database and does not support cross-database access.
 
 .. _Logs:
 
@@ -127,80 +204,3 @@ Python module logs:
    * Connection ID
    * Statement ID
    * Node ID (Execution tree identifier from show node info)
-
-.. _How_to:
-
-**How to install python module service**
-
-
-**One-time installation**
-
-1. Get the latest version of python module service & extract the package:
-
-   .. code-block:: bash
-
-      tar -xvf <PYTHON_MODULE_SERVICE_PACKAGE>;
-      cd python-module-service;
-
-
-2. Create Python3.11 virtual environment:
-
-   .. code-block:: bash
-
-      python3.11 -m venv my_venv
-      source my_venv/bin/activate
-
-3. Install required Python3.11 libraries and run requirements.txt installation
-   (this may take a few minutes):
-
-   .. code-block:: bash
-
-      sudo yum install -y python3.11-devel
-      pip3.11 install -r requirements.txt
-
-
-**Run Python module service**
-
-1. Activate virtual environment:
-
-   .. code-block:: bash
-
-      cd python-module-service;
-      source my_venv/bin/activate
-
-2. Run Python module service:
-
-   .. code-block:: bash
-
-      python3.11 py_modules.py
-
-
-.. _User_notes:
-
-User notes & limitations:
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Environmental:
-""""""""""""""
-
-* Python version is limited to the SQream prerequisites compiled version, that means the user must align to the recent SQream version, and upgrading a python version, requires upgrading SQream package.
-* Python code would run with default Linux privileges therefore could be potentially dangerous and need to be handled with caution.
-* Python code runs using the privileges of the user account that the SQream worker process operates under.
-* As mentioned above - In this version there can be a python module service per worker.
-
-
-Python module execution notes:
-""""""""""""""""""""""""""""""
-
-* Python module’s main purpose is for batch processing, which means, python functions will occur chunk by chunk separately. For example, for ‘max’ function (which is aggregational function), instead of getting one maximum value from all chunks, we will get the maximum per chunk.
-* Chunk processing is limited to default chunk size (E.g. 1M), and cannot be customized when invoked.
-* In addition to the defined memory limits, the Python module’s internal RAM usage cannot be controlled, which may lead to out-of-memory (OOM) runtime errors. These memory constraints apply to all RAM consumed by the custom code executed within the Python Server.
-* Python functions that would print to stdout would be visible only where Python module’s process is running.
-* Error handling should work properly, Python errors would get raised in Sqream as runtime errors.
-* Python module file path — Only local paths are currently supported. “Local paths” refer to paths that are either relative or absolute within the Python Server’s execution directory.
-
-Unsupported functionalities:
-""""""""""""""""""""""""""""
-
-* Nested Python module calls are not supported. In other words, a Python UDF cannot invoke another Python UDF or any additional function executed through the Python Server.
-* The functionality is currently limited to the active database and does not support cross-database access.
