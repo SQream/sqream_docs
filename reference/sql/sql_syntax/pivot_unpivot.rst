@@ -57,7 +57,7 @@ Create a sales table
    
    CREATE OR REPLACE TABLE Sales (
     ProductID int,
-    ProductName varchar(50),
+    ProductName text(50),
     SalesDate date,
     Revenue decimal(10, 2)
 	);
@@ -102,7 +102,7 @@ Create a sales table
 
 	CREATE OR REPLACE TABLE Sales (
 		ProductID int,
-		ProductName varchar(50),
+		ProductName text(50),
 		JanuaryRevenue decimal(10, 2),
 		FebruaryRevenue decimal(10, 2),
 		MarchRevenue decimal(10, 2)
