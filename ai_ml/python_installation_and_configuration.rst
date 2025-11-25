@@ -114,7 +114,7 @@ Python module execution notes:
 """"""""""""""""""""""""""""""
 
 * Python module’s main purpose is for batch processing, which means, python functions will occur chunk by chunk separately. For example, for ‘max’ function (which is aggregational function), instead of getting one maximum value from all chunks, we will get the maximum per chunk.
-* Chunk processing is limited to default chunk size (E.g. 1M), and cannot be customized when invoked.
+* Chunk processing is limited to default chunk size (E.g. 1M rows), and cannot be customized when invoked.
 * In addition to the defined memory limits, the Python module’s internal RAM usage cannot be controlled, which may lead to out-of-memory (OOM) runtime errors. These memory constraints apply to all RAM consumed by the custom code executed within the Python Server.
 * Python functions that would print to stdout would be visible only where Python module’s process is running.
 * Error handling should work properly, Python errors would get raised in Sqream as runtime errors.
@@ -175,6 +175,7 @@ File content:
    ``formatter_standardFormatter``: Used for declaring formats for different uses:
    * ``format=%(asctime)s.%(msecs)03d|%(levelname)s|%(message)s`` - The log file that will be shown / exported.
    * ``datefmt=%Y-%m-%d %H:%M:%S`` - Used for internal usage.
+   'message' part contains statement details, including connection & statement ids, in order to have correlation also with Sqream logs.
 
 Log format: ``<datetime>|<log_type>|<connection_id>|<statement_id>|<log_message>``
 
