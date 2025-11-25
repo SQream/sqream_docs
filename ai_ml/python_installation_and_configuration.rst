@@ -132,7 +132,7 @@ Logs:
 ^^^^^
 
 Python module service has a log configuration file. Logs can be either shown to the console, and also be exported to file (same as we have in Sqream’s log4cxx log configuration).
-File path: ``etc/python_service_log_properties``.
+File path: ``etc/python_service_log_properties`` - This path is relative to the Python module service directory.
 File content:
 
 .. list-table::
