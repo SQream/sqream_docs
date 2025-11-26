@@ -10,7 +10,7 @@ Overview of Apache Iceberg Integration
 
 Apache Iceberg acts as a table format that manages the relationship between a logical table and its underlying data files (e.g., Parquet, ORC), along with metadata for versioning, statistics, and consistency. This makes it a crucial component in the Data Lakehouse concept.
 
-Iceberg Architecture
+**Iceberg Architecture:**
 
 Iceberg uses a multi-layered metadata structure to track table state:
 Data Layer: Contains the actual data in columnar file formats (e.g., Parquet) and Delete Files (for records that are logically deleted but physically still exist).
@@ -45,6 +45,17 @@ Syntax:
 		)
 	  );
 Key Parameters:
+
++--------------------------+--------------------------------------------------------------------------------------------+
+| Parameter                | Description                                                                                |
++--------------------------+--------------------------------------------------------------------------------------------+
+| CATALOG_SOURCE           | Must be set to 'ICEBERG_REST' (default).                                                   |
++--------------------------+--------------------------------------------------------------------------------------------+
+| CATALOG_URI              | The endpoint URL for the Iceberg REST Catalog API.                                         |
++--------------------------+--------------------------------------------------------------------------------------------+
+| REFRESH_INTERVAL_SECONDS | Interval (in seconds) for polling the external catalog for metadata updates (Default: 60). |
++--------------------------+--------------------------------------------------------------------------------------------+
+
 Usage Example:
 
 .. code:: sql
@@ -160,15 +171,6 @@ Performance Requirements
 Performance Parity: Querying Iceberg Parquet tables must show minimal performance difference compared to querying foreign Parquet tables.
 Metadata Queries: Queries against the metadata layer (.files, .manifests, .history, .snapshots) should ideally not consume GPU resources.
 
-+--------------------------+--------------------------------------------------------------------------------------------+
-| Parameter                | Description                                                                                |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| CATALOG_SOURCE           | Must be set to 'ICEBERG_REST' (default).                                                   |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| CATALOG_URI              | The endpoint URL for the Iceberg REST Catalog API.                                         |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| REFRESH_INTERVAL_SECONDS | Interval (in seconds) for polling the external catalog for metadata updates (Default: 60). |
-+--------------------------+--------------------------------------------------------------------------------------------+
 
 +---------------------------+----------------+------------------------+
 | Iceberg Type              | SQream Type    | Notes                  |
