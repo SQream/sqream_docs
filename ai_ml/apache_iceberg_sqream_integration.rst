@@ -45,6 +45,7 @@ Syntax:
 		)
 	  );
 Key Parameters:
+
 +--------------------------+--------------------------------------------------------------------------------------------+
 | Parameter                | Description                                                                                |
 +--------------------------+--------------------------------------------------------------------------------------------+
@@ -107,6 +108,7 @@ An Iceberg table behaves like a regular SQream table for SELECT operations. SQre
 **Data Type Mapping**
 
 SQream supports most standard Iceberg data types:
+
 +---------------------------+----------------+------------------------+
 | Iceberg Type              | SQream Type    | Notes                  |
 +---------------------------+----------------+------------------------+
