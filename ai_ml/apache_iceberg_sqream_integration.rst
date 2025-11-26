@@ -1,6 +1,6 @@
 .. _apache_iceberg_sqream_integration:
 
-SQream Support for Apache Iceberg Tables Documentation
+SQream Integration with Apache Iceberg 
 ------------------------------------------------------
 
 This document outlines SQream's integration with Apache Iceberg, a popular open-source table format designed for managing data lakes with transactional and schema evolution capabilities. The initial phases focus on establishing connectivity and enabling efficient read-only querying of existing Iceberg tables, followed by support for querying table metadata and time travel.
@@ -30,51 +30,53 @@ The initial focus is on connecting SQream to an external Iceberg Catalog and que
 This step establishes the connection details to the Iceberg Catalog.
 Syntax:
 
-.. code-block:: sql
+.. code:: sql
 
-CREATE [ OR REPLACE ] CATALOG INTEGRATION <catalog_integration_name>
-  OPTIONS (
-    CATALOG_SOURCE = 'ICEBERG_REST',
-    REST_CONFIG = (
-      CATALOG_URI = '<rest_api_endpoint_url>',
-      prefix = '<prefix to append to all API routes>',
-      endpoint = '<file system endpoint uri>',
-      access_key_id = "<access key>",
-      secret_access_key = "<secret key>",
-      region = "<region>"
-    )
-  );
+	CREATE [ OR REPLACE ] CATALOG INTEGRATION <catalog_integration_name>
+	  OPTIONS (
+		CATALOG_SOURCE = 'ICEBERG_REST',
+		REST_CONFIG = (
+		  CATALOG_URI = '<rest_api_endpoint_url>',
+		  prefix = '<prefix to append to all API routes>',
+		  endpoint = '<file system endpoint uri>',
+		  access_key_id = "<access key>",
+		  secret_access_key = "<secret key>",
+		  region = "<region>"
+		)
+	  );
 Key Parameters:
 Usage Example:
 
-.. code-block:: sql
+.. code:: sql
 
-CREATE OR REPLACE CATALOG INTEGRATION t_iceberg
-  OPTIONS (
-    CATALOG_SOURCE = 'ICEBERG_REST',
-    REST_CONFIG = (
-      CATALOG_URI = 'http://192.168.5.82:8181',
-      prefix = 's3://warehouse/',
-      endpoint = 'http://192.168.5.82:9000',
-      access_key_id = 'admin',
-      secret_access_key = 'password',
-      region = 'us-east-1'
-    ));
+	CREATE OR REPLACE CATALOG INTEGRATION t_iceberg
+	  OPTIONS (
+		CATALOG_SOURCE = 'ICEBERG_REST',
+		REST_CONFIG = (
+		  CATALOG_URI = 'http://192.168.5.82:8181',
+		  prefix = 's3://warehouse/',
+		  endpoint = 'http://192.168.5.82:9000',
+		  access_key_id = 'admin',
+		  secret_access_key = 'password',
+		  region = 'us-east-1'
+		));
 
 2. Create a Foreign Database
 
 This links the new Catalog Integration to a database object within SQream.
 Syntax:
 
-.. code-block:: sql
+.. code:: sql
 
-CREATE FOREIGN DATABASE <database_name> catalog integration <catalog_integration_name>;
+	CREATE FOREIGN DATABASE <database_name> catalog integration <catalog_integration_name>;
+	
 Usage Example:
 
-.. code-block:: sql
+.. code:: sql
 
-CREATE FOREIGN DATABASE t_iceberg_db catalog integration t_iceberg;
-Note: This can only be performed on an empty database.
+	CREATE FOREIGN DATABASE t_iceberg_db catalog integration t_iceberg;
+	
+.. note:: This can only be performed on an empty database.
 
 Limitations (Private Preview)
 
@@ -88,9 +90,9 @@ Querying an Iceberg Table
 
 An Iceberg table behaves like a regular SQream table for SELECT operations. SQream automatically uses the Iceberg metadata and statistics (like min/max filtering) to prune irrelevant data files, improving performance.
 
-.. code-block:: sql
+.. code:: sql
 
-SELECT * FROM t_iceberg_db.namespace.my_iceberg_table WHERE column_a > 100;
+	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table WHERE column_a > 100;
 
 Data Type Mapping
 
@@ -101,18 +103,18 @@ Querying Data Files (.files)
 This queries the list of data files that belong to the current snapshot.
 Syntax:
 
-.. code-block:: sql
+.. code:: sql
 
-SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.files;
+	SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.files;
 
 Querying Manifests (.manifests)
 
 This queries the manifest files that make up the current snapshot.
 Syntax:
 
-.. code-block:: sql
+.. code:: sql
 
-SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.manifests;
+	SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.manifests;
 
 Time Travel and Extended Metadata Queries
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -124,29 +126,28 @@ Time Travel
 Users can query the table state as it existed at a specific timestamp or snapshot ID.
 Syntax:
 
-.. code-block:: sql
+.. code:: sql
 
-SELECT <select_list> FROM <database>.<iceberg_table>
-  [[ TIMESTAMP | VERSION ] AS OF [ timestamp | snapshot-id ]]
+	SELECT <select_list> FROM <database>.<iceberg_table>
+	  [[ TIMESTAMP | VERSION ] AS OF [ timestamp | snapshot-id ]]
+	  
 Usage Examples:
-
 Querying History (.history)
-
 Shows the changes and lineage of snapshots for a table.
 Syntax:
 
-.. code-block:: sql
+.. code:: sql
 
-SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.history;
+	SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.history;
 
 Querying Snapshots (.snapshots)
 
 Shows all valid snapshots for a table, including the operation that created them.
 Syntax:
 
-.. code-block:: sql
+.. code:: sql
 
-SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.snapshots;
+	SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.snapshots;
 
 Notes
 ~~~~~
