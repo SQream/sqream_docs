@@ -91,11 +91,11 @@ Usage Example:
 
 Limitations (Private Preview)
 
-File Format: Only Parquet is supported.
-Operations: Only SELECT queries are supported. DML (DELETE, INSERT, UPDATE) and DDL operations will be added in later phases.
-Advanced Features: Time travel, schema evolution, and transactional commands are not supported.
-Configuration: Only supported on databases without existing tables/schemas.
-Writability: ALLOW_WRITES in the external catalog must be set to false.
+* **File Format:** Only **Parquet** is supported.
+* **Operations:** Only **SELECT** queries are supported. DML (**DELETE, INSERT, UPDATE**) and DDL operations will be added in later phases.
+* **Advanced Features:** Time travel, schema evolution, and transactional commands **are not supported**.
+* **Configuration:** Only supported on databases without existing tables/schemas.
+* **Writability:** ALLOW_WRITES in the external catalog must be set to false.
 
 Querying an Iceberg Table
 
