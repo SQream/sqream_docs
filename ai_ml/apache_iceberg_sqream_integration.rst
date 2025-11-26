@@ -45,7 +45,6 @@ Syntax:
 		)
 	  );
 Key Parameters:
-
 +--------------------------+--------------------------------------------------------------------------------------------+
 | Parameter                | Description                                                                                |
 +--------------------------+--------------------------------------------------------------------------------------------+
@@ -89,7 +88,7 @@ Usage Example:
 	
 .. note:: This can only be performed on an empty database.
 
-Limitations (Private Preview)
+**Limitations (Private Preview)**
 
 * **File Format:** Only **Parquet** is supported.
 * **Operations:** Only **SELECT** queries are supported. DML (**DELETE, INSERT, UPDATE**) and DDL operations will be added in later phases.
@@ -97,7 +96,7 @@ Limitations (Private Preview)
 * **Configuration:** Only supported on databases without existing tables/schemas.
 * **Writability:** ALLOW_WRITES in the external catalog must be set to false.
 
-Querying an Iceberg Table
+**Querying an Iceberg Table**
 
 An Iceberg table behaves like a regular SQream table for SELECT operations. SQream automatically uses the Iceberg metadata and statistics (like min/max filtering) to prune irrelevant data files, improving performance.
 
@@ -105,27 +104,75 @@ An Iceberg table behaves like a regular SQream table for SELECT operations. SQre
 
 	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table WHERE column_a > 100;
 
-Data Type Mapping
+**Data Type Mapping**
 
 SQream supports most standard Iceberg data types:
++---------------------------+----------------+------------------------+
+| Iceberg Type              | SQream Type    | Notes                  |
++---------------------------+----------------+------------------------+
+| boolean                   | BOOL           |                        |
++---------------------------+----------------+------------------------+
+| int, long                 | INT, BIGINT    |                        |
++---------------------------+----------------+------------------------+
+| float, double             | REAL, DOUBLE   |                        |
++---------------------------+----------------+------------------------+
+| decimal(P,S)              | NUMERIC(P,S)   | Precision $\le 38$.    |
++---------------------------+----------------+------------------------+
+| date, timestamp           | DATE, DATETIME | Microsecond precision. |
++---------------------------+----------------+------------------------+
+| timestamp_ns              | DATETIME       | Nanosecond precision.  |
++---------------------------+----------------+------------------------+
+| string                    | TEXT           | Stored as UTF-8.       |
++---------------------------+----------------+------------------------+
+| timestamptz, uuid, binary | Not supported  |                        |
++---------------------------+----------------+------------------------+
 
-Querying Data Files (.files)
+
+**Querying Data Files (.files)**
 
 This queries the list of data files that belong to the current snapshot.
-Syntax:
+**Syntax:**
 
 .. code:: sql
 
 	SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.files;
+	
++--------------------+------------+----------------------------------------------------------------------+
+| Column             | Data Type  | Description                                                          |
++--------------------+------------+----------------------------------------------------------------------+
+| file_path          | Text       | Full file path and name.                                             |
++--------------------+------------+----------------------------------------------------------------------+
+| file_format        | Text       | Format, e.g. PARQUET.                                                |
++--------------------+------------+----------------------------------------------------------------------+
+| record_count       | BIGINT     | Number of rows in the file.                                          |
++--------------------+------------+----------------------------------------------------------------------+
+| file_size_in_bytes | BIGINT     | Size of file.                                                        |
++--------------------+------------+----------------------------------------------------------------------+
+| content            | INT        | Type of content (0: Data, 1: Position Deletes, 2: Equality Deletes). |
++--------------------+------------+----------------------------------------------------------------------+
 
-Querying Manifests (.manifests)
+**Querying Manifests (.manifests)**
 
 This queries the manifest files that make up the current snapshot.
-Syntax:
+**Syntax:**
 
 .. code:: sql
 
 	SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.manifests;
+	
++--------------------------+------------+--------------------------------------------------+
+| Column                   | Data Type  | Description                                      |
++--------------------------+------------+--------------------------------------------------+
+| path                     | Text       | Full path and name of manifest file.             |
++--------------------------+------------+--------------------------------------------------+
+| length                   | BIGINT     | Size in bytes.                                   |
++--------------------------+------------+--------------------------------------------------+
+| added_snapshot_id        | BIGINT     | ID of the snapshot in which it was added.        |
++--------------------------+------------+--------------------------------------------------+
+| added_data_files_count   | BIGINT     | Number of new data files added in this manifest. |
++--------------------------+------------+--------------------------------------------------+
+| deleted_data_files_count | BIGINT     | Number of files removed in this manifest.        |
++--------------------------+------------+--------------------------------------------------+
 
 Time Travel and Extended Metadata Queries
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -172,53 +219,11 @@ Performance Parity: Querying Iceberg Parquet tables must show minimal performanc
 Metadata Queries: Queries against the metadata layer (.files, .manifests, .history, .snapshots) should ideally not consume GPU resources.
 
 
-+---------------------------+----------------+------------------------+
-| Iceberg Type              | SQream Type    | Notes                  |
-+---------------------------+----------------+------------------------+
-| boolean                   | BOOL           |                        |
-+---------------------------+----------------+------------------------+
-| int, long                 | INT, BIGINT    |                        |
-+---------------------------+----------------+------------------------+
-| float, double             | REAL, DOUBLE   |                        |
-+---------------------------+----------------+------------------------+
-| decimal(P,S)              | NUMERIC(P,S)   | Precision $\le 38$.    |
-+---------------------------+----------------+------------------------+
-| date, timestamp           | DATE, DATETIME | Microsecond precision. |
-+---------------------------+----------------+------------------------+
-| timestamp_ns              | DATETIME       | Nanosecond precision.  |
-+---------------------------+----------------+------------------------+
-| string                    | TEXT           | Stored as UTF-8.       |
-+---------------------------+----------------+------------------------+
-| timestamptz, uuid, binary | Not supported  |                        |
-+---------------------------+----------------+------------------------+
 
-+--------------------+------------+----------------------------------------------------------------------+
-| Column             | Data Type  | Description                                                          |
-+--------------------+------------+----------------------------------------------------------------------+
-| file_path          | Text       | Full file path and name.                                             |
-+--------------------+------------+----------------------------------------------------------------------+
-| file_format        | Text       | Format, e.g. PARQUET.                                                |
-+--------------------+------------+----------------------------------------------------------------------+
-| record_count       | BIGINT     | Number of rows in the file.                                          |
-+--------------------+------------+----------------------------------------------------------------------+
-| file_size_in_bytes | BIGINT     | Size of file.                                                        |
-+--------------------+------------+----------------------------------------------------------------------+
-| content            | INT        | Type of content (0: Data, 1: Position Deletes, 2: Equality Deletes). |
-+--------------------+------------+----------------------------------------------------------------------+
 
-+--------------------------+------------+--------------------------------------------------+
-| Column                   | Data Type  | Description                                      |
-+--------------------------+------------+--------------------------------------------------+
-| path                     | Text       | Full path and name of manifest file.             |
-+--------------------------+------------+--------------------------------------------------+
-| length                   | BIGINT     | Size in bytes.                                   |
-+--------------------------+------------+--------------------------------------------------+
-| added_snapshot_id        | BIGINT     | ID of the snapshot in which it was added.        |
-+--------------------------+------------+--------------------------------------------------+
-| added_data_files_count   | BIGINT     | Number of new data files added in this manifest. |
-+--------------------------+------------+--------------------------------------------------+
-| deleted_data_files_count | BIGINT     | Number of files removed in this manifest.        |
-+--------------------------+------------+--------------------------------------------------+
+
+
+
 
 +----------------------------+---------------------------------------------------------------------------+
 | Feature                    | Example Query                                                             |
