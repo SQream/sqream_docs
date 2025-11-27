@@ -16,26 +16,22 @@ Iceberg Architecture:
 Iceberg uses a multi-layered metadata structure to track table state:
 
 1. Data Layer
--------------
+
 Contains the actual data in columnar file formats (e.g., **Parquet**) and **Delete Files** (for records that are logically deleted but physically still exist). 
 
 [Image of Iceberg Data Layer]
 
 
----
-
 2. Metadata Layer
------------------
+
 Tracks the table structure and its versions:
 
 * **Metadata Files (JSON):** Stores the table's schema, partition schemes, and tracks the current and previous **Snapshots**.
 * **Manifest Lists (AVRO):** Defines a Snapshot by listing all the **Manifest Files** that belong to that version.
 * **Manifest Files (AVRO):** Track individual **Data Files** within a subset of the snapshot, including metadata for efficient data pruning (min/max values, null counts).
 
----
-
 3. The Catalog
---------------
+
 An external store (e.g., REST, AWS Glue) that maps a **table name** to its current **Metadata File pointer**, enabling transactional guarantees and multi-table semantics.
 
 Connectivity and Read-Only Querying
