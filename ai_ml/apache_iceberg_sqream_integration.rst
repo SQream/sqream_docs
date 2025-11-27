@@ -40,7 +40,6 @@ The initial focus is on connecting SQream to an external Iceberg Catalog and que
 This step establishes the connection details to the Iceberg Catalog.
 
 **Syntax:**
-
 .. code:: sql
 
 	CREATE [ OR REPLACE ] CATALOG INTEGRATION <catalog_integration_name>
