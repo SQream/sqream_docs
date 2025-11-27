@@ -1,35 +1,35 @@
 .. _python_table_functions:
 
-Python Table Functions
+Python Functions
 ------------------------
 
 
-Python Table Functions in SQream allow you to execute custom Python logic on your data and return the results as a new table. This functionality integrates the power of Python's data processing libraries (like Pandas) directly into your SQL queries.
+Python functions in SQream allow you to execute custom Python logic on your data and return the results as a new table. This functionality integrates the power of Python's data processing libraries (like Pandas) directly into your SQL queries.
 
 
 
 1. Syntax Overview
 ^^^^^^^^^^^^^^^^^^
 
-Python Table Functions are used within the FROM clause of SELECT and INSERT statements. The core component is the <table_function_clause>.
+Python functions are used within the FROM clause of SELECT and INSERT statements. The core component is the <function_clause>.
 
 SELECT statement
-To query data from a Python Table Function, you use the following syntax:
+To query data from a Python function, you use the following syntax:
 
 .. code:: sql
 
-    SELECT <select_list> FROM <table_function_clause>
+    SELECT <select_list> FROM <function_clause>
 
 INSERT statement
-To insert data returned by a Python Table Function into an existing table, you use this syntax:
+To insert data returned by a Python function into an existing table, you use this syntax:
 
 
 .. code:: sql
-    INSERT INTO <table> SELECT * FROM <table_function_clause>
+    INSERT INTO <table> SELECT * FROM <function_clause>
 
 
 
-2. The ``<table_function_clause>``
+2. The ``<function_clause>``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This clause defines the execution of your Python function. It has the following structure:
@@ -52,7 +52,7 @@ This clause defines the execution of your Python function. It has the following 
 3. Defining a Python Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before you can use a Python Table Function, you must define it in SQream using a module. The ``CREATE OR REPLACE MODULE`` command is used for this purpose.
+Before you can use a Python function, you must define it in SQream using a module. The ``CREATE OR REPLACE MODULE`` command is used for this purpose.
 
 Example:
 Based on your provided code, here is an example of defining a module with multiple entry points:
