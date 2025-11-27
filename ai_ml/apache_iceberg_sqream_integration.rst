@@ -38,7 +38,8 @@ The initial focus is on connecting SQream to an external Iceberg Catalog and que
 1. **Create a Catalog Integration**
 
 This step establishes the connection details to the Iceberg Catalog.
-Syntax:
+
+**Syntax:**
 
 .. code:: sql
 
@@ -85,7 +86,8 @@ Usage Example:
 2. **Create a Foreign Database**
 
 This links the new Catalog Integration to a database object within SQream.
-Syntax:
+
+**Syntax:**
 
 .. code:: sql
 
@@ -143,6 +145,7 @@ SQream supports most standard Iceberg data types:
 **Querying Data Files (.files)**
 
 This queries the list of data files that belong to the current snapshot.
+
 **Syntax:**
 
 .. code:: sql
@@ -166,6 +169,7 @@ This queries the list of data files that belong to the current snapshot.
 **Querying Manifests (.manifests)**
 
 This queries the manifest files that make up the current snapshot.
+
 **Syntax:**
 
 .. code:: sql
@@ -194,7 +198,8 @@ Phase 2 introduces time travel and expanded metadata query capabilities.
 Time Travel
 
 Users can query the table state as it existed at a specific timestamp or snapshot ID.
-Syntax:
+
+**Syntax:**
 
 .. code:: sql
 
@@ -204,7 +209,8 @@ Syntax:
 Usage Examples:
 Querying History (.history)
 Shows the changes and lineage of snapshots for a table.
-Syntax:
+
+**Syntax:**
 
 .. code:: sql
 
@@ -213,7 +219,8 @@ Syntax:
 Querying Snapshots (.snapshots)
 
 Shows all valid snapshots for a table, including the operation that created them.
-Syntax:
+
+**Syntax:**
 
 .. code:: sql
 
