@@ -3,32 +3,27 @@
 SQream Integration with Apache Iceberg 
 ------------------------------------------------------
 
-This document outlines SQream's integration with Apache Iceberg, a popular open-source table format designed for managing data lakes with transactional and schema evolution capabilities. The initial phases focus on establishing connectivity and enabling efficient read-only querying of existing Iceberg tables, followed by support for querying table metadata and time travel.
+This document outlines SQream's integration with **Apache Iceberg**, a popular open-source table format designed for managing data lakes with transactional and schema evolution capabilities. The initial phases focus on establishing connectivity and enabling efficient read-only querying of existing Iceberg tables, followed by support for querying table metadata and time travel.
 
 Overview of Apache Iceberg Integration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Apache Iceberg acts as a table format that manages the relationship between a logical table and its underlying data files (e.g., Parquet, ORC), along with metadata for versioning, statistics, and consistency. This makes it a crucial component in the Data Lakehouse concept.
+Apache Iceberg acts as a **table format** that manages the relationship between a logical table and its underlying data files (e.g., Parquet, ORC), along with metadata for versioning, statistics, and consistency. This makes it a crucial component in the **Data Lakehouse** concept.
 
 Iceberg Architecture:
 =====================
 
 Iceberg uses a multi-layered metadata structure to track table state:
 
-1. **Data Layer:**
+1. **Data Layer:** Contains the actual data in columnar file formats (e.g., **Parquet**) and **Delete Files** (for records that are logically deleted but physically still exist). 
 
-Contains the actual data in columnar file formats (e.g., **Parquet**) and **Delete Files** (for records that are logically deleted but physically still exist). 
+2. **Metadata Layer:** Tracks the table structure and its versions:
 
-2. **Metadata Layer:**
-
-Tracks the table structure and its versions:
 * **Metadata Files (JSON):** Stores the table's schema, partition schemes, and tracks the current and previous **Snapshots**.
 * **Manifest Lists (AVRO):** Defines a Snapshot by listing all the **Manifest Files** that belong to that version.
 * **Manifest Files (AVRO):** Track individual **Data Files** within a subset of the snapshot, including metadata for efficient data pruning (min/max values, null counts).
 
-3. **The Catalog:**
-
-An external store (e.g., REST, AWS Glue) that maps a table name to its current **Metadata File** pointer, enabling transactional guarantees and multi-table semantics.
+3. **The Catalog:** An external store (e.g., REST, AWS Glue) that maps a table name to its current **Metadata File** pointer, enabling transactional guarantees and multi-table semantics.
 
 Connectivity and Read-Only Querying
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -42,6 +37,7 @@ This step establishes the connection details to the Iceberg Catalog.
 **Syntax:**
 
 .. code:: sql
+
 	CREATE [ OR REPLACE ] CATALOG INTEGRATION <catalog_integration_name>
 	  OPTIONS (
 		CATALOG_SOURCE = 'ICEBERG_REST',
