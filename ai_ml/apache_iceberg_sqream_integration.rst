@@ -240,6 +240,16 @@ Shows all valid snapshots for a table, including the operation that created them
 .. code:: sql
 
 	SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.snapshots;
+	
++--------------+---------------+-------------------------------------------------------------+
+| **Column**   | **Data Type** | **Description**                                             |
++--------------+---------------+-------------------------------------------------------------+
+| committed_at | Datetime      | Timestamp of committed snapshot.                            |
++--------------+---------------+-------------------------------------------------------------+
+| operation    | TEXT          | Type of operation that created the snapshot (e.g., append). |
++--------------+---------------+-------------------------------------------------------------+
+| summary      | TEXT          | Brief description/metrics of the operation.                 |
++--------------+---------------+-------------------------------------------------------------+
 
 Notes
 ~~~~~
@@ -249,8 +259,8 @@ Support for parquet files only at this stage.
 Performance Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Performance Parity: Querying Iceberg Parquet tables must show minimal performance difference compared to querying foreign Parquet tables.
-Metadata Queries: Queries against the metadata layer (.files, .manifests, .history, .snapshots) should ideally not consume GPU resources.
+* **Performance Parity:** Querying Iceberg Parquet tables must show **minimal performance difference** compared to querying foreign Parquet tables.
+* **Metadata Queries:** Queries against the metadata layer (.files, .manifests, .history, .snapshots) should ideally **not consume GPU resources**.
 
 
 
@@ -263,12 +273,4 @@ Metadata Queries: Queries against the metadata layer (.files, .manifests, .histo
 
 
 
-+--------------+------------+-------------------------------------------------------------+
-| Column       | Data Type  | Description                                                 |
-+--------------+------------+-------------------------------------------------------------+
-| committed_at | Datetime   | Timestamp of committed snapshot.                            |
-+--------------+------------+-------------------------------------------------------------+
-| operation    | TEXT       | Type of operation that created the snapshot (e.g., append). |
-+--------------+------------+-------------------------------------------------------------+
-| summary      | TEXT       | Brief description/metrics of the operation.                 |
-+--------------+------------+-------------------------------------------------------------+
+
