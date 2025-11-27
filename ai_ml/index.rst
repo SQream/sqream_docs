@@ -20,4 +20,5 @@ This is an **alpha version** of AISQream. Expect limitations and ongoing develop
    python_module_functions
    catalog_tables
    security_req
+   apache_iceberg_sqream_integration
    
