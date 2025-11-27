@@ -88,7 +88,7 @@ This links the new Catalog Integration to a database object within SQream.
 
 	CREATE FOREIGN DATABASE <database_name> catalog integration <catalog_integration_name>;
 	
-Usage Example:
+**Usage Example:**
 
 .. code:: sql
 
@@ -106,7 +106,7 @@ Usage Example:
 
 **Querying an Iceberg Table**
 
-An Iceberg table behaves like a regular SQream table for SELECT operations. SQream automatically uses the Iceberg metadata and statistics (like min/max filtering) to prune irrelevant data files, improving performance.
+An Iceberg table behaves like a regular SQream table for **SELECT** operations. SQream automatically uses the Iceberg metadata and statistics (like min/max filtering) to prune irrelevant data files, improving performance.
 
 .. code:: sql
 
@@ -117,7 +117,7 @@ An Iceberg table behaves like a regular SQream table for SELECT operations. SQre
 SQream supports most standard Iceberg data types:
 
 +---------------------------+----------------+------------------------+
-| Iceberg Type              | SQream Type    | Notes                  |
+| **Iceberg Type**          | **SQream Type**| **Notes**              |
 +---------------------------+----------------+------------------------+
 | boolean                   | BOOL           |                        |
 +---------------------------+----------------+------------------------+
@@ -147,19 +147,19 @@ This queries the list of data files that belong to the current snapshot.
 
 	SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.files;
 	
-+--------------------+------------+----------------------------------------------------------------------+
-| Column             | Data Type  | Description                                                          |
-+--------------------+------------+----------------------------------------------------------------------+
-| file_path          | Text       | Full file path and name.                                             |
-+--------------------+------------+----------------------------------------------------------------------+
-| file_format        | Text       | Format, e.g. PARQUET.                                                |
-+--------------------+------------+----------------------------------------------------------------------+
-| record_count       | BIGINT     | Number of rows in the file.                                          |
-+--------------------+------------+----------------------------------------------------------------------+
-| file_size_in_bytes | BIGINT     | Size of file.                                                        |
-+--------------------+------------+----------------------------------------------------------------------+
-| content            | INT        | Type of content (0: Data, 1: Position Deletes, 2: Equality Deletes). |
-+--------------------+------------+----------------------------------------------------------------------+
++--------------------+---------------+----------------------------------------------------------------------+
+| **Column**         | **Data Type** | **Description**                                                      |
++--------------------+---------------+----------------------------------------------------------------------+
+| file_path          | Text          | Full file path and name.                                             |
++--------------------+---------------+----------------------------------------------------------------------+
+| file_format        | Text          | Format, e.g. PARQUET.                                                |
++--------------------+---------------+----------------------------------------------------------------------+
+| record_count       | BIGINT        | Number of rows in the file.                                          |
++--------------------+---------------+----------------------------------------------------------------------+
+| file_size_in_bytes | BIGINT        | Size of file.                                                        |
++--------------------+---------------+----------------------------------------------------------------------+
+| content            | INT           | Type of content (0: Data, 1: Position Deletes, 2: Equality Deletes). |
++--------------------+---------------+----------------------------------------------------------------------+
 
 **Querying Manifests (.manifests)**
 
@@ -190,7 +190,7 @@ Time Travel and Extended Metadata Queries
 
 Phase 2 introduces time travel and expanded metadata query capabilities.
 
-Time Travel
+**Time Travel**
 
 Users can query the table state as it existed at a specific timestamp or snapshot ID.
 
@@ -202,7 +202,17 @@ Users can query the table state as it existed at a specific timestamp or snapsho
 	  [[ TIMESTAMP | VERSION ] AS OF [ timestamp | snapshot-id ]]
 	  
 Usage Examples:
-Querying History (.history)
+
++----------------------------+---------------------------------------------------------------------------+
+| **Feature**                | **Example Query**                                                         |
++----------------------------+---------------------------------------------------------------------------+
+| Time Travel to Timestamp   | SELECT * FROM db1.table1 TIMESTAMP AS OF '2023-04-11T18:06:36.289+00:00'; |
++----------------------------+---------------------------------------------------------------------------+
+| Time Travel to Snapshot ID | SELECT * FROM db1.table1 VERSION AS OF 2583872980615177898;               |
++----------------------------+---------------------------------------------------------------------------+
+
+**Querying History (.history)**
+
 Shows the changes and lineage of snapshots for a table.
 
 **Syntax:**
@@ -210,6 +220,16 @@ Shows the changes and lineage of snapshots for a table.
 .. code:: sql
 
 	SELECT * FROM <sqream_db_name>.<iceberg_namespace>.<table_name>.history;
+	
++---------------------+----------------+-----------------------------------------------------------------------+
+| **Column**          | **Data Type**  | **Description**                                                       |
++---------------------+----------------+-----------------------------------------------------------------------+
+| made_current_at     | Datetime       | Timestamp of when the snapshot became current.                        |
++---------------------+----------------+-----------------------------------------------------------------------+
+| snapshot_id         | BIGINT         | Unique identifier for the snapshot.                                   |
++---------------------+----------------+-----------------------------------------------------------------------+
+| is_current_ancestor | BOOLEAN        | Indicates if this snapshot is an ancestor of the current table state. |
++---------------------+----------------+-----------------------------------------------------------------------+
 
 Querying Snapshots (.snapshots)
 
@@ -239,23 +259,9 @@ Metadata Queries: Queries against the metadata layer (.files, .manifests, .histo
 
 
 
-+----------------------------+---------------------------------------------------------------------------+
-| Feature                    | Example Query                                                             |
-+----------------------------+---------------------------------------------------------------------------+
-| Time Travel to Timestamp   | SELECT * FROM db1.table1 TIMESTAMP AS OF '2023-04-11T18:06:36.289+00:00'; |
-+----------------------------+---------------------------------------------------------------------------+
-| Time Travel to Snapshot ID | SELECT * FROM db1.table1 VERSION AS OF 2583872980615177898;               |
-+----------------------------+---------------------------------------------------------------------------+
 
-+---------------------+------------+-----------------------------------------------------------------------+
-| Column              | Data Type  | Description                                                           |
-+---------------------+------------+-----------------------------------------------------------------------+
-| made_current_at     | Datetime   | Timestamp of when the snapshot became current.                        |
-+---------------------+------------+-----------------------------------------------------------------------+
-| snapshot_id         | BIGINT     | Unique identifier for the snapshot.                                   |
-+---------------------+------------+-----------------------------------------------------------------------+
-| is_current_ancestor | BOOLEAN    | Indicates if this snapshot is an ancestor of the current table state. |
-+---------------------+------------+-----------------------------------------------------------------------+
+
+
 
 +--------------+------------+-------------------------------------------------------------+
 | Column       | Data Type  | Description                                                 |
