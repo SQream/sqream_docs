@@ -90,7 +90,7 @@ The following table shows the supported compression methods:
 	 
    * - ``nvCOMP``
      - All types
-     - see detailed section on nvCOMP :ref:`NVIDIA nvCOMP Compression<nvcomp>` 
+     - :ref:`NVIDIA nvCOMP Compression<nvcomp>` 
      - GPU
 	 
 .. _nvcomp:
