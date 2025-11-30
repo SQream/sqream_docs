@@ -174,6 +174,53 @@ Its main purpose is to accelerate data-intensive applications—like AI training
 
 .. note:: The system does not incorporate an automatic selection mechanism for this compression type. Consequently, the configuration must be specified manually.
 
+**Supported Data Types:**
+
+All these algorithms are generic and **can be applied to any data type** as they operate on raw bytes. This includes fixed-length types (INTEGER, BIGINT, FLOAT, DOUBLE), variable-length types (TEXTand ARRAY types).
+
+**NVComp Parameters tunning:**
+
+The following parameters can be adjusted to tune the performance and compression ration for NVComp.
+
++------------------------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| Parameter Name               | Default Value | Description                                                                                                                               |                                                                 
++==============================+===============+===========================================================================================================================================+
+| **nvcompChunkSize**          | 65,536        | Defines the size of internal data chunks processed by NVComp. Smaller values result in more chunks,                                       |
+|                              |               | which can increase parallel execution and potentially speed up processing, though very small chunks may introduce overhead.               |
++------------------------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **numRLEsCascadedCompress**  | 2             | Specifies the number of Run-Length Encodings (RLE) to perform as part of the cascaded compression process.                                |                                                                                               
++----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **numDeltasCascadedCompress**| 1             | Specifies the number of Delta Encodings to perform as part of the cascaded compression process.                                           |
++----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **useBPCascadedCompress**    | 1             | A boolean flag (1 for true, 0 for false) indicating whether to apply bit-packing to the final layers of the cascaded compression pipeline.| 
++----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **nvcompBitcompAlgoOption**  | 1             |Selects the algorithm used for Bitcomp compression.                                                                                        |
++----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Syntax:**
+
+``CHECK`` saved command that is used to manually specify the compression to be used, will be extend to support NVComp and its algorithm - e.g. CHECK('CS "nv_cascading"')
+
+NVComp Options should include: nv_cascading, nv_lz4, nv_snappy, nv_geflate, nv_deflate, nv_ans, nv_bitmap,nv_zstandard(ZSTD)
+
+.. code-block:: postgres
+   
+   CREATE TABLE <table_name> (
+		<column_name_1> <data_type_1> [CHECK('CS "nv_<ALGORITHM>"')],
+		<column_name_2> <data_type_2> [CHECK('CS "nv_<ALGORITHM>"')],
+		...
+   );
+
+**Usage examples:**
+
+.. code-block:: postgres
+
+   CREATE TABLE sales_data (
+		transaction_id BIGINT CHECK('CS "nv_snappy"'),        -- Fast, general-purpose compression for the ID
+		product_description TEXT CHECK('CS "nv_zstandard"'),  -- High-ratio compression for text
+		quantity INTEGER CHECK('CS "nv_lz4"')                 -- Max performance for an integer column
+   );
+
 Forcing Compression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
