@@ -93,58 +93,6 @@ The following table shows the supported compression methods:
      - see detailed section on nvCOMP :ref:`NVIDIA nvCOMP Compression<nvcomp>` 
      - GPU
 	 
-
-
-	
-
-.. _specifying_compressions:
-
-Specifying Compression Strategies
-----------------------------------
-
-When you create a table without defining any compression specifications, SQream defaults to automatic adaptive compression (``"default"``). However, you can prevent this by specifying a compression strategy when creating a table.
-
-This section describes the following compression strategies:
-
-.. contents:: 
-   :local:
-   :depth: 1
-
-Explicitly Specifying Automatic Compression
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-When you explicitly specify automatic compression, the following two are equivalent:
-
-.. code-block:: postgres
-   
-   CREATE TABLE t (
-      x INT,
-      y TEXT(50)
-   );
-
-In this version, the default compression is specified explicitly:
-
-.. code-block:: postgres
-   
-   CREATE TABLE t (
-      x INT CHECK('CS "default"'),
-      y TEXT(50) CHECK('CS "default"')
-   );
-
-Forcing No Compression
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Forcing no compression** is also known as "flat", and can be used in the event that you want to remove compression entirely on some columns. This may be useful for reducing CPU or GPU resource utilization at the expense of increased I/O.
-
-The following is an example of removing compression:
-
-.. code-block:: postgres
-   
-   CREATE TABLE t (
-      x INT NOT NULL CHECK('CS "flat"'), -- This column won't be compressed
-      y TEXT(50) -- This column will still be compressed automatically
-   );
-
 .. _nvcomp:
 
 NVIDIA nvCOMP Compression
@@ -228,6 +176,54 @@ NVComp Options should include: nv_cascading, nv_lz4, nv_snappy, nv_geflate, nv_d
 		transaction_id BIGINT CHECK('CS "nv_snappy"'),        -- Fast, general-purpose compression for the ID
 		product_description TEXT CHECK('CS "nv_zstandard"'),  -- High-ratio compression for text
 		quantity INTEGER CHECK('CS "nv_lz4"')                 -- Max performance for an integer column
+   );
+
+.. _specifying_compressions:
+
+Specifying Compression Strategies
+----------------------------------
+
+When you create a table without defining any compression specifications, SQream defaults to automatic adaptive compression (``"default"``). However, you can prevent this by specifying a compression strategy when creating a table.
+
+This section describes the following compression strategies:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+Explicitly Specifying Automatic Compression
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When you explicitly specify automatic compression, the following two are equivalent:
+
+.. code-block:: postgres
+   
+   CREATE TABLE t (
+      x INT,
+      y TEXT(50)
+   );
+
+In this version, the default compression is specified explicitly:
+
+.. code-block:: postgres
+   
+   CREATE TABLE t (
+      x INT CHECK('CS "default"'),
+      y TEXT(50) CHECK('CS "default"')
+   );
+
+Forcing No Compression
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Forcing no compression** is also known as "flat", and can be used in the event that you want to remove compression entirely on some columns. This may be useful for reducing CPU or GPU resource utilization at the expense of increased I/O.
+
+The following is an example of removing compression:
+
+.. code-block:: postgres
+   
+   CREATE TABLE t (
+      x INT NOT NULL CHECK('CS "flat"'), -- This column won't be compressed
+      y TEXT(50) -- This column will still be compressed automatically
    );
 
 Forcing Compression
