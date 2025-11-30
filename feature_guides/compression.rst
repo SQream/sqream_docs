@@ -151,7 +151,7 @@ The following parameters can be adjusted to tune the performance and compression
 +----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | **useBPCascadedCompress**    | 1             | A boolean flag (1 for true, 0 for false) indicating whether to apply bit-packing to the final layers of the cascaded compression pipeline.| 
 +----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| **nvcompBitcompAlgoOption**  | 1             |Selects the algorithm used for Bitcomp compression.                                                                                        |
+| **nvcompBitcompAlgoOption**  | 0             |Selects the algorithm used for Bitcomp compression.                                                                                        |
 +----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Syntax:**
