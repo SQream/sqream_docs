@@ -87,6 +87,13 @@ The following table shows the supported compression methods:
      - ``Integer``, ``date``, and ``timestamp``
      - Optimized RLE + Delta type for built-in :ref:`identity columns<identity>`. 
      - GPU
+	 
+   * - ``nvCOMP``
+     - All types
+     - see detailed section on nvCOMP :ref:`NVIDIA nvCOMP Compression<nvcomp>` 
+     - GPU
+	 
+
 
 	
 
@@ -138,6 +145,8 @@ The following is an example of removing compression:
       y TEXT(50) -- This column will still be compressed automatically
    );
 
+.. _nvcomp:
+
 NVIDIA nvCOMP Compression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -176,7 +185,7 @@ Its main purpose is to accelerate data-intensive applications—like AI training
 
 **Supported Data Types:**
 
-All these algorithms are generic and **can be applied to any data type** as they operate on raw bytes. This includes fixed-length types (INTEGER, BIGINT, FLOAT, DOUBLE), variable-length types (TEXTand ARRAY types).
+All these algorithms are generic and **can be applied to any data type** as they operate on raw bytes. This includes fixed-length types (INTEGER, BIGINT, FLOAT, DOUBLE), variable-length types (TEXT and ARRAY types).
 
 **NVComp Parameters tunning:**
 
