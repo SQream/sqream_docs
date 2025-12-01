@@ -128,25 +128,39 @@ Module Definition Syntax
 |                        +---------------------------------------------------------------------------------------------------------------------------------------+                        |
 |                        | For PSFs: The single SQL data type of the scalar value the function will return (e.g., returns int, returns text).                    |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| gpu=true/false         | Determines whether the function will be executed on the GPU or on the CPU.                                                               | Mandatory              |
+| gpu=true/false         | Determines whether the function will be executed on the GPU or on the CPU. by default function will get executed by CPU.              | Optional               |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | literal_parameters     | The number of string literals passed as additional arguments to the Python function after the DataFrame (for PTFs)                    | Optional               |
 |                        | or standard arguments (for PSFs).             																					     |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
 
-``path``: Specifies the file path to your Python script on the server.
+Example: Defining a Module with Both Function Types
+===================================================
 
-``entry_points``: A list of the Python functions within the script that can be called from SQream.
+.. code:: sql
 
-``name``: The name of the Python function.
-
-``arguments``: A list of the data types of the columns that the Python function expects from the cursor() subquery.
-
-``returns table(...)``: The schema of the table that the Python function will return. The column names and data types must match the DataFrame returned by your Python code.
-
-``gpu=true/false``: Determines whether the function will be executed on the GPU or the CPU.
-
+    CREATE OR REPLACE MODULE my_funcs
+	OPTIONS(
+    path='/home/sqream/udf/my_functions.py',
+    entry_points =
+    [
+        -- PTF Definition
+        [
+            name = 'process_data_table',
+            arguments [text, int],
+            returns table (processed_text text, processed_value int),
+            gpu=true
+        ],
+        -- PSF Definition
+        [
+            name = 'add_one',
+            arguments [int],
+            returns int,
+            gpu=false
+        ]
+    ]
+);
 
 
 4. Examples in Action
