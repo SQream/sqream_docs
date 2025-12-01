@@ -35,7 +35,7 @@ PSFs are used anywhere a **standard expression** or scalar value is expected, su
 
   .. code:: sql
 
-      SELECT <scalar_function>([<column> | <literal>]*) FROM <table>
+    SELECT <scalar_function>([<column> | <literal>]*) FROM <table>
 	  
 2. Python Table Functions (PTFs): The <function_clause>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -45,7 +45,6 @@ This clause defines the execution of your Python Table Function. It has the foll
   .. code:: sql
 
     table(<table_function>([cursor(<sub_query>)], <literal_param>*));
-
 
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | **Syntax**             | **Description**                                                                                                                       | **Mandatory/Optional** |
