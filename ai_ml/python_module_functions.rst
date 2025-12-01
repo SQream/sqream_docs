@@ -3,83 +3,137 @@
 Python Functions
 ------------------------
 
-
-Python functions in SQream allow you to execute custom Python logic on your data and return the results as a new table. This functionality integrates the power of Python's data processing libraries (like Pandas) directly into your SQL queries.
-
+Python functions in SQream allow you to execute custom Python logic on your data and return the results. This functionality integrates the power of Python’s data processing libraries (like Pandas) directly into your SQL queries, supporting two main types: **Table Functions** (which return a table) and **Scalar Functions** (which return a single value).
 
 
 1. Syntax Overview
 ^^^^^^^^^^^^^^^^^^
 
-Python functions are used within the FROM clause of SELECT and INSERT statements. The core component is the <function_clause>.
+Python Table Functions (PTFs)
+=============================
 
-SELECT statement
-To query data from a Python function, you use the following syntax:
+PTFs are used within the FROM clause of SELECT and INSERT statements and must return a table.
 
-.. code:: sql
+* **SELECT statement** – To query data from a Python table function, use the following syntax:
 
-    SELECT <select_list> FROM <function_clause>
+  .. code:: sql
 
-INSERT statement
-To insert data returned by a Python function into an existing table, you use this syntax:
+      SELECT <select_list> FROM <function_clause>
 
+* **INSERT statement** – To insert data returned by a Python table function into an existing table, use this syntax:
 
-.. code:: sql
-    INSERT INTO <table> SELECT * FROM <function_clause>
+  .. code:: sql
 
+      INSERT INTO <table> SELECT * FROM <function_clause>
 
+Python Scalar Functions (PSFs)
+==============================
 
-2. The ``<function_clause>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PSFs are used anywhere a **standard expression** or scalar value is expected, such as in the **SELECT list**, WHERE clause, or ORDER BY clause. They must return a single, non-table value.
 
-This clause defines the execution of your Python function. It has the following structure:
+* **SELECT statement** – To use a Python scalar function, you use the following syntax:
 
+  .. code:: sql
 
-.. code:: sql
+      SELECT <scalar_function>([<column> | <literal>]*) FROM <table>
+	  
+2. Python Table Functions (PTFs): The <function_clause>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This clause defines the execution of your Python Table Function. It has the following structure:
+
+  .. code:: sql
 
     table(<table_function>([cursor(<sub_query>)], <literal_param>*));
+	
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| **Syntax**             | **Description**                                                                                                                       | **Mandatory/Optional** |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| table()                | This is the main function wrapper that tells SQream to execute the Python Table Function and treat its result as a relation (a table).| Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| table_function         | This is the fully qualified name of the Python function, including the module name. For example, arr_varif.final_array.               | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| cursor(<sub_query>)    | This is an optional argument that passes the result of a subquery (any valid SELECT statement) to your Python function.               | Optional               |
+|                        | The data is provided to the Python function as a Pandas DataFrame.                                                                    |                        |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| <literal_param>*       | These are optional string literals that are passed as additional arguments to your Python function.                                   | Optional               |
+|						 | They must be defined in the module’s literal_parameters option and will be cast to strings in the Python code.                        |                        |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
-``table()``: This is the main function wrapper that tells SQream to execute the Python function.
 
-``<table_function>``: This is the fully qualified name of the Python function, including the module name. For example, ``arr_varif.final_array``.
+3. Python Scalar Functions (PSFs): The <scalar_function>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``cursor(<sub_query>)``: This is an optional argument that passes the result of a subquery (any valid ``SELECT`` statement) to your Python function. The data is provided to the Python function as a Pandas DataFrame.
+A Python Scalar Function is called directly by its fully qualified name and accepts one or more arguments, which can be **column names** or **literal values**.
 
-``<literal_param>*``: These are optional string literals that are passed as additional arguments to your Python function. They must be defined in the module's literal_parameters option and will be cast to strings in the Python code.
+  .. code:: sql
 
+    <module_name>.<scalar_function>([<arg1>, <arg2>, ...]);
+	
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| **Syntax**             | **Description**                                                                                                                       | **Mandatory/Optional** |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| <module_name>          | See the section for :ref:`Python Module<PythonModule>`                                                                                | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| <scalar_function>      | The fully qualified name of the Python Scalar Function                                                                                | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| [<arg1>, <arg2>, ...]  | The arguments passed to the function. These can be columns from the queried table (e.g., t.my_column)                                 | Optional               |
+|                        | or literal values (e.g., 10, 'hello').                                                                                                |                        |   
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
+.. _PythonModule:
 
-3. Defining a Python Module
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4. Defining a Python Module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	
+Before you can use a Python function (either Table or Scalar), you must define it in SQream using a **module**. The CREATE OR REPLACE MODULE command is used for this purpose.
 
-Before you can use a Python function, you must define it in SQream using a module. The ``CREATE OR REPLACE MODULE`` command is used for this purpose.
-
-Example:
-Based on your provided code, here is an example of defining a module with multiple entry points:
-
+Module Definition Syntax
+========================
 
 .. code:: sql
 
-    CREATE OR REPLACE MODULE arr_varif
-    OPTIONS
-    (
-        path='/home/sqream/git/debug/udf/array_print.py',
-        entry_points =
+    CREATE OR REPLACE MODULE <module_name>
+	OPTIONS(
+      path='/path/to/script.py',
+      entry_points = [
         [
-            [
-                name = 'final_array',
-                arguments [text[], int[], float[], date, datetime, text],
-                returns table (varification text),
-                gpu=true
-            ],
-            [
-                name = 'final_array_cpu',
-                arguments [text[], int[], float[], date, datetime, text],
-                returns table (verification text, i int),
-                gpu=false
-            ]
-        ]
+            name = '<python_function_name>',
+            arguments [<data_type>...],
+            returns table (<column_name> <data_type>...) | returns <data_type>,
+            gpu=true/false,
+            literal_parameters = <int>
+        ],
+        ...
+    ]
+
     );
+
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| **Syntax**             | **Description**                                                                                                                       | **Mandatory/Optional** |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| path                   | Specifies the file path to your Python script on the server.                                                                          | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| entry_points           |  A list of the Python functions within the script that can be called from SQream.                                                     | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| name                   | The name of the Python function.                                                                                                      | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| arguments              | For PTFs: A list of the data types of the columns that the Python function expects from the cursor() subquery.                        |Mandatory               |
+|                        |           If no cursor() is used, this list is empty.                                                                                 |                        |
+|                        +---------------------------------------------------------------------------------------------------------------------------------------+                        |
+|                        | For PSFs: A list of the data types that the function expects for its direct arguments                                                 |                        |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| returns table(...)     | For PTFs: The schema of the table that the Python function will return                                                                |Mandatory               |
+|                        |           The column names and data types must match the DataFrame returned by your Python code.                                      |                        |
+|                        +---------------------------------------------------------------------------------------------------------------------------------------+                        |
+|                        | For PSFs: The single SQL data type of the scalar value the function will return (e.g., returns int, returns text).                    |                        |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| gpu=true/false         | Determines whether the function will be executed on the GPU or on the CPU.                                                               | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| literal_parameters     | The number of string literals passed as additional arguments to the Python function after the DataFrame (for PTFs)                    | Optional               |
+|                        | or standard arguments (for PSFs).             																					     |                        |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+
 
 ``path``: Specifies the file path to your Python script on the server.
 
