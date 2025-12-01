@@ -92,6 +92,9 @@ Before you can use a Python function (either Table or Scalar), you must define i
 Module Definition Syntax
 ========================
 
+Module Definition Syntax
+========================
+
 .. code:: sql
 
     CREATE OR REPLACE MODULE <module_name>
