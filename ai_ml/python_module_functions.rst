@@ -57,7 +57,7 @@ This clause defines the execution of your Python Table Function. It has the foll
 |                        | The data is provided to the Python function as a Pandas DataFrame.                                                                    |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | <literal_param>*       | These are optional string literals that are passed as additional arguments to your Python function.                                   | Optional               |
-|						 | They must be defined in the module’s literal_parameters option and will be cast to strings in the Python code.                        |                        |
+|                        | They must be defined in the module’s literal_parameters option and will be cast to strings in the Python code.                        |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
 
