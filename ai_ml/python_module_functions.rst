@@ -95,7 +95,7 @@ Module Definition Syntax
 .. code:: sql
 
     CREATE OR REPLACE MODULE <module_name>
-	OPTIONS(
+    OPTIONS(
       path='/path/to/script.py',
       entry_points = [
         [
@@ -107,7 +107,6 @@ Module Definition Syntax
         ],
         ...
     ]
-
     );
 
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
@@ -115,26 +114,22 @@ Module Definition Syntax
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | path                   | Specifies the file path to your Python script on the server.                                                                          | Mandatory              |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| entry_points           |  A list of the Python functions within the script that can be called from SQream.                                                     | Mandatory              |
+| entry_points           | A list of the Python functions within the script that can be called from SQream.                                                      | Mandatory              |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | name                   | The name of the Python function.                                                                                                      | Mandatory              |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| arguments              | For PTFs: A list of the data types of the columns that the Python function expects from the cursor() subquery.                        |Mandatory               |
-|                        |           If no cursor() is used, this list is empty.                                                                                 |                        |
-|                        +---------------------------------------------------------------------------------------------------------------------------------------+                        |
-|                        | For PSFs: A list of the data types that the function expects for its direct arguments                                                 |                        |
+| arguments              | For PTFs: A list of data types expected from the cursor() subquery.                                                                   | Mandatory              |
+|                        | If no cursor() is used, this list is empty.                                                                                           |                        |
+|                        | For PSFs: A list of data types for the function’s direct arguments.                                                                    |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| returns table(...)     | For PTFs: The schema of the table that the Python function will return                                                                |Mandatory               |
-|                        |           The column names and data types must match the DataFrame returned by your Python code.                                      |                        |
-|                        +---------------------------------------------------------------------------------------------------------------------------------------+                        |
-|                        | For PSFs: The single SQL data type of the scalar value the function will return (e.g., returns int, returns text).                    |                        |
+| returns table(...)     | For PTFs: The schema of the table returned by the Python function.                                                                    | Mandatory              |
+|                        | Column names and types must match the DataFrame returned from Python.                                                                 |                        |
+|                        | For PSFs: The scalar SQL type of the returned value (e.g., returns int, returns text).                                                |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| gpu=true/false         | Determines whether the function will be executed on the GPU or on the CPU. by default function will get executed by CPU.              | Optional               |
+| gpu=true/false         | Whether the function executes on GPU or CPU. Default is CPU.                                                                          | Optional               |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| literal_parameters     | The number of string literals passed as additional arguments to the Python function after the DataFrame (for PTFs)                    | Optional               |
-|                        | or standard arguments (for PSFs).             																					     |                        |
+| literal_parameters     | Number of string literals passed after the DataFrame (PTFs) or standard arguments (PSFs).                                             | Optional               |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-
 
 Example: Defining a Module with Both Function Types
 ===================================================
