@@ -89,13 +89,11 @@ A Python Scalar Function is called directly by its fully qualified name and acce
 	
 Before you can use a Python function (either Table or Scalar), you must define it in SQream using a **module**. The CREATE OR REPLACE MODULE command is used for this purpose.
 
-Module Definition Syntax
-========================
 
 Module Definition Syntax
 ========================
 
-.. code:: sql
+  .. code:: sql
 
     CREATE OR REPLACE MODULE <module_name>
     OPTIONS(
