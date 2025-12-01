@@ -122,7 +122,7 @@ Module Definition Syntax
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | arguments              | For PTFs: A list of data types expected from the cursor() subquery.                                                                   | Mandatory              |
 |                        | If no cursor() is used, this list is empty.                                                                                           |                        |
-|                        | For PSFs: A list of data types for the function’s direct arguments.                                                                    |                        |
+|                        | For PSFs: A list of data types for the function’s direct arguments.                                                                   |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | returns table(...)     | For PTFs: The schema of the table returned by the Python function.                                                                    | Mandatory              |
 |                        | Column names and types must match the DataFrame returned from Python.                                                                 |                        |
