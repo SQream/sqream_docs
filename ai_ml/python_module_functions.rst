@@ -160,80 +160,43 @@ Example: Defining a Module with Both Function Types
     ]
 );
 
-
-4. Examples in Action
+5. Examples in Action
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Example 1: Passing a Subquery
-This example demonstrates how to use ``cursor()`` to pass an entire table's data to a Python function.
+Example 1: Python Table Function (PTF)
+======================================
 
-Python Function:
-
-The final_array function takes a DataFrame df and returns a new DataFrame.
-
-
-
-.. code:: python
-
-    def final_array(df):
-        df_new = df.iloc[:, -1:]
-        return df_new
-
-SQream Query:
-
-This query executes final_array and selects all columns from the resulting table. The select * from t subquery passes the t table to the function.
+This example demonstrates how to use cursor() to pass an entire table’s data to a PTF.
 
 .. code:: sql
 
     SELECT * FROM table(arr_varif.final_array(Cursor(SELECT * FROM t)));
+	
+.. note:: The ``select * from t`` subquery passes the t table to the function.
+   
 
-Example 2: Passing Literal Parameters
-This example shows how to pass a string literal to the Python function. This is useful for passing configuration or simple values that aren't part of a query.
+Example 2: Python Scalar Function (PSF)
+=======================================
 
-Module Definition:
+This example demonstrates calling a PSF in the SELECT list.
 
-The literal_parameters = 1 option indicates that one literal parameter is expected.
-
-.. code:: sql
-
-    CREATE OR REPLACE MODULE test3
-    OPTIONS (
-        PATH = '/home/sqream/git/debug/udf/array_print.py',
-        ENTRY_POINTS =
-        [
-            [
-                NAME = 'empty_df',
-                ARGUMENTS [],
-                literal_parameters = 1,
-                returns table(x text, y int)
-            ]
-        ]
-    );
-
-Python Function:
-
-The empty_df function receives both the DataFrame and the literal parameter (p) as arguments.
+* **Python Function:
 
 .. code:: python
 
-    def empty_df(df,p):
-        print(df) # The df will be empty here since ARGUMENTS is empty
-        print(p) # This will print 'param1'
-        # ...
+    # Defined in 'my_functions.py'
+	def add_one(x):
+		return x + 1
 
-
-SQream Query:
-
-The string literal 'param1' is passed to the function.
+* **SQream Query**:
 
 .. code:: sql
 
-    SELECT * FROM table(test3.empty_boi('param1'));
-    Note: The name of the Python function in the ``SELECT`` statement (``empty_boi``) does not match the name in the module definition (``empty_df``) in your example. These names must match for the query to work correctly.
+	-- Assuming a table 'data' with an integer column 'value'
+	SELECT value, my_funcs.add_one(value) AS value_plus_one
+	FROM data
+	WHERE my_funcs.add_one(value) > 10;
+
+.. note:: The ``add_one`` function is executed row-by-row, taking the value from the value column as input and returning a single integer.
 
 
-
-5. Return Values
-^^^^^^^^^^^^^^^^^^^^^
-
-Your Python function must return a Pandas DataFrame. The column names and data types of this DataFrame must exactly match the schema defined in the ``returns table(...)`` clause of the module's entry point.
