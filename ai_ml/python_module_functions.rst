@@ -158,10 +158,10 @@ Example: Defining a Module with Both Function Types
             gpu=false
         ]
     ]
-);
+	);
 
 5. Examples in Action
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 Example 1: Python Table Function (PTF)
 ======================================
@@ -180,15 +180,15 @@ Example 2: Python Scalar Function (PSF)
 
 This example demonstrates calling a PSF in the SELECT list.
 
-* **Python Function:
+* **Python Function:**
 
 .. code:: python
 
     # Defined in 'my_functions.py'
 	def add_one(x):
-		return x + 1
+	  return x + 1
 
-* **SQream Query**:
+* **SQream Query:**
 
 .. code:: sql
 
@@ -199,4 +199,45 @@ This example demonstrates calling a PSF in the SELECT list.
 
 .. note:: The ``add_one`` function is executed row-by-row, taking the value from the value column as input and returning a single integer.
 
+Example 3: Passing Literal Parameters (PTF)
+===========================================
 
+This example demonstrates how to pass a string literal to PTF.
+
+* **Module Definition:**
+
+.. code:: sql
+
+	CREATE OR REPLACE MODULE test3OPTIONS (
+    PATH = '/home/sqream/udf/array_print.py',
+    ENTRY_POINTS = [
+        [
+            NAME = 'empty_df',
+            ARGUMENTS [],
+            literal_parameters = 1,
+            returns table(x text, y int)
+        ]
+    ]
+	);
+
+* **Python Function:**
+
+.. code:: python
+
+    # df will be empty here since ARGUMENTS is empty, but it's always passed first
+    print(df)
+    print(p) # This will print 'param1'
+    # ... function must return a Pandas DataFrame
+
+* **SQream Query:**
+
+.. code:: sql
+
+    SELECT * FROM table(test3.empty_df('param1'));
+
+6. Return Values
+^^^^^^^^^^^^^^^^
+
+* **Python Table Function(PTF):** Your Python function **must return a Pandas DataFrame**. The column names and data types of this DataFrame must exactly match the schema defined in the returns table(...) clause of the module’s entry point.
+
+* **Python Scalar Function(PSF):** Your Python function **must return a single, non-DataFrame Python value** (e.g., an integer, string, or float). This value will be automatically converted to the single SQL data type defined in the returns <data_type> clause of the module’s entry point.
