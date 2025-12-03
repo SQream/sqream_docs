@@ -87,7 +87,7 @@ A Python Scalar Function is called directly by its fully qualified name and acce
 4. Defining a Python Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	
-Before you can use a Python function (either Table or Scalar), you must define it in SQream using a **module**. The CREATE OR REPLACE MODULE command is used for this purpose.
+Before you can use a Python function (either Table or Scalar), you must define it in SQream using a **module**. ``The CREATE OR REPLACE MODULE`` command is used for this purpose.
 
 
 Module Definition Syntax
@@ -122,11 +122,13 @@ Module Definition Syntax
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | arguments              | For PTFs: A list of data types expected from the cursor() subquery.                                                                   | Mandatory              |
 |                        | If no cursor() is used, this list is empty.                                                                                           |                        |
+|                        | --------------------------------------------------------------------------------------------------------------------------------------|                        |
 |                        | For PSFs: A list of data types for the function’s direct arguments.                                                                   |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| returns table(...)     | For PTFs: The schema of the table returned by the Python function.                                                                    | Mandatory              |
-|                        | Column names and types must match the DataFrame returned from Python.                                                                 |                        |
-|                        | For PSFs: The scalar SQL type of the returned value (e.g., returns int, returns text).                                                |                        |
+| returns                | For PTFs: ``returns table`` - The schema of a table or a table-like returned by the Python function.                                  | Mandatory              |
+|                        | The schema must match the DataFrame returned from Python.                                                                             |                        |
+|                        | --------------------------------------------------------------------------------------------------------------------------------------|                        |
+|                        | For PSFs: ``returns <data_type>`` - The scalar SQL type of the returned value (e.g., returns int, returns text).                      |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | gpu=true/false         | Whether the function executes on GPU or CPU. Default is CPU.                                                                          | Optional               |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
@@ -160,7 +162,7 @@ Example: Defining a Module with Both Function Types
     ]
 	);
 
-5. Examples in Action
+5. Usage Examples
 ^^^^^^^^^^^^^^^^^^^^^
 
 Example 1: Python Table Function (PTF)
