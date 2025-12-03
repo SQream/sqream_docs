@@ -98,9 +98,9 @@ The following table shows the supported compression methods:
 NVIDIA nvCOMP Compression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-NVIDIA nvCOMP is a high-speed data compression and decompression library specifically optimized for NVIDIA GPUs (Graphics Processing Units).
+NVIDIA nvCOMP is a high-speed data compression and decompression library specifically optimized for NVIDIA GPUs.
 
-Its main purpose is to accelerate data-intensive applications—like AI training, High-Performance Computing (HPC), data science, and analytics—by significantly reducing data transfer bottlenecks. Since these applications often involve moving massive amounts of data, nvCOMP enables the compression and decompression to happen efficiently directly on the GPU, which is much faster than relying solely on the CPU.
+Its main purpose is to accelerate data-intensive applications—like AI training, High-Performance Computing, data science, and analytics—by significantly reducing data transfer bottlenecks. Since these applications often involve moving massive amounts of data, nvCOMP enables the compression and decompression to happen efficiently directly on the GPU, which is much faster than relying solely on the CPU.
 
 **Supported Algorithms:**
 
@@ -129,7 +129,7 @@ Its main purpose is to accelerate data-intensive applications—like AI training
 |                | NVComp leverages ANS on the GPU to achieve high-ratio, high-speed compression, perfect for high-performance computing.                                                                       |
 +----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. note:: The system does not incorporate an automatic selection mechanism for this compression type. Consequently, the configuration must be specified manually.
+.. note:: The system does not incorporate an automatic selection mechanism for this compression type, and this capability is not supported in the current version. Consequently, the configuration must be specified manually.
 
 **Supported Data Types:**
 
