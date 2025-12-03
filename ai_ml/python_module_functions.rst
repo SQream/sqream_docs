@@ -120,15 +120,15 @@ Module Definition Syntax
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | name                   | The name of the Python function.                                                                                                      | Mandatory              |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| arguments              | For PTFs: A list of data types expected from the cursor() subquery.                                                                   | Mandatory              |
+| arguments              | **For PTFs:** A list of data types expected from the cursor() subquery.                                                               | Mandatory              |
 |                        | If no cursor() is used, this list is empty.                                                                                           |                        |
-|                        | --------------------------------------------------------------------------------------------------------------------------------------|                        |
-|                        | For PSFs: A list of data types for the function’s direct arguments.                                                                   |                        |
+|                        | 																																		 |                        |
+|                        | **For PSFs:** A list of data types for the function’s direct arguments.                                                               |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| returns                | For PTFs: ``returns table`` - The schema of a table or a table-like returned by the Python function.                                  | Mandatory              |
+| returns                | **For PTFs:** ``returns table`` - The schema of a table or a table-like returned by the Python function.                              | Mandatory              |
 |                        | The schema must match the DataFrame returned from Python.                                                                             |                        |
-|                        | --------------------------------------------------------------------------------------------------------------------------------------|                        |
-|                        | For PSFs: ``returns <data_type>`` - The scalar SQL type of the returned value (e.g., returns int, returns text).                      |                        |
+|                        | 																																		 |                        |
+|                        | **For PSFs:** ``returns <data_type>`` - The scalar SQL type of the returned value (e.g., returns int, returns text).                  |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | gpu=true/false         | Whether the function executes on GPU or CPU. Default is CPU.                                                                          | Optional               |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
