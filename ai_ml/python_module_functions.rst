@@ -9,36 +9,65 @@ Python functions in SQream allow you to execute custom Python logic on your data
 1. Syntax Overview
 ^^^^^^^^^^^^^^^^^^
 
-Python Table Functions (PTFs)
-=============================
+Python Table Functions (PTFs) and Python Scalar Functions (PSFs) are based on creating a Module.
 
-PTFs are used within the FROM clause of SELECT and INSERT statements and must return a table.
+**Module Creation:**
+====================
 
-* **SELECT statement** – To query data from a Python table function, use the following syntax:
+.. code:: sql
 
-  .. code:: sql
+	CREATE MODULE module_name OPTIONS (
+		PATH = 'module.py', 
+		ENTRY_POINTS = [
+			[
+				NAME = 'function_name',
+				ARGUMENTS [type1, type2, ...] | LIKE table_name,
+				RETURNS TABLE (col1 type1, col2 type2, ...) | LIKE table_name | SCALAR type,
+				LITERAL_PARAMETERS = number,
+				GPU = true/false
+			]
+		]
+	);
 
-      SELECT <select_list> FROM <function_clause>
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| **Syntax**             | **Description**                                                                                                                       | **Mandatory/Optional** |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| PATH                   | Specifies the file path to your Python script on the server.                                                                          | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| ENTRY_POINTS           | A list of the Python functions within the script that can be called from SQream.                                                      | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| NAME                   | The name of the Python function.                                                                                                      | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| ARGUMENTS              | Can specify explicit types ``[int, text, float]`` or reference existing table structure LIKE table_name``.                            | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| RETURNS                |  The RETURNS clause supports the following options:                                          								         | Mandatory              |
+|                        |  1. ``TABLE (column_name data_type, ...)`` - Defines an explicit table structure by specifying each column name and its data type.    |                        |
+|                        | 	2. ``LIKE table_name`` - Inherits the column structure from an existing table, using its schema as the return definition.			 |                        |
+|                        |  3. ``SCALAR data_type`` - Specifies a scalar return type.         																     |                        |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| GPU=true/false         | Whether the function executes on GPU or CPU. Default is CPU.                                                                          | Optional               |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| LITERAL_PARAMETERS     | Number of literal parameters the function accepts                                          										     | Optional               |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
-* **INSERT statement** – To insert data returned by a Python table function into an existing table, use this syntax:
+**Notes:**
 
-  .. code:: sql
+**1. Input Casting** 
 
-      INSERT INTO <table> SELECT * FROM <function_clause>
+The system applies automatic type casting to all input arguments.
 
-Python Scalar Functions (PSFs)
-==============================
+**2. Output Casting**
 
-PSFs are used anywhere a **standard expression** or scalar value is expected, such as in the **SELECT list**, WHERE clause, or ORDER BY clause. They must return a single, non-table value.
+  * All return types are automatically marked as nullable (isNullable = true).
+  * Output columns are typed according to the function’s declared return specification.
+  
+**3. Literal Parameters**
 
-* **SELECT statement** – To use a Python scalar function, you use the following syntax:
+  * Literal values can be passed to table functions.
+  * Literal parameters are stored as Seq[String] and provided to the function at execution time.
 
-  .. code:: sql
-
-    SELECT <scalar_function>([<column> | <literal>]*) FROM <table>
-	  
-2. Python Table Functions (PTFs): The <function_clause>
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Python Table Functions (PTFs): The <function_clause>**
+========================================================
 
 This clause defines the execution of your Python Table Function. It has the following structure:
 
@@ -61,8 +90,8 @@ This clause defines the execution of your Python Table Function. It has the foll
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
 
-3. Python Scalar Functions (PSFs): The <scalar_function>
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Python Scalar Functions (PSFs): The <scalar_function>**
+=========================================================
 
 A Python Scalar Function is called directly by its fully qualified name and accepts one or more arguments, which can be **column names** or **literal values**.
 
@@ -82,61 +111,8 @@ A Python Scalar Function is called directly by its fully qualified name and acce
 |                        | or literal values (e.g., 10, 'hello').                                                                                                |                        |   
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
-.. _PythonModule:
-
-4. Defining a Python Module
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	
-Before you can use a Python function (either Table or Scalar), you must define it in SQream using a **module**. ``The CREATE OR REPLACE MODULE`` command is used for this purpose.
-
-
-Module Definition Syntax
-========================
-
-  .. code:: sql
-
-    CREATE OR REPLACE MODULE <module_name>
-    OPTIONS(
-      path='/path/to/script.py',
-      entry_points = [
-        [
-            name = '<python_function_name>',
-            arguments [<data_type>...],
-            returns table (<column_name> <data_type>...) | returns <data_type>,
-            gpu=true/false,
-            literal_parameters = <int>
-        ],
-        ...
-    ]
-    );
-
-
-+------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| **Syntax**             | **Description**                                                                                                                       | **Mandatory/Optional** |
-+------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| path                   | Specifies the file path to your Python script on the server.                                                                          | Mandatory              |
-+------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| entry_points           | A list of the Python functions within the script that can be called from SQream.                                                      | Mandatory              |
-+------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| name                   | The name of the Python function.                                                                                                      | Mandatory              |
-+------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| arguments              | **For PTFs:** A list of data types expected from the cursor() subquery.                                                               | Mandatory              |
-|                        | If no cursor() is used, this list is empty.                                                                                           |                        |
-|                        | 																																		 |                        |
-|                        | **For PSFs:** A list of data types for the function’s direct arguments.                                                               |                        |
-+------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| returns                | **For PTFs:** ``returns table`` - The schema of a table or a table-like returned by the Python function.                              | Mandatory              |
-|                        | The schema must match the DataFrame returned from Python.                                                                             |                        |
-|                        | 																																		 |                        |
-|                        | **For PSFs:** ``returns <data_type>`` - The scalar SQL type of the returned value (e.g., returns int, returns text).                  |                        |
-+------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| gpu=true/false         | Whether the function executes on GPU or CPU. Default is CPU.                                                                          | Optional               |
-+------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| literal_parameters     | Number of string literals passed after the DataFrame (PTFs) or standard arguments (PSFs).                                             | Optional               |
-+------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-
-Example: Defining a Module with Both Function Types
-===================================================
+**Example: Defining a Module with Both Function Types**
+=======================================================
 
 .. code:: sql
 
@@ -162,7 +138,7 @@ Example: Defining a Module with Both Function Types
     ]
 	);
 
-5. Usage Examples
+2. Usage Examples
 ^^^^^^^^^^^^^^^^^^^^^
 
 Example 1: Python Table Function (PTF)
@@ -237,7 +213,7 @@ This example demonstrates how to pass a string literal to PTF.
 
     SELECT * FROM table(test3.empty_df('param1'));
 
-6. Return Values
+3. Return Values
 ^^^^^^^^^^^^^^^^
 
 * **Python Table Function(PTF):** Your Python function **must return a Pandas DataFrame**. The column names and data types of this DataFrame must exactly match the schema defined in the returns table(...) clause of the module’s entry point.
