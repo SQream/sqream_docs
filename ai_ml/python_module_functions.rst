@@ -141,19 +141,7 @@ A Python Scalar Function is called directly by its fully qualified name and acce
 2. Usage Examples
 ^^^^^^^^^^^^^^^^^^^^^
 
-Example 1: Python Table Function (PTF)
-======================================
-
-This example demonstrates how to use cursor() to pass an entire table’s data to a PTF.
-
-.. code:: sql
-
-    SELECT * FROM table(arr_varif.final_array(Cursor(SELECT * FROM t)));
-	
-.. note:: The ``select * from t`` subquery passes the t table to the function.
-   
-
-Example 2: Python Scalar Function (PSF)
+Example 1: Python Scalar Function (PSF)
 =======================================
 
 This example demonstrates calling a PSF in the SELECT list.
@@ -163,40 +151,126 @@ This example demonstrates calling a PSF in the SELECT list.
 .. code:: python
 
     # Defined in 'my_functions.py'
-	def add_one(x):
-	  return x + 1
+	def my_add(a, b)
+		return a + b
 
-* **SQream Query:**
+	# Defined in 'my_functions.py'
+	def my_sub(a, b)
+		return b - a
+		
+**Creating the Module in Sqream:**
 
 .. code:: sql
 
-	-- Assuming a table 'data' with an integer column 'value'
-	SELECT value, my_funcs.add_one(value) AS value_plus_one
-	FROM data
-	WHERE my_funcs.add_one(value) > 10;
+    CREATE OR REPLACE MODULE my_mod1
+	OPTIONS (
+	  path = '/tmp/arith.py',
+	  entry_points = [
+		[
+		  name = 'my_add',
+		  ARGUMENTS [ INT, INT ],
+		  RETURNS SCALAR INT
+		],
+		[
+		  name = 'my_sub',
+		  ARGUMENTS [ INT, INT ],
+		  RETURNS SCALAR INT
+		]
+	  ]
+	);
 
-.. note:: The ``add_one`` function is executed row-by-row, taking the value from the value column as input and returning a single integer.
+* **How to use the Module?**
 
-Example 3: Passing Literal Parameters (PTF)
-===========================================
+.. code:: sql
+
+	create or replace table t (x int, y int);
+	
+	insert into t values (10,20),(30,40),(50,60);
+
+	SELECT my_mod1.my_add(x,y) FROM t; 
+
+	SELECT x, y, my_mod1.my_add(x,y), my_mod1.my_sub(x,y) FROM t where my_mod1.my_add(x,y) > 10; 
+
+.. note:: The ``my_add`` function is executed row-by-row, taking the value from the value column as input and returning a single integer.
+
+Example 2: Python Table Function (PTF)
+======================================
+
+This example demonstrates how to use cursor() to pass an entire table’s data to a PTF.
+
+* **Python Function:**
+
+.. code:: python
+
+    #Defined in 'array_print.py'
+	def last_column(df):
+    df_new = df.iloc[:, -1:]
+		return df_new
+
+**Creating the Module in Sqream:**	
+
+.. code:: sql
+
+    CREATE OR REPLACE MODULE my_mod2
+	 OPTIONS
+	 (
+		path='/tmp/array_print.py',
+		 entry_points =
+		[
+			[
+				name = 'last_column',
+				arguments [date, datetime, text],
+				returns table (col_name text),
+				gpu=true
+			]
+		 ]
+	 );
+	 
+* **How to use the Module?**
+
+.. code:: sql
+
+    create or replace table t (xdate date, xdatetime datetime, xtext text);
+	INSERT INTO t VALUES ( DATE '2025-09-11',   DATETIME '2025-09-11 14:30:00',   'some sample text' );
+	SELECT * FROM table(my_mod2.last_column(Cursor(SELECT * FROM t)));
+
+	
+.. note:: The ``select * from t`` subquery passes the t table to the function.
+
+Example 3: Passing Literal Parameters For Python Table Function (PTF)
+=====================================================================
 
 This example demonstrates how to pass a string literal to PTF.
 
-* **Module Definition:**
+* **Python Function:**
+
+.. code:: python
+
+	#Defined in 'array_print.py'
+    def add_literal_column(df, literal_str):
+    df_new = df.copy()
+    df_new["col4"] = literal_str
+		return df_new
+
+**Creating the Module in Sqream:**	
 
 .. code:: sql
 
-	CREATE OR REPLACE MODULE test3OPTIONS (
-    PATH = '/home/sqream/udf/array_print.py',
-    ENTRY_POINTS = [
+	CREATE OR REPLACE MODULE my_mod3
+	OPTIONS (
+    PATH = '/tmp/array_print.py',
+    ENTRY_POINTS =
+    [
         [
-            NAME = 'empty_df',
-            ARGUMENTS [],
+            NAME = 'add_text_col',
+            arguments [boolean, int, date],
             literal_parameters = 1,
-            returns table(x text, y int)
+            returns table(col1 boolean, col2 int, col3 date, col4 text)
         ]
     ]
 	);
+
+* **How to use the Module?**
 
 * **Python Function:**
 
@@ -211,7 +285,9 @@ This example demonstrates how to pass a string literal to PTF.
 
 .. code:: sql
 
-    SELECT * FROM table(test3.empty_df('param1'));
+    create or replace table t (col1 boolean, col2 int, col3 date);
+	insert into t values (0,1,'2025-09-11');
+	SELECT col1, col2, col3 , col4 FROM TABLE(my_mod3.add_literal_column(cursor(SELECT * FROM source_table),'Adding Any Text'));
 
 3. Return Values
 ^^^^^^^^^^^^^^^^
