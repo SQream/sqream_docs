@@ -151,8 +151,8 @@ This example demonstrates calling a PSF in the SELECT list.
 .. code:: python
 
     # Defined in 'my_functions.py'
-	def my_add(a, b)
-		return a + b
+    def my_add(a, b):
+        return a + b
 
 	# Defined in 'my_functions.py'
 	def my_sub(a, b)
@@ -162,22 +162,23 @@ This example demonstrates calling a PSF in the SELECT list.
 
 .. code:: sql
 
-    CREATE OR REPLACE MODULE my_mod1
+	CREATE OR REPLACE MODULE my_mod1
 	OPTIONS (
-	  path = '/tmp/arith.py',
-	  entry_points = [
-		[
-		  name = 'my_add',
-		  ARGUMENTS [ INT, INT ],
-		  RETURNS SCALAR INT
-		],
-		[
-		  name = 'my_sub',
-		  ARGUMENTS [ INT, INT ],
-		  RETURNS SCALAR INT
+		PATH = '/tmp/arith.py',
+		ENTRY_POINTS = [
+			[
+				NAME = 'my_add',
+				ARGUMENTS [int, int],
+				RETURNS SCALAR int
+			],
+			[
+				NAME = 'my_sub',
+				ARGUMENTS [int, int],
+				RETURNS SCALAR int
+			]
 		]
-	  ]
 	);
+
 
 * **How to use the Module?**
 
@@ -202,29 +203,28 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 
 .. code:: python
 
-    #Defined in 'array_print.py'
-	def last_column(df):
-    df_new = df.iloc[:, -1:]
-		return df_new
+    # Defined in 'array_print.py'
+    def last_column(df):
+        df_new = df.iloc[:, -1:]
+        return df_new
 
 **Creating the Module in Sqream:**	
 
 .. code:: sql
 
-    CREATE OR REPLACE MODULE my_mod2
-	 OPTIONS
-	 (
-		path='/tmp/array_print.py',
-		 entry_points =
-		[
+	CREATE OR REPLACE MODULE my_mod2
+	OPTIONS (
+		PATH = '/tmp/array_print.py',
+		ENTRY_POINTS = [
 			[
-				name = 'last_column',
-				arguments [date, datetime, text],
-				returns table (col_name text),
-				gpu=true
+				NAME = 'last_column',
+				ARGUMENTS [date, datetime, text],
+				RETURNS TABLE (col_name text),
+				GPU = true
 			]
-		 ]
-	 );
+		]
+	);
+
 	 
 * **How to use the Module?**
 
@@ -258,16 +258,15 @@ This example demonstrates how to pass a string literal to PTF.
 
 	CREATE OR REPLACE MODULE my_mod3
 	OPTIONS (
-    PATH = '/tmp/array_print.py',
-    ENTRY_POINTS =
-    [
-        [
-            NAME = 'add_text_col',
-            arguments [boolean, int, date],
-            literal_parameters = 1,
-            returns table(col1 boolean, col2 int, col3 date, col4 text)
-        ]
-    ]
+		PATH = '/tmp/array_print.py',
+		ENTRY_POINTS = [
+			[
+				NAME = 'add_text_col',
+				ARGUMENTS [boolean, int, date],
+				LITERAL_PARAMETERS = 1,
+				RETURNS TABLE (col1 boolean, col2 int, col3 date, col4 text)
+			]
+		]
 	);
 
 * **How to use the Module?**
