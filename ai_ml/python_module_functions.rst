@@ -164,7 +164,7 @@ This example demonstrates calling a PSF in the SELECT list.
 
 	CREATE OR REPLACE MODULE my_mod1
 	OPTIONS (
-		PATH = '/tmp/arith.py',
+		PATH = '/tmp/my_functions.py',
 		ENTRY_POINTS = [
 			[
 				NAME = 'my_add',
@@ -203,7 +203,7 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 
 .. code:: python
 
-    # Defined in 'array_print.py'
+    # Defined in 'my_functions.py'
     def last_column(df):
         df_new = df.iloc[:, -1:]
         return df_new
@@ -214,7 +214,7 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 
 	CREATE OR REPLACE MODULE my_mod2
 	OPTIONS (
-		PATH = '/tmp/array_print.py',
+		PATH = '/tmp/my_functions.py',
 		ENTRY_POINTS = [
 			[
 				NAME = 'last_column',
@@ -225,15 +225,13 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 		]
 	);
 
-	 
 * **How to use the Module?**
 
 .. code:: sql
 
-    create or replace table t (xdate date, xdatetime datetime, xtext text);
-	INSERT INTO t VALUES ( DATE '2025-09-11',   DATETIME '2025-09-11 14:30:00',   'some sample text' );
-	SELECT * FROM table(my_mod2.last_column(Cursor(SELECT * FROM t)));
-
+    CREATE OR REPLACE TABLE t (xdate DATE, xdatetime DATETIME, xtext TEXT);
+    INSERT INTO t VALUES (DATE '2025-09-11', DATETIME '2025-09-11 14:30:00', 'some sample text');
+    SELECT * FROM table(my_mod2.last_column(CURSOR(SELECT * FROM t)));
 	
 .. note:: The ``select * from t`` subquery passes the t table to the function.
 
