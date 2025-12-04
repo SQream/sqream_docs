@@ -185,11 +185,8 @@ This example demonstrates calling a PSF in the SELECT list.
 .. code:: sql
 
 	create or replace table t (x int, y int);
-	
 	insert into t values (10,20),(30,40),(50,60);
-
 	SELECT my_mod1.my_add(x,y) FROM t; 
-
 	SELECT x, y, my_mod1.my_add(x,y), my_mod1.my_sub(x,y) FROM t where my_mod1.my_add(x,y) > 10; 
 
 .. note:: The ``my_add`` function is executed row-by-row, taking the value from the value column as input and returning a single integer.
