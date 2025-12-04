@@ -38,16 +38,16 @@ Python Table Functions (PTFs) and Python Scalar Functions (PSFs) are based on cr
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | NAME                   | The name of the Python function.                                                                                                      | Mandatory              |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| ARGUMENTS              | Can specify explicit types ``[int, text, float]`` or reference existing table structure LIKE table_name``.                            | Mandatory              |
+| ARGUMENTS              | Can specify explicit types ``[int, text, float]`` or reference existing table structure ``LIKE table_name``.                          | Mandatory              |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| RETURNS                |  The RETURNS clause supports the following options:                                          								         | Mandatory              |
-|                        |  1. ``TABLE (column_name data_type, ...)`` - Defines an explicit table structure by specifying each column name and its data type.    |                        |
-|                        | 	2. ``LIKE table_name`` - Inherits the column structure from an existing table, using its schema as the return definition.			 |                        |
-|                        |  3. ``SCALAR data_type`` - Specifies a scalar return type.         																     |                        |
+| RETURNS                | The RETURNS clause supports the following options:                                                                                    | Mandatory              |
+|                        | 1. ``TABLE (column_name data_type, ...)`` – Defines an explicit table structure.                                                      |                        |
+|                        | 2. ``LIKE table_name`` – Inherits structure from an existing table.                                                                   |                        |
+|                        | 3. ``SCALAR data_type`` – Specifies a scalar return type.                                                                             |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | GPU=true/false         | Whether the function executes on GPU or CPU. Default is CPU.                                                                          | Optional               |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| LITERAL_PARAMETERS     | Number of literal parameters the function accepts                                          										     | Optional               |
+| LITERAL_PARAMETERS     | Number of literal parameters the function accepts.                                                                                    | Optional               |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
 **Notes:**
