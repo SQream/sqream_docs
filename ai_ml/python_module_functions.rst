@@ -271,22 +271,18 @@ This example demonstrates how to pass a string literal to PTF.
 
 * **How to use the Module?**
 
-* **Python Function:**
-
-.. code:: python
-
-    # df will be empty here since ARGUMENTS is empty, but it's always passed first
-    print(df)
-    print(p) # This will print 'param1'
-    # ... function must return a Pandas DataFrame
-
-* **SQream Query:**
-
 .. code:: sql
 
-    create or replace table t (col1 boolean, col2 int, col3 date);
-	insert into t values (0,1,'2025-09-11');
-	SELECT col1, col2, col3 , col4 FROM TABLE(my_mod3.add_literal_column(cursor(SELECT * FROM source_table),'Adding Any Text'));
+    CREATE OR REPLACE TABLE t (col1 boolean, col2 int, col3 date);
+    INSERT INTO t VALUES (0, 1, '2025-09-11');
+
+    SELECT col1, col2, col3, col4
+    FROM TABLE(
+        my_mod3.add_literal_column(
+            CURSOR(SELECT * FROM source_table),
+            'Adding Any Text'
+        )
+    );
 
 3. Return Values
 ^^^^^^^^^^^^^^^^
