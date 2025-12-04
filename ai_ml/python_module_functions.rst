@@ -154,9 +154,9 @@ This example demonstrates calling a PSF in the SELECT list.
     def my_add(a, b):
         return a + b
 
-	# Defined in 'my_functions.py'
-	def my_sub(a, b)
-		return b - a
+    # Defined in 'my_functions.py'
+    def my_sub(a, b):
+        return b - a
 		
 **Creating the Module in Sqream:**
 
@@ -279,9 +279,7 @@ This example demonstrates how to pass a string literal to PTF.
     SELECT col1, col2, col3, col4
     FROM TABLE(
         my_mod3.add_literal_column(
-            CURSOR(SELECT * FROM source_table),
-            'Adding Any Text'
-        )
+            CURSOR(SELECT * FROM source_table), 'Adding Any Text')
     );
 
 3. Return Values
