@@ -28,7 +28,7 @@ Iceberg uses a multi-layered metadata structure to track table state:
 Connectivity and Read-Only Querying
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The initial focus is on connecting SQream to an external Iceberg Catalog and querying existing tables.
+The initial focus is on connecting SQream to an external Iceberg REST Catalog and querying existing tables.
 
 1. **Create a Catalog Integration**
 
@@ -58,8 +58,6 @@ This step establishes the connection details to the Iceberg Catalog.
 | CATALOG_SOURCE           | Must be set to 'ICEBERG_REST' (default).                                                   |
 +--------------------------+--------------------------------------------------------------------------------------------+
 | CATALOG_URI              | The endpoint URL for the Iceberg REST Catalog API.                                         |
-+--------------------------+--------------------------------------------------------------------------------------------+
-| REFRESH_INTERVAL_SECONDS | Interval (in seconds) for polling the external catalog for metadata updates (Default: 60). |
 +--------------------------+--------------------------------------------------------------------------------------------+
 
 **Usage Example:**
@@ -101,7 +99,6 @@ This links the new Catalog Integration to a database object within SQream.
 * **File Format:** Only **Parquet** is supported.
 * **Operations:** Only **SELECT** queries are supported. DML (**DELETE, INSERT, UPDATE**) and DDL operations will be added in later phases.
 * **Advanced Features:** Time travel, schema evolution, and transactional commands **are not supported**.
-* **Configuration:** Only supported on databases without existing tables/schemas.
 * **Writability:** ALLOW_WRITES in the external catalog must be set to false.
 
 **Querying an Iceberg Table**
@@ -250,17 +247,6 @@ Shows all valid snapshots for a table, including the operation that created them
 +--------------+---------------+-------------------------------------------------------------+
 | summary      | TEXT          | Brief description/metrics of the operation.                 |
 +--------------+---------------+-------------------------------------------------------------+
-
-Notes
-~~~~~
-
-Support for parquet files only at this stage.
-
-Performance Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* **Performance Parity:** Querying Iceberg Parquet tables must show **minimal performance difference** compared to querying foreign Parquet tables.
-* **Metadata Queries:** Queries against the metadata layer (.files, .manifests, .history, .snapshots) should ideally **not consume GPU resources**.
 
 
 
