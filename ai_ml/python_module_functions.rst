@@ -150,46 +150,44 @@ This example demonstrates calling a PSF in the SELECT list.
 
 .. code:: python
 
-    # Defined in 'my_functions.py'
-    def my_add(a, b):
-        return a + b
+    def multiply(df):
+    """
+    Takes a dataframe containing 'number' and 'multiplier' columns,
+    calculates the product row-by-row, and returns the modified dataframe.
+    """
+    # Create a copy to ensure we don't modify the original data unintentionally
+    df_copy = df.copy()
 
-    # Defined in 'my_functions.py'
-    def my_sub(a, b):
-        return b - a
+    # Vectorized multiplication: Multiplies aligned rows instantly
+    df_result = df_copy['number'] * df_copy['multiplier']
+
+    return df_result
 		
 **Creating the Module in Sqream:**
 
 .. code:: sql
 
-	CREATE OR REPLACE MODULE my_mod1
-	OPTIONS (
-		PATH = '/tmp/my_functions.py',
-		ENTRY_POINTS = [
-			[
-				NAME = 'my_add',
-				ARGUMENTS [int, int],
-				RETURNS SCALAR int
-			],
-			[
-				NAME = 'my_sub',
-				ARGUMENTS [int, int],
-				RETURNS SCALAR int
-			]
-		]
+	CREATE OR REPLACE MODULE pm OPTIONS(
+    PATH='/tmp/py_udf.py',
+    ENTRY_POINTS=[
+        [
+            NAME = 'multiply',
+            ARGUMENTS [int, int],
+            RETURNS SCALAR int,
+            GPU = false
+        ]
+    ]
 	);
-
 
 * **How to use the Module?**
 
 .. code:: sql
 
-	create or replace table t (x int, y int);
-	insert into t values (10,20),(30,40),(50,60);
-	SELECT my_mod1.my_add(x,y) FROM t; 
-	SELECT x, y, my_mod1.my_add(x,y), my_mod1.my_sub(x,y) FROM t where my_mod1.my_add(x,y) > 10; 
+	create or replace table t (number int, multiplier int);
+	INSERT INTO t VALUES ( 1, 2 ),( 2, 2 );
+	select pm.multiply(number, multiplier) from t;
 
-.. note:: The ``my_add`` function is executed row-by-row, taking the value from the value column as input and returning a single integer.
+.. note:: The ``multiply`` function is executed row-by-row, taking the value from the value column as input and returning a single integer.
 
 Example 2: Python Table Function (PTF)
 ======================================
@@ -211,7 +209,7 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 
 	CREATE OR REPLACE MODULE my_mod2
 	OPTIONS (
-		PATH = '/tmp/my_functions.py',
+		PATH = '/app/my_functions1.py',
 		ENTRY_POINTS = [
 			[
 				NAME = 'last_column',
