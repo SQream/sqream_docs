@@ -87,8 +87,96 @@ The following table shows the supported compression methods:
      - ``Integer``, ``date``, and ``timestamp``
      - Optimized RLE + Delta type for built-in :ref:`identity columns<identity>`. 
      - GPU
+	 
+   * - ``nvCOMP``
+     - All types
+     - :ref:`NVIDIA nvCOMP Compression<nvcomp>` 
+     - GPU
+	 
+.. _nvcomp:
 
-	
+NVIDIA nvCOMP Compression
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NVIDIA nvCOMP is a high-speed data compression and decompression library specifically optimized for NVIDIA GPUs.
+
+Its main purpose is to accelerate data-intensive applications—like AI training, High-Performance Computing, data science, and analytics—by significantly reducing data transfer bottlenecks. Since these applications often involve moving massive amounts of data, nvCOMP enables the compression and decompression to happen efficiently directly on the GPU, which is much faster than relying solely on the CPU.
+
+**Supported Algorithms:**
+
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Algorithm Name | Description                                                                                                                                                                                  |
++================+==============================================================================================================================================================================================+
+| **Snappy**     | Known for its balance of **speed and reasonable compression**. It is a general-purpose, byte-level compressor well-suited for a wide range of datasets.                                      |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **LZ4**        | An **extremely fast** compression and decompression algorithm. It's a no-entropy, byte-level compressor ideal for maximizing query performance.                                              |
+|                | It works well on most data types, particularly TEXT and ARRAY types.                                                                                                                         |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **ZSTD**       | Provides a **much better compression ratio** than LZ4 at the cost of some performance. It's a good choice for users who want to prioritize storage efficiency.                               |
+|                | Like LZ4, it is a general-purpose compressor for a wide range of data.                                                                                                                       |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **GDeflate**   | This is a **GPU-optimized version of the DEFLATE format**, designed to extract parallelism from the bitstream. It aims to achieve high throughput, especially during decompression.          |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Deflate**    | Combines two techniques: **LZ77** (finds and replaces repeating data strings) and **Huffman coding** (assigns shorter bit codes to frequent symbols.                                         |
+|                | This two-step process makes Deflate an efficient and popular algorithm, widely used in formats like Gzip and ZIP.                                                                            |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Cascading**  | **Pipelines multiple compression algorithms** (e.g., LZ4 followed by ZSTD) to improve both ratio and speed, getting the best of both worlds. It's great for data with mixed characteristics. |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Bitcomp**    | **A Bit-level compression algorithm** for numerical data. It optimizes storage by using the minimum number of bits required for each value, rather than a fixed size.                        |
+|                | For example, it can compress 32-bit integers that only use 8 bits down to their actual size, saving space.                                                                                   |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **ANS**        | ANS (**Asymmetric Numeral Systems**) is a **fast, modern entropy encoder**. It is more parallel-friendly and often more efficient than older methods like Huffman coding.                    |
+|                | NVComp leverages ANS on the GPU to achieve high-ratio, high-speed compression, perfect for high-performance computing.                                                                       |
++----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. note:: The system does not incorporate an automatic selection mechanism for this compression type, and this capability is not supported in the current version. Consequently, the configuration must be specified manually.
+
+**Supported Data Types:**
+
+All these algorithms are generic and **can be applied to any data type** as they operate on raw bytes. This includes fixed-length types (INTEGER, BIGINT, FLOAT, DOUBLE), variable-length types (TEXT and ARRAY types).
+
+**NVComp Parameters tunning:**
+
+The following parameters can be adjusted to tune the performance and compression ration for NVComp.
+
++------------------------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| Parameter Name               | Default Value | Description                                                                                                                               |                                                                 
++==============================+===============+===========================================================================================================================================+
+| **nvcompChunkSize**          | 65,536        | Defines the size of internal data chunks processed by NVComp. Smaller values result in more chunks,                                       |
+|                              |               | which can increase parallel execution and potentially speed up processing, though very small chunks may introduce overhead.               |
++------------------------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **numRLEsCascadedCompress**  | 2             | Specifies the number of Run-Length Encodings (RLE) to perform as part of the cascaded compression process.                                |                                                                                               
++----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **numDeltasCascadedCompress**| 1             | Specifies the number of Delta Encodings to perform as part of the cascaded compression process.                                           |
++----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **useBPCascadedCompress**    | 1             | A boolean flag (1 for true, 0 for false) indicating whether to apply bit-packing to the final layers of the cascaded compression pipeline.| 
++----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **nvcompBitcompAlgoOption**  | 0             |Selects the algorithm used for Bitcomp compression.                                                                                        |
++----------------+-------------+---------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Syntax:**
+
+``CHECK`` saved command that is used to manually specify the compression to be used, will be extend to support NVComp and its algorithm - e.g. CHECK('CS "nv_cascading"')
+
+NVComp Options should include: nv_cascading, nv_lz4, nv_snappy, nv_geflate, nv_deflate, nv_ans, nv_bitmap,nv_zstandard(ZSTD)
+
+.. code-block:: postgres
+   
+   CREATE TABLE <table_name> (
+		<column_name_1> <data_type_1> [CHECK('CS "nv_<ALGORITHM>"')],
+		<column_name_2> <data_type_2> [CHECK('CS "nv_<ALGORITHM>"')],
+		...
+   );
+
+**Usage examples:**
+
+.. code-block:: postgres
+
+   CREATE TABLE sales_data (
+		transaction_id BIGINT CHECK('CS "nv_snappy"'),        -- Fast, general-purpose compression for the ID
+		product_description TEXT CHECK('CS "nv_zstandard"'),  -- High-ratio compression for text
+		quantity INTEGER CHECK('CS "nv_lz4"')                 -- Max performance for an integer column
+   );
 
 .. _specifying_compressions:
 
