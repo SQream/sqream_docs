@@ -130,7 +130,7 @@ SQream supports most standard Iceberg data types:
 +---------------------------+----------------+------------------------+
 | string                    | TEXT           | Stored as UTF-8.       |
 +---------------------------+----------------+------------------------+
-| timestamptz, uuid, binary | Not supported  |                        |
+| timestamp_nz			    | DATETIME2      |                        |
 +---------------------------+----------------+------------------------+
 
 
