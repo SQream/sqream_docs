@@ -109,7 +109,8 @@ An Iceberg table behaves like a regular SQream table for **SELECT** operations. 
 
 	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table WHERE column_a > 100;
 
-**Data Type Mapping**
+Data Type Mapping
+=================
 
 SQream supports most standard Iceberg data types:
 
@@ -122,7 +123,7 @@ SQream supports most standard Iceberg data types:
 +---------------------------+----------------+------------------------+
 | float, double             | REAL, DOUBLE   |                        |
 +---------------------------+----------------+------------------------+
-| decimal(P,S)              | NUMERIC(P,S)   | Precision $\le 38$.    |
+| decimal(P,S)              | NUMERIC(P,S)   | Precision ≤ 38.        |
 +---------------------------+----------------+------------------------+
 | date, timestamp           | DATE, DATETIME | Microsecond precision. |
 +---------------------------+----------------+------------------------+
@@ -130,9 +131,8 @@ SQream supports most standard Iceberg data types:
 +---------------------------+----------------+------------------------+
 | string                    | TEXT           | Stored as UTF-8.       |
 +---------------------------+----------------+------------------------+
-| timestamp_nz			    | DATETIME2      |                        |
+| timestamp_nz              | DATETIME2      |                        |
 +---------------------------+----------------+------------------------+
-
 
 **Querying Data Files (.files)**
 
