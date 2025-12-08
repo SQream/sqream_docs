@@ -167,16 +167,17 @@ This example demonstrates calling a PSF in the SELECT list.
 
 .. code:: sql
 
-	CREATE OR REPLACE MODULE pm OPTIONS(
-    PATH='/tmp/py_udf.py',
-    ENTRY_POINTS=[
-        [
-            NAME = 'multiply',
-            ARGUMENTS [int, int],
-            RETURNS SCALAR int,
-            GPU = false
-        ]
-    ]
+	CREATE OR REPLACE MODULE pm 
+	OPTIONS(
+		PATH='/tmp/py_udf.py',
+		ENTRY_POINTS=[
+			[
+				NAME = 'multiply',
+				ARGUMENTS [int, int],
+				RETURNS SCALAR int,
+				GPU = false
+			]
+		]
 	);
 
 * **How to use the Module?**
@@ -200,8 +201,8 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 
     # Defined in 'my_functions.py'
     def last_column(df):
-        df_new = df.iloc[:, -1:]
-        return df_new
+    df_new = df.iloc[:, -1:]
+    return df_new
 
 **Creating the Module in Sqream:**	
 
@@ -233,17 +234,18 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 Example 3: Passing Literal Parameters For Python Table Function (PTF)
 =====================================================================
 
-This example demonstrates how to pass a string literal to PTF.
+This example demonstrates how to pass literals to PTF.
 
 * **Python Function:**
 
 .. code:: python
 
-	#Defined in 'array_print.py'
-    def add_literal_column(df, literal_str):
+	#Defined in 'my_functions.py'
+    def add_literal_column(df, literals_map ):
     df_new = df.copy()
-    df_new["col4"] = literal_str
-		return df_new
+    df_new["col4"] = literals_map['0']
+    df_new["col5"] = literals_map['1']
+    return df_new
 
 **Creating the Module in Sqream:**	
 
@@ -251,29 +253,25 @@ This example demonstrates how to pass a string literal to PTF.
 
 	CREATE OR REPLACE MODULE my_mod3
 	OPTIONS (
-		PATH = '/tmp/array_print.py',
+		PATH = '/app/passing_literals.py',
 		ENTRY_POINTS = [
-			[
-				NAME = 'add_text_col',
-				ARGUMENTS [boolean, int, date],
-				LITERAL_PARAMETERS = 1,
-				RETURNS TABLE (col1 boolean, col2 int, col3 date, col4 text)
-			]
-		]
-	);
+				[ 
+					NAME = 'add_literal_column',  
+					ARGUMENTS [boolean, int, date],  
+					LITERAL_PARAMETERS = 2,                         
+					RETURNS TABLE (col1 boolean, col2 int, col3 date, col4 text, col5 int), gpu = true  
+					]
+				] 
+	 );
 
 * **How to use the Module?**
 
 .. code:: sql
 
     CREATE OR REPLACE TABLE t (col1 boolean, col2 int, col3 date);
-    INSERT INTO t VALUES (0, 1, '2025-09-11');
+    INSERT INTO t VALUES (0, 1, '2025-09-11'),(1, 2, '2027-01-01');
 
-    SELECT col1, col2, col3, col4
-    FROM TABLE(
-        my_mod3.add_literal_column(
-            CURSOR(SELECT * FROM source_table), 'Adding Any Text')
-    );
+    SELECT col1, col2, col3, col4, (col5+5) FROM TABLE( my_mod3.add_literal_column(  CURSOR(SELECT * FROM t), 'Text1', '1000') );
 
 3. Return Values
 ^^^^^^^^^^^^^^^^
