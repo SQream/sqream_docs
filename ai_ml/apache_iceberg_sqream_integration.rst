@@ -125,13 +125,11 @@ SQream supports most standard Iceberg data types:
 +---------------------------+----------------+------------------------+
 | decimal(P,S)              | NUMERIC(P,S)   | Precision ≤ 38.        |
 +---------------------------+----------------+------------------------+
-| date, timestamp           | DATE, DATETIME | Microsecond precision. |
+| date, timestamp           | DATE, DATETIME |                        |
 +---------------------------+----------------+------------------------+
-| timestamp_ns              | DATETIME       | Nanosecond precision.  |
+| timestamp_ns              | DATETIME2      | Nanosecond precision.  |
 +---------------------------+----------------+------------------------+
 | string                    | TEXT           | Stored as UTF-8.       |
-+---------------------------+----------------+------------------------+
-| timestamp_nz              | DATETIME2      |                        |
 +---------------------------+----------------+------------------------+
 
 **Querying Data Files (.files)**
