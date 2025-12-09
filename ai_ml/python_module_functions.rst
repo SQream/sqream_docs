@@ -163,7 +163,7 @@ This example demonstrates calling a PSF in the SELECT list.
 
     return df_result
 		
-**Creating the Module in Sqream:**
+* **Creating the Module in Sqream:**
 
 .. code:: sql
 
@@ -285,20 +285,22 @@ The PTF returns the enriched dataset with the total amount expressed in EUR.
 
 .. code:: python
 
-	#Defined in 'my_functions.py'
-	def convertAmountBasedOnRate(df, literals_map):
-    df_new = df.copy()
-    rate = literals_map['0']  
+    # Defined in 'my_functions.py'
+    def convertAmountBasedOnRate(df, literals_map):
+        df_new = df.copy()
+        rate = literals_map['0']
 
-    if 'totalamount' in df_new.columns:
-        df_new["ConvertedAmount"] = df_new['totalamount'] * rate
-    else:
-        # Handle case where the expected column isn't present
-        print("Warning: 'totalamount' column not found. 'commission' column not added.")
-        
-    return df_new
+        if 'totalamount' in df_new.columns:
+            df_new["ConvertedAmount"] = df_new['totalamount'] * rate
+        else:
+            # Handle case where the expected column isn't present
+            print("Warning: 'totalamount' column not found. 'commission' column not added.")
+
+        return df_new
 
 * **Creating the Module in Sqream:**	
+
+.. code:: sql
 
 	CREATE OR REPLACE MODULE my_mod5
 	OPTIONS (
@@ -325,14 +327,20 @@ The PTF returns the enriched dataset with the total amount expressed in EUR.
 
 	create or replace table sales_orders (OrderId int, EmployeeId int, OrderDate date, TotalAmount double);
 
-	insert into sales_orders values (5001,102,'2025-02-10',1250.00),(5002,101,'2025-05-01',890.50),(5003,102,'2025-09-15',3400.00),(5004,104,'2025-08-22',520.25),(5005,101,'2025-11-05',150.00),
-									(5006,102,'2025-10-01',1800.00),(5007,104,'2025-06-18',985.00),(5008,105,'2025-03-20',2500.00);
+	insert into sales_orders values (5001,102,'2025-02-10',1250.00),
+									(5002,101,'2025-05-01',890.50),
+									(5003,102,'2025-09-15',3400.00),
+									(5004,104,'2025-08-22',520.25),
+									(5005,101,'2025-11-05',150.00),
+									(5006,102,'2025-10-01',1800.00),
+									(5007,104,'2025-06-18',985.00),
+									(5008,105,'2025-03-20',2500.00);
 
     SELECT
-    emp.EmployeeId,
-    COUNT(*) AS NumberOfSales,
-    SUM(convSales.totalamount) AS "TotalSalesAmountUsd",
-    SUM(convSales.ConvertedAmount) AS "TotalSalesAmountEur"
+		emp.EmployeeId,
+		COUNT(*) AS NumberOfSales,
+		SUM(convSales.totalamount) AS "TotalSalesAmountUsd",
+		SUM(convSales.ConvertedAmount) AS "TotalSalesAmountEur"
 	FROM
 		employees AS emp
 	JOIN
