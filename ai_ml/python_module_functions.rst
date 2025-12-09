@@ -347,43 +347,42 @@ The PTF returns the enriched dataset with the total amount expressed in EUR.
 
 .. code:: sql
 
-	create table employees (EmployeeId int , FirstName text, LastName text, HireDate date, DepartmentId int);
+    create table employees (EmployeeId int , FirstName text, LastName text, HireDate date, DepartmentId int);
 
-	insert into employees values (101,'Alex','Johnson','2023-01-15','3'),(102,'Sarah','Chen','2020-07-01','1'),
-	(103,'David','Lee','2024-11-20','4'),(104,'Emily','Smith','2021-10-25','4'),(105,'Ryan','Garcia','2023-05-10','2');
+    insert into employees values (101,'Alex','Johnson','2023-01-15','3'),(102,'Sarah','Chen','2020-07-01','1'),
+    (103,'David','Lee','2024-11-20','4'),(104,'Emily','Smith','2021-10-25','4'),(105,'Ryan','Garcia','2023-05-10','2');
 
+    create or replace table sales_orders (OrderId int, EmployeeId int, OrderDate date, TotalAmount double);
 
-	create or replace table sales_orders (OrderId int, EmployeeId int, OrderDate date, TotalAmount double);
+    insert into sales_orders values (5001,102,'2025-02-10',1250.00),
+                                    (5002,101,'2025-05-01',890.50),
+                                    (5003,102,'2025-09-15',3400.00),
+                                    (5004,104,'2025-08-22',520.25),
+                                    (5005,101,'2025-11-05',150.00),
+                                    (5006,102,'2025-10-01',1800.00),
+                                    (5007,104,'2025-06-18',985.00),
+                                    (5008,105,'2025-03-20',2500.00);
 
-	insert into sales_orders values (5001,102,'2025-02-10',1250.00),
-									(5002,101,'2025-05-01',890.50),
-									(5003,102,'2025-09-15',3400.00),
-									(5004,104,'2025-08-22',520.25),
-									(5005,101,'2025-11-05',150.00),
-									(5006,102,'2025-10-01',1800.00),
-									(5007,104,'2025-06-18',985.00),
-									(5008,105,'2025-03-20',2500.00);
-	
     SELECT
-		emp.EmployeeId AS "EmployeeId",
-		COUNT(*) AS "NumberOfSales",
-		SUM(convSales.totalamount) AS "TotalSalesAmountUsd",
-		SUM(convSales.ConvertedAmount) AS "TotalSalesAmountEur"
-	FROM
-		employees AS emp
-	JOIN
-		TABLE(
-			my_mod5.convertAmountBasedOnRate(
-				CURSOR(SELECT * FROM sales_orders),
-				'0.86'
-			)
-		) AS convSales
-		ON emp.EmployeeId = convSales.EmployeeId
-	GROUP BY
-		emp.EmployeeId
-	ORDER BY
-		NumberOfSales DESC;
-		
+        emp.EmployeeId AS "EmployeeId",
+        COUNT(*) AS "NumberOfSales",
+        SUM(convSales.totalamount) AS "TotalSalesAmountUsd",
+        SUM(convSales.ConvertedAmount) AS "TotalSalesAmountEur"
+    FROM
+        employees AS emp
+    JOIN
+        TABLE(
+            my_mod5.convertAmountBasedOnRate(
+                CURSOR(SELECT * FROM sales_orders),
+                '0.86'
+            )
+        ) AS convSales
+        ON emp.EmployeeId = convSales.EmployeeId
+    GROUP BY
+        emp.EmployeeId
+    ORDER BY
+        NumberOfSales DESC;
+
 * **Results:**
 
 +----------+-------------+-------------------+-------------------+
