@@ -186,7 +186,17 @@ This example demonstrates calling a PSF in the SELECT list.
 
 	create or replace table t (number int, multiplier int);
 	INSERT INTO t VALUES ( 1, 2 ),( 2, 2 );
-	select pm.multiply(number, multiplier) from t;
+	select pm.multiply(number, multiplier) as multiple_results from t;
+	
+* **Results:**
+
+	+-----------------+
+	| multiple_results|
+	+-----------------+
+	| 2               |
+	+-----------------+
+	| 4               |
+	+-----------------+
 
 .. note:: The ``multiply`` function is executed row-by-row, taking the value from the value column as input and returning a single integer.
 
@@ -229,6 +239,14 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
     INSERT INTO t VALUES (DATE '2025-09-11', DATETIME '2025-09-11 14:30:00', 'some sample text');
     SELECT * FROM table(my_mod2.last_column(CURSOR(SELECT * FROM t)));
 	
+* **Results:**
+
+	+-----------------+
+	| col_name        |
+	+-----------------+
+	| some sample text|
+	+-----------------+
+
 .. note:: The ``select * from t`` subquery passes the t table to the function.
 
 Example 3: Passing Literal Parameters For Python Table Function (PTF)
@@ -273,6 +291,16 @@ This example demonstrates how to pass literals to PTF.
 
     SELECT col1, col2, col3, col4, (col5+5) FROM TABLE( my_mod3.add_literal_column(  CURSOR(SELECT * FROM t), 'Text1', '1000') );
 	
+* **Results:**
+	
+	+-----+-----+-----------+------+-------+
+	| col1| col2| col3      | col4 | EXPR$4|
+	+-----+-----+-----------+------+-------+
+	| 0   | 1   | 2025-09-11| Text1| 1005  |
+	+-----+-----+-----------+------+-------+
+	| 1   | 2   | 2027-01-01| Text1| 1005  |
+	+-----+-----+-----------+------+-------+
+
 Example 4: Join Statment on a Python Table Function (PTF)
 =====================================================================
 
