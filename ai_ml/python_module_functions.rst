@@ -204,7 +204,7 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
     df_new = df.iloc[:, -1:]
     return df_new
 
-**Creating the Module in Sqream:**	
+* **Creating the Module in Sqream:**	
 
 .. code:: sql
 
@@ -247,7 +247,7 @@ This example demonstrates how to pass literals to PTF.
     df_new["col5"] = literals_map['1']
     return df_new
 
-**Creating the Module in Sqream:**	
+* **Creating the Module in Sqream:**	
 
 .. code:: sql
 
@@ -272,6 +272,95 @@ This example demonstrates how to pass literals to PTF.
     INSERT INTO t VALUES (0, 1, '2025-09-11'),(1, 2, '2027-01-01');
 
     SELECT col1, col2, col3, col4, (col5+5) FROM TABLE( my_mod3.add_literal_column(  CURSOR(SELECT * FROM t), 'Text1', '1000') );
+	
+Example 4: Join Statment on a Python Table Function (PTF)
+=====================================================================
+
+In the following example, the employees table stores employee attributes, while the sales_orders table contains sales records, including the employee responsible for each sale and the corresponding sale amount.
+A standard join between these two tables allows us to retrieve metrics such as the total number of sales per employee and the overall sales amount.
+To enhance this data, we may want to convert the sales amount from USD to EUR. The Parameterized Table Function (PTF) performs this enrichment by applying the appropriate conversion rate, which is supplied by the user at runtime. 
+The PTF returns the enriched dataset with the total amount expressed in EUR.
+
+* **Python Function:**
+
+.. code:: python
+
+	#Defined in 'my_functions.py'
+	def convertAmountBasedOnRate(df, literals_map):
+    df_new = df.copy()
+    rate = literals_map['0']  
+
+    if 'totalamount' in df_new.columns:
+        df_new["ConvertedAmount"] = df_new['totalamount'] * rate
+    else:
+        # Handle case where the expected column isn't present
+        print("Warning: 'totalamount' column not found. 'commission' column not added.")
+        
+    return df_new
+
+* **Creating the Module in Sqream:**	
+
+	CREATE OR REPLACE MODULE my_mod5
+	OPTIONS (
+			PATH = '/app/my_functions.py',
+			ENTRY_POINTS = [
+							[
+									NAME = 'convertAmountBasedOnRate',
+									ARGUMENTS [int, int, date, double],
+									LITERAL_PARAMETERS = 1,
+									RETURNS TABLE (orderid int, employeeid int, orderdate date, totalamount double, ConvertedAmount double), gpu = true
+									]
+							]
+	 );
+
+* **How to use the Module?**
+
+.. code:: sql
+
+	create table employees (EmployeeId int , FirstName text, LastName text, HireDate date, DepartmentId int);
+
+	insert into employees values (101,'Alex','Johnson','2023-01-15','3'),(102,'Sarah','Chen','2020-07-01','1'),
+	(103,'David','Lee','2024-11-20','4'),(104,'Emily','Smith','2021-10-25','4'),(105,'Ryan','Garcia','2023-05-10','2');
+
+
+	create or replace table sales_orders (OrderId int, EmployeeId int, OrderDate date, TotalAmount double);
+
+	insert into sales_orders values (5001,102,'2025-02-10',1250.00),(5002,101,'2025-05-01',890.50),(5003,102,'2025-09-15',3400.00),(5004,104,'2025-08-22',520.25),(5005,101,'2025-11-05',150.00),
+									(5006,102,'2025-10-01',1800.00),(5007,104,'2025-06-18',985.00),(5008,105,'2025-03-20',2500.00);
+
+    SELECT
+    emp.EmployeeId,
+    COUNT(*) AS NumberOfSales,
+    SUM(convSales.totalamount) AS "TotalSalesAmountUsd",
+    SUM(convSales.ConvertedAmount) AS "TotalSalesAmountEur"
+	FROM
+		employees AS emp
+	JOIN
+		TABLE(
+			my_mod5.convertAmountBasedOnRate(
+				CURSOR(SELECT * FROM sales_orders),
+				'0.86'
+			)
+		) AS convSales
+		ON emp.EmployeeId = convSales.EmployeeId
+	GROUP BY
+		emp.EmployeeId
+	ORDER BY
+		NumberOfSales DESC;
+		
+* **Results:**
+
+	+----------+-------------+-------------------+-------------------+
+	|employeeid|numberofsales|TotalSalesAmountUsd|TotalSalesAmountEur|
+	+----------+-------------+-------------------+-------------------+
+	| 102      | 3           | 6450.0            | 5547.0            |
+	+----------+-------------+-------------------+-------------------+
+	| 101      | 2           | 1040.5            | 894.83            |
+	+----------+-------------+-------------------+-------------------+
+	| 104      | 2           | 1505.25           | 1294.515          |
+	+----------+-------------+-------------------+-------------------+
+	| 105      | 1           | 2500.0            | 2150.0            |
+	+----------+-------------+-------------------+-------------------+
 
 3. Return Values
 ^^^^^^^^^^^^^^^^
