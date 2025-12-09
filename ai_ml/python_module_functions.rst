@@ -363,10 +363,10 @@ The PTF returns the enriched dataset with the total amount expressed in EUR.
 									(5006,102,'2025-10-01',1800.00),
 									(5007,104,'2025-06-18',985.00),
 									(5008,105,'2025-03-20',2500.00);
-
+	
     SELECT
-		emp.EmployeeId,
-		COUNT(*) AS NumberOfSales,
+		emp.EmployeeId AS "EmployeeId",
+		COUNT(*) AS "NumberOfSales",
 		SUM(convSales.totalamount) AS "TotalSalesAmountUsd",
 		SUM(convSales.ConvertedAmount) AS "TotalSalesAmountEur"
 	FROM
@@ -387,7 +387,7 @@ The PTF returns the enriched dataset with the total amount expressed in EUR.
 * **Results:**
 
 +----------+-------------+-------------------+-------------------+
-|employeeid|numberofsales|TotalSalesAmountUsd|TotalSalesAmountEur|
+|EmployeeId|NumberOfSales|TotalSalesAmountUsd|TotalSalesAmountEur|
 +----------+-------------+-------------------+-------------------+
 | 102      | 3           | 6450.0            | 5547.0            |
 +----------+-------------+-------------------+-------------------+
