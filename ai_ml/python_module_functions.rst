@@ -170,18 +170,18 @@ This example demonstrates calling a PSF in the SELECT list.
 
 .. code:: sql
 
-	CREATE OR REPLACE MODULE pm 
-	OPTIONS(
-		PATH='/tmp/py_udf.py',
-		ENTRY_POINTS=[
-			[
-				NAME = 'multiply',
-				ARGUMENTS [int, int],
-				RETURNS SCALAR int,
-				GPU = false
-			]
-		]
-	);
+    CREATE OR REPLACE MODULE pm 
+    OPTIONS(
+        PATH='/tmp/py_udf.py',
+        ENTRY_POINTS=[
+            [
+                NAME = 'multiply',
+                ARGUMENTS [int, int],
+                RETURNS SCALAR int,
+                GPU = false
+            ]
+        ]
+    );
 
 * **How to use the Module?**
 
@@ -221,18 +221,18 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 
 .. code:: sql
 
-	CREATE OR REPLACE MODULE my_mod2
-	OPTIONS (
-		PATH = '/app/my_functions1.py',
-		ENTRY_POINTS = [
-			[
-				NAME = 'last_column',
-				ARGUMENTS [date, datetime, text],
-				RETURNS TABLE (col_name text),
-				GPU = true
-			]
-		]
-	);
+    CREATE OR REPLACE MODULE my_mod2
+    OPTIONS (
+        PATH = '/app/my_functions1.py',
+        ENTRY_POINTS = [
+            [
+                NAME = 'last_column',
+                ARGUMENTS [date, datetime, text],
+                RETURNS TABLE (col_name text),
+                GPU = true
+            ]
+        ]
+    );
 
 * **How to use the Module?**
 
@@ -272,18 +272,19 @@ This example demonstrates how to pass literals to PTF.
 
 .. code:: sql
 
-	CREATE OR REPLACE MODULE my_mod3
-	OPTIONS (
-		PATH = '/app/passing_literals.py',
-		ENTRY_POINTS = [
-			[ 
-				NAME = 'add_literal_column',  
-				ARGUMENTS [boolean, int, date],  
-				LITERAL_PARAMETERS = 2,                         
-				RETURNS TABLE (col1 boolean, col2 int, col3 date, col4 text, col5 int), gpu = true  
-				]
-			] 
-	 );
+    CREATE OR REPLACE MODULE my_mod3
+    OPTIONS (
+        PATH = '/app/passing_literals.py',
+        ENTRY_POINTS = [
+            [
+                NAME = 'add_literal_column',
+                ARGUMENTS [boolean, int, date],
+                LITERAL_PARAMETERS = 2,
+                RETURNS TABLE (col1 boolean, col2 int, col3 date, col4 text, col5 int),
+                GPU = true
+            ]
+        ]
+    );
 
 * **How to use the Module?**
 
@@ -333,18 +334,19 @@ The PTF returns the enriched dataset with the total amount expressed in EUR.
 
 .. code:: sql
 
-	CREATE OR REPLACE MODULE my_mod5
-	OPTIONS (
-			PATH = '/app/my_functions.py',
-			ENTRY_POINTS = [
-				[
-					NAME = 'convertAmountBasedOnRate',
-					ARGUMENTS [int, int, date, double],
-					LITERAL_PARAMETERS = 1,
-					RETURNS TABLE (orderid int, employeeid int, orderdate date, totalamount double, ConvertedAmount double), gpu = true
-					]
-				]
-	 );
+    CREATE OR REPLACE MODULE my_mod4
+    OPTIONS (
+        PATH = '/app/my_functions.py',
+        ENTRY_POINTS = [
+            [
+                NAME = 'convertAmountBasedOnRate',
+                ARGUMENTS [int, int, date, double],
+                LITERAL_PARAMETERS = 1,
+                RETURNS TABLE (orderid int, employeeid int, orderdate date, totalamount double, ConvertedAmount double),
+                GPU = true
+            ]
+        ]
+    );
 
 * **How to use the Module?**
 
@@ -375,7 +377,7 @@ The PTF returns the enriched dataset with the total amount expressed in EUR.
         employees AS emp
     JOIN
         TABLE(
-            my_mod5.convertAmountBasedOnRate(
+            my_mod4.convertAmountBasedOnRate(
                 CURSOR(SELECT * FROM sales_orders),
                 '0.86'
             )
