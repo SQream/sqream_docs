@@ -97,7 +97,7 @@ A Python Scalar Function is called directly by its fully qualified name and acce
 
   .. code:: sql
 
-    <module_name>.<scalar_function>([<arg1>, <arg2>, ...]);
+    <module_name>.<scalar_function>([<arg1>, <arg2>, ...<literal_params>*]);
 
 	
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
@@ -109,6 +109,9 @@ A Python Scalar Function is called directly by its fully qualified name and acce
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | [<arg1>, <arg2>, ...]  | The arguments passed to the function. These can be columns from the queried table (e.g., t.my_column)                                 | Optional               |
 |                        | or literal values (e.g., 10, 'hello').                                                                                                |                        |   
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| <literal_param>*       | These are optional string literals that are passed as additional arguments to your Python function.                                   | Optional               |
+|                        | They must be defined in the module’s literal_parameters option and will be cast to strings in the Python code.                        |                        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
 **Example: Defining a Module with Both Function Types**
