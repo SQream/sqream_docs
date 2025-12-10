@@ -261,7 +261,7 @@ This example demonstrates how to pass literals to PTF.
 
 .. code:: python
 
-	#Defined in 'my_functions.py'
+	# Defined in 'my_functions.py'
     def add_literal_column(df, literals_map ):
     df_new = df.copy()
     df_new["col4"] = literals_map['0']
@@ -276,13 +276,13 @@ This example demonstrates how to pass literals to PTF.
 	OPTIONS (
 		PATH = '/app/passing_literals.py',
 		ENTRY_POINTS = [
-				[ 
-					NAME = 'add_literal_column',  
-					ARGUMENTS [boolean, int, date],  
-					LITERAL_PARAMETERS = 2,                         
-					RETURNS TABLE (col1 boolean, col2 int, col3 date, col4 text, col5 int), gpu = true  
-					]
-				] 
+			[ 
+				NAME = 'add_literal_column',  
+				ARGUMENTS [boolean, int, date],  
+				LITERAL_PARAMETERS = 2,                         
+				RETURNS TABLE (col1 boolean, col2 int, col3 date, col4 text, col5 int), gpu = true  
+				]
+			] 
 	 );
 
 * **How to use the Module?**
@@ -337,13 +337,13 @@ The PTF returns the enriched dataset with the total amount expressed in EUR.
 	OPTIONS (
 			PATH = '/app/my_functions.py',
 			ENTRY_POINTS = [
-							[
-									NAME = 'convertAmountBasedOnRate',
-									ARGUMENTS [int, int, date, double],
-									LITERAL_PARAMETERS = 1,
-									RETURNS TABLE (orderid int, employeeid int, orderdate date, totalamount double, ConvertedAmount double), gpu = true
-									]
-							]
+				[
+					NAME = 'convertAmountBasedOnRate',
+					ARGUMENTS [int, int, date, double],
+					LITERAL_PARAMETERS = 1,
+					RETURNS TABLE (orderid int, employeeid int, orderdate date, totalamount double, ConvertedAmount double), gpu = true
+					]
+				]
 	 );
 
 * **How to use the Module?**
