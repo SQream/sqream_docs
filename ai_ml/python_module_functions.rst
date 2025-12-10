@@ -73,7 +73,7 @@ This clause defines the execution of your Python Table Function. It has the foll
 
   .. code:: sql
 
-    table(<table_function>([cursor(<sub_query>)], <literal_param>*));
+    table(<table_function>(cursor(<sub_query>), <literal_param>*));
 
 +------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 | **Syntax**             | **Description**                                                                                                                       | **Mandatory/Optional** |
