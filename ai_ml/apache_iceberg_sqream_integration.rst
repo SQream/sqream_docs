@@ -92,9 +92,12 @@ This links the new Catalog Integration to a database object within SQream.
 
 	CREATE FOREIGN DATABASE t_iceberg_db catalog integration t_iceberg;
 	
-.. note:: This can only be performed on an empty database.
+.. note:: 
 
-**Limitations (Private Preview)**
+   * This can only be performed on an empty database.
+   * SQream DB automatically converts Iceberg identifiers (database, namespace, and table names) to lowercase. Therefore, you must use lowercase names, or explicitly quote any identifier that contains uppercase letters or special characters.
+
+**Limitations**
 
 * **File Format:** Only **Parquet** is supported.
 * **Operations:** Only **SELECT** queries are supported. DML (**DELETE, INSERT, UPDATE**) and DDL operations will be added in later phases.
@@ -226,7 +229,7 @@ Shows the changes and lineage of snapshots for a table.
 | is_current_ancestor | BOOLEAN        | Indicates if this snapshot is an ancestor of the current table state. |
 +---------------------+----------------+-----------------------------------------------------------------------+
 
-Querying Snapshots (.snapshots)
+**Querying Snapshots (.snapshots)**
 
 Shows all valid snapshots for a table, including the operation that created them.
 

@@ -24,7 +24,7 @@ Python Table Functions (PTFs) and Python Scalar Functions (PSFs) are based on cr
 				ARGUMENTS [type1, type2, ...] | LIKE table_name,
 				RETURNS TABLE (col1 type1, col2 type2, ...) | LIKE table_name | SCALAR type,
 				LITERAL_PARAMETERS = number,
-				GPU = true/false
+				GPU = true|false
 			]
 		]
 	);
