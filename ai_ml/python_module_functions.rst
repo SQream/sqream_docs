@@ -245,6 +245,7 @@ This example demonstrates how to pass literals to PSF.
 * **How to use the Module?**
 
 .. code:: sql
+
 	create or replace table t (number int, multiplier int);
 	INSERT INTO t VALUES ( 2, 4 ),( 5 , 7 );
 	select my_mod2.multiply(number, multiplier,'10','20') as multiple_results from t;
