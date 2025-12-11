@@ -201,8 +201,6 @@ This example demonstrates calling a PSF in the SELECT list.
 | 4               |
 +-----------------+
 
-.. note:: The ``multiply`` function is executed row-by-row, taking the value from the value column as input and returning a single integer.
-
 Example 2: Passing Literal Parameters For Python Scalar Function (PSF)
 ======================================================================
 
