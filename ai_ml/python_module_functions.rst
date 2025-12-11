@@ -65,6 +65,10 @@ The system applies automatic type casting to all input arguments.
 
   * Literal values can be passed to table functions.
   * Literal parameters are stored as Seq[String] and provided to the function at execution time.
+  
+**4. Dataframe Input Parameter to the Python Function**
+
+Both PTFs and PSFs **require** a dataFrame to be passed as the input parameter to the Python function.
 
 **Python Table Functions (PTFs): The <function_clause>**
 ========================================================
