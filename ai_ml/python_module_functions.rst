@@ -170,7 +170,7 @@ This example demonstrates calling a PSF in the SELECT list.
 
 .. code:: sql
 
-    CREATE OR REPLACE MODULE pm 
+    CREATE OR REPLACE MODULE my_mod1 
     OPTIONS(
         PATH='/tmp/py_udf.py',
         ENTRY_POINTS=[
@@ -189,7 +189,7 @@ This example demonstrates calling a PSF in the SELECT list.
 
 	create or replace table t (number int, multiplier int);
 	INSERT INTO t VALUES ( 1, 2 ),( 2, 2 );
-	select pm.multiply(number, multiplier) as multiple_results from t;
+	select my_mod1.multiply(number, multiplier) as multiple_results from t;
 	
 * **Results:**
 
@@ -203,7 +203,64 @@ This example demonstrates calling a PSF in the SELECT list.
 
 .. note:: The ``multiply`` function is executed row-by-row, taking the value from the value column as input and returning a single integer.
 
-Example 2: Python Table Function (PTF)
+Example 2: Passing Literal Parameters For Python Scalar Function (PSF)
+======================================================================
+
+This example demonstrates how to pass literals to PSF.
+
+* **Python Function:**
+
+.. code:: python
+	
+	def multiply(df,literals_map):
+	"""
+    Takes a dataframe containing 'number' and 'multiplier' columns,
+    calculates the product row-by-row, and returns the modified dataframe.
+    """
+    num1= int(literals_map['0'])
+    num2= int(literals_map['1'])
+
+    df_copy = df.copy()
+
+    df_result = df_copy['number'] * df_copy['multiplier'] * num1 * num2
+
+* **Creating the Module in Sqream:**
+
+.. code:: sql
+
+	CREATE OR REPLACE MODULE my_mod2
+	OPTIONS (
+			PATH = '/app/scalar_multipy_function_with_literals.py',
+			ENTRY_POINTS = [
+					[
+							NAME = 'multiply',
+							ARGUMENTS [int, int],
+							LITERAL_PARAMETERS = 2,
+							RETURNS SCALAR int,
+							GPU = false
+					]
+			]
+	);	
+
+* **How to use the Module?**
+
+.. code:: sql
+	create or replace table t (number int, multiplier int);
+	INSERT INTO t VALUES ( 2, 4 ),( 5 , 7 );
+	select my_mod2.multiply(number, multiplier,'10','20') as multiple_results from t;
+
+* **Results:**
+
++-----------------+
+| multiple_results|
++-----------------+
+| 1600            |
++-----------------+
+| 7000            |
++-----------------+
+
+
+Example 3: Python Table Function (PTF)
 ======================================
 
 This example demonstrates how to use cursor() to pass an entire table’s data to a PTF.
@@ -221,7 +278,7 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 
 .. code:: sql
 
-    CREATE OR REPLACE MODULE my_mod2
+    CREATE OR REPLACE MODULE my_mod3
     OPTIONS (
         PATH = '/app/my_functions1.py',
         ENTRY_POINTS = [
@@ -240,7 +297,7 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 
     CREATE OR REPLACE TABLE t (xdate DATE, xdatetime DATETIME, xtext TEXT);
     INSERT INTO t VALUES (DATE '2025-09-11', DATETIME '2025-09-11 14:30:00', 'some sample text');
-    SELECT * FROM table(my_mod2.last_column(CURSOR(SELECT * FROM t)));
+    SELECT * FROM table(my_mod3.last_column(CURSOR(SELECT * FROM t)));
 	
 * **Results:**
 
@@ -252,7 +309,7 @@ This example demonstrates how to use cursor() to pass an entire table’s data t
 
 .. note:: The ``select * from t`` subquery passes the t table to the function.
 
-Example 3: Passing Literal Parameters For Python Table Function (PTF)
+Example 4: Passing Literal Parameters For Python Table Function (PTF)
 =====================================================================
 
 This example demonstrates how to pass literals to PTF.
@@ -272,7 +329,7 @@ This example demonstrates how to pass literals to PTF.
 
 .. code:: sql
 
-    CREATE OR REPLACE MODULE my_mod3
+    CREATE OR REPLACE MODULE my_mod4
     OPTIONS (
         PATH = '/app/passing_literals.py',
         ENTRY_POINTS = [
@@ -293,7 +350,7 @@ This example demonstrates how to pass literals to PTF.
     CREATE OR REPLACE TABLE t (col1 boolean, col2 int, col3 date);
     INSERT INTO t VALUES (0, 1, '2025-09-11'),(1, 2, '2027-01-01');
 
-    SELECT col1, col2, col3, col4, (col5+5) FROM TABLE( my_mod3.add_literal_column(  CURSOR(SELECT * FROM t), 'Text1', '1000') );
+    SELECT col1, col2, col3, col4, (col5+5) FROM TABLE( my_mod4.add_literal_column(  CURSOR(SELECT * FROM t), 'Text1', '1000') );
 	
 * **Results:**
 	
@@ -305,7 +362,7 @@ This example demonstrates how to pass literals to PTF.
 | 1   | 2   | 2027-01-01| Text1| 1005  |
 +-----+-----+-----------+------+-------+
 
-Example 4: Join Statment on a Python Table Function (PTF)
+Example 5: Join Statment on a Python Table Function (PTF)
 =====================================================================
 
 In the following example, the employees table stores employee attributes, while the sales_orders table contains sales records, including the employee responsible for each sale and the corresponding sale amount.
@@ -334,7 +391,7 @@ The PTF returns the enriched dataset with the total amount expressed in EUR.
 
 .. code:: sql
 
-    CREATE OR REPLACE MODULE my_mod4
+    CREATE OR REPLACE MODULE my_mod5
     OPTIONS (
         PATH = '/app/my_functions.py',
         ENTRY_POINTS = [
@@ -377,7 +434,7 @@ The PTF returns the enriched dataset with the total amount expressed in EUR.
         employees AS emp
     JOIN
         TABLE(
-            my_mod4.convertAmountBasedOnRate(
+            my_mod5.convertAmountBasedOnRate(
                 CURSOR(SELECT * FROM sales_orders),
                 '0.86'
             )
