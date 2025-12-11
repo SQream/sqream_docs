@@ -3,171 +3,464 @@
 Python Functions
 ------------------------
 
-
-Python functions in SQream allow you to execute custom Python logic on your data and return the results as a new table. This functionality integrates the power of Python's data processing libraries (like Pandas) directly into your SQL queries.
-
+Python functions in SQream allow you to execute custom Python logic on your data and return the results. This functionality integrates the power of Python’s data processing libraries (like Pandas) directly into your SQL queries, supporting two main types: **Table Functions** (which return a table) and **Scalar Functions** (which return a single value).
 
 
 1. Syntax Overview
 ^^^^^^^^^^^^^^^^^^
 
-Python functions are used within the FROM clause of SELECT and INSERT statements. The core component is the <function_clause>.
+Python Table Functions (PTFs) and Python Scalar Functions (PSFs) are based on creating a Module.
 
-SELECT statement
-To query data from a Python function, you use the following syntax:
-
-.. code:: sql
-
-    SELECT <select_list> FROM <function_clause>
-
-INSERT statement
-To insert data returned by a Python function into an existing table, you use this syntax:
-
-
-.. code:: sql
-    INSERT INTO <table> SELECT * FROM <function_clause>
-
-
-
-2. The ``<function_clause>``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This clause defines the execution of your Python function. It has the following structure:
-
+**Module Creation:**
+====================
 
 .. code:: sql
 
-    table(<table_function>([cursor(<sub_query>)], <literal_param>*));
+	CREATE MODULE module_name OPTIONS (
+		PATH = 'module.py', 
+		ENTRY_POINTS = [
+			[
+				NAME = 'function_name',
+				ARGUMENTS [type1, type2, ...] | LIKE table_name,
+				RETURNS TABLE (col1 type1, col2 type2, ...) | LIKE table_name | SCALAR type,
+				LITERAL_PARAMETERS = number,
+				GPU = true|false
+			]
+		]
+	);
 
-``table()``: This is the main function wrapper that tells SQream to execute the Python function.
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| **Syntax**             | **Description**                                                                                                                       | **Mandatory/Optional** |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| PATH                   | Specifies the file path to your Python script on the server.                                                                          | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| ENTRY_POINTS           | A list of the Python functions within the script that can be called from SQream.                                                      | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| NAME                   | The name of the Python function.                                                                                                      | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| ARGUMENTS              | Can specify explicit types ``[int, text, float]`` or reference existing table structure ``LIKE table_name``.                          | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| RETURNS                | The RETURNS clause supports the following options:                                                                                    | Mandatory              |
+|                        | 1. ``TABLE (column_name data_type, ...)`` – Defines an explicit table structure.                                                      |                        |
+|                        | 2. ``LIKE table_name`` – Inherits structure from an existing table.                                                                   |                        |
+|                        | 3. ``SCALAR data_type`` – Specifies a scalar return type.                                                                             |                        |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| GPU=true/false         | Whether the function executes on GPU or CPU. Default is CPU.                                                                          | Optional               |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| LITERAL_PARAMETERS     | Number of literal parameters the function accepts.                                                                                    | Optional               |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
-``<table_function>``: This is the fully qualified name of the Python function, including the module name. For example, ``arr_varif.final_array``.
+**Notes:**
 
-``cursor(<sub_query>)``: This is an optional argument that passes the result of a subquery (any valid ``SELECT`` statement) to your Python function. The data is provided to the Python function as a Pandas DataFrame.
+**1. Input Casting** 
 
-``<literal_param>*``: These are optional string literals that are passed as additional arguments to your Python function. They must be defined in the module's literal_parameters option and will be cast to strings in the Python code.
+The system applies automatic type casting to all input arguments.
+
+**2. Output Casting**
+
+  * All return types are automatically marked as nullable (isNullable = true).
+  * Output columns are typed according to the function’s declared return specification.
+  
+**3. Literal Parameters**
+
+  * Literal values can be passed to table functions.
+  * Literal parameters are stored as Seq[String] and provided to the function at execution time.
+
+**Python Table Functions (PTFs): The <function_clause>**
+========================================================
+
+This clause defines the execution of your Python Table Function. It has the following structure:
+
+  .. code:: sql
+
+    table(<table_function>(cursor(<sub_query>), <literal_param>*));
+
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| **Syntax**             | **Description**                                                                                                                       | **Mandatory/Optional** |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| table()                | This is the main function wrapper that tells SQream to execute the Python Table Function and treat its result as a relation (a table).| Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| table_function         | This is the fully qualified name of the Python function, including the module name. For example, arr_varif.final_array.               | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| cursor(<sub_query>)    | This is an optional argument that passes the result of a subquery (any valid SELECT statement) to your Python function.               | Optional               |
+|                        | The data is provided to the Python function as a Pandas DataFrame.                                                                    |                        |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| <literal_param>*       | These are optional string literals that are passed as additional arguments to your Python function.                                   | Optional               |
+|                        | They must be defined in the module’s literal_parameters option and will be cast to strings in the Python code.                        |                        |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 
 
+**Python Scalar Functions (PSFs): The <scalar_function>**
+=========================================================
 
-3. Defining a Python Module
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A Python Scalar Function is called directly by its fully qualified name and accepts one or more arguments, which can be **column names** or **literal values**.
 
-Before you can use a Python function, you must define it in SQream using a module. The ``CREATE OR REPLACE MODULE`` command is used for this purpose.
+  .. code:: sql
 
-Example:
-Based on your provided code, here is an example of defining a module with multiple entry points:
+    <module_name>.<scalar_function>([<arg1>, <arg2>, ...<literal_params>*]);
 
+	
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| **Syntax**             | **Description**                                                                                                                       | **Mandatory/Optional** |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| <module_name>          | See the section for :ref:`Python Module<PythonModule>`                                                                                | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| <scalar_function>      | The fully qualified name of the Python Scalar Function                                                                                | Mandatory              |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| [<arg1>, <arg2>, ...]  | The arguments passed to the function. These can be columns from the queried table (e.g., t.my_column)                                 | Optional               |
+|                        | or literal values (e.g., 10, 'hello').                                                                                                |                        |   
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| <literal_param>*       | These are optional string literals that are passed as additional arguments to your Python function.                                   | Optional               |
+|                        | They must be defined in the module’s literal_parameters option and will be cast to strings in the Python code.                        |                        |
++------------------------+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+
+**Example: Defining a Module with Both Function Types**
+=======================================================
 
 .. code:: sql
 
-    CREATE OR REPLACE MODULE arr_varif
-    OPTIONS
-    (
-        path='/home/sqream/git/debug/udf/array_print.py',
-        entry_points =
+    CREATE OR REPLACE MODULE my_funcs
+	OPTIONS(
+    path='/home/sqream/udf/my_functions.py',
+    entry_points =
+    [
+        -- PTF Definition
         [
-            [
-                name = 'final_array',
-                arguments [text[], int[], float[], date, datetime, text],
-                returns table (varification text),
-                gpu=true
-            ],
-            [
-                name = 'final_array_cpu',
-                arguments [text[], int[], float[], date, datetime, text],
-                returns table (verification text, i int),
-                gpu=false
-            ]
-        ]
-    );
-
-``path``: Specifies the file path to your Python script on the server.
-
-``entry_points``: A list of the Python functions within the script that can be called from SQream.
-
-``name``: The name of the Python function.
-
-``arguments``: A list of the data types of the columns that the Python function expects from the cursor() subquery.
-
-``returns table(...)``: The schema of the table that the Python function will return. The column names and data types must match the DataFrame returned by your Python code.
-
-``gpu=true/false``: Determines whether the function will be executed on the GPU or the CPU.
-
-
-
-4. Examples in Action
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Example 1: Passing a Subquery
-This example demonstrates how to use ``cursor()`` to pass an entire table's data to a Python function.
-
-Python Function:
-
-The final_array function takes a DataFrame df and returns a new DataFrame.
-
-
-
-.. code:: python
-
-    def final_array(df):
-        df_new = df.iloc[:, -1:]
-        return df_new
-
-SQream Query:
-
-This query executes final_array and selects all columns from the resulting table. The select * from t subquery passes the t table to the function.
-
-.. code:: sql
-
-    SELECT * FROM table(arr_varif.final_array(Cursor(SELECT * FROM t)));
-
-Example 2: Passing Literal Parameters
-This example shows how to pass a string literal to the Python function. This is useful for passing configuration or simple values that aren't part of a query.
-
-Module Definition:
-
-The literal_parameters = 1 option indicates that one literal parameter is expected.
-
-.. code:: sql
-
-    CREATE OR REPLACE MODULE test3
-    OPTIONS (
-        PATH = '/home/sqream/git/debug/udf/array_print.py',
-        ENTRY_POINTS =
+            name = 'process_data_table',
+            arguments [text, int],
+            returns table (processed_text text, processed_value int),
+            gpu=true
+        ],
+        -- PSF Definition
         [
-            [
-                NAME = 'empty_df',
-                ARGUMENTS [],
-                literal_parameters = 1,
-                returns table(x text, y int)
-            ]
+            name = 'add_one',
+            arguments [int],
+            returns int,
+            gpu=false
         ]
-    );
+    ]
+	);
 
-Python Function:
-
-The empty_df function receives both the DataFrame and the literal parameter (p) as arguments.
-
-.. code:: python
-
-    def empty_df(df,p):
-        print(df) # The df will be empty here since ARGUMENTS is empty
-        print(p) # This will print 'param1'
-        # ...
-
-
-SQream Query:
-
-The string literal 'param1' is passed to the function.
-
-.. code:: sql
-
-    SELECT * FROM table(test3.empty_boi('param1'));
-    Note: The name of the Python function in the ``SELECT`` statement (``empty_boi``) does not match the name in the module definition (``empty_df``) in your example. These names must match for the query to work correctly.
-
-
-
-5. Return Values
+2. Usage Examples
 ^^^^^^^^^^^^^^^^^^^^^
 
-Your Python function must return a Pandas DataFrame. The column names and data types of this DataFrame must exactly match the schema defined in the ``returns table(...)`` clause of the module's entry point.
+Example 1: Python Scalar Function (PSF)
+=======================================
+
+This example demonstrates calling a PSF in the SELECT list.
+
+* **Python Function:**
+
+.. code:: python
+
+    def multiply(df):
+    """
+    Takes a dataframe containing 'number' and 'multiplier' columns,
+    calculates the product row-by-row, and returns the modified dataframe.
+    """
+    # Create a copy to ensure we don't modify the original data unintentionally
+    df_copy = df.copy()
+
+    # Vectorized multiplication: Multiplies aligned rows instantly
+    df_result = df_copy['number'] * df_copy['multiplier']
+
+    return df_result
+		
+* **Creating the Module in Sqream:**
+
+.. code:: sql
+
+    CREATE OR REPLACE MODULE my_mod1 
+    OPTIONS(
+        PATH='/tmp/py_udf.py',
+        ENTRY_POINTS=[
+            [
+                NAME = 'multiply',
+                ARGUMENTS [int, int],
+                RETURNS SCALAR int,
+                GPU = false
+            ]
+        ]
+    );
+
+* **How to use the Module?**
+
+.. code:: sql
+
+	create or replace table t (number int, multiplier int);
+	INSERT INTO t VALUES ( 1, 2 ),( 2, 2 );
+	select my_mod1.multiply(number, multiplier) as multiple_results from t;
+	
+* **Results:**
+
++-----------------+
+| multiple_results|
++-----------------+
+| 2               |
++-----------------+
+| 4               |
++-----------------+
+
+Example 2: Passing Literal Parameters For Python Scalar Function (PSF)
+======================================================================
+
+This example demonstrates how to pass literals to PSF.
+
+* **Python Function:**
+
+.. code:: python
+	
+	def multiply(df,literals_map):
+	"""
+    Takes a dataframe containing 'number' and 'multiplier' columns,
+    calculates the product row-by-row, and returns the modified dataframe.
+    """
+    num1= int(literals_map['0'])
+    num2= int(literals_map['1'])
+
+    df_copy = df.copy()
+
+    df_result = df_copy['number'] * df_copy['multiplier'] * num1 * num2
+
+* **Creating the Module in Sqream:**
+
+.. code:: sql
+
+	CREATE OR REPLACE MODULE my_mod2
+	OPTIONS (
+			PATH = '/app/scalar_multipy_function_with_literals.py',
+			ENTRY_POINTS = [
+					[
+							NAME = 'multiply',
+							ARGUMENTS [int, int],
+							LITERAL_PARAMETERS = 2,
+							RETURNS SCALAR int,
+							GPU = false
+					]
+			]
+	);	
+
+* **How to use the Module?**
+
+.. code:: sql
+
+	create or replace table t (number int, multiplier int);
+	INSERT INTO t VALUES ( 2, 4 ),( 5 , 7 );
+	select my_mod2.multiply(number, multiplier,'10','20') as multiple_results from t;
+
+* **Results:**
+
++-----------------+
+| multiple_results|
++-----------------+
+| 1600            |
++-----------------+
+| 7000            |
++-----------------+
+
+
+Example 3: Python Table Function (PTF)
+======================================
+
+This example demonstrates how to use cursor() to pass an entire table’s data to a PTF.
+
+* **Python Function:**
+
+.. code:: python
+
+    # Defined in 'my_functions.py'
+    def last_column(df):
+    df_new = df.iloc[:, -1:]
+    return df_new
+
+* **Creating the Module in Sqream:**	
+
+.. code:: sql
+
+    CREATE OR REPLACE MODULE my_mod3
+    OPTIONS (
+        PATH = '/app/my_functions1.py',
+        ENTRY_POINTS = [
+            [
+                NAME = 'last_column',
+                ARGUMENTS [date, datetime, text],
+                RETURNS TABLE (col_name text),
+                GPU = true
+            ]
+        ]
+    );
+
+* **How to use the Module?**
+
+.. code:: sql
+
+    CREATE OR REPLACE TABLE t (xdate DATE, xdatetime DATETIME, xtext TEXT);
+    INSERT INTO t VALUES (DATE '2025-09-11', DATETIME '2025-09-11 14:30:00', 'some sample text');
+    SELECT * FROM table(my_mod3.last_column(CURSOR(SELECT * FROM t)));
+	
+* **Results:**
+
++-----------------+
+| col_name        |
++-----------------+
+| some sample text|
++-----------------+
+
+.. note:: The ``select * from t`` subquery passes the t table to the function.
+
+Example 4: Passing Literal Parameters For Python Table Function (PTF)
+=====================================================================
+
+This example demonstrates how to pass literals to PTF.
+
+* **Python Function:**
+
+.. code:: python
+
+	# Defined in 'my_functions.py'
+    def add_literal_column(df, literals_map ):
+    df_new = df.copy()
+    df_new["col4"] = literals_map['0']
+    df_new["col5"] = literals_map['1']
+    return df_new
+
+* **Creating the Module in Sqream:**	
+
+.. code:: sql
+
+    CREATE OR REPLACE MODULE my_mod4
+    OPTIONS (
+        PATH = '/app/passing_literals.py',
+        ENTRY_POINTS = [
+            [
+                NAME = 'add_literal_column',
+                ARGUMENTS [boolean, int, date],
+                LITERAL_PARAMETERS = 2,
+                RETURNS TABLE (col1 boolean, col2 int, col3 date, col4 text, col5 int),
+                GPU = true
+            ]
+        ]
+    );
+
+* **How to use the Module?**
+
+.. code:: sql
+
+    CREATE OR REPLACE TABLE t (col1 boolean, col2 int, col3 date);
+    INSERT INTO t VALUES (0, 1, '2025-09-11'),(1, 2, '2027-01-01');
+
+    SELECT col1, col2, col3, col4, (col5+5) FROM TABLE( my_mod4.add_literal_column(  CURSOR(SELECT * FROM t), 'Text1', '1000') );
+	
+* **Results:**
+	
++-----+-----+-----------+------+-------+
+| col1| col2| col3      | col4 | EXPR$4|
++-----+-----+-----------+------+-------+
+| 0   | 1   | 2025-09-11| Text1| 1005  |
++-----+-----+-----------+------+-------+
+| 1   | 2   | 2027-01-01| Text1| 1005  |
++-----+-----+-----------+------+-------+
+
+Example 5: Join Statment on a Python Table Function (PTF)
+=====================================================================
+
+In the following example, the employees table stores employee attributes, while the sales_orders table contains sales records, including the employee responsible for each sale and the corresponding sale amount.
+A standard join between these two tables allows us to retrieve metrics such as the total number of sales per employee and the overall sales amount.
+To enhance this data, we may want to convert the sales amount from USD to EUR. The Parameterized Table Function (PTF) performs this enrichment by applying the appropriate conversion rate, which is supplied by the user at runtime. 
+The PTF returns the enriched dataset with the total amount expressed in EUR.
+
+* **Python Function:**
+
+.. code:: python
+
+    # Defined in 'my_functions.py'
+    def convertAmountBasedOnRate(df, literals_map):
+        df_new = df.copy()
+        rate = literals_map['0']
+
+        if 'totalamount' in df_new.columns:
+            df_new["ConvertedAmount"] = df_new['totalamount'] * rate
+        else:
+            # Handle case where the expected column isn't present
+            print("Warning: 'totalamount' column not found. 'commission' column not added.")
+
+        return df_new
+
+* **Creating the Module in Sqream:**	
+
+.. code:: sql
+
+    CREATE OR REPLACE MODULE my_mod5
+    OPTIONS (
+        PATH = '/app/my_functions.py',
+        ENTRY_POINTS = [
+            [
+                NAME = 'convertAmountBasedOnRate',
+                ARGUMENTS [int, int, date, double],
+                LITERAL_PARAMETERS = 1,
+                RETURNS TABLE (orderid int, employeeid int, orderdate date, totalamount double, ConvertedAmount double),
+                GPU = true
+            ]
+        ]
+    );
+
+* **How to use the Module?**
+
+.. code:: sql
+
+    create table employees (EmployeeId int , FirstName text, LastName text, HireDate date, DepartmentId int);
+
+    insert into employees values (101,'Alex','Johnson','2023-01-15','3'),(102,'Sarah','Chen','2020-07-01','1'),
+    (103,'David','Lee','2024-11-20','4'),(104,'Emily','Smith','2021-10-25','4'),(105,'Ryan','Garcia','2023-05-10','2');
+
+    create or replace table sales_orders (OrderId int, EmployeeId int, OrderDate date, TotalAmount double);
+
+    insert into sales_orders values (5001,102,'2025-02-10',1250.00),
+                                    (5002,101,'2025-05-01',890.50),
+                                    (5003,102,'2025-09-15',3400.00),
+                                    (5004,104,'2025-08-22',520.25),
+                                    (5005,101,'2025-11-05',150.00),
+                                    (5006,102,'2025-10-01',1800.00),
+                                    (5007,104,'2025-06-18',985.00),
+                                    (5008,105,'2025-03-20',2500.00);
+
+    SELECT
+        emp.EmployeeId AS "EmployeeId",
+        COUNT(*) AS "NumberOfSales",
+        SUM(convSales.totalamount) AS "TotalSalesAmountUsd",
+        SUM(convSales.ConvertedAmount) AS "TotalSalesAmountEur"
+    FROM
+        employees AS emp
+    JOIN
+        TABLE(
+            my_mod5.convertAmountBasedOnRate(
+                CURSOR(SELECT * FROM sales_orders),
+                '0.86'
+            )
+        ) AS convSales
+        ON emp.EmployeeId = convSales.EmployeeId
+    GROUP BY
+        emp.EmployeeId
+    ORDER BY
+        NumberOfSales DESC;
+
+* **Results:**
+
++----------+-------------+-------------------+-------------------+
+|EmployeeId|NumberOfSales|TotalSalesAmountUsd|TotalSalesAmountEur|
++----------+-------------+-------------------+-------------------+
+| 102      | 3           | 6450.0            | 5547.0            |
++----------+-------------+-------------------+-------------------+
+| 101      | 2           | 1040.5            | 894.83            |
++----------+-------------+-------------------+-------------------+
+| 104      | 2           | 1505.25           | 1294.515          |
++----------+-------------+-------------------+-------------------+
+| 105      | 1           | 2500.0            | 2150.0            |
++----------+-------------+-------------------+-------------------+
+
+3. Return Values
+^^^^^^^^^^^^^^^^
+
+* **Python Table Function(PTF):** Your Python function **must return a Pandas DataFrame**. The column names and data types of this DataFrame must exactly match the schema defined in the returns table(...) clause of the module’s entry point.
+
+* **Python Scalar Function(PSF):** Your Python function **must return a single, non-DataFrame Python value** (e.g., an integer, string, or float). This value will be automatically converted to the single SQL data type defined in the returns <data_type> clause of the module’s entry point.
