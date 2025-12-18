@@ -8,8 +8,6 @@ The ``TEXT_TO_ARRAY`` function converts a delimited text value into an array of 
 
 .. note:: To use this function, the cupy package must be installed on each machine using a standard pip installation.
 
-See also :ref:`regexp_substr`.
-
 Syntax
 ======
 
@@ -40,8 +38,6 @@ Returns
 
 * Returns a single-element array when the delimiter is not found; returns ``NULL`` if the input text or delimiter is ``NULL``.
 
-* Returns a single-element array when the delimiter is not found; returns ``NULL`` if the input text or delimiter is ``NULL``.
-
 Notes
 =====
 
@@ -51,60 +47,47 @@ Notes
 Examples
 ========
 
-For these examples, assume a table named ``nba``, with the following structure:
+For these examples, assume a table named ``authors_books``, with the following structure:
 
 .. code-block:: postgres
    
-   CREATE TABLE nba
-   (
-      Name text(40),
-      Team text(40),
-      Number tinyint,
-      Position text(2),
-      Age tinyint,
-      Height text(4),
-      Weight real,
-      College text(40),
-      Salary float
-    );
+   CREATE or replace TABLE authors_books (
+		author_name TEXT,
+		books       TEXT
+	);	
 
-
-Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
-
-.. csv-table:: nba.csv
-   :file: nba-t10.csv
-   :widths: auto
-   :header-rows: 1
-
-Substring using fixed offsets
--------------------------------
-
-Get 4 characters, starting from the 4th character
+	INSERT INTO authors_books (author_name, books) VALUES
+		('George Orwell', '1984,Animal Farm,Homage to Catalonia'),
+		('J.K. Rowling', 'Harry Potter and the Sorcerer''s Stone,Harry Potter and the Chamber of Secrets,Harry Potter and the Prisoner of Azkaban'),
+		('J.R.R. Tolkien', 'The Hobbit,The Fellowship of the Ring,The Two Towers,The Return of the King'),
+		('Agatha Christie', 'Murder on the Orient Express,And Then There Were None,Death on the Nile'),
+		('Isaac Asimov', 'Foundation,I Robot,The Caves of Steel');
+		
+Converting A Text Into Array
+----------------------------
 
 .. code-block:: psql
 
-   nba=> SELECT SUBSTRING("Name", 4, 4) FROM nba LIMIT 5;
-   substring
-   ---------
-   ry B     
-   Cro      
-   n Ho     
-   . Hu     
-   as J     
+   test=> select cast_utils.text_to_array(books,',') from authors_books  ;
+   text_to_array
+   ------------------------------------------------------------------------------------------------------------------------------
+   ["1984","Animal Farm","Homage to Catalonia"]     
+   ["Harry Potter and the Sorcerer's Stone","Harry Potter and the Chamber of Secrets","Harry Potter and the Prisoner of Azkaban"]      
+   ["The Hobbit","The Fellowship of the Ring","The Two Towers","The Return of the King"]          
+   ["Murder on the Orient Express","And Then There Were None","Death on the Nile"]      
+   ["Foundation","I Robot","The Caves of Steel"]     
 
-Truncating strings
---------------------
+Using Array Functions over Text To Array
+----------------------------------------
 
-Trim a string to 10 characters
+Usage for array_length,implicitly indexing and Unnest
 
 .. code-block:: psql
 
-   nba=> SELECT SUBSTRING("Name", 1, 10) FROM nba LIMIT 5;
-   substring 
+   test=>  select unnest(cast_utils.text_to_array(b.books,',')) from authors_books b where array_length(cast_utils.text_to_array(b.books,','))>2 and cast_utils.text_to_array(b.books,',')[1]='I Robot'  ;
+   unnest 
    ----------
-   Avery Brad
-   Jae Crowde
-   John Holla
-   R.J. Hunte
-   Jonas Jere
+   Foundation
+   I Robot
+   The Caves of Steel
 
