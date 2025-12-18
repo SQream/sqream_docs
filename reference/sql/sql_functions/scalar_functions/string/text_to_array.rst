@@ -6,8 +6,6 @@ TEXT_TO_ARRAY
 
 The ``TEXT_TO_ARRAY`` function converts a delimited text value into an array of strings using the specified delimiter.
 
-.. note:: To use this function, the cupy package must be installed on each machine using a standard pip installation.
-
 Syntax
 ======
 
@@ -38,11 +36,7 @@ Returns
 
 * Returns a single-element array when the delimiter is not found; returns ``NULL`` if the input text or delimiter is ``NULL``.
 
-Notes
-=====
-
-* Character count starts at 1.
-
+.. note:: To use this function, the cupy package must be installed on each machine using a standard pip installation.
 
 Examples
 ========
@@ -50,18 +44,19 @@ Examples
 For these examples, assume a table named ``authors_books``, with the following structure:
 
 .. code-block:: postgres
-   
-   CREATE or replace TABLE authors_books (
-		author_name TEXT,
-		books       TEXT
-	);	
 
-	INSERT INTO authors_books (author_name, books) VALUES
-		('George Orwell', '1984,Animal Farm,Homage to Catalonia'),
-		('J.K. Rowling', 'Harry Potter and the Sorcerer''s Stone,Harry Potter and the Chamber of Secrets,Harry Potter and the Prisoner of Azkaban'),
-		('J.R.R. Tolkien', 'The Hobbit,The Fellowship of the Ring,The Two Towers,The Return of the King'),
-		('Agatha Christie', 'Murder on the Orient Express,And Then There Were None,Death on the Nile'),
-		('Isaac Asimov', 'Foundation,I Robot,The Caves of Steel');
+   CREATE OR REPLACE TABLE authors_books (
+       author_name TEXT,
+       books       TEXT
+   );
+
+   INSERT INTO authors_books (author_name, books) VALUES
+       ('George Orwell', '1984,Animal Farm,Homage to Catalonia'),
+       ('J.K. Rowling', 'Harry Potter and the Sorcerer''s Stone,Harry Potter and the Chamber of Secrets,Harry Potter and the Prisoner of Azkaban'),
+       ('J.R.R. Tolkien', 'The Hobbit,The Fellowship of the Ring,The Two Towers,The Return of the King'),
+       ('Agatha Christie', 'Murder on the Orient Express,And Then There Were None,Death on the Nile'),
+       ('Isaac Asimov', 'Foundation,I Robot,The Caves of Steel');
+
 		
 Converting A Text Into Array
 ----------------------------
