@@ -6,7 +6,7 @@ TEXT_TO_ARRAY
 
 The ``TEXT_TO_ARRAY`` function converts a delimited text value into an array of strings using the specified delimiter.
 
-.. note:: Some systems call this function ``SUBSTR``.
+.. note:: To use this function, the cupy package must be installed on each machine using a standard pip installation.
 
 See also :ref:`regexp_substr`.
 
@@ -37,6 +37,10 @@ Returns
 * One array value per input row
 
 * Each element in the returned array corresponds to a substring of text_column separated by delimiter.
+
+* Returns a single-element array when the delimiter is not found; returns ``NULL`` if the input text or delimiter is ``NULL``.
+
+* Returns a single-element array when the delimiter is not found; returns ``NULL`` if the input text or delimiter is ``NULL``.
 
 Notes
 =====
