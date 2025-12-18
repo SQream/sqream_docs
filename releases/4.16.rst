@@ -26,6 +26,8 @@ Compatibility Matrix
 New Features
 ------------
 #TODO
+► #TODO support for array_contains / any / saved_query
+
 ► RHEL 9 Support: Full support has been added for running on Red Hat Enterprise Linux 9 (RHEL 9).
 
 ► SSL Port Control (SQ-21125): Added a configuration option to disable the SSL port functionality within the server picker feature.
@@ -45,11 +47,19 @@ Version 4.16 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | **SQ No.**                  | **Description**                                                                            |
 +=============================+============================================================================================+
-| TODO                        | Improved support for foreign tables                                                        |
+| SQ-20671                    | Window function over Parquet array data type is now supported                              |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20689                    | Enhanced performance for catalog queries                                                   |
+| SQ-20732                    | Reduce compression size of ingested Parquet files                                          |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21121                    | Enhanced visibility of queries using window functions                                      |
+| SQ-21028                    | Error when running ORDER BY with window function on a Datetime2 column                     |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21157                    | Pivot function - performance improvements                                                  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21474                    | Fix the server status output on all available services                                     |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21490                    | Improve metadata performance                                                               |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| #TODO 4.16.1 bugs           | bla bla                                                                                    |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 
 
