@@ -279,6 +279,8 @@ The following table shows the **string** functions:
      - Trims whitespace from the right side of an argument
    * - :ref:`substring`
      - Returns a substring of an argument
+   * - :ref:`text_to_array`
+     - Returns an array based on the text and a delimiter
    * - :ref:`trim`
      - Trims whitespaces from an argument
    * - :ref:`upper`
