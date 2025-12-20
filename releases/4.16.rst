@@ -20,18 +20,20 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | supported Nvidia driver | CUDA version 12.3.2 / 12.6.1 / 13.0                                    |
 +-------------------------+------------------------------------------------------------------------+
-| Storage version         | 65                                                                     |
+| Storage version         | 65 #TODO - 100???                                                      |
 +-------------------------+------------------------------------------------------------------------+
 
 New Features
 ------------
 #TODO
-► #TODO support for array_contains / any / saved_query
+► Add any syntax to save query parameters should allow a dynamic IN list (SQ-22008)
+
+► #TODO sharon's comment, left empty for now in the table below (SQ-20089) - 
+Instead of this and all of the REGEXP_SUBSTR and REGEXP_INSTR tickets I suggest adding an item similar to above - Description of the supported functionality of  REGEXP_SUBSTR and REGEXP_INSTR
 
 ► RHEL 9 Support: Full support has been added for running on Red Hat Enterprise Linux 9 (RHEL 9).
 
 ► SSL Port Control (SQ-21125): Added a configuration option to disable the SSL port functionality within the server picker feature.
-
 
 
 Known Issues
@@ -47,9 +49,15 @@ Version 4.16 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | **SQ No.**                  | **Description**                                                                            |
 +=============================+============================================================================================+
+| SQ-19986                    | Full nvcomp support - #TODO - get approve from Gil then list as a new feature not ticket   |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20089                    |  bla bla                                                                                   |
++-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-20671                    | Window function over Parquet array data type is now supported                              |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-20732                    | Reduce compression size of ingested Parquet files                                          |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20894                    | Arrays are not supported within UDF - fix the error message accordingly                    |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-21028                    | Error when running ORDER BY with window function on a Datetime2 column                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
@@ -57,9 +65,31 @@ Version 4.16 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-21474                    | Fix the server status output on all available services                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21482                    | Data sorting query failed in particular circumstances                                      |
++-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-21490                    | Improve metadata performance                                                               |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| #TODO 4.16.1 bugs           | bla bla                                                                                    |
+| SQ-21515                    | Expose schema information in UI Studio                                                     |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20560                    | maxColSizeOnDiskMB suggested size increase is incorrect                                    |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-20588                    | Resolve cudaErrorIllegalAddress error                                                      |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21594                    | Improve Saved Query runtime                                                                |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21742                    | Views with special characters failing Recompilation and Cleanup operations                 |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21781                    | Improve compilation runtime                                                                |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21805                    | DELETE WHERE EXISTS failed when adding external condition                                  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21847                    | DELETE with JOIN table and WHERE EXISTS fails when adding condition outside of DELETE      |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21886                    | Enhance multiple ORC files load                                                            |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21952                    | Improved stability of FileReaper mechanism                                                 |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21991                    | List User Permission view                                                                  |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 
 
