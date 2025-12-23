@@ -115,9 +115,24 @@ Its main purpose is to accelerate data-intensive applications—like AI training
 | **ZSTD**       | Provides a **much better compression ratio** than LZ4 at the cost of some performance. It's a good choice for users who want to prioritize storage efficiency.                               |
 |                | Like LZ4, it is a general-purpose compressor for a wide range of data.                                                                                                                       |
 +----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **GDeflate**   | A **GPU-optimized version of the DEFLATE format**, designed to extract parallelism from the bitstream and achieve high throughput, especially during decompression.                          |                                                                                                                                    |
+| **GDeflate**   | A **GPU-optimized version of the DEFLATE format**, designed to extract parallelism from the bitstream and achieve high throughput, especially during decompression.                          |
+|                |                                                                                                                                                                                              |
+|                | Compression algorithm levels (permitted values):                                                                                                                                             |
+|                | • **0** – highest-throughput, entropy-only compression (use for symmetric compression/decompression performance)                                                                             |
+|                | • **1** – high-throughput, low compression ratio (**default**)                                                                                                                               |
+|                | • **2** – medium-throughput, medium compression ratio, beats Zlib level 1                                                                                                                    |
+|                | • **3** – placeholder for future compression levels; currently maps to medium compression                                                                                                    |
+|                | • **4** – lower-throughput, higher compression ratio, beats Zlib level 6                                                                                                                     |
+|                | • **5** – lowest-throughput, highest compression ratio                                                                                                                                       |
 +----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Deflate**    | Combines **LZ77** (replacing repeating data strings) and **Huffman coding** (assigning shorter codes to frequent symbols), making it a widely used and efficient algorithm (e.g., Gzip, ZIP).|                                                                                                                                      |
+| **Deflate**    | Combines **LZ77** (replacing repeating data strings) and **Huffman coding** (assigning shorter codes to frequent symbols), making it a widely used and efficient algorithm (e.g., Gzip, ZIP).|
+|                |                                                                                                                                                                                              |
+|                | Compression algorithm levels (permitted values):                                                                                                                                             |
+|                | • **1** – high-throughput, low compression ratio (**default**)                                                                                                                               |
+|                | • **2** – medium-throughput, medium compression ratio, beats Zlib level 1                                                                                                                    |
+|                | • **3** – placeholder for future compression levels; currently maps to medium compression                                                                                                    |
+|                | • **4** – lower-throughput, higher compression ratio, beats Zlib level 6                                                                                                                     |
+|                | • **5** – lowest-throughput, highest compression ratio                                                                                                                                       |
 +----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Cascading**  | **Pipelines multiple compression algorithms** (e.g., LZ4 followed by ZSTD) to improve both ratio and speed, getting the best of both worlds. It's great for data with mixed characteristics. |
 +----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -157,8 +172,9 @@ The following parameters can be adjusted to tune the performance and compression
 
 ``CHECK`` saved command that is used to manually specify the compression to be used, will be extend to support NVComp and its algorithm - e.g. CHECK('CS "nv_cascading"')
 
-NVComp Options should include: nv_cascading, nv_lz4, nv_snappy, nv_gdeflate, nv_deflate, nv_ans, nv_bitmap,nv_zstandard(ZSTD).
+NVComp Options should include: nv_cascading, nv_lz4, nv_snappy, nv_gdeflate, nv_deflate, nv_ans, nv_bitmap,nv_zstandard(ZSTD)
 When using nv_gdeflate or nv_deflate, the syntax requires appending a numeric compression level, as specified in the table above. For example: nv_deflate_5.
+
 
 .. code-block:: postgres
    
