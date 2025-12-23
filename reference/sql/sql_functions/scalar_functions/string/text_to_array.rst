@@ -36,7 +36,7 @@ Returns
 
 * Returns a single-element array when the delimiter is not found; returns ``NULL`` if the input text or delimiter is ``NULL``.
 
-.. note:: To use this function, the cupy package must be installed on each machine using a standard pip installation.
+.. note:: To use this function, the ``cupy`` package must be installed on each machine using a standard pip installation.
 
 Examples
 ========
@@ -72,10 +72,10 @@ Converting A Text Into Array
    ["Murder on the Orient Express","And Then There Were None","Death on the Nile"]      
    ["Foundation","I Robot","The Caves of Steel"]     
 
-Using Array Functions over Text To Array
+Using Array Functions over Text_To_Array
 ----------------------------------------
 
-Usage for array_length,implicitly indexing and Unnest
+Usage for array_length, implicitly indexing and Unnest
 
 .. code-block:: psql
 
