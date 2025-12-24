@@ -172,7 +172,8 @@ The following parameters can be adjusted to tune the performance and compression
 
 ``CHECK`` saved command that is used to manually specify the compression to be used, will be extend to support NVComp and its algorithm - e.g. CHECK('CS "nv_cascading"')
 
-NVComp Options should include: nv_cascading, nv_lz4, nv_snappy, nv_gdeflate, nv_deflate, nv_ans, nv_bitmap,nv_zstandard(ZSTD)
+NVComp Options should include: nv_cascading, nv_lz4, nv_snappy, nv_gdeflate, nv_deflate, nv_ans, nv_bitmap,nv_zstandard(ZSTD).
+
 When using nv_gdeflate or nv_deflate, the syntax requires appending a numeric compression level, as specified in the table above. For example: nv_deflate_5.
 
 
