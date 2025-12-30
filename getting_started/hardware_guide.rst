@@ -60,7 +60,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
         NVIDIA 2x A100, H100, or L40S
     
    * - Operating System
-     - Red Hat Enterprise Linux v8.9 or Amazon Linux 2
+     - Red Hat Enterprise Linux v8.9/8.10/9.5
 
 .. note:: If you are using internal storage, your volumes must be formatted as xfs.
 
@@ -100,11 +100,11 @@ The following table shows SQreamDB's recommended hardware specifications:
    * - External Storage
      -   
          * Mellanox Connectx5/6 100G NVIDIA Network Card (if applicable) or other high-speed network card minimum 40G compatible with customer’s infrastructure
-         * 50 TB (NAS connected over GPFS, Lustre, Weka, or VAST) GPFS recommended
+         * 50 TB (NAS connected over GPFS, Weka, VAST, NFS )
    * - GPU
      - NVIDIA 2x A100, H100, or L40S
    * - Operating System
-     - Red Hat Enterprise Linux v8.9 or Amazon Linux 2
+     - Red Hat Enterprise Linux v8.9/8.10/9.5 
    
 Metadata Server
 ---------------
@@ -130,9 +130,9 @@ The following table shows SQreamDB's recommended metadata server specifications:
    * - Network Card (Client)
      - 2x 1 GbE cards or similar
    * - Operating System
-     - Red Hat Enterprise Linux v8.9 or Amazon Linux 2
+     - Red Hat Enterprise Linux v8.9/8.10/9.5 
 
-.. note:: With a NAS connected over GPFS, Lustre, Weka, or VAST, each SQreamDB worker can read data at 5GB/s or more.
+.. note:: With a NAS connected over GPFS, Weka, or VAST, each SQreamDB worker can read data at 5GB/s or more.
 
 SQreamDB Studio Server
 ----------------------
@@ -154,7 +154,7 @@ The following table shows SQreamDB's recommended Studio server specifications:
    * - Onboard storage
      - 50 GB SSD 2.5in Hot-plug for OS, RAID1
    * - Operating System
-     - Red Hat Enterprise Linux v8.9
+     - Red Hat Enterprise Linux v8.9/8.10/9.5
 
 Cluster Design Considerations
 =============================
@@ -221,8 +221,7 @@ Operating System
 
 SQreamDB can run on the following 64-bit Linux operating systems:
 
-   * Red Hat Enterprise Linux v8.9
-   * Amazon Linux 2
+   * Red Hat Enterprise Linux v8.9/8.10/9.5
 
 
 Storage
