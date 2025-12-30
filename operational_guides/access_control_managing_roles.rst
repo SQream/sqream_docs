@@ -25,6 +25,8 @@ The following is the syntax for creating a new role:
    GRANT LOGIN to <role_name> ;
    GRANT PASSWORD <'new_password'> to <role_name> ;
    GRANT CONNECT ON DATABASE <database_name> to <role_name> ;
+   GRANT USAGE ON SERVICE <service_name> TO <role_name> ;
+
 
 The following is an example of creating a new role:
 
@@ -34,6 +36,8 @@ The following is an example of creating a new role:
    GRANT  LOGIN  TO  new_role_name;  
    GRANT  PASSWORD  'Passw0rd!' to new_role_name;  
    GRANT  CONNECT  ON  DATABASE  master to new_role_name;
+   GRANT USAGE ON SERVICE sqream TO new_role_name ;
+
 
 A database role may have a number of permissions that define what tasks it can perform, which are  assigned using the :ref:`grant` command.
 
