@@ -43,6 +43,13 @@ Query parameters can be used as substitutes for constants expressions in queries
 
 * Query parameters of a string datatype must be of a fixed length and may be used in equality checks but not with patterns such as :ref:`like` and :ref:`rlike`.
 
+Dynamic IN Clauses for Saved Queries
+------------------------------------
+
+SQreamDB supports dynamic IN clauses in saved queries, allowing variable-length arrays to be passed as parameters and enabling flexible filtering without the need to define multiple saved queries for different list sizes.
+
+Refer to :ref:`dynamic IN clauses in saved queries<dynamic_IN_clauses_in_saved_queries>` for instructions on enabling TLS/SSL.
+
 Permissions
 ============
 
