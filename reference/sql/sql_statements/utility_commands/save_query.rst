@@ -156,7 +156,7 @@ Another example:
     Name              | Team            | Number | Position | Age | Height | Weight | College     | Salary 
     ------------------+-----------------+--------+----------+-----+--------+--------+-------------+--------
     Bismack Biyombo   | Toronto Raptors |      8 | C        |  23 | 6-9    |    245 |             | 2814000
-	Bruno Caboclo     | Toronto Raptors |     20 | SF       |  20 | 6-9    |    205 |             | 1524000
+    Bruno Caboclo     | Toronto Raptors |     20 | SF       |  20 | 6-9    |    205 |             | 1524000
     Cory Joseph       | Toronto Raptors |      6 | PG       |  24 | 6-3    |    190 | Texas       | 7000000
     Lucas Nogueira    | Toronto Raptors |     92 | C        |  23 | 7-0    |    220 |             | 1842000
     Norman Powell     | Toronto Raptors |     24 | SG       |  23 | 6-4    |    215 | UCLA        |  650000
