@@ -123,15 +123,18 @@ Use ? in the query to denote parameters to be replaced at execution time.
    Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
 
 
-using an array to transfer a list of values
+Using an array to transfer a list of values
 -------------------------------------------
 
-You can specify a list of values for a single ? using arrays. The saved query uses <parameter> = ANY (?::<value type>) and the call to this saved query requies an array input.
+You can specify a dynamic list of values for a single ? using arrays. The saved query uses ``<parameter> = ANY (?::<value type>[])`` and the call to this saved query requies an array input.
+
+.. tip:: Use the array list to mimic a dynamic IN clause
+
 The following example uses a list of text values:
 
 .. code-block:: sql
 
-   SELECT SAVE_QUERY('select_by_weight_and_team_filtered',$$SELECT * FROM nba WHERE Weight > ? AND Team = ? AND height = any(?::text[])$$);
+   SELECT SAVE_QUERY('select_by_weight_and_team_filtered',$$SELECT * FROM nba WHERE Weight > ? AND Team = ? AND height = ANY(?::text[])$$);
    
    SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team_filtered', 240, 'Toronto Raptors',array['6-9','6-11']);
    
@@ -146,13 +149,14 @@ Another example:
 
 .. code-block:: sql
 
-    SELECT SAVE_QUERY('select_by_team_and_ages',$$SELECT * FROM nba WHERE Team = ? AND age = any(?::tinyint[])$$);
+    SELECT SAVE_QUERY('select_by_team_and_ages',$$SELECT * FROM nba WHERE Team = ? AND age = ANY(?::tinyint[])$$);
 	
-    SELECT EXECUTE_SAVED_QUERY('select_by_team_and_ages','Toronto Raptors', array[23,24]);
+    SELECT EXECUTE_SAVED_QUERY('select_by_team_and_ages','Toronto Raptors', array[20,23,24]);
 	
     Name              | Team            | Number | Position | Age | Height | Weight | College     | Salary 
     ------------------+-----------------+--------+----------+-----+--------+--------+-------------+--------
     Bismack Biyombo   | Toronto Raptors |      8 | C        |  23 | 6-9    |    245 |             | 2814000
+	Bruno Caboclo     | Toronto Raptors |     20 | SF       |  20 | 6-9    |    205 |             | 1524000
     Cory Joseph       | Toronto Raptors |      6 | PG       |  24 | 6-3    |    190 | Texas       | 7000000
     Lucas Nogueira    | Toronto Raptors |     92 | C        |  23 | 7-0    |    220 |             | 1842000
     Norman Powell     | Toronto Raptors |     24 | SG       |  23 | 6-4    |    215 | UCLA        |  650000
