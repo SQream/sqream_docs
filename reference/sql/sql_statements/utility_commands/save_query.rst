@@ -102,6 +102,7 @@ Saving and executing a simple query
    R.J. Hunter              | Boston Celtics         |     28 | SG       |  22 | 6-5    |    185 | Georgia State         |  1148640
    [...]
 
+
 Saving and executing parametrized query
 ------------------------------------------
 
@@ -120,11 +121,13 @@ Use ? in the query to denote parameters to be replaced at execution time.
    James Johnson     | Toronto Raptors |      3 | PF       |  29 | 6-9    |    250 | Wake Forest | 2500000
    Jason Thompson    | Toronto Raptors |      1 | PF       |  29 | 6-11   |    250 | Rider       |  245177
    Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
-   
-using IN clause:
+
+
+using an array to transfer a list of values
+-------------------------------------------
+
 You can specify a list of values for a single ? using arrays. The saved query uses <parameter> = ANY (?::<value type>) and the call to this saved query requies an array input.
 The following example uses a list of text values:
-
 
 .. code-block:: sql
 
@@ -138,6 +141,7 @@ The following example uses a list of text values:
    James Johnson     | Toronto Raptors |      3 | PF       |  29 | 6-9    |    250 | Wake Forest | 2500000
    Jason Thompson    | Toronto Raptors |      1 | PF       |  29 | 6-11   |    250 | Rider       |  245177
 
+
 Another example:
 
 .. code-block:: sql
@@ -146,14 +150,14 @@ Another example:
 	
     SELECT EXECUTE_SAVED_QUERY('select_by_team_and_ages','Toronto Raptors', array[23,24]);
 	
-   Name              | Team            | Number | Position | Age | Height | Weight | College     | Salary 
-   ------------------+-----------------+--------+----------+-----+--------+--------+-------------+--------
-   Bismack Biyombo   | Toronto Raptors |      8 | C        |  23 | 6-9    |    245 |             | 2814000
-   Cory Joseph       | Toronto Raptors |      6 | PG       |  24 | 6-3    |    190 | Texas       | 7000000
-   Lucas Nogueira    | Toronto Raptors |     92 | C        |  23 | 7-0    |    220 |             | 1842000
-   Norman Powell     | Toronto Raptors |     24 | SG       |  23 | 6-4    |    215 | UCLA        |  650000
-   Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
-   Delon Wright      | Toronto Raptors |     55 | PG       |  24 | 6-5    |    190 | Utah        | 1509360
+    Name              | Team            | Number | Position | Age | Height | Weight | College     | Salary 
+    ------------------+-----------------+--------+----------+-----+--------+--------+-------------+--------
+    Bismack Biyombo   | Toronto Raptors |      8 | C        |  23 | 6-9    |    245 |             | 2814000
+    Cory Joseph       | Toronto Raptors |      6 | PG       |  24 | 6-3    |    190 | Texas       | 7000000
+    Lucas Nogueira    | Toronto Raptors |     92 | C        |  23 | 7-0    |    220 |             | 1842000
+    Norman Powell     | Toronto Raptors |     24 | SG       |  23 | 6-4    |    215 | UCLA        |  650000
+    Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
+    Delon Wright      | Toronto Raptors |     55 | PG       |  24 | 6-5    |    190 | Utah        | 1509360
 
 
 Permissions
