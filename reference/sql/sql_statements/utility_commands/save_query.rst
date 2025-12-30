@@ -40,7 +40,7 @@ Parameters
      - Description
    * - ``saved_query_name``
      - The name of the query to save. This name will identify the query
-   * - ``table_name``
+   * - ``parameterized_query_string``
      - The query to save. Can be dollar quoted and contain parameters (``?``)
 
 Notes
