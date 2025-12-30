@@ -46,9 +46,9 @@ Query parameters can be used as substitutes for constants expressions in queries
 Dynamic IN Clauses for Saved Queries
 ------------------------------------
 
-SQreamDB supports dynamic IN clauses in saved queries, allowing variable-length arrays to be passed as parameters and enabling flexible filtering without the need to define multiple saved queries for different list sizes.
+SQreamDB supports Dynamic IN clauses in saved queries, allowing variable-length arrays to be passed as parameters and enabling flexible filtering without the need to define multiple saved queries for different list sizes.
 
-Refer to :ref:`dynamic IN clauses in saved queries<dynamic_IN_clauses_in_saved_queries>` for instructions on enabling TLS/SSL.
+Refer to :ref:`Dynamic IN clauses in saved queries<dynamic_IN_clauses_in_saved_queries>`.
 
 Permissions
 ============

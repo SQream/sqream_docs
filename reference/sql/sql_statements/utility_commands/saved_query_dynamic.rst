@@ -2,27 +2,22 @@
 
 .. _dynamic_IN_clauses_in_saved_queries:
 
-********************
+************************************
 Dynamic IN Clauses for Saved Queries
-********************
+************************************
 
-``EXECUTE_SAVED_QUERY`` executes a previously :ref:`saved query<save_query>`.
-
-Read more in the :ref:`saved_queries` guide.
-
-See also: :ref:`save_query`, :ref:`drop_saved_query`, :ref:`show_saved_query`, :ref:`list_saved_queries`.
+Dynamic IN Clauses for Saved Queries enable flexibility when a query contains a dynamic IN list. 
+This feature allows flexible filtering without the need to create multiple saved queries for different list sizes.
 
 Syntax
 ==========
 
 .. code-block:: sql
 
-   execute_saved_query_statement ::=
-       SELECT EXECUTE_SAVED_QUERY(saved_query_name, [ , argument [ , ... ] ] )
-
-   saved_query_name ::= string_literal
-
-   argument ::= string_literal | number_literal
+   SELECT SAVE_QUERY(
+	<saved_query_name>,
+	$$parameterized_query_string_without_where_clause
+    WHERE <column_name> = ANY(?::<data_type>[])$$)
 
 Returns
 ==========
@@ -40,8 +35,10 @@ Parameters
      - Description
    * - ``saved_query_name``
      - The name of the query to execute
-   * - ``argument``
-     - A comma separated list of argument literal values
+   * - ``parameterized_query_string_without_where_clause``
+     - SQL without ``Where`` clause
+   * - ``data_type``
+     - Data type for dynamic in list - supported datatypes are text and int. 
 
 
 Notes
