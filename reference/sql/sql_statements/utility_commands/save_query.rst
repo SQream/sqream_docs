@@ -104,7 +104,7 @@ Saving and executing a simple query
 
 
 Saving and executing parametrized query
-------------------------------------------
+---------------------------------------
 
 Use ? in the query to denote parameters to be replaced at execution time. 
 
