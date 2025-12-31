@@ -20,16 +20,14 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | supported Nvidia driver | CUDA version 12.3.2 / 12.6.1 / 13.0                                    |
 +-------------------------+------------------------------------------------------------------------+
-| Storage version         | 65 #TODO - 100???                                                      |
+| Storage version         | 100                                                                    |
 +-------------------------+------------------------------------------------------------------------+
 
 New Features
 ------------
-#TODO
-► Add any syntax to save query parameters should allow a dynamic IN list (SQ-22008)
+► :ref:`Full nvcomp support<compression>`
 
-► #TODO sharon's comment, left empty for now in the table below (SQ-20089) - 
-Instead of this and all of the REGEXP_SUBSTR and REGEXP_INSTR tickets I suggest adding an item similar to above - Description of the supported functionality of  REGEXP_SUBSTR and REGEXP_INSTR
+► Add any syntax to save query parameters should allow a dynamic IN list (SQ-22008)
 
 ► RHEL 9 Support: Full support has been added for running on Red Hat Enterprise Linux 9 (RHEL 9).
 
@@ -49,9 +47,7 @@ Version 4.16 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | **SQ No.**                  | **Description**                                                                            |
 +=============================+============================================================================================+
-| SQ-19986                    | Full nvcomp support - #TODO - get approve from Gil then list as a new feature not ticket   |
-+-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20089                    |  bla bla                                                                                   |
+| SQ-20089                    |  #TODO                                                                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-20671                    | Window function over Parquet array data type is now supported                              |
 +-----------------------------+--------------------------------------------------------------------------------------------+
