@@ -4,7 +4,7 @@
 Release Notes 4.16
 *****************
 
-The 4.16 release notes were released on October 19, 2025  # TODO update date
+The 4.16 release notes were released on January 1st, 2026  #TODO
 
 .. contents:: 
    :local:
