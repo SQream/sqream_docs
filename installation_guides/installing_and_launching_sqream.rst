@@ -14,3 +14,4 @@ The **Installing and Launching SQreamDB** page includes the following installati
    installing_sqream_with_binary
    installing_monit
    launching_sqream_with_monit
+   Installations_for_In-process_functions
