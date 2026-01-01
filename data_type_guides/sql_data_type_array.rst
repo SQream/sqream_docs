@@ -277,7 +277,25 @@ Casting ``TEXT`` to non-``TEXT`` and non-``TEXT`` to ``TEXT`` data types is not 
 	CREATE TABLE t_text (xtext TEXT[]);
 	CREATE TABLE t_int (xint INT[]);
 	INSERT INTO t_int VALUES (array[1,2,3]);
-	INSERT INTO t_text SELECT xint::TEXT[] FROM t_int;
+	INSERT INTO t_text SELECT xint::TEXT[] FROM t_int; -- returns an error
+	
+	
+``ARRAY``
+"""""""""
+Both implicit and explicit casting of an ARRAY to a TEXT type includes surrounding curly braces (e.g., {a,b}) in the resulting string.
+
+.. code-block:: sql
+    CREATE or replace TABLE t_text (xtext TEXT);
+    INSERT INTO t_text VALUES (array ['a','b','c']);
+    SELECT xtext FROM t_text;
+
+Output:
+.. code-block:: console
+	xtext
+	-------
+    {a,b,c}
+
+
 
 Connectors
 ----------
