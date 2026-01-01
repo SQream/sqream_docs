@@ -29,7 +29,9 @@ New Features
 
 ► MCP interface support - allows you to query your data using natural language, using Claude as LLM. Please see :ref:`MCP documentation<mcp>`
 
-► Add any syntax to save query parameters should allow a dynamic IN list (SQ-22008)
+► Add ``ANY`` syntax to save query parameters should allow a dynamic IN list (SQ-22008)
+
+► Add support for casting text to array, Please see :ref:`casting text to array<text_to_array>`
 
 ► RHEL 9 Support: Full support has been added for running on Red Hat Enterprise Linux 9 (RHEL 9).
 
