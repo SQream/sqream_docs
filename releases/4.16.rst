@@ -4,7 +4,7 @@
 Release Notes 4.16
 *****************
 
-The 4.16 release notes were released on January 1st, 2026  #TODO
+The 4.16 release notes were released on January 1st, 2026
 
 .. contents:: 
    :local:
@@ -47,7 +47,7 @@ Version 4.16 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | **SQ No.**                  | **Description**                                                                            |
 +=============================+============================================================================================+
-| SQ-20089                    |  #TODO                                                                                     |
+| SQ-20089                    | Fixed issue with handling non-capturing group for REGEXP_SUBSTR and REGEXP_INSTR functions |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-20671                    | Window function over Parquet array data type is now supported                              |
 +-----------------------------+--------------------------------------------------------------------------------------------+
