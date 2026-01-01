@@ -27,6 +27,8 @@ New Features
 ------------
 ► :ref:`Full nvcomp support<compression>`
 
+► MCP interface support - allows you to query your data using natural language, using Claude as LLM. Please see :ref:`MCP documentation<mcp>`
+
 ► Add any syntax to save query parameters should allow a dynamic IN list (SQ-22008)
 
 ► RHEL 9 Support: Full support has been added for running on Red Hat Enterprise Linux 9 (RHEL 9).
