@@ -1,4 +1,4 @@
-.. _installations_for_in-process_functions
+.. _installations_for_in-process_functions:
 
 ==================================================
 Installations for In-Process Functions
