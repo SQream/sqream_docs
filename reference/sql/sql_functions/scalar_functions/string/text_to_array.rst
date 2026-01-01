@@ -9,7 +9,7 @@ The ``TEXT_TO_ARRAY`` function converts a delimited text value into an array of 
 Prerequisites
 =============
 
-'TEXT_TO_ARRAY' is In-process function which implemented in Python. All In-process functions uses locally installed Python with additional requirements - Mentioned here: _Installations_for-In-process_functions
+'TEXT_TO_ARRAY' is In-process function which implemented in Python. All In-process functions uses locally installed Python with additional requirements - Mentioned here: _installations_for_in-process_functions
 
 
 Syntax
