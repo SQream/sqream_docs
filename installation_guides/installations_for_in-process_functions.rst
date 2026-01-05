@@ -4,7 +4,7 @@
 Installations for In-Process Functions
 ==================================================
 
-This document outlines the requirements and installation steps necessary to enable in-process functions (e.g., **Text to Array**, **Hex to Int**).
+This document outlines the requirements and installation steps necessary to enable in-process functions (e.g. **Text to Array**).
 
 The following requirements must be configured on **each server**.
 
