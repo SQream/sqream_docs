@@ -46,7 +46,7 @@ Known Issues
 The Node.JS connector does not support ARRAY data types.
 
 Version 4.16 resolved Issues
----------------------------
+----------------------------
 
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | **SQ No.**                  | **Description**                                                                            |
@@ -120,6 +120,17 @@ As of April 2025, the alias ``DateTime2`` for the ``DateTime`` Data Type has bee
 
 Upgrading to Version 4.16
 -------------------------
+
+Upgrading to this version requires an additional infrastructure, to support some of it's functionality. The requirements are listed below. In addition, it is required to perform a storage upgrade according to the listed process.
+
+
+Additional packages
+"""""""""""""""""""
+
+   Please see additional installation requirements for In-process functions :ref:`in this page <installations_for_in-process_functions>`
+
+Storage upgrade
+"""""""""""""""
 
 1. Generate a back-up of the metadata by running the following command:
 
