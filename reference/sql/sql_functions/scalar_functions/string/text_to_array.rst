@@ -6,12 +6,6 @@ TEXT_TO_ARRAY
 
 The ``TEXT_TO_ARRAY`` function converts a delimited text value into an array of strings using the specified delimiter.
 
-Prerequisites
-=============
-
-'TEXT_TO_ARRAY' is In-process function which implemented in Python. All In-process functions uses locally installed Python with additional requirements - Mentioned here: :ref:`installations_for_in-process_functions`
-
-
 Syntax
 ======
 
