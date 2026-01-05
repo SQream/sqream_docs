@@ -31,7 +31,7 @@ New Features
 
 ► Add ``ANY`` syntax to Saved Query parameters should allow a dynamic IN list (SQ-22008). Please see :ref:`Saved Query<save_query>`.
 
-► Add support for casting ``TEXT_TO_ARRAY``. This functionality requires completing prerequisite installation steps, see the instructions here :ref:`In-Process Installation Steps<installations_for_in-process_functions>`. For faeture usage details please see :ref:`casting TEXT_TO_ARRAY<text_to_array>`.
+► Add support for casting ``TEXT_TO_ARRAY``. This functionality requires completing prerequisite installation steps, see the instructions here :ref:`In-Process Installation Steps<installations_for_in-process_functions>`. For details on how to use this feature, please see :ref:`casting TEXT_TO_ARRAY<text_to_array>`.
 
 ► RHEL 9 Support: Full support has been added for running on Red Hat Enterprise Linux 9 (RHEL 9).
 
