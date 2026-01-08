@@ -266,11 +266,14 @@ The following is an example of loading data from an Avro file into SQream:
 
 .. code-block:: postgres
 
-    WRAPPER avro_fdw
-    OPTIONS
-    (
-      LOCATION =  's3://sqream-docs/nba.avro'
-    );
+   COPY
+       nba
+   FROM WRAPPER avro_fdw
+   OPTIONS
+   (
+       LOCATION =  's3://sqream-docs/nba.avro'
+   );
+
 	  
 For more examples, see :ref:`additional_examples`.
 
