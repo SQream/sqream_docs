@@ -41,7 +41,7 @@ Install CUDA Toolkit
 
 Installation steps may vary based on the operating system version and architecture. Please refer to the official NVIDIA documentation for specific packages.
 
-* **Download Source:** `NVIDIA CUDA Toolkit 12.1 Downloads <https://developer.nvidia.com/cuda-12-1-0-download-archive>`_
+* **Download Source:** `NVIDIA CUDA Toolkit Downloads <https://developer.nvidia.com/cuda-toolkit-archive>`_
 
 Install CuPy Library
 --------------------
