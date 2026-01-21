@@ -13,7 +13,7 @@ Python Requirements
 
 **Python Version:** 3.11.7
 
-Python installation requirements are mentioned here: :ref:`pre-installation_configurations` on 'installing-recommended-tools' section.
+Python installation requirements are mentioned here: :ref:`pre-installation_configurations` on **'Installing Recommended Tools'** section.
 
 
 Install CUDA Toolkit
