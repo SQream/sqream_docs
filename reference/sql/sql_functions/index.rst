@@ -92,6 +92,8 @@ The following table shows the **conversion** functions:
      - Returns the ASCII character representation of the supplied integer
    * - :ref:`is_castable`
      - Checks whether a cast operation is possible or supported for a given column and data type and provides an alternative when there is an exception
+   * - :ref:`hex_to_int`
+     - Converts a hexadecimal string to an integer representation
 
 Date and Time
 ^^^^^^^^^^^^^^^^
