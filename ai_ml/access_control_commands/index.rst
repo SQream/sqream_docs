@@ -11,7 +11,7 @@ The **Access Control Commands** page describes which the way to grant or revode 
    :glob:
 
    module_permissions
-   algorythem_permissions
    model_permissions
+   algorithm_permissions
    
    
