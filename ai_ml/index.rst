@@ -21,4 +21,5 @@ This is an **alpha version** of AISQream. Expect limitations and ongoing develop
    catalog_tables
    security_req
    apache_iceberg_sqream_integration
+   access_control_commands/index
    
