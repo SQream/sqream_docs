@@ -1,17 +1,15 @@
-.. _access_control_commands:
+.. _access_control:
 
 ***********************
-Access Control Commands
+Access Control
 ***********************
 
-The **Access Control Commands** page describes which the way to grant or revode permissions on the AI/ML features.
+The **Access Control** page describes  the way to grant or revoלe permissions on the AI/ML features.
 
 .. toctree::
    :maxdepth: 1
    :glob:
 
-   module_permissions
-   model_permissions
-   algorithm_permissions
+   Permissions
    
    
