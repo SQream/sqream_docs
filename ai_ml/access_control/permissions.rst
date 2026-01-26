@@ -153,3 +153,41 @@ REVOKE
 	
 Examples
 ========
+
+Examples
+========
+
+GRANT
+--------------
+
+Grant create module on db database to role_name:
+
+.. code-block:: sql
+
+	GRANT CREATE MODULE ON DATABASE db TO role_name;
+	
+Grant execute/ddl/all on md module to role_name:
+
+.. code-block:: postgres
+
+	GRANT EXECUTE,DDL,ALL ON MODULE md TO role_name;
+	
+
+REVOKE
+---------------
+
+Revoke create module on db database from role_name:
+
+.. code-block:: postgres
+
+	REVOKE CREATE MODULE ON DATABASE db FROM role_name;
+	
+Revoke execute/ddl/all on md module from role_name
+
+.. code-block:: postgres
+
+	REVOKE EXECUTE,DDL,ALL ON MODULE md FROM role_name;
+	
+
+
+
