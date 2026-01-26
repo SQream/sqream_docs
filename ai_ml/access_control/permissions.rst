@@ -5,7 +5,7 @@ Permissions
 ***********
 
 SQream’s Python Module allows users to integrate custom Python code and functions directly. This section describes the permissions required for the AI/ML features.
-For all other permissions - you can find the full permissions details here `SQream documentation <https://docs.sqream.com/en/latest/operational_guides/access_control_permissions.html>`.
+For all other permissions - you can find the full permissions details here `SQream documentation <https://docs.sqream.com/en/latest/operational_guides/access_control_permissions.html>`_.
 
 Objects
 =======
@@ -150,10 +150,6 @@ REVOKE
 	ON MODEL <schema>.<model> [, ...]
 	FROM <role> [, ...]
 	
-	
-Examples
-========
-
 Examples
 ========
 
@@ -171,7 +167,30 @@ Grant execute/ddl/all on md module to role_name:
 .. code-block:: postgres
 
 	GRANT EXECUTE,DDL,ALL ON MODULE md TO role_name;
+
+Grant create algorithm on db database to role_name:
+
+.. code-block:: sql
+
+	GRANT CREATE ALGORITHM ON DATABASE db TO role_name;
 	
+Grant usage/ddl/all on algo ALGORITHM to role_name:
+
+.. code-block:: postgres
+
+	GRANT USAGE,DDL,ALL ON ALGORITHM algo TO role_name;
+
+Grant create model on s1 schema to role_name:
+
+.. code-block:: sql
+
+	GRANT CREATE MODEL ON SCHEMA s1 TO role_name;
+	
+Grant execute/ddl/all model mod1 to role_name:
+
+.. code-block:: sql
+
+	GRANT EXECUTE,DDL,ALL ON MODEL s1.mod1 TO role_name;
 
 REVOKE
 ---------------
@@ -188,6 +207,26 @@ Revoke execute/ddl/all on md module from role_name
 
 	REVOKE EXECUTE,DDL,ALL ON MODULE md FROM role_name;
 	
+Revoke create algorithm on db database from role_name:
 
+.. code-block:: sql
 
+	REVOKE CREATE ALGORITHM ON DATABASE db FROM role_name;
+	
+Revoke usage/ddl/all on algo ALGORITHM from role_name:
 
+.. code-block:: postgres
+
+	REVOKE USAGE,DDL,ALL ON ALGORITHM algo FROM role_name;
+
+Revoke create model on s1 schema from role_name:
+
+.. code-block:: sql
+
+	REVOKE CREATE MODEL ON SCHEMA s1 FROM role_name;
+
+Revoke execute/ddl/all model mod1 from role_name:
+
+.. code-block:: sql
+
+	REVOKE EXECUTE,DDL,ALL ON MODEL s1.mod1 FROM role_name;
