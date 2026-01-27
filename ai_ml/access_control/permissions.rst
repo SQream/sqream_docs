@@ -10,48 +10,48 @@ For all other permissions - you can find the full permissions details here `SQre
 Objects
 =======
 
-* Module - Python Module enables users to integrate custom Python code and functions directly
+* Module - A Python module that contains custom Python code and functions that can be invoked from Sqream.
 
-* Algorithm - SQream algorithms are machine learning models that run directly in SQream’s GPU-accelerated environment, with native support for Linear Regression and XGBoost and extensibility via Python modules.
+* Algorithm - A registered machine-learning recipe that defines how to train a model and run inference. Sqream provides native support for Linear Regression and XGBoost, and additional algorithms can be provided via register algorithm.
 
-* Model - Models are trained machine-learning artifacts that learn patterns from data and can make predictions or decisions.
+* Model - A trained machine learning artifact created from an algorithm and data. models can be used for inference.
 
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Permission**       | **Description**                                                                                                         |
 +======================+=========================================================================================================================+
 | **Database**         |                                                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``CREATE MODULE``    | Ability to create a new module. The role that creates the module receives all permissions (EXECUTE, DDL).               |
+| ``CREATE MODULE``    | Ability to create a new module. The role that creates the module receives all permissions (EXECUTE, DDL)                |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``CREATE ALGORITHM`` | Ability to register a new algorithm. The creator receives ``USAGE`` and ``DDL`` permissions.                            |
+| ``CREATE ALGORITHM`` | Ability to register a new algorithm. The creator receives ``USAGE`` and ``DDL`` permissions                             |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Schema**           |                                                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``CREATE MODEL``     | Ability to register a new model.                                                                                        |
+| ``CREATE MODEL``     | Ability to create a new model in the schema                                                                             |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Module**           |                                                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``EXECUTE``          | Ability to execute any function within a specified module.                                                              |
+| ``EXECUTE``          | Ability to execute any function within a specified module                                                               |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``DDL``              | Ability to remove a module from the database.                                                                           |
+| ``DDL``              | Ability to drop a module                                                                                                |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``ALL``              | Encapsulates both ``EXECUTE`` and ``DDL`` permissions.                                                                  |
+| ``ALL``              | Encapsulates both ``EXECUTE`` and ``DDL`` permissions                                                                   |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Algorithm**        |                                                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``USAGE``            | Ability to create a new Python model based on the algorithm.                                                            |
+| ``USAGE``            | Ability to create a new Python model based on the algorithm                                                             |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``DDL``              | Ability to drop an algorithm.                                                                                           |
+| ``DDL``              | Ability to unregister an algorithm                                                                                      |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``ALL``              | Encapsulates both ``USAGE`` and ``DDL`` permissions.                                                                    |
+| ``ALL``              | Encapsulates both ``USAGE`` and ``DDL`` permissions                                                                     |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Model**            |                                                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``EXECUTE``          | Ability to use a specified model for inference with the ``PREDICT`` function.                                           |
+| ``EXECUTE``          | Ability to use a specified model for inference with the ``model_predict`` function                                      |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``DDL``              | Ability to remove a model from the database.                                                                            |
+| ``DDL``              | Ability to remove a model from the database                                                                             |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``ALL``              | Encapsulates both ``EXECUTE`` and ``DDL`` permissions.                                                                  |
+| ``ALL``              | Ability to drop a model                                                                                                 |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 
 Syntax
