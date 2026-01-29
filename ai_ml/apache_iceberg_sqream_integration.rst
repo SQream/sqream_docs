@@ -233,33 +233,32 @@ The manifests table returns a list of all manifest files that make up the curren
 .. code:: sql
 
 	SELECT * FROM <database>.<namespace>.<iceberg_table>.manifests;
-	
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| **Column**        	     | **Data Type** | **Description**                                                      				   |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| content 			         | INT           | Type of manifest: 0 (Data) or 1 (Deletes).         									   |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| path                       | TEXT          | The full URI/path to the specific manifest file stored in your storage layer            |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| length 			         | BIGINT        | The size of the manifest file in bytes.                     							   |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| added_snapshot_id          | BIGINT        | The ID of the snapshot that first introduced this manifest file to the table.	       |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| added_data_files_count     | INT           | The number of new data files that were added within this specific manifest.		       |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| existing_data_files_count  | INT           | The number of data files that already existed and were carried over into this manifest. |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| deleted_data_files_count   | INT           | The number of data files marked as deleted in this manifest. 						   |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| added_delete_files_count   | INT           | The number of new delete files (position or equality deletes) 						   |
-|							 |				 | added to the table in the snapshot that created this manifest.						   |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| existing_delete_files_count| INT           | The number of previously existing delete files that are still active 				   |
-|							 |				 | and were carried over into this manifest from earlier snapshots. 					   |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
-| deleted_delete_files_count | INT           | The number of delete files marked as removed in this manifest						   |
-+----------------------------+---------------+-----------------------------------------------------------------------------------------+
 
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| **Column**                   | **Data Type** | **Description**                                                                          |
++==============================+===============+==========================================================================================+
+| content                      | INT           | Type of manifest: 0 (Data) or 1 (Deletes).                                               |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| path                         | TEXT          | The full URI/path to the specific manifest file stored in your storage layer             |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| length                       | BIGINT        | The size of the manifest file in bytes.                                                  |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| added_snapshot_id            | BIGINT        | The ID of the snapshot that first introduced this manifest file to the table.            |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| added_data_files_count       | INT           | The number of new data files that were added within this specific manifest.              |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| existing_data_files_count    | INT           | The number of data files that already existed and were carried over into this manifest.  |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| deleted_data_files_count     | INT           | The number of data files marked as deleted in this manifest.                             |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| added_delete_files_count     | INT           | The number of new delete files (position or equality deletes) added to the table in the  |
+|                              |               | snapshot that created this manifest.                                                     |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| existing_delete_files_count  | INT           | The number of previously existing delete files that are still active and were carried    |
+|                              |               | over into this manifest from earlier snapshots.                                          |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| deleted_delete_files_count   | INT           | The number of delete files marked as removed in this manifest                            |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
 
 **Querying Files (.files)**
 
