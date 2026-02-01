@@ -45,30 +45,35 @@ For this example, assume a table named ``sensor_readings``, with the following s
 
 .. code-block:: postgres
 
-   CREATE TABLE sensor_readings (
-    sensor_name text,
-    hex_payload text,
-    recorded_at timestamp
+	CREATE TABLE sensor_readings (
+	    sensor_name TEXT,
+	    hex_payload TEXT,
+	    recorded_at TIMESTAMP
 	);
 
-   INSERT INTO sensor_readings (sensor_name, hex_payload, recorded_at )
-	VALUES 
-		('Living Room', '0x1E','2026-11-01 01:24:00.000'),
-		('Kitchen',     '22','2026-11-01 02:25:00.000'),
-		('Bedroom',     '1A','2026-11-01 03:26:00.000');
+	INSERT INTO sensor_readings (
+	    sensor_name,
+	    hex_payload,
+	    recorded_at
+	)
+	VALUES
+	    ('Living Room', '0x1E', '2026-11-01 01:24:00.000'),
+	    ('Kitchen',     '22',   '2026-11-01 02:25:00.000'),
+	    ('Bedroom',     '1A',   '2026-11-01 03:26:00.000');
 
-		
 Converting A Hexadecimal String Into An Integer
 -----------------------------------------------
 
 .. code-block:: psql
 
-   test=> SELECT sensor_name,
-			hex_payload AS raw_hex, 
-			cast_utils.hex_to_int(hex_payload) AS temp_celsius, 
-		   (cast_utils.hex_to_int(hex_payload) * 9/5) + 32 AS temp_fahrenheit,
-		    recorded_at
-		  FROM sensor_readings;
+	SELECT
+	    sensor_name,
+	    hex_payload AS raw_hex,
+	    cast_utils.hex_to_int(hex_payload) AS temp_celsius,
+	    (cast_utils.hex_to_int(hex_payload) * 9 / 5) + 32 AS temp_fahrenheit,
+	    recorded_at
+	FROM
+	    sensor_readings;
 
 	+-----------+-------+------------+---------------+-----------------------+
 	|sensor_name|raw_hex|temp_celsius|temp_fahrenheit|recorded_at            |
