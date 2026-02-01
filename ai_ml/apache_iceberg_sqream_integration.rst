@@ -101,7 +101,7 @@ This links the new Catalog Integration to a database object within SQream.
 
 * **File Format:** Only **Parquet** is supported.
 * **Operations:** Only **SELECT** queries are supported. DML (**DELETE, INSERT, UPDATE**) and DDL operations will be added in later phases.
-* **Advanced Features:** Time travel, schema evolution, and transactional commands **are not supported**.
+* **Advanced Features:** schema evolution, and transactional commands **are not supported**.
 * **Writability:** ALLOW_WRITES in the external catalog must be set to false.
 
 **Querying an Iceberg Table**
@@ -154,7 +154,7 @@ Apache Iceberg’s Time Travel capability allows users to query a table as it ex
 .. code:: sql
 
 	SELECT <select_list> FROM <database>.<namespace>.<iceberg_table>
-		[[ TIMESTAMP | VERSION ] AS OF [ timestamp | snapshot-id ]];
+		[[ TIMESTAMP | VERSION ] AS OF [ timestamp| unix_timestamp | snapshot-id ]];
 	 
 .. list-table::
    :header-rows: 1
@@ -171,6 +171,8 @@ Usage Examples:
 .. code:: sql
 
 	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table TIMESTAMP AS OF '2023-04-11T18:06:36.289' WHERE column_a > 100;
+	
+	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table VERSION AS OF 1231234;
 	
 	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table VERSION AS OF 2583872980615177898;
 	
@@ -295,3 +297,12 @@ The files table (often called the files metadata view) returns a granular list o
 |                     |                | Maps back to metadata to optimize join and aggregation performance.                                   |
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
 
+Usefull Example: 
+
+In addition to querying Iceberg metadata tables, you can also join them with each other.
+
+.. code:: sql
+
+	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table1.manifests a 
+		JOIN t_iceberg_db.namespace.my_iceberg_table2.snapshots b 
+		ON a.added_snapshot_id = b.snapshot_id;
