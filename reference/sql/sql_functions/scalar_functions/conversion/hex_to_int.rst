@@ -25,14 +25,16 @@ Arguments
    * - ``hex_string``
      - A string representing a hexadecimal number. The value may optionally include the ``0x`` prefix.
 
-Return
+Returns
 =======
 
 * Returns the decimal (base-10) integer value represented by the input hexadecimal string.
 
-* ``NULL`` input returns ``NULL``. Invalid input results in an error.
+* ``NULL`` input returns ``NULL``.
 
-* The maximum supported hexadecimal value is ``0x7FFFFFFF`` and will return ``2,147,483,647``. Any hexadecimal value greater than ``0x7FFFFFFF`` results in an error.
+* Invalid input will result in an error.
+
+* The maximum supported hexadecimal value is ``0x7FFFFFFF`` and will return ``2,147,483,647``. Any hexadecimal value greater than ``0x7FFFFFFF`` will result in an error.
 
 .. note:: This feature supports hexadecimal conversion to INT only. Conversion to BIGINT is not supported.
 
