@@ -11,30 +11,10 @@ The following requirements must be configured on **each server**.
 Python Requirements
 -------------------
 
-**Minimal Python Version:** 3.11.7 and above.
+**Python Version:** 3.11.7
 
-1. Verify that the ``python3`` executable points to the correct version:
+Python installation requirements are mentioned here: :ref:`pre-installation_configurations` on **'Installing Recommended Tools'** section.
 
-   .. code-block:: console
-
-      python3 --version
-
-2. If ``python3`` does not point to a version that meets the minimal requirements, update the Python version alternatives.
-
-   * Check the current configuration:
-
-     .. code-block:: console
-
-        sudo update-alternatives --config python3
-
-   * Change the version (replace ``X`` with your installed sub-version):
-
-     .. code-block:: console
-
-        sudo update-alternatives --set python3 /usr/bin/python3.X
-
-.. warning::
-   **Restart Required:** If the default Python version was changed, you must restart Sqream workers for the update to take effect.
 
 Install CUDA Toolkit
 --------------------
