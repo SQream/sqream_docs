@@ -267,31 +267,31 @@ The files table (often called the files metadata view) returns a granular list o
 **Syntax:**
 
 .. code:: sql
-	
-	SELECT * FROM <database>.<namespace>.<iceberg_table>.files;
+   
+   SELECT * FROM <database>.<namespace>.<iceberg_table>.files;
 
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
-| **Column**          | **Data Type**  | **Description** 																					   |
+| **Column**          | **Data Type**  | **Description**                                                                                       |
 +=====================+================+=======================================================================================================+
-| content             | INT            | refers to type of content stored by the data file: * 0 Data * 1 Position Deletes * 2 Equality Deletes.|
+| content             | INT            | Refers to type of content stored by the data file: 0 (Data), 1 (Position Deletes), 2 (Equality).      |
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
 | file_path           | TEXT           | Full file path and name                                                                               |
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
 | file_format         | TEXT           | Format, e.g. PARQUET.                                                                                 |
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
-| spec_id             | INT            | refers to the partition specification that a particular data file adheres to.                         |
+| spec_id             | INT            | Refers to the partition specification that a particular data file adheres to.                         |
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
 | record_count        | BIGINT         | Number of rows.                                                                                       |
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
 | file_size_in_bytes  | BIGINT         | Size of file.                                                                                         |
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
 | split_offsets       | ARRAY[BIGINT]  | A list of byte offsets within the file where it can be safely split for parallel reading.             |
-|                     |                | For example, in a large Parquet file, these offsets typically point to the start of row groups.       |
+|                     |                | For example, in a large Parquet file, these offsets point to the start of row groups.                 |
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
 | equality_ids        | ARRAY[INT]     | Used specifically for Equality Delete files.                                                          |
-|                     |                | This list contains the field IDs of the columns used to determine if a row is deleted.                |
+|                     |                | Field IDs of the columns used to determine if a row is deleted.                                       |
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
 | sort_order_id       | INT            | The identifier for the specific Sort Order applied to the data within this file.                      |
-|                     |                | Iceberg tracks sort orders globally, this ID maps back to the table's metadata, allowing the query    |
-|                     |                | engine to know if the data is already ordered to optimize join and aggregation performance.           |
+|                     |                | Maps back to metadata to optimize join and aggregation performance.                                   |
 +---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+
