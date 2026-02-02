@@ -14,8 +14,7 @@ on a production SQreamDB machine.
 Overview
 ========
 
-In order to use In-Process Python functions on a **production machine**
-(**not** a development machine with ``sqream_prerequisites`` installed),
+In order to use In-Process Python functions on a **production machine**, 
 several system-level dependencies must be installed and configured manually.
 
 Before proceeding, make sure you have completed all steps described in:
@@ -135,7 +134,7 @@ Install the CUDA Toolkit that matches your driver version.
 
       sudo dnf install cuda-toolkit-12-9
 
-Installing CUDA Toolkit via Runfile ( in repository installation is not possible )
+Installing CUDA Toolkit via Runfile ( if repository installation is not possible )
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Download the runfile:
