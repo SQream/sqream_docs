@@ -75,7 +75,7 @@ html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
-html_logo = '_static/images/SQream_logo_without background-15.png'
+html_logo = '_static/images/Logo_4.png'
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
