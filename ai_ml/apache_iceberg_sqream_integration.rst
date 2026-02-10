@@ -97,11 +97,11 @@ This links the new Catalog Integration to a database object within SQream.
    * This can only be performed on an empty database.
    * SQream DB automatically converts Iceberg identifiers (database, namespace, and table names) to lowercase. Therefore, you must use lowercase names, or explicitly quote any identifier that contains uppercase letters or special characters.
 
-**Limitations**
+**Limitations:**
 
 * **File Format:** Only **Parquet** is supported.
 * **Operations:** Only **SELECT** queries are supported. DML (**DELETE, INSERT, UPDATE**) and DDL operations will be added in later phases.
-* **Advanced Features:** Time travel, schema evolution, and transactional commands **are not supported**.
+* **Advanced Features:** schema evolution, and transactional commands **are not supported**.
 * **Writability:** ALLOW_WRITES in the external catalog must be set to false.
 
 **Querying an Iceberg Table**
@@ -135,8 +135,174 @@ SQream supports most standard Iceberg data types:
 | string                    | TEXT           | Stored as UTF-8.       |
 +---------------------------+----------------+------------------------+
 
+Time Travel
+===========
+
+Apache Iceberg’s Time Travel capability allows users to query a table as it existed at a specific point in time or at a specific version. This is achieved through Iceberg’s snapshot-based architecture, which captures the full state of the table following every write operation.
+
+**Time Travel Core Concepts:**
+
+* **Snapshots:** A snapshot represents the state of a table at a point in time. Every commit (insert, update, delete, or overwrite) generates a new snapshot.
+
+* **Snapshot IDs:** Each snapshot is assigned a unique 64-bit integer ID, providing a definitive reference for auditing or rollbacks.
+
+* **Immutability:** Once a snapshot is created, the underlying data files associated with it are immutable. This ensures that historical queries remain consistent even as the "live" table continues to evolve.
 
 
+**Syntax:**
 
+.. code:: sql
 
+	SELECT <select_list> FROM <database>.<namespace>.<iceberg_table>
+		[[ TIMESTAMP | VERSION ] AS OF [ timestamp| unix_timestamp | snapshot-id ]];
+	 
+.. list-table::
+   :header-rows: 1
 
+   * - Parameter
+     - Description
+   * - ``TIMESTAMP``
+     - The ``TIMESTAMP AS OF`` clause allows for temporal lookups by resolving the most recent snapshot that was successfully committed at or before the specified point in time.
+   * - ``VERSION``
+     - The ``VERSION AS OF`` clause allows for deterministic query execution by pinning the query plan to a specific, unique Snapshot ID.
+	 	  
+Usage Examples:
+
+.. code:: sql
+
+	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table TIMESTAMP AS OF '2023-04-11T18:06:36.289' WHERE column_a > 100;
+	
+	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table VERSION AS OF 1231234;
+	
+	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table VERSION AS OF 2583872980615177898;
+	
+
+Extended Metadata Queries
+=========================
+
+**Querying Snapshots (.snapshots)**
+
+Shows all valid snapshots for a table, including the operation that created them.
+
+**Syntax:**
+
+.. code:: sql
+
+	SELECT * FROM <database>.<namespace>.<iceberg_table>.snapshots;
+	
++--------------+---------------+-------------------------------------------------------------+
+| **Column**   | **Data Type** | **Description**                                             |
++--------------+---------------+-------------------------------------------------------------+
+| committed_at | DATETIME2     | Timestamp of committed snapshot.                            |
++--------------+---------------+-------------------------------------------------------------+
+| snapshot_id  | BIGINT        | The unique identifier for the snapshot.                     |
++--------------+---------------+-------------------------------------------------------------+
+| parent_id    | BIGINT        | The ID of the previous snapshot.                            |
++--------------+---------------+-------------------------------------------------------------+
+| operation    | TEXT          | Type of operation that created the snapshot (e.g., append). |
++--------------+---------------+-------------------------------------------------------------+
+| manifest_list| TEXT          | The full path to the manifest list file.                    |
++--------------+---------------+-------------------------------------------------------------+
+
+**Querying History (.history)**
+
+Shows the changes and lineage of snapshots for a table.
+
+**Syntax:**
+
+.. code:: sql
+
+	SELECT * FROM <database>.<namespace>.<iceberg_table>.history;
+	
++---------------------+----------------+-----------------------------------------------------------------------+
+| **Column**          | **Data Type**  | **Description**                                                       |
++---------------------+----------------+-----------------------------------------------------------------------+
+| made_current_at     | DATETIME2      | Timestamp of when the snapshot became current.                        |
++---------------------+----------------+-----------------------------------------------------------------------+
+| snapshot_id         | BIGINT         | Unique identifier for the snapshot.                                   |
++---------------------+----------------+-----------------------------------------------------------------------+
+| parent_id           | BIGINT         | The ID of the snapshot that preceded this one.                        |
++---------------------+----------------+-----------------------------------------------------------------------+
+| is_current_ancestor | BOOL           | Indicates if this snapshot is an ancestor of the current table state. |
++---------------------+----------------+-----------------------------------------------------------------------+
+
+**Querying Manifests (.manifests)**
+
+The manifests table returns a list of all manifest files that make up the current table state.
+
+**Syntax:**
+
+.. code:: sql
+
+	SELECT * FROM <database>.<namespace>.<iceberg_table>.manifests;
+
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| **Column**                   | **Data Type** | **Description**                                                                          |
++==============================+===============+==========================================================================================+
+| content                      | INT           | Type of manifest: 0 (Data) or 1 (Deletes).                                               |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| path                         | TEXT          | The full URI/path to the specific manifest file stored in your storage layer             |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| length                       | BIGINT        | The size of the manifest file in bytes.                                                  |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| added_snapshot_id            | BIGINT        | The ID of the snapshot that first introduced this manifest file to the table.            |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| added_data_files_count       | INT           | The number of new data files that were added within this specific manifest.              |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| existing_data_files_count    | INT           | The number of data files that already existed and were carried over into this manifest.  |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| deleted_data_files_count     | INT           | The number of data files marked as deleted in this manifest.                             |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| added_delete_files_count     | INT           | The number of new delete files (position or equality deletes) added to the table in the  |
+|                              |               | snapshot that created this manifest.                                                     |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| existing_delete_files_count  | INT           | The number of previously existing delete files that are still active and were carried    |
+|                              |               | over into this manifest from earlier snapshots.                                          |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+| deleted_delete_files_count   | INT           | The number of delete files marked as removed in this manifest                            |
++------------------------------+---------------+------------------------------------------------------------------------------------------+
+
+**Querying Files (.files)**
+
+The files table (often called the files metadata view) returns a granular list of every individual data file (e.g., Parquet, Avro, or ORC) currently tracked by the table.
+
+**Syntax:**
+
+.. code:: sql
+   
+   SELECT * FROM <database>.<namespace>.<iceberg_table>.files;
+
++---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+| **Column**          | **Data Type**  | **Description**                                                                                       |
++=====================+================+=======================================================================================================+
+| content             | INT            | Refers to type of content stored by the data file: 0 (Data), 1 (Position Deletes), 2 (Equality).      |
++---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+| file_path           | TEXT           | Full file path and name                                                                               |
++---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+| file_format         | TEXT           | Format, e.g. PARQUET.                                                                                 |
++---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+| spec_id             | INT            | Refers to the partition specification that a particular data file adheres to.                         |
++---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+| record_count        | BIGINT         | Number of rows.                                                                                       |
++---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+| file_size_in_bytes  | BIGINT         | Size of file.                                                                                         |
++---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+| split_offsets       | ARRAY[BIGINT]  | A list of byte offsets within the file where it can be safely split for parallel reading.             |
+|                     |                | For example, in a large Parquet file, these offsets point to the start of row groups.                 |
++---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+| equality_ids        | ARRAY[INT]     | Used specifically for Equality Delete files.                                                          |
+|                     |                | Field IDs of the columns used to determine if a row is deleted.                                       |
++---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+| sort_order_id       | INT            | The identifier for the specific Sort Order applied to the data within this file.                      |
+|                     |                | Maps back to metadata to optimize join and aggregation performance.                                   |
++---------------------+----------------+-------------------------------------------------------------------------------------------------------+
+
+Usefull Example: 
+
+In addition to querying Iceberg metadata tables, you can also join them with each other.
+
+.. code:: sql
+
+	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table1.manifests a 
+		JOIN t_iceberg_db.namespace.my_iceberg_table2.snapshots b 
+		ON a.added_snapshot_id = b.snapshot_id;
