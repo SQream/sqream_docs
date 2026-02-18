@@ -18,6 +18,7 @@ This section summarizes the following operational guides:
    creating_or_cloning_a_storage_cluster
    external_data
    foreign_tables
+   system_health_monitoring
    delete_guide
    logging
    query_split
