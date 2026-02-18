@@ -10,4 +10,4 @@ Installation and Configuration
 ==============================
 
 To retrieve the source code and configuration instructions for setting up the monitoring stack, refer to the following GitHub repository:
-`Sqream Monitoring <https://github.com/SQream/scailium_monitoring>`_
+`SCAILIUM Monitoring <https://github.com/SQream/scailium_monitoring>`_
