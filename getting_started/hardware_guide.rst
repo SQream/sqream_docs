@@ -57,7 +57,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
 
    * - GPU
      - 
-        NVIDIA 2x A100, H100, or L40S
+        NVIDIA 2x A100, L40S, H100, H200, or RTX Pro 6000
     
    * - Operating System
      - Red Hat Enterprise Linux v8.9/8.10/9.5
@@ -102,7 +102,7 @@ The following table shows SQreamDB's recommended hardware specifications:
          * Mellanox Connectx5/6 100G NVIDIA Network Card (if applicable) or other high-speed network card minimum 40G compatible with customer’s infrastructure
          * 50 TB (NAS connected over GPFS, Weka, VAST, NFS )
    * - GPU
-     - NVIDIA 2x A100, H100, or L40S
+     - NVIDIA 2x A100, L40S, H100, H200, or RTX Pro 6000
    * - Operating System
      - Red Hat Enterprise Linux v8.9/8.10/9.5 
    
@@ -205,7 +205,7 @@ SQreamDB relies on multi-core Intel Gold Xeon processors or IBM POWER9 processor
 GPU Compute and RAM
 -------------------
 
-The NVIDIA Data Center range of high-throughput GPU accelerators provides the best performance for enterprise environments. Most cards have ECC memory, which is crucial for delivering correct results every time. SQreamDB recommends the  NVIDIA A100 80GB GPU for the best performance and highest concurrent user support.
+The NVIDIA Data Center range of high-throughput GPU accelerators provides the best performance for enterprise environments. Most cards have ECC memory, which is crucial for delivering correct results every time. SQreamDB recommends the  NVIDIA A100, L40S, H100, H200, or RTX Pro 6000 GPUs for the best performance and highest concurrent user support.
 
 GPU RAM, sometimes called GRAM or VRAM, is used for processing queries. It is possible to select GPUs with less RAM. However, the smaller GPU RAM results in reduced concurrency, as the GPU RAM is used extensively in operations like JOINs, ORDER BY, GROUP BY, and all SQL transforms.
 
@@ -229,4 +229,4 @@ Storage
 
 For clustered scale-out installations, SQreamDB relies on NAS storage. For stand-alone installations, SQreamDB relies on redundant disk configurations, such as RAID 5, 6, or 10. These RAID configurations replicate blocks of data between disks to avoid data loss or system unavailability. 
 
-SQreamDB recommends using enterprise-grade SAS SSD or NVMe drives. For a 32-user configuration, the number of GPUs should roughly match the number of users. SQreamDB recommends 1 A100 / H100 or L40S GPU per 2 users, for full, uninterrupted dedicated access.
+SQreamDB recommends using enterprise-grade SAS SSD or NVMe drives. For a 32-user configuration, the number of GPUs should roughly match the number of users. SQreamDB recommends 1 A100, L40S, H100, H200, or RTX Pro 6000 GPU per 2 users, for full, uninterrupted dedicated access.
