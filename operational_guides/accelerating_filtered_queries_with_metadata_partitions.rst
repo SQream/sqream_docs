@@ -27,14 +27,14 @@ Managing Metadata Partitions
 A new SQL function, `recalculate_metadata_partition`, is introduced to manage and update the Metadata Partitions for your tables.
 
 Syntax
-======
+------
 
 .. code-block:: postgres
 
 	SELECT recalculate_chunks_indexes ('<schema_name.table_name>', '<column_name>' [,'true'/'false']);
 
 Parameters
-==========
+----------
 
 .. list-table:: 
    :widths: auto
@@ -78,7 +78,7 @@ Removing Metadata Partitions
 To remove existing Metadata Partitions from a table use:
 
 Syntax
-======
+------
 
 .. code-block:: postgres
 
@@ -86,7 +86,7 @@ Syntax
 
 
 Parameters
-==========
+----------
 
 .. list-table:: 
    :widths: auto
