@@ -77,8 +77,13 @@ Removing Metadata Partitions
 
 To remove existing Metadata Partitions from a table use:
 
+Syntax
+======
+
 .. code-block:: postgres
-    SELECT remove_chunks_indexes ('<schema_name.table_name>');
+
+	SELECT remove_chunks_indexes ('<schema_name.table_name>');
+
 
 Parameters
 ==========
