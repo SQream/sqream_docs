@@ -31,7 +31,7 @@ Syntax
 
 .. code-block:: postgres
 
-	SELECT recalculate_metadata_partition('<schema_name>', '<table_name>', '<column_name>', ['true'/'false']);
+	SELECT recalculate_chunks_indexes ('<schema_name.table_name>', '<column_name>' [,'true'/'false']);
 
 Parameters
 ==========
@@ -42,10 +42,8 @@ Parameters
    
    * - Parameter
      - Description
-   * - ``schema_name``
-     - The name of the schema
-   * - ``table_name``
-     - The name of the table
+   * - ``schema_name.table_name``
+     - The name of the schema followed by . and the name of the table
    * - ``column_name``
      - The name of the column
    * - ``case_sensitive_flag``
@@ -60,7 +58,7 @@ Important Considerations
       * ``INSERT`` New chunks will be added, and a full scan of these new chunks will be performed until the Metadata Partition is updated.
       * ``DELETE`` The existing metadata partition might still be used, potentially leading to false positives (pointing to non-existent chunks) - which will later get filtered out from the statement results.
       * ``UPDATE`` The existing metadata partition will become irrelevant and will not be used.
-      * ``CLEANUP_CHUNKS``, ``CLEANUP_EXTENNTS``, ``RECHUNK`` These operations will require dropping and recreating the Metadata Partition.
+      * ``CLEANUP_CHUNKS``, ``CLEANUP_EXTENTS``, ``RECHUNK`` These operations will require dropping and recreating the Metadata Partition.
   * The ``recalculate_metadata_partition`` utility is designed to be CPU-based, ensuring that it does not impact GPU-intensive workloads.
 
 
@@ -71,5 +69,25 @@ A new catalog statement is available to list the existing Metadata Partitions an
 
 .. code-block:: postgres
 
-	SELECT db_name, schema_name, table_name, column_name, last_update, total_chunks_per_column, total_metadata partitoned_chunks_per_column
+	SELECT database_name, schema_name, table_name, column_name, last_update, total_chunks_per_column, total_indexed_chunks_per_column
 	FROM sqream_catalog.metadata_partitions;
+
+Removing Metadata Partitions
+==============================
+
+To remove existing Metadata Partitions from a table use:
+
+.. code-block:: postgres
+    SELECT remove_chunks_indexes ('<schema_name.table_name>');
+
+Parameters
+==========
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``schema_name.table_name``
+     - The name of the schema followed by . and the name of the table
