@@ -25,10 +25,10 @@ Iceberg uses a multi-layered metadata structure to track table state:
 
 3. **The Catalog:** An external store (e.g., REST, AWS Glue) that maps a table name to its current **Metadata File** pointer, enabling transactional guarantees and multi-table semantics.
 
-Connectivity and Read-Only Querying
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Connectivity to Iceberg
+~~~~~~~~~~~~~~~~~~~~~~~
 
-The initial focus is on connecting SQream to an external Iceberg REST Catalog and querying existing tables.
+Connecting SQream to an external Iceberg REST Catalog.
 
 1. **Create a Catalog Integration**
 
@@ -104,7 +104,63 @@ This links the new Catalog Integration to a database object within SQream.
 * **Advanced Features:** schema evolution, and transactional commands **are not supported**.
 * **Writability:** ALLOW_WRITES in the external catalog must be set to false.
 
-**Querying an Iceberg Table**
+DDL Operations on an Iceberg Table
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An Iceberg table can be created in Sqream with DDL support for the data types listed below. ALTER operations are currently not supported.
+
+**Syntax:**
+
+.. code:: sql
+
+	CREATE [OR REPLACE] ICEBERG TABLE <FOREIGN_DATABASE>.<NAMESPACE/S>.table_name
+    -- Column Definitions
+    (
+      col_name1 col_type1 [NULL / NOT NULL],
+      col_name2 col_type2 [NULL / NOT NULL]],
+      ...
+    )
+    [OPTIONS (
+       [PARTITIONED BY ([<COLUMN>|<TRANSFORMED_COLUMN*>, ..])]
+       [TBLPROPERTIES* = [...]
+       [COMMENT*='table_comment']
+    )]
+    -- Creation from Query
+    [AS select_statement];
+	
+	DROP [TABLE] [IF EXISTS] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
+
+	TRUNCATE [TABLE] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
+
+Usage Examples:
+
+.. code:: sql
+
+	--create table
+	CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t (
+		id BIGINT,
+		event_time TIMESTAMP,
+		data TEXT,
+		category TEXT
+	);
+	
+	--create as select
+	CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t1 AS select * from x;
+	
+	--drop
+	DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t;
+	
+	--truncate
+	TRUNCATE TABLE t_iceberg_db.test_namespace.t;
+	
+.. note:: 
+
+   * Namespace creation is currently not supported in Sqream and must be performed externally.
+   * Partitions are not supported at this stage.
+	
+
+Querying an Iceberg Table
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An Iceberg table behaves like a regular SQream table for **SELECT** operations. SQream automatically uses the Iceberg metadata and statistics (like min/max filtering) to prune irrelevant data files, improving performance.
 
