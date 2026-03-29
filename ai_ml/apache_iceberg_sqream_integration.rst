@@ -126,7 +126,7 @@ An Iceberg table can be created in Sqream with DDL support for the data types li
     )]
     [AS select_statement];
 
-    DROP [TABLE] [IF EXISTS] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
+    DROP [TABLE] [IF EXISTS] <FOREIGN_DATABASE>.<NAMESPACE>.table_name [PURGE];
 
     TRUNCATE [TABLE] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
 
@@ -145,8 +145,11 @@ Usage Examples:
 	--create as select
 	CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t1 AS select * from x;
 	
-	--drop
+	--drop soft delete
 	DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t;
+	
+	--drop with purge
+	DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t PURGE;
 	
 	--truncate
 	TRUNCATE TABLE t_iceberg_db.test_namespace.t;
@@ -364,3 +367,54 @@ In addition to querying Iceberg metadata tables, you can also join them with eac
 Write operations on an Iceberg Table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Iceberg tables support data ingestion through three primary mechanisms: manual row insertion via INSERT, bulk loading from existing datasets using INSERT INTO ... SELECT, and atomic table creation with data population via CREATE TABLE AS SELECT (CTAS).
+
+**Syntax:**
+
+.. code:: sql
+
+	-- Standard Append (Values)
+	INSERT [INTO] <FOREIGN_DATABASE>.<NAMESPACE>.table_name
+		[(col_name [, ...])]
+		VALUES (expression [, ...]) [, (expression [, ...]), ...];
+
+	-- Insert from Select Statement
+	INSERT [INTO] <FOREIGN_DATABASE>.<NAMESPACE>.table_name
+		<select_statement>;
+		
+Usage Examples:
+
+.. code:: sql
+
+	CREATE or replace ICEBERG TABLE test_foreign_db.test_namespace.all_types (
+		b bool,
+		i int,
+		bi bigint,
+		d double,
+		n numeric(20, 10),
+		ts timestamp,
+		dt date,
+		dtm datetime,
+		dt2 datetime2,
+		txt text
+	);
+	
+	--standard insert 
+	insert into test_foreign_db.test_namespace.all_types values (
+		1,
+		123, 
+		5632323,
+		2.5,
+		1234567890.1234567890,
+		'2019-12-07 23:04:26' ,
+		'1999-11-05',
+		'1955-11-05 01:24:00.000',
+		'1999-11-05 01:24:00.000666333',
+		'test_data');
+		
+	--bulk insert
+	insert into test_foreign_db.test_namespace.all_types select * from test_foreign_db.test_namespace.all_types;
+	
+	--create iceberg table from existing internal table
+	CREATE ICEBERG TABLE test_foreign_db.test_namespace.all_types_dest as select * from all_types_internal_table;
+ 
