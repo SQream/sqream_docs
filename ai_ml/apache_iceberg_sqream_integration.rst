@@ -113,24 +113,22 @@ An Iceberg table can be created in Sqream with DDL support for the data types li
 
 .. code:: sql
 
-	CREATE [OR REPLACE] ICEBERG TABLE <FOREIGN_DATABASE>.<NAMESPACE/S>.table_name
-    -- Column Definitions
+    CREATE [OR REPLACE] ICEBERG TABLE <FOREIGN_DATABASE>.<NAMESPACE>.table_name
     (
-      col_name1 col_type1 [NULL / NOT NULL],
-      col_name2 col_type2 [NULL / NOT NULL]],
-      ...
+        col_name1 col_type1 [NULL | NOT NULL],
+        col_name2 col_type2 [NULL | NOT NULL],
+        ...
     )
     [OPTIONS (
-       [PARTITIONED BY ([<COLUMN>|<TRANSFORMED_COLUMN*>, ..])]
-       [TBLPROPERTIES* = [...]
-       [COMMENT*='table_comment']
+        [PARTITIONED BY (<COLUMN> | <TRANSFORMED_COLUMN>, ...)]
+        [TBLPROPERTIES = (...)]
+        [COMMENT = 'table_comment']
     )]
-    -- Creation from Query
     [AS select_statement];
-	
-	DROP [TABLE] [IF EXISTS] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
 
-	TRUNCATE [TABLE] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
+    DROP [TABLE] [IF EXISTS] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
+
+    TRUNCATE [TABLE] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
 
 Usage Examples:
 
@@ -158,16 +156,6 @@ Usage Examples:
    * Namespace creation is currently not supported in Sqream and must be performed externally.
    * Partitions are not supported at this stage.
 	
-
-Querying an Iceberg Table
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-An Iceberg table behaves like a regular SQream table for **SELECT** operations. SQream automatically uses the Iceberg metadata and statistics (like min/max filtering) to prune irrelevant data files, improving performance.
-
-.. code:: sql
-
-	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table WHERE column_a > 100;
-
 Data Type Mapping
 =================
 
@@ -190,6 +178,15 @@ SQream supports most standard Iceberg data types:
 +---------------------------+----------------+------------------------+
 | string                    | TEXT           | Stored as UTF-8.       |
 +---------------------------+----------------+------------------------+
+
+Querying an Iceberg Table
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An Iceberg table behaves like a regular SQream table for **SELECT** operations. SQream automatically uses the Iceberg metadata and statistics (like min/max filtering) to prune irrelevant data files, improving performance.
+
+.. code:: sql
+
+	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table WHERE column_a > 100;
 
 Time Travel
 ===========
@@ -362,3 +359,8 @@ In addition to querying Iceberg metadata tables, you can also join them with eac
 	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table1.manifests a 
 		JOIN t_iceberg_db.namespace.my_iceberg_table2.snapshots b 
 		ON a.added_snapshot_id = b.snapshot_id;
+		
+		
+Write operations on an Iceberg Table
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
