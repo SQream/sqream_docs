@@ -359,10 +359,10 @@ In addition to querying Iceberg metadata tables, you can also join them with eac
 
 .. code:: sql
 
-	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table1.manifests a 
-		JOIN t_iceberg_db.namespace.my_iceberg_table2.snapshots b 
-		ON a.added_snapshot_id = b.snapshot_id;
-		
+    SELECT *
+    FROM t_iceberg_db.namespace.my_iceberg_table1.manifests a
+    JOIN t_iceberg_db.namespace.my_iceberg_table2.snapshots b
+        ON a.added_snapshot_id = b.snapshot_id;
 		
 Write operations on an Iceberg Table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
