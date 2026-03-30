@@ -100,9 +100,8 @@ This links the new Catalog Integration to a database object within SQream.
 **Limitations:**
 
 * **File Format:** Only **Parquet** is supported.
-* **Operations:** Only **SELECT** queries are supported. DML (**DELETE, INSERT, UPDATE**) and DDL operations will be added in later phases.
+* **Operations:** SELECT, INSERT, and DDL operations (excluding ALTER) are supported. DELETE and UPDATE are not currently supported and will be introduced in future phases.
 * **Advanced Features:** schema evolution, and transactional commands **are not supported**.
-* **Writability:** ALLOW_WRITES in the external catalog must be set to false.
 
 DDL Operations on an Iceberg Table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -119,16 +118,19 @@ An Iceberg table can be created in Sqream with DDL support for the data types li
         col_name2 col_type2 [NULL | NOT NULL],
         ...
     )
-    [OPTIONS (
-        [PARTITIONED BY (<COLUMN> | <TRANSFORMED_COLUMN>, ...)]
+    [OPTIONS (        
         [TBLPROPERTIES = (...)]
         [COMMENT = 'table_comment']
     )]
     [AS select_statement];
 
-    DROP [TABLE] [IF EXISTS] <FOREIGN_DATABASE>.<NAMESPACE>.table_name [PURGE];
-
     TRUNCATE [TABLE] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
+	
+	DROP [TABLE] [IF EXISTS] <FOREIGN_DATABASE>.<NAMESPACE>.table_name [PURGE];
+	
+.. note:: 
+
+   * ``PURGE`` (Optional): Permanently deletes the table's underlying physical data files, immediately bypassing any trash or time-travel retention policies.
 
 Usage Examples:
 
@@ -145,14 +147,14 @@ Usage Examples:
 	--create as select
 	CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t1 AS select * from x;
 	
+	--truncate
+	TRUNCATE TABLE t_iceberg_db.test_namespace.t;
+	
 	--drop soft delete
 	DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t;
 	
 	--drop with purge
 	DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t PURGE;
-	
-	--truncate
-	TRUNCATE TABLE t_iceberg_db.test_namespace.t;
 	
 .. note:: 
 
