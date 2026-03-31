@@ -123,6 +123,16 @@ An Iceberg table can be created in Sqream with DDL support for the data types li
         [COMMENT = 'table_comment']
     )]
     [AS select_statement];
+	
+	**TBLPROPERTIES**
+
+	Supported values:
+
+	- 'write.update.mode' = 'copy-on-write' | 'merge-on-read'``  
+	  (Default: 'copy-on-write')
+
+	- 'write.delete.mode' = 'copy-on-write' | 'merge-on-read'``  
+	  (Default: 'copy-on-write')
 
     TRUNCATE [TABLE] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
 	
@@ -136,13 +146,20 @@ Usage Examples:
 
 .. code:: sql
 
-	--create table
-	CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t (
-		id BIGINT,
-		event_time TIMESTAMP,
-		data TEXT,
-		category TEXT
-	);
+    -- create table
+    CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t
+    (
+        id BIGINT,
+        event_time TIMESTAMP,
+        data TEXT,
+        category TEXT
+    )
+    OPTIONS (
+        TBLPROPERTIES = [
+            'write.update.mode' = 'copy-on-write',
+            'write.delete.mode' = 'copy-on-write'
+        ]
+    );
 	
 	--create as select
 	CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t1 AS select * from x;
