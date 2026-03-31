@@ -124,9 +124,7 @@ An Iceberg table can be created in Sqream with DDL support for the data types li
     )]
     [AS select_statement];
 	
-**TBLPROPERTIES**
-
-Supported values:
+**TBLPROPERTIES** - Supported values:
 
 - 'write.update.mode' = 'copy-on-write' | 'merge-on-read' (Default: 'copy-on-write')
 - 'write.delete.mode' = 'copy-on-write' | 'merge-on-read' (Default: 'copy-on-write')
