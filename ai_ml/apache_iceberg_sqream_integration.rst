@@ -128,17 +128,15 @@ An Iceberg table can be created in Sqream with DDL support for the data types li
 
 Supported values:
 
-- 'write.update.mode' = 'copy-on-write' | 'merge-on-read'``  
-	(Default: 'copy-on-write')
-
-- 'write.delete.mode' = 'copy-on-write' | 'merge-on-read'``  
-	(Default: 'copy-on-write')
+- 'write.update.mode' = 'copy-on-write' | 'merge-on-read' (Default: 'copy-on-write')
+- 'write.delete.mode' = 'copy-on-write' | 'merge-on-read' (Default: 'copy-on-write')
+	
 
 .. code:: sql
 
     TRUNCATE [TABLE] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
-	
-	DROP [TABLE] [IF EXISTS] <FOREIGN_DATABASE>.<NAMESPACE>.table_name [PURGE];
+
+    DROP [TABLE] [IF EXISTS] <FOREIGN_DATABASE>.<NAMESPACE>.table_name [PURGE];
 	
 .. note:: 
 
