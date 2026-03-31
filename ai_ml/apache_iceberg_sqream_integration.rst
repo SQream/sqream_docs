@@ -124,15 +124,17 @@ An Iceberg table can be created in Sqream with DDL support for the data types li
     )]
     [AS select_statement];
 	
-	**TBLPROPERTIES**
+**TBLPROPERTIES**
 
-	Supported values:
+Supported values:
 
-	- 'write.update.mode' = 'copy-on-write' | 'merge-on-read'``  
-	  (Default: 'copy-on-write')
+- 'write.update.mode' = 'copy-on-write' | 'merge-on-read'``  
+	(Default: 'copy-on-write')
 
-	- 'write.delete.mode' = 'copy-on-write' | 'merge-on-read'``  
-	  (Default: 'copy-on-write')
+- 'write.delete.mode' = 'copy-on-write' | 'merge-on-read'``  
+	(Default: 'copy-on-write')
+
+.. code:: sql
 
     TRUNCATE [TABLE] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
 	
@@ -160,18 +162,19 @@ Usage Examples:
             'write.delete.mode' = 'copy-on-write'
         ]
     );
-	
-	--create as select
-	CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t1 AS select * from x;
-	
-	--truncate
-	TRUNCATE TABLE t_iceberg_db.test_namespace.t;
-	
-	--drop soft delete
-	DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t;
-	
-	--drop with purge
-	DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t PURGE;
+
+    -- create as select
+    CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t1
+    AS SELECT * FROM x;
+
+    -- truncate
+    TRUNCATE TABLE t_iceberg_db.test_namespace.t;
+
+    -- drop soft delete
+    DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t;
+
+    -- drop with purge
+    DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t PURGE;
 	
 .. note:: 
 
