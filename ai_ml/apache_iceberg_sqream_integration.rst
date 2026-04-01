@@ -25,10 +25,10 @@ Iceberg uses a multi-layered metadata structure to track table state:
 
 3. **The Catalog:** An external store (e.g., REST, AWS Glue) that maps a table name to its current **Metadata File** pointer, enabling transactional guarantees and multi-table semantics.
 
-Connectivity and Read-Only Querying
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Connectivity to Iceberg
+~~~~~~~~~~~~~~~~~~~~~~~
 
-The initial focus is on connecting SQream to an external Iceberg REST Catalog and querying existing tables.
+Connecting SQream to an external Iceberg REST Catalog.
 
 1. **Create a Catalog Integration**
 
@@ -100,18 +100,83 @@ This links the new Catalog Integration to a database object within SQream.
 **Limitations:**
 
 * **File Format:** Only **Parquet** is supported.
-* **Operations:** Only **SELECT** queries are supported. DML (**DELETE, INSERT, UPDATE**) and DDL operations will be added in later phases.
+* **Operations:** SELECT, INSERT, and DDL operations (excluding ALTER) are supported. DELETE and UPDATE are not currently supported and will be introduced in future phases.
 * **Advanced Features:** schema evolution, and transactional commands **are not supported**.
-* **Writability:** ALLOW_WRITES in the external catalog must be set to false.
 
-**Querying an Iceberg Table**
+DDL Operations on an Iceberg Table
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-An Iceberg table behaves like a regular SQream table for **SELECT** operations. SQream automatically uses the Iceberg metadata and statistics (like min/max filtering) to prune irrelevant data files, improving performance.
+An Iceberg table can be created in Sqream with DDL support for the data types listed below. ALTER operations are currently not supported.
+
+**Syntax:**
 
 .. code:: sql
 
-	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table WHERE column_a > 100;
+    CREATE [OR REPLACE] ICEBERG TABLE <FOREIGN_DATABASE>.<NAMESPACE>.table_name
+    (
+        col_name1 col_type1 [NULL | NOT NULL],
+        col_name2 col_type2 [NULL | NOT NULL],
+        ...
+    )
+    [OPTIONS (        
+        [TBLPROPERTIES = (...)]
+        [COMMENT = 'table_comment']
+    )]
+    [AS select_statement];
+	
+**TBLPROPERTIES** - Supported values:
 
+- 'write.update.mode' = 'copy-on-write' | 'merge-on-read' (Default: 'copy-on-write')
+- 'write.delete.mode' = 'copy-on-write' | 'merge-on-read' (Default: 'copy-on-write')
+	
+
+.. code:: sql
+
+    TRUNCATE [TABLE] <FOREIGN_DATABASE>.<NAMESPACE>.table_name;
+
+    DROP [TABLE] [IF EXISTS] <FOREIGN_DATABASE>.<NAMESPACE>.table_name [PURGE];
+	
+.. note:: 
+
+   * ``PURGE`` (Optional): Permanently deletes the table's underlying physical data files, immediately bypassing any trash or time-travel retention policies.
+
+Usage Examples:
+
+.. code:: sql
+
+    -- create table
+    CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t
+    (
+        id BIGINT,
+        event_time TIMESTAMP,
+        data TEXT,
+        category TEXT
+    )
+    OPTIONS (
+        TBLPROPERTIES = [
+            'write.update.mode' = 'copy-on-write',
+            'write.delete.mode' = 'copy-on-write'
+        ]
+    );
+
+    -- create as select
+    CREATE OR REPLACE ICEBERG TABLE t_iceberg_db.test_namespace.t1
+    AS SELECT * FROM x;
+
+    -- truncate
+    TRUNCATE TABLE t_iceberg_db.test_namespace.t;
+
+    -- drop soft delete
+    DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t;
+
+    -- drop with purge
+    DROP TABLE IF EXISTS t_iceberg_db.test_namespace.t PURGE;
+	
+.. note:: 
+
+   * Namespace creation is currently not supported in Sqream and must be performed externally.
+   * Partitions are not supported at this stage.
+	
 Data Type Mapping
 =================
 
@@ -134,6 +199,15 @@ SQream supports most standard Iceberg data types:
 +---------------------------+----------------+------------------------+
 | string                    | TEXT           | Stored as UTF-8.       |
 +---------------------------+----------------+------------------------+
+
+Querying an Iceberg Table
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An Iceberg table behaves like a regular SQream table for **SELECT** operations. SQream automatically uses the Iceberg metadata and statistics (like min/max filtering) to prune irrelevant data files, improving performance.
+
+.. code:: sql
+
+	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table WHERE column_a > 100;
 
 Time Travel
 ===========
@@ -303,6 +377,62 @@ In addition to querying Iceberg metadata tables, you can also join them with eac
 
 .. code:: sql
 
-	SELECT * FROM t_iceberg_db.namespace.my_iceberg_table1.manifests a 
-		JOIN t_iceberg_db.namespace.my_iceberg_table2.snapshots b 
-		ON a.added_snapshot_id = b.snapshot_id;
+    SELECT *
+    FROM t_iceberg_db.namespace.my_iceberg_table1.manifests a
+    JOIN t_iceberg_db.namespace.my_iceberg_table2.snapshots b
+        ON a.added_snapshot_id = b.snapshot_id;
+		
+Write operations on an Iceberg Table
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Iceberg tables support data ingestion through three primary mechanisms: manual row insertion via INSERT, bulk loading from existing datasets using INSERT INTO ... SELECT, and atomic table creation with data population via CREATE TABLE AS SELECT (CTAS).
+
+**Syntax:**
+
+.. code:: sql
+
+	-- Standard Append (Values)
+	INSERT [INTO] <FOREIGN_DATABASE>.<NAMESPACE>.table_name
+		[(col_name [, ...])]
+		VALUES (expression [, ...]) [, (expression [, ...]), ...];
+
+	-- Insert from Select Statement
+	INSERT [INTO] <FOREIGN_DATABASE>.<NAMESPACE>.table_name
+		<select_statement>;
+		
+Usage Examples:
+
+.. code:: sql
+
+	CREATE or replace ICEBERG TABLE test_foreign_db.test_namespace.all_types (
+		b bool,
+		i int,
+		bi bigint,
+		d double,
+		n numeric(20, 10),
+		ts timestamp,
+		dt date,
+		dtm datetime,
+		dt2 datetime2,
+		txt text
+	);
+	
+	--standard insert 
+	insert into test_foreign_db.test_namespace.all_types values (
+		1,
+		123, 
+		5632323,
+		2.5,
+		1234567890.1234567890,
+		'2019-12-07 23:04:26' ,
+		'1999-11-05',
+		'1955-11-05 01:24:00.000',
+		'1999-11-05 01:24:00.000666333',
+		'test_data');
+		
+	--bulk insert
+	insert into test_foreign_db.test_namespace.all_types select * from test_foreign_db.test_namespace.all_types;
+	
+	--create iceberg table from existing internal table
+	CREATE ICEBERG TABLE test_foreign_db.test_namespace.all_types_dest as select * from all_types_internal_table;
+ 
