@@ -18,7 +18,7 @@ Compatibility Matrix
 +=========================+========================================================================+
 | Supported OS            | RHEL 8.9 / 8.10 / 9.5 / 9.6                                            |
 +-------------------------+------------------------------------------------------------------------+
-| supported Nvidia driver | CUDA version 12.3.2 / 12.6.1 / 13.0                                    |
+| supported Nvidia driver | CUDA version 12.3.2 / 12.6.1 / 12.9.1 / 13.0                           |
 +-------------------------+------------------------------------------------------------------------+
 | Storage version         | 101                                                                    |
 +-------------------------+------------------------------------------------------------------------+
@@ -29,7 +29,7 @@ New Features
 
 ► Native HDFS Partition Support - Enable HDFS partitioning on foreign/external tables.
 
-► :ref:`Full nvcomp support<compression>`.
+► Compression enhancements - :ref:`Full nvcomp support<compression>`.
 
 ► MCP interface support - allows you to query your data using natural language, using Claude as LLM. Please see :ref:`MCP documentation<mcp>`.
 
@@ -40,6 +40,7 @@ New Features
 
 Known Issues
 ------------
+Using Grant operation on a specific UDF function fail.
 
 :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`
 
@@ -94,6 +95,8 @@ Version 4.17 resolved Issues
 | SQ-22621                   | Enhanced performance when querying sqream_catalog.chunks                                    |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-22710                   | Delete execution plan no longer includes inappropriate rechunk producer                     |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-22755                   | Impproved cleanup_chunks performance                                                        |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-22830                   | S3 connectivity endpoint flag wasn't enforced correctly                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
