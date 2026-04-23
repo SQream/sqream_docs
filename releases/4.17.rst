@@ -4,7 +4,7 @@
 Release Notes 4.17
 *****************
 
-The 4.17 release notes were released on March 31, 2026 # TODO
+The 4.17 release notes were released on April 23, 2026
 
 .. contents:: 
    :local:
@@ -25,6 +25,10 @@ Compatibility Matrix
 
 New Features
 ------------
+► Add comment per column - Allow adding descriptive metadata to table and columns.
+
+► Native HDFS Partition Support - Enable HDFS partitioning on foreign/external tables.
+
 ► :ref:`Full nvcomp support<compression>`.
 
 ► MCP interface support - allows you to query your data using natural language, using Claude as LLM. Please see :ref:`MCP documentation<mcp>`.
@@ -32,10 +36,6 @@ New Features
 ► Add ``ANY`` syntax to Saved Query parameters should allow a dynamic IN list (SQ-22008). Please see :ref:`Saved Query<save_query>`.
 
 ► Add support for casting ``TEXT_TO_ARRAY``. Please see :ref:`casting TEXT_TO_ARRAY<text_to_array>`.
-
-► RHEL 9 Support: Full support has been added for running on Red Hat Enterprise Linux 9 (RHEL 9).
-
-► SSL Port Control (SQ-21125): Added a configuration option to disable the SSL port functionality within the server picker feature.
 
 
 Known Issues
@@ -48,49 +48,55 @@ The Node.JS connector does not support ARRAY data types.
 Version 4.17 resolved Issues
 ----------------------------
 
-# TODO: update tickets
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | **SQ No.**                  | **Description**                                                                            |
 +=============================+============================================================================================+
-| SQ-20671                    | Window function over Parquet array data type is now supported                              |
+| SQ-20823                   | Data sorting query failed in particular circumstances                                       |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20732                    | Reduce compression size of ingested Parquet files                                          |
+| SQ-20981                   | DELETE WHERE EXISTS failed when adding another condition                                    |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20894                    | Arrays are not supported within UDF - fix the error message accordingly                    |
+| SQ-21140                   | New utility functions for rechunking encrypted columns                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21028                    | Error when running ORDER BY with window function on a Datetime2 column                     |
+| SQ-21283                   | Improve Saved Query runtime                                                                 |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21157                    | Pivot function - performance improvements                                                  |
+| SQ-21395                   | Improve metadata performance                                                                |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21474                    | Fix the server status output on all available services                                     |
+| SQ-21412                   | Enhanced loading of multiple ORC files                                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21482                    | Data sorting query failed in particular circumstances                                      |
+| SQ-21456                   | Fix the server status output on all available services                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21490                    | Improve metadata performance                                                               |
+| SQ-21479                   | Improved schema information display in Studio                                               |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21515                    | Expose schema information in UI Studio                                                     |
+| SQ-21518                   | Resolved runtime error when copying from ORC after copy to ORC                              |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20560                    | maxColSizeOnDiskMB suggested size increase is incorrect                                    |
+| SQ-21596                   | Improved handling of permission checks on delete operations                                 |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20588                    | Resolve cudaErrorIllegalAddress error                                                      |
+| SQ-21609                   | Tables with special characters failing recompilation and cleanup operations                 |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21594                    | Improve Saved Query runtime                                                                |
+| SQ-21631                   | Improve DELETE performance when joining large tables with empty tables                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21742                    | Views with special characters failing Recompilation and Cleanup operations                 |
+| SQ-21760                   | Improve compilation runtime                                                                 |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21781                    | Improve compilation runtime                                                                |
+| SQ-21843                   | Saved Query parameters support a dynamic IN list                                            |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21805                    | DELETE WHERE EXISTS failed when adding external condition                                  |
+| SQ-22281                   | Cross-database operations with identity or sequence columns                                 |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21847                    | DELETE with JOIN table and WHERE EXISTS fails when adding condition outside of DELETE      |
+| SQ-22345                   | Improved reliability when accessing files across databases                                  |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21886                    | Enhance multiple ORC files load                                                            |
+| SQ-22399                   | Stability improvements for UNNEST join query compilation                                    |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21952                    | Improved stability of FileReaper mechanism                                                 |
+| SQ-22442                   | Resolved COUNT window function compilation error                                            |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21991                    | List User Permission view                                                                  |
+| SQ-22588                   | Worker memory usage improvements                                                            |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-
+| SQ-22608                   | Resolved window function query internal runtime error                                       |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-22621                   | Enhanced performance when querying sqream_catalog.chunks                                    |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-22710                   | Delete execution plan no longer includes inappropriate rechunk producer                     |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-22830                   | S3 connectivity endpoint flag wasn't enforced correctly                                     |
++-----------------------------+--------------------------------------------------------------------------------------------+
 
 
 Deprecation

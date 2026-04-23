@@ -3,7 +3,7 @@
 *************
 Release Notes
 *************
-:ref:`Version 4.17 - March 31, 2026<4.17>`  # TODO
+:ref:`Version 4.17 - April 23, 2026<4.17>`
 
 :ref:`Version 4.16 - January 1st, 2026<4.16>`
 
