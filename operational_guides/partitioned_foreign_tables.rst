@@ -1,8 +1,8 @@
-.. _partitioned_foreign_tables:
+.. _hdfs_partitioned_foreign_tables:
 
-**************************
-Partitioned Foreign Tables
-**************************
+*******************************
+HDFS Partitioned Foreign Tables
+*******************************
 
 .. contents::
    :local:
