@@ -60,7 +60,7 @@ Example
        z TEXT ENCRYPT
    );
 
-   RECHUNK('master','sc', 'tbl', 'x', '[key-for-x]', 'z', '[key-for-z]');
+   SELECT RECHUNK_ENCRYPTED('master','sc', 'tbl', 'x', '[key-for-x]', 'z', '[key-for-z]');
 
 
 Permissions
