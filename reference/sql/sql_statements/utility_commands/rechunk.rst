@@ -40,14 +40,14 @@ Example
 Rechunk Encrypted Columns
 =========================
 
-For tables with encrypted columns, RECHUNK requires the encryption keys for each encrypted column.
+For tables with encrypted columns, the utility function is RECHUNK_ENCRYPTED requires also the database name and the encryption keys for each encrypted column.
 
 Syntax
 ==========
 
 .. code-block:: postgres
 
-   RECHUNK('<schema>', '<table>', '<col1>', '<key1>', '<col2>', '<key2>', ...);
+   SELECT RECHUNK_ENCRYPTED('<db_name>','<schema>', '<table>', '<col1>', '<key1>', '<col2>', '<key2>', ...);
 
 Example
 ==========
@@ -60,7 +60,7 @@ Example
        z TEXT ENCRYPT
    );
 
-   RECHUNK('sc', 'tbl', 'x', '[key-for-x]', 'z', '[key-for-z]');
+   RECHUNK('master','sc', 'tbl', 'x', '[key-for-x]', 'z', '[key-for-z]');
 
 
 Permissions
