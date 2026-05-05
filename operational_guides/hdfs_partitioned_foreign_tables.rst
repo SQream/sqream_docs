@@ -11,12 +11,12 @@ HDFS Partitioned Foreign Tables
 Overview
 ========
 
-Scailium now supports native partition awareness for HDFS foreign tables[cite: 40]. When a query includes a filter or join predicate on a partition key, Scailium inspects the HDFS directory structure and reads only the relevant partitions — no full scans, no unnecessary data transfer[cite: 41].
+Scailium now supports native partition awareness for HDFS foreign tables. When a query includes a filter or join predicate on a partition key, Scailium inspects the HDFS directory structure and reads only the relevant partitions — no full scans, no unnecessary data transfer.
 
 New SQL Syntax
 ==============
 
-Use the new ``PARTITIONED BY`` clause to declare the partition keys and their SQL data types[cite: 42]. The key order must match the physical directory nesting order on HDFS[cite: 42].
+Use the new ``PARTITIONED BY`` clause to declare the partition keys and their SQL data types. The key order must match the physical directory nesting order on HDFS.
 
 .. code-block:: postgres
 
@@ -34,15 +34,15 @@ Use the new ``PARTITIONED BY`` clause to declare the partition keys and their SQ
        LOCATION = 'hdfs://<namenode_host>:<port>/<base_path>'
    );
 
-.. note:: The ``PARTITIONED BY`` clause is optional[cite: 44]. Existing foreign tables without it continue to perform a full table scan as before. No migration is required[cite: 44, 45].
+.. note:: The ``PARTITIONED BY`` clause is optional. Existing foreign tables without it continue to perform a full table scan as before. No migration is required. Partitions are supported for parquet files only. 
 
 What's New
 ==========
 
-* **Partition Pruning on Filter Predicates:** Scailium evaluates ``WHERE`` clause predicates against the declared partition keys and restricts HDFS reads to matching directories[cite: 46]. Supported predicate types include equality, range, date arithmetic, and NULL checks[cite: 46].
-* **Dynamic Spool Join Filter Pushdown:** When a partitioned foreign table is joined with an internal Scailium table or another foreign table, join filters are pushed down to the HDFS side before any data is transferred[cite: 47].
-* **Null Partition Handling:** Scailium follows the Hive standard for null partition values[cite: 48]. Querying ``WHERE country IS NULL`` resolves to the ``HIVE_DEFAULT_PARTITION`` directory[cite: 48].
-* **Graceful Handling of Missing and Empty Partitions:** Non-existent or empty partitions return zero rows without throwing an error[cite: 48].
+* **Partition Pruning on Filter Predicates:** Scailium evaluates ``WHERE`` clause predicates against the declared partition keys and restricts HDFS reads to matching directories. Supported predicate types include equality, range, date arithmetic, and NULL checks.
+* **Dynamic Spool Join Filter Pushdown:** When a partitioned foreign table is joined with an internal Scailium table or another foreign table, join filters are pushed down to the HDFS side before any data is transferred.
+* **Null Partition Handling:** Scailium follows the Hive standard for null partition values. Querying ``WHERE country IS NULL`` resolves to the ``HIVE_DEFAULT_PARTITION`` directory.
+* **Graceful Handling of Missing and Empty Partitions:** Non-existent or empty partitions return zero rows without throwing an error.
 
 Usage Examples
 ==============
@@ -58,7 +58,7 @@ Example 1 — Basic Partition Pruning
        product_id INT
    )
    PARTITIONED BY (country TEXT, year INT)
-   WRAPPER hdfs_wrapper
+   WRAPPER parquet_fdw
    OPTIONS (
        LOCATION = 'hdfs://namenode:9000/data/sales'
    );
@@ -83,7 +83,7 @@ Example 2 — Dynamic Spool Join Filter
 Expected HDFS Directory Structure
 =================================
 
-Directories must follow ``key=value`` naming, nested in the same order as the ``PARTITIONED BY`` clause[cite: 50]:
+Directories must follow ``key=value`` naming, nested in the same order as the ``PARTITIONED BY`` clause:
 
 .. code-block:: text
 
@@ -99,7 +99,7 @@ Directories must follow ``key=value`` naming, nested in the same order as the ``
 Verifying Partition Pruning in the Query Plan
 =============================================
 
-When partition pruning is active, the compiler report will include an explicit "Partition Pruning" step[cite: 51]. Run ``SELECT compiler_report(...)`` on your query and confirm the node is present[cite: 51]. If absent, verify that your ``WHERE`` predicate references a declared partition key[cite: 52].
+When partition pruning is active, the compiler report will include an explicit "Partition Pruning" step. Run ``SELECT compiler_report(...)`` on your query and confirm the node is present. If absent, verify that your ``WHERE`` predicate references a declared partition key.
 
 When Partition Pruning Does Not Apply
 -------------------------------------
@@ -111,14 +111,14 @@ If the "Partition Pruning" step is missing from the compiler report, check wheth
 * **Implicit cast prevents type alignment:** (e.g., partition key declared as INT but compared to a TEXT literal)[cite: 55].
 * **Non-deterministic expression:** (e.g., ``WHERE year = EXTRACT(YEAR FROM GETDATE())``)[cite: 56].
 
-.. tip:: Use ``SELECT compiler_report(...)`` and confirm the "Partition Pruning" node is present. As a baseline test, try a direct literal comparison using the exact declared data type of the partition key[cite: 57].
+.. tip:: Use ``SELECT compiler_report(...)`` and confirm the "Partition Pruning" node is present. As a baseline test, try a direct literal comparison using the exact declared data type of the partition key.
 
 Limitations
 ===========
 
 Supported Partition Key Data Types
 ----------------------------------
-Only the following types are supported in the ``PARTITIONED BY`` clause[cite: 58]:
+Only the following types are supported in the ``PARTITIONED BY`` clause:
 
 .. code-block:: text
 
@@ -126,7 +126,7 @@ Only the following types are supported in the ``PARTITIONED BY`` clause[cite: 58
 
 Unsupported Hive Partition Values
 ---------------------------------
-Hive partition directory values containing a colon (``:``) or whitespace are not supported in HDFS storage. Partitions with such values will be skipped and a warning will be logged[cite: 58].
+Hive partition directory values containing a colon (``:``) or whitespace are not supported in HDFS storage. Partitions with such values will be skipped and a warning will be logged.
 
 Backward Compatibility
 ======================
@@ -151,4 +151,4 @@ This feature is fully backward compatible. No existing tables or queries are aff
 Security
 ========
 
-No new attack vectors are introduced[cite: 60]. The feature relies on the existing HDFS connectivity layer. HDFS permissions are enforced by HDFS itself; Scailium respects the permissions of the connecting user[cite: 60, 61].
+The feature relies on the existing HDFS connectivity layer. HDFS permissions are enforced by HDFS itself; Scailium respects the permissions of the connecting user.

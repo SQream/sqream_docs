@@ -17,6 +17,7 @@ Syntax
 	CREATE [ OR REPLACE ] FOREIGN TABLE [ "<schema_name>" ]."<table_name>" (
 	  [ column_def [, ...] ] -- When creating foreign tables using CSV source files, it is mandatory to provide the complete table DDL
 	)
+	  [ PARTITIONED BY ]-- for parquet_fdw only
 	  [ FOREIGN DATA ] WRAPPER fdw_name
 	  [ OPTIONS ( option_def [, ...  ] ) ]
 
