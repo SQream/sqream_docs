@@ -11,7 +11,7 @@ HDFS Partitioned Foreign Tables
 Overview
 ========
 
-Scailium now supports native partition awareness for HDFS foreign tables. When a query includes a filter or join predicate on a partition key, Scailium inspects the HDFS directory structure and reads only the relevant partitions — no full scans, no unnecessary data transfer.
+Scailium has introduced optimized support for partitioned foreign tables stored on HDFS-compatible systems. This native integration allows Scailium to interpret directory structures as physical partitions. During query execution, the engine ‘prunes’ irrelevant data by scanning only the specific folders that match your predicates. This ensures high-performance analytics on massive datasets without the cost of unnecessary data ingestion.
 
 New SQL Syntax
 ==============
