@@ -64,6 +64,7 @@ Example 1 — Basic Partition Pruning
    );
 
    -- Reads only .../sales/country=USA/year=2024/
+   
    SELECT * FROM sales
    WHERE year = 2024 AND country = 'USA';
 
