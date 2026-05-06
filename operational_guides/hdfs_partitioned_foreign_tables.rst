@@ -36,11 +36,11 @@ Use the new ``PARTITIONED BY`` clause to declare the partition keys and their SQ
 
 .. note:: The ``PARTITIONED BY`` clause is optional. Existing foreign tables without it continue to perform a full table scan as before. No migration is required. Partitions are supported for parquet files only. 
 
-What's New
-==========
+Main Capabilities
+=================
 
 * **Partition Pruning on Filter Predicates:** Scailium evaluates ``WHERE`` clause predicates against the declared partition keys and restricts HDFS reads to matching directories. Supported predicate types include equality, range, date arithmetic, and NULL checks.
-* **Dynamic Spool Join Filter Pushdown:** When a partitioned foreign table is joined with an internal Scailium table or another foreign table, join filters are pushed down to the HDFS side before any data is transferred.
+* **Dynamic Spool Join Filter Pushdown:** When a partitioned foreign table is joined with an internal Scailium table or another foreign table, the join filters are pushed down to the HDFS layer prior to any data transfer, enabling performance gains through effective partition pruning.
 * **Null Partition Handling:** Scailium follows the Hive standard for null partition values. Querying ``WHERE country IS NULL`` resolves to the ``HIVE_DEFAULT_PARTITION`` directory.
 * **Graceful Handling of Missing and Empty Partitions:** Non-existent or empty partitions return zero rows without throwing an error.
 
@@ -50,7 +50,7 @@ Usage Examples
 Example 1 — Basic Partition Pruning
 -----------------------------------
 
-.. code-block:: psql
+.. code-block:: sql
 
    CREATE FOREIGN TABLE sales (
        sale_id INT,
@@ -64,7 +64,7 @@ Example 1 — Basic Partition Pruning
    );
 
    -- Reads only .../sales/country=USA/year=2024/
-   
+
    SELECT * FROM sales
    WHERE year = 2024 AND country = 'USA';
 
@@ -81,8 +81,8 @@ Example 2 — Dynamic Spool Join Filter
    WHERE a.year = 2024;
    -- 'year=2024' is pushed to HDFS, pruning all other year partitions.
 
-Expected HDFS Directory Structure
-=================================
+Expected HDFS-like Directory Structure
+======================================
 
 Directories must follow ``key=value`` naming, nested in the same order as the ``PARTITIONED BY`` clause:
 
@@ -107,10 +107,10 @@ When Partition Pruning Does Not Apply
 
 If the "Partition Pruning" step is missing from the compiler report, check whether any of these conditions apply:
 
-* **Predicate does not reference a partition key:** (e.g., ``WHERE sale_amount > 1000``)[cite: 53].
-* **Function cannot be evaluated at planning time:** (e.g., ``WHERE UPPER(country) = 'USA'``)[cite: 54].
-* **Implicit cast prevents type alignment:** (e.g., partition key declared as INT but compared to a TEXT literal)[cite: 55].
-* **Non-deterministic expression:** (e.g., ``WHERE year = EXTRACT(YEAR FROM GETDATE())``)[cite: 56].
+* **Predicate does not reference a partition key:** (e.g., ``WHERE sale_amount > 1000``).
+* **Function cannot be evaluated at planning time:** (e.g., ``WHERE UPPER(country) = 'USA'``).
+* **Implicit cast prevents type alignment:** (e.g., partition key declared as INT but compared to a TEXT literal).
+* **Non-deterministic expression:** (e.g., ``WHERE year = EXTRACT(YEAR FROM GETDATE())``).
 
 .. tip:: Use ``SELECT compiler_report(...)`` and confirm the "Partition Pruning" node is present. As a baseline test, try a direct literal comparison using the exact declared data type of the partition key.
 
@@ -141,13 +141,13 @@ This feature is fully backward compatible. No existing tables or queries are aff
    * - Scenario
      - Behavior
    * - No ``PARTITIONED BY`` clause
-     - Full table scan as before 
+     - Performs a full table scan 
    * - ``PARTITIONED BY``, no matching filter
-     - All partitions scanned 
+     - Scans all available partitions 
    * - ``PARTITIONED BY``, matching filter
-     - Only matching partitions read 
+     - Only matching partitions are read 
    * - Filter on non-existent partition
-     - Zero rows returned, no error 
+     - Returns zero results without erroring 
 
 Security
 ========

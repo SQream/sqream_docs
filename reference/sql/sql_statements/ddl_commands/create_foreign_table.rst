@@ -71,6 +71,8 @@ Parameters
      - The name of the table to create, which must be unique inside the schema
    * - ``column_def``
      - A comma separated list of column definitions. A minimal column definition includes a name and datatype. Other column constraints and default values may optionally be added. When creating foreign tables using CSV source files, it is mandatory to provide the complete table DDL
+   * - ``PARTITIONED BY``
+     - Partitioned columns for tables stored on HDFS-compatible systems for parquet files
    * - ``WRAPPER ...``
      - Specifies the format of the source files, such as ``parquet_fdw``, ``orc_fdw``, ``json_fdw``, or ``csv_fdw``
    * - ``LOCATION = ...``
@@ -175,7 +177,27 @@ Using a foreign table allows you to perform ETL-like operations by applying SQL 
 	  *
 	FROM
 	  some_foreign_table;
-	
+	  
+Using the ``PARTITIONED BY`` Parameter
+--------------------------------------
+
+The ``PARTITIONED BY`` parameter may be used with Parquet format only on HDFS-compatible systems 
+
+.. code-block::
+
+	CREATE FOREIGN TABLE sales (
+       sale_id INT,
+       amount FLOAT,
+       product_id INT
+   )
+   PARTITIONED BY (country TEXT, year INT)
+   WRAPPER parquet_fdw
+   OPTIONS (
+       LOCATION = 'hdfs://namenode:9000/data/sales'
+   );
+   
+   For more details, see :ref:`hdfs partitioned foreign tables<hdfs_partitioned_foreign_tables:>`
+
 Using the ``OFFSET`` Parameter
 ------------------------------
 
