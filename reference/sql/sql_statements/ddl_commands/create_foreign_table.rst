@@ -196,7 +196,7 @@ The ``PARTITIONED BY`` parameter may be used with Parquet format only on HDFS-co
        LOCATION = 'hdfs://namenode:9000/data/sales'
    );
    
-For more details, see :ref:`hdfs partitioned foreign tables<hdfs_partitioned_foreign_tables:>`
+For more details, see :ref:`hdfs partitioned foreign tables<hdfs_partitioned_foreign_tables>`.
 
 Using the ``OFFSET`` Parameter
 ------------------------------
