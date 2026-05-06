@@ -107,24 +107,22 @@ Creating a Tab-Delimited Table
 
 .. code-block:: postgres
 
-	CREATE
-	OR REPLACE FOREIGN TABLE nba_new(
-	  "player_name" text null,
-	  "team_name" text null,
-	  "jersey_number" int null,
-	  "position" text null,
-	  "age" int null,
-	  "height" text null,
-	  "weight" int null,
-	  "college" text null,
-	  "salary" int null
-	)
-	WRAPPER
-	  csv_fdw
-	OPTIONS
-	   (LOCATION = 'gs://blue_docs/nba.csv',
-	   DELIMITER = '\t'
-	  );
+   CREATE OR REPLACE FOREIGN TABLE nba_new (
+       "player_name" TEXT NULL,
+       "team_name" TEXT NULL,
+       "jersey_number" INT NULL,
+       "position" TEXT NULL,
+       "age" INT NULL,
+       "height" TEXT NULL,
+       "weight" INT NULL,
+       "college" TEXT NULL,
+       "salary" INT NULL
+   )
+   WRAPPER csv_fdw
+   OPTIONS (
+       LOCATION = 'gs://blue_docs/nba.csv',
+       DELIMITER = '\t'
+   );
 
 
 Creating a Table Located In a HDFS Directory
@@ -132,36 +130,33 @@ Creating a Table Located In a HDFS Directory
 
 .. code-block:: postgres
 
-	CREATE FOREIGN TABLE users (
-	  id INT NOT NULL,
-	  name TEXT(30) NOT NULL,
-	  email TEXT(50) NOT NULL
-	)
-	WRAPPER
-	  parquet_fdw
-	OPTIONS
-	  (
-	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
-	  );
+   CREATE FOREIGN TABLE users (
+       id INT NOT NULL,
+       name TEXT(30) NOT NULL,
+       email TEXT(50) NOT NULL
+   )
+   WRAPPER parquet_fdw
+   OPTIONS (
+       LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
+   );
+
 
 Creating a Table Located Within a S3 Bucket of ORC Files
 --------------------------------------------------------
 
 .. code-block:: postgres
 
-	CREATE FOREIGN TABLE users (
-	  id INT NOT NULL,
-	  name TEXT(30) NOT NULL,
-	  email TEXT(50) NOT NULL
-	)
-	WRAPPER
-	  orc_fdw
-	OPTIONS
-	  (
-	    LOCATION = 's3://pp-secret-bucket/users/*.orc',
-	    AWS_ID = 'our_aws_id',
-	    AWS_SECRET = 'our_aws_secret'
-	  );
+   CREATE FOREIGN TABLE users (
+       id INT NOT NULL,
+       name TEXT(30) NOT NULL,
+       email TEXT(50) NOT NULL
+   )
+   WRAPPER orc_fdw
+   OPTIONS (
+       LOCATION = 's3://pp-secret-bucket/users/*.orc',
+       AWS_ID = 'our_aws_id',
+       AWS_SECRET = 'our_aws_secret'
+   );
 
 
 Converting a Foreign Table to an Internal Table
@@ -171,21 +166,19 @@ Using a foreign table allows you to perform ETL-like operations by applying SQL 
 
 .. code-block:: postgres
 
-	CREATE TABLE
-	  real_table AS
-	SELECT
-	  *
-	FROM
-	  some_foreign_table;
-	  
+   CREATE TABLE real_table AS
+   SELECT *
+   FROM some_foreign_table;
+
+
 Using the ``PARTITIONED BY`` Parameter
 --------------------------------------
 
-The ``PARTITIONED BY`` parameter may be used with Parquet format only on HDFS-compatible systems 
+The ``PARTITIONED BY`` parameter may be used with Parquet format only on HDFS-compatible systems.
 
 .. code-block:: postgres
 
-	CREATE FOREIGN TABLE sales (
+   CREATE FOREIGN TABLE sales (
        sale_id INT,
        amount FLOAT,
        product_id INT
@@ -195,69 +188,64 @@ The ``PARTITIONED BY`` parameter may be used with Parquet format only on HDFS-co
    OPTIONS (
        LOCATION = 'hdfs://namenode:9000/data/sales'
    );
-   
+
 For more details, see :ref:`hdfs partitioned foreign tables<hdfs_partitioned_foreign_tables>`.
+
 
 Using the ``OFFSET`` Parameter
 ------------------------------
 
-The ``OFFSET`` parameter may be used with Parquet and CSV textual formats. 
+The ``OFFSET`` parameter may be used with Parquet and CSV textual formats.
 
 .. code-block:: postgres
 
-	CREATE FOREIGN TABLE users7 (
-	  id INT NOT NULL, 
-	  name TEXT NOT NULL, 
-	  email TEXT NOT NULL
-	)
-	WRAPPER
-	  parquet_fdw
-	OPTIONS
-	  (
-	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet',
-	    OFFSET = 2
-	  );
+   CREATE FOREIGN TABLE users7 (
+       id INT NOT NULL,
+       name TEXT NOT NULL,
+       email TEXT NOT NULL
+   )
+   WRAPPER parquet_fdw
+   OPTIONS (
+       LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet',
+       OFFSET = 2
+   );
+
 
 Using the ``CONTINUE_ON_ERROR`` and ``ERROR_COUNT`` Parameters
-----------------------------------------------------------------
+-------------------------------------------------------------
 
 .. code-block:: postgres
 
-	CREATE
-	OR REPLACE FOREIGN TABLE cool_animalz (
-	  id INT NOT NULL,
-	  name TEXT NOT NULL,
-	  weight FLOAT NOT NULL
-	)
-	WRAPPER
-	  csv_fdw
-	OPTIONS
-	  (
-	    LOCATION = '/home/rhendricks/cool_animals.csv',
-	    DELIMITER = '\t',
-	    CONTINUE_ON_ERROR = true,
-	    ERROR_COUNT = 3
-	  );
-	 
+   CREATE OR REPLACE FOREIGN TABLE cool_animalz (
+       id INT NOT NULL,
+       name TEXT NOT NULL,
+       weight FLOAT NOT NULL
+   )
+   WRAPPER csv_fdw
+   OPTIONS (
+       LOCATION = '/home/rhendricks/cool_animals.csv',
+       DELIMITER = '\t',
+       CONTINUE_ON_ERROR = true,
+       ERROR_COUNT = 3
+   );
+
+
 Customizing Quotations Using Alternative Characters
 ---------------------------------------------------
 
 .. code-block:: postgres
 
-	CREATE
-	OR REPLACE FOREIGN TABLE cool_animalz (
-	  id INT NOT NULL,
-	  name text(30) NOT NULL,
-	  weight FLOAT NOT NULL
-	)
-	WRAPPER
-	  csv_fdw
-	OPTIONS
-	  (
-	    LOCATION = '/home/rhendricks/cool_animals.csv',
-	    DELIMITER = '\t',
-	    QUOTE = '@'
-	  );
+   CREATE OR REPLACE FOREIGN TABLE cool_animalz (
+       id INT NOT NULL,
+       name TEXT(30) NOT NULL,
+       weight FLOAT NOT NULL
+   )
+   WRAPPER csv_fdw
+   OPTIONS (
+       LOCATION = '/home/rhendricks/cool_animals.csv',
+       DELIMITER = '\t',
+       QUOTE = '@'
+   );
 
 Permissions
 ===========
