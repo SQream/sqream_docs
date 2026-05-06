@@ -183,7 +183,7 @@ Using the ``PARTITIONED BY`` Parameter
 
 The ``PARTITIONED BY`` parameter may be used with Parquet format only on HDFS-compatible systems 
 
-.. code-block::
+.. code-block:: postgres
 
 	CREATE FOREIGN TABLE sales (
        sale_id INT,
@@ -196,14 +196,14 @@ The ``PARTITIONED BY`` parameter may be used with Parquet format only on HDFS-co
        LOCATION = 'hdfs://namenode:9000/data/sales'
    );
    
-   For more details, see :ref:`hdfs partitioned foreign tables<hdfs_partitioned_foreign_tables:>`
+For more details, see :ref:`hdfs partitioned foreign tables<hdfs_partitioned_foreign_tables:>`
 
 Using the ``OFFSET`` Parameter
 ------------------------------
 
 The ``OFFSET`` parameter may be used with Parquet and CSV textual formats. 
 
-.. code-block::
+.. code-block:: postgres
 
 	CREATE FOREIGN TABLE users7 (
 	  id INT NOT NULL, 
@@ -221,7 +221,7 @@ The ``OFFSET`` parameter may be used with Parquet and CSV textual formats.
 Using the ``CONTINUE_ON_ERROR`` and ``ERROR_COUNT`` Parameters
 ----------------------------------------------------------------
 
-.. code-block::
+.. code-block:: postgres
 
 	CREATE
 	OR REPLACE FOREIGN TABLE cool_animalz (
@@ -242,7 +242,7 @@ Using the ``CONTINUE_ON_ERROR`` and ``ERROR_COUNT`` Parameters
 Customizing Quotations Using Alternative Characters
 ---------------------------------------------------
 
-.. code-block::
+.. code-block:: postgres
 
 	CREATE
 	OR REPLACE FOREIGN TABLE cool_animalz (
