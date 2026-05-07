@@ -67,7 +67,7 @@ The following parameters can be used when creating a table:
          A comma separated list of clustering column keys
          
          See :ref:`cluster_by` for more information
-	* - ``COMMENT``
+   * - ``COMMENT``
      - A table level comment, can add more details on the table usage.avilable on the columns level as well.
 
 Usage Notes
