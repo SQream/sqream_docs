@@ -104,13 +104,11 @@ You can view comments by querying the system catalog:
    -- View table comments
 
    SELECT table_name, comment
-	   FROM sqream_catalog.tables
-	   WHERE table_name = 'customers';
+	   FROM sqream_catalog.tables WHERE table_name = 'customers';
 
 
    -- View column comments
 
    SELECT column_name, comment
 	   FROM sqream_catalog.columns
-	   WHERE table_name = 'customers'
-	   AND column_name = 'customer_id';
+	   WHERE table_name = 'customers' AND column_name = 'customer_id';
