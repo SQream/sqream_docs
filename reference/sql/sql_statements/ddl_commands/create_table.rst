@@ -20,16 +20,17 @@ Syntax
    create_table_statement ::=
        CREATE [ OR REPLACE ] TABLE [<schema_name>.]<table_name> 
 	   {
-	    (<column_def> [, ...] [{NULL | NOT NULL}]
+	    (<column_def> [, ...] [{NULL | NOT NULL}] [ COMMENT = <string_literal> ]
 	    | LIKE <source_table> [INCLUDE PERMISSIONS]
 	   }
 	   [ CLUSTER BY <column_name> [, ...] ]
+	   [ COMMENT = <string_literal> ]
 
    schema_name ::= identifier  
 
    table_name ::= identifier  
 
-   column_def :: = { column_name type_name [ default ] [ column_constraint ] }
+   column_def :: = { column_name type_name [ default ] [ column_constraint ] [ COMMENT <string_literal> ]}
 
    column_name ::= identifier
   
@@ -56,7 +57,7 @@ The following parameters can be used when creating a table:
    * - ``table_name``
      - The name of the table to create, which must be unique inside the schema
    * - ``column_def``
-     - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally
+     - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints,comments and default values can be added optionally
    * - ``LIKE``
      - Duplicates the column structure of an existing table. The newly created table is granted default ``CREATE TABLE`` permissions: ``SELECT``, ``INSERT``, ``DELETE``, ``DDL``, and ``UPDATE``
    * - ``INCLUDE PERMISSIONS``
@@ -66,7 +67,8 @@ The following parameters can be used when creating a table:
          A comma separated list of clustering column keys
          
          See :ref:`cluster_by` for more information
-
+	* - ``COMMENT``
+     - A table level comment, can add more details on the table usage.avilable on the columns level as well.
 
 Usage Notes
 ===========
@@ -155,6 +157,18 @@ Creating a Standard Table
       weight FLOAT,
       is_agressive BOOL
    );
+   
+Creating a Standard Table with comments
+---------------------------------------
+
+.. code-block:: postgres
+
+   CREATE TABLE cool_animals (
+      id INT NOT NULL COMMENT 'Id column',
+      name text(30) NOT NULL COMMENT 'Animal name',
+      weight FLOAT COMMENT 'Animal weight',
+      is_agressive BOOL COMMENT 'Is the animal agressive'
+   ) COMMENT = 'This table hold some details on different animals';
 
 Creating a Table with Default Value Constraints for Some Columns
 ----------------------------------------------------------------

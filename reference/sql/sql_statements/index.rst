@@ -68,6 +68,8 @@ The following table shows the Data Definition commands:
      - Rename a table
    * - :ref:`RENAME SCHEMA<rename_schema>`
      - Rename a schema
+   * - :ref:`TABLE AND COLUMNS COMMENTS<table_columns_comments>`
+     - Adding table and column-level comments
 
 
 
