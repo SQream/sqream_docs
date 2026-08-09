@@ -37,6 +37,8 @@ New Features
 
 ► Add support for casting ``TEXT_TO_ARRAY``. Please see :ref:`casting TEXT_TO_ARRAY<text_to_array>`.
 
+► (From 4.17.1.2) Support license reloading during system activity.
+
 
 Known Issues
 ------------
