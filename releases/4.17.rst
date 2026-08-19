@@ -37,7 +37,7 @@ New Features
 
 ► Add support for casting ``TEXT_TO_ARRAY``. Please see :ref:`casting TEXT_TO_ARRAY<text_to_array>`.
 
-► (From 4.17.1.2) Support license reloading during system activity.
+► (From 4.17.1.2) Support license reloading during system activity. Please see :ref:`RELOAD LICENSE<reload_license>`.
 
 
 Utility Function Permissions
@@ -116,6 +116,16 @@ Version 4.17 resolved Issues
 | SQ-22830                    | S3 connectivity endpoint flag wasn't enforced correctly                                    |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-22838                    | Cleanup extents mechanism improvement                                                      |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23030                    | (v4.17.1.2) Resolved compile error when querying a catalog table across databases          |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23034                    | (v4.17.1.2) Table and column comments now returned to JDBC clients such as DBeaver         |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23040                    | (v4.17.1.2) Improved compilation time for INSERT INTO VALUES with very long strings        |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23052                    | (v4.17.1.2) Improved memory management during query execution                              |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23054                    | (v4.17.1.2) Improved performance when loading tables by cluster                            |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 
 
