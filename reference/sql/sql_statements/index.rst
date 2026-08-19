@@ -185,6 +185,8 @@ The following table shows the Utility commands:
      - Returns the system version for SQream DB
    * - :ref:`swap_table_names`
      - Swaps the names of two tables contained within a schema
+   * - :ref:`VALIDATE CHUNKS INDEXES<validate_chunks_indexes>`
+     - Checks a column's chunk index against the table's real chunks
 
 
 Workload Management

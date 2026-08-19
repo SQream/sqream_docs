@@ -14,7 +14,7 @@ This section summarizes the following operational guides:
    :titlesonly:
 
    access_control
-   accelerating_filtered_queries_with_metadata_partitions
+   accelerating_filtered_statements
    creating_or_cloning_a_storage_cluster
    external_data
    foreign_tables

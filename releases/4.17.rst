@@ -33,11 +33,13 @@ New Features
 
 ► MCP interface support - allows you to query your data using natural language, using Claude as LLM. Please see :ref:`MCP documentation<mcp>`.
 
-► Add ``ANY`` syntax to Saved Query parameters should allow a dynamic IN list (SQ-22008). Please see :ref:`Saved Query<save_query>`.
+► Add ``ANY`` syntax to Saved Query parameters should allow a dynamic IN list. Please see :ref:`Saved Query<save_query>`.
 
 ► Add support for casting ``TEXT_TO_ARRAY``. Please see :ref:`casting TEXT_TO_ARRAY<text_to_array>`.
 
 ► (From 4.17.1.2) Support license reloading during system activity. Please see :ref:`RELOAD LICENSE<reload_license>`.
+
+► (From 4.17.1.3) New utility function for checking a column's chunk index against the table's real chunks. Please see :ref:`VALIDATE CHUNKS INDEXES<validate_chunks_indexes>`.
 
 
 Utility Function Permissions
@@ -121,13 +123,16 @@ Version 4.17 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23034                    | (v4.17.1.2) Table and column comments now returned to JDBC clients such as DBeaver         |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-23040                    | (v4.17.1.2) Improved compilation time for INSERT INTO VALUES with very long strings        |
+| SQ-23040, SQ-23075          | (v4.17.1.2) Improved compilation time for INSERT INTO VALUES with very long strings        |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23052                    | (v4.17.1.2) Improved memory management during query execution                              |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23054                    | (v4.17.1.2) Improved performance when loading tables by cluster                            |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-
+| SQ-20848                    | (v4.17.1.3) Improved compilation time for statements with a large IN list                  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23027                    | (v4.17.1.3) Improved RECHUNK performance on tables that use CLUSTER BY                     |
++-----------------------------+--------------------------------------------------------------------------------------------+
 
 Deprecation
 -------------------
