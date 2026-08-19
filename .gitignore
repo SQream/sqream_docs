@@ -8,3 +8,11 @@ ehthumbs.db
 Icon?
 Thumbs.db
 .vs
+reference/sql/sql_statements/utility_commands/get_chunk_info.rst.bck1
+reference/sql/sql_statements/utility_commands/show_connections.rst.bck1
+reference/sql/sql_statements/utility_commands/show_server_status.rst.bck1
+reference/sql/sql_statements/utility_commands/get_extent_info.rst.bck1
+releases/4.17.rst.bck2
+releases/4.17.rst.bck1
+reference/sql/sql_statements/utility_commands/show_node_info.rst.bck1
+reference/sql/sql_statements/utility_commands/show_node_info.rst.bck2

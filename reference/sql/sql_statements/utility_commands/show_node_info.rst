@@ -15,7 +15,7 @@ See also :ref:`explain`, :ref:`show_server_status`.
 Permissions
 =============
 
-The role must have the ``SUPERUSER`` permissions.
+Using the ``SHOW_NODE_INFO`` command requires no special permissions.
 
 Syntax
 ==========
@@ -75,6 +75,8 @@ If the statement has finished, or the statment ID does not exist, the utility re
      - Total data written to disk
    * - ``comment``
      - Additional information (e.g. table name for ``ReadTable``)
+   * - ``completion_status``
+     - This node's execution status: ``0`` (not started), ``1`` (started), ``2`` (finished), or ``-1`` (not updated)
    * - ``timesum``
      - Total elapsed time for this execution node's processing
 

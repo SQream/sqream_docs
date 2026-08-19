@@ -40,6 +40,15 @@ New Features
 ► (From 4.17.1.2) Support license reloading during system activity.
 
 
+Utility Function Permissions
+----------------------------
+The following utility functions no longer require the ``SUPERUSER`` permission:
+* :ref:`GET CHUNK INFO<get_chunk_info>`
+* :ref:`GET EXTENT INFO<get_extent_info>`
+* :ref:`SHOW CONNECTIONS<show_connections>`
+* :ref:`SHOW NODE INFO<show_node_info>`
+* :ref:`SHOW SERVER STATUS<show_server_status>`
+
 Known Issues
 ------------
 Using Grant operation on a specific UDF function fail.
@@ -54,59 +63,59 @@ Version 4.17 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | **SQ No.**                  | **Description**                                                                            |
 +=============================+============================================================================================+
-| SQ-20823                   | Data sorting query failed in particular circumstances                                       |
+| SQ-20823                    | Data sorting query failed in particular circumstances                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-20981                   | DELETE WHERE EXISTS failed when adding another condition                                    |
+| SQ-20981                    | DELETE WHERE EXISTS failed when adding another condition                                   |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21140                   | New utility functions for rechunking encrypted columns                                      |
+| SQ-21140                    | New utility functions for rechunking encrypted columns                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21283                   | Improve Saved Query runtime                                                                 |
+| SQ-21283                    | Improve Saved Query runtime                                                                |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21395                   | Improve metadata performance                                                                |
+| SQ-21395                    | Improve metadata performance                                                               |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21412                   | Enhanced loading of multiple ORC files                                                      |
+| SQ-21412                    | Enhanced loading of multiple ORC files                                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21456                   | Fix the server status output on all available services                                      |
+| SQ-21456                    | Fix the server status output on all available services                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21479                   | Improved schema information display in Studio                                               |
+| SQ-21479                    | Improved schema information display in Studio                                              |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21518                   | Resolved runtime error when copying from ORC after copy to ORC                              |
+| SQ-21518                    | Resolved runtime error when copying from ORC after copy to ORC                             |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21596                   | Improved handling of permission checks on delete operations                                 |
+| SQ-21596                    | Improved handling of permission checks on delete operations                                |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21609                   | Tables with special characters failing recompilation and cleanup operations                 |
+| SQ-21609                    | Tables with special characters failing recompilation and cleanup operations                |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21631                   | Improve DELETE performance when joining large tables with empty tables                      |
+| SQ-21631                    | Improve DELETE performance when joining large tables with empty tables                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21760                   | Improve compilation runtime                                                                 |
+| SQ-21760                    | Improve compilation runtime                                                                |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-21843                   | Saved Query parameters support a dynamic IN list                                            |
+| SQ-21843                    | Saved Query parameters support a dynamic IN list                                           |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22281                   | Cross-database operations with identity or sequence columns                                 |
+| SQ-22281                    | Cross-database operations with identity or sequence columns                                |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22345                   | Improved reliability when accessing files across databases                                  |
+| SQ-22345                    | Improved reliability when accessing files across databases                                 |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22399                   | Stability improvements for UNNEST join query compilation                                    |
+| SQ-22399                    | Stability improvements for UNNEST join query compilation                                   |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22442                   | Resolved COUNT window function compilation error                                            |
+| SQ-22442                    | Resolved COUNT window function compilation error                                           |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22588                   | Worker memory usage improvements                                                            |
+| SQ-22588                    | Worker memory usage improvements                                                           |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22608                   | Resolved window function query internal runtime error                                       |
+| SQ-22608                    | Resolved window function query internal runtime error                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22621                   | Enhanced performance when querying sqream_catalog.chunks                                    |
+| SQ-22621                    | Enhanced performance when querying sqream_catalog.chunks                                   |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22710                   | Delete execution plan no longer includes inappropriate rechunk producer                     |
+| SQ-22710                    | Delete execution plan no longer includes inappropriate rechunk producer                    |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22739                   | Improved post statement memory release                                                      |
+| SQ-22739                    | Improved post statement memory release                                                     |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22755                   | Improved cleanup_chunks performance                                                         |
+| SQ-22755                    | Improved cleanup_chunks performance                                                        |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22756                   | Improved performance for sqream_catalog.metadata_partitions queries                         |
+| SQ-22756                    | Improved performance for sqream_catalog.metadata_partitions queries                        |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22830                   | S3 connectivity endpoint flag wasn't enforced correctly                                     |
+| SQ-22830                    | S3 connectivity endpoint flag wasn't enforced correctly                                    |
 +-----------------------------+--------------------------------------------------------------------------------------------+
-| SQ-22838                   | Cleanup extents mechanism improvement                                                       |
+| SQ-22838                    | Cleanup extents mechanism improvement                                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 
 

@@ -111,4 +111,4 @@ The statement ID is ``128``, running on worker ``192.168.1.91``.
 Permissions
 =============
 
-The role must have the ``SUPERUSER`` permissions.
+Using the ``SHOW_SERVER_STATUS`` command requires no special permissions.
