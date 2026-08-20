@@ -45,7 +45,7 @@ Parameters
 Returns
 =========
 
-One row per internal column id. A ``TEXT`` column is stored as more than one internal column, so checking one text column returns more than one row.
+One row per internal column, so a single column usually returns more than one row. A nullable column adds a ``@null`` internal column, and a ``TEXT`` column is stored as ``@vclen`` and ``@vcblob``. A nullable ``TEXT`` column therefore returns three rows.
 
 .. list-table:: Result columns
    :widths: auto
@@ -90,17 +90,26 @@ Notes
 Examples
 ===========
 
-Checking a column whose index is healthy
+Checking a column that has no index
 ------------------------------------------
 
-.. code-block:: postgres
+Checking a nullable ``TEXT`` column returns three rows, one per internal column. Here the column has no index, so every chunk is reported as not indexed:
 
-   SELECT VALIDATE_CHUNKS_INDEXES('public.transactions', 'customer_id');
+.. code-block:: psql
+
+   t=> SELECT VALIDATE_CHUNKS_INDEXES('public.readtable_synth', 'message');
+   column_id | column_name        | index_pages | indexed_chunks | table_chunks_total | chunks_not_indexed | chunks_indexed_but_missing | chunks_indexed_but_deleted | duplicate_chunk_entries | minmax_mismatches | first_indexed_chunk_id | last_indexed_chunk_id | positions_misaligned
+   ----------+--------------------+-------------+----------------+--------------------+--------------------+----------------------------+----------------------------+-------------------------+-------------------+------------------------+-----------------------+---------------------
+           2 | message@null       |           0 |              0 |                  3 |                  3 |                          0 |                          0 |                       0 |                 0 |                     -1 |                    -1 |                    0
+           3 | message@val@vclen  |           0 |              0 |                  3 |                  3 |                          0 |                          0 |                       0 |                 0 |                     -1 |                    -1 |                    0
+           4 | message@val@vcblob |           0 |              0 |                  3 |                  3 |                          0 |                          0 |                       0 |                 0 |                     -1 |                    -1 |                    0
 
 Rebuilding an index and checking the result
 ---------------------------------------------
 
 .. code-block:: postgres
 
-   SELECT RECALCULATE_CHUNKS_INDEXES('public.transactions', 'customer_id');
-   SELECT VALIDATE_CHUNKS_INDEXES('public.transactions', 'customer_id');
+   SELECT RECALCULATE_CHUNKS_INDEXES('public.readtable_synth', 'message');
+   SELECT VALIDATE_CHUNKS_INDEXES('public.readtable_synth', 'message');
+
+On a healthy index, ``chunks_not_indexed``, ``minmax_mismatches``, and ``positions_misaligned`` are ``0``, and ``indexed_chunks`` equals ``table_chunks_total``.
