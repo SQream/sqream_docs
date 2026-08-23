@@ -41,6 +41,10 @@ New Features
 
 ► (From 4.17.1.3) New utility function for checking a column's chunk index against the table's real chunks. Please see :ref:`VALIDATE CHUNKS INDEXES<validate_chunks_indexes>`.
 
+► (From 4.17.1.4) The metadata server handles read-only requests on a parallel queue, reducing the delay before a statement is assigned to an execution worker. Three new flags tune it: :ref:`metadataReadPoolEnabled<metadata_read_pool_enabled>`, :ref:`metadataReadPoolSize<metadata_read_pool_size>`, and :ref:`metadataMaxPendingDeletes<metadata_max_pending_deletes>` (SQ-23114).
+
+► (From 4.17.1.4) The default value of the :ref:`slowMessageLogWarningSec<slow_message_log_warning_sec>` flag is now ``1`` second, lowered from ``5`` seconds, so the metadata server logs slow messages more readily (SQ-23114).
+
 
 Utility Function Permissions
 ----------------------------
@@ -132,6 +136,14 @@ Version 4.17 resolved Issues
 | SQ-20848                    | (v4.17.1.3) Improved compilation time for statements with a large IN list                  |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23027                    | (v4.17.1.3) Improved RECHUNK performance on tables that use CLUSTER BY                     |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23026                    | (v4.17.1.4) Resolved a runtime error when querying a table after adding a TEXT column      |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23078                    | (v4.17.1.4) Improved error messages for failed inserts, including mismatched column order  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23096                    | (v4.17.1.4) Resolved a compilation error when concatenating TEXT array literals            |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23114                    | (v4.17.1.4) Improved metadata server response times during login and read requests         |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 
 Deprecation
