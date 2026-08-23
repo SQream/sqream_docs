@@ -8,7 +8,7 @@ Metadata Max Pending Deletes
 
 The ``metadataMaxPendingDeletes`` flag sets the maximum number of metadata objects that may wait in the deferred delete queue. While the queue holds fewer objects than this value, the metadata server destroys objects on a background thread. Once the queue reaches the limit, the metadata server destroys the object immediately instead and writes a warning to its log.
 
-* **Data type** - size_t
+* **Data type** - integer
 * **Default value** - ``10000``
 * **Allowed values** - 0 and above
 
