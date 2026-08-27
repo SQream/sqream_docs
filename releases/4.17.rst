@@ -45,7 +45,6 @@ New Features
 
 ► (From 4.17.1.4) The default value of the :ref:`slowMessageLogWarningSec<slow_message_log_warning_sec>` flag is now ``1`` second, lowered from ``5`` seconds, so the metadata server logs slow messages more readily (SQ-23114).
 
-
 Utility Function Permissions
 ----------------------------
 The following utility functions no longer require the ``SUPERUSER`` permission:
@@ -144,6 +143,20 @@ Version 4.17 resolved Issues
 | SQ-23096                    | (v4.17.1.4) Resolved a compilation error when concatenating TEXT array literals            |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23114                    | (v4.17.1.4) Improved metadata server response times during login and read requests         |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-21508                    | (v4.17.1.5) Improved configuration flag lookup time, reducing statement pending time       |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-22909                    | (v4.17.1.5) Improved worker logging and statement teardown, reducing intermittent delays   |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23029                    | (v4.17.1.5) Abandoned statements no longer hold execution slots                            |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23071                    | (v4.17.1.5) Improved memory management when loading chunk indexes for filtered columns     |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23080                    | (v4.17.1.5) Table and column comments are returned in full for multi-byte characters       |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23093                    | (v4.17.1.5) Resolved an execution error when merging arrays larger than 2 GB               |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23129                    | (v4.17.1.5) Improved UPDATE performance by applying partial metadata filters               |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 
 Deprecation
