@@ -9,6 +9,9 @@ PIVOT & UNPIVOT
 ``PIVOT`` allows to convert row-level data into columnar representation. This technique is particularly useful when you need to summarize and visualize data.
 ``UNPIVOT`` does the opposite by transforming columnar data into rows. This operation is invaluable for scenarios where you wish to explore data in a more granular manner.
 
+Both statements produce one column for every value listed in the ``IN`` clause. To pivot a large number of values into
+a single array column instead, see :ref:`PIVOT ARRAY & UNPIVOT ARRAY<pivot_unpivot_array>`.
+
 
 Syntax
 ========
@@ -46,6 +49,7 @@ Limitations
 =================
 * The number of resulting columns for ``PIVOT`` is limited to 8,000.
 * The number of resulting columns for ``UNPIVOT`` is limited to 2,000.
+* These limits apply because each listed value becomes a column. The :ref:`PIVOT ARRAY & UNPIVOT ARRAY<pivot_unpivot_array>` forms produce one column per aggregation rather than one per value, and their value lists are not bounded by the maximum number of columns.
 
 
 
@@ -140,3 +144,8 @@ Unpivots the JanuaryRevenue, FebruaryRevenue, and MarchRevenue columns, creating
 	2,Product B                                         ,MarchRevenue,200.00
 	3,Product C                                         ,MarchRevenue,250.00
 	9 rows
+
+
+See Also
+=========
+* :ref:`PIVOT ARRAY & UNPIVOT ARRAY<pivot_unpivot_array>` - the array forms, for pivoting a large number of values into a single column

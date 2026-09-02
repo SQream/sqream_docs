@@ -199,8 +199,14 @@ Flag List
      - Session
      - Adds rechunker before expensive chunk producer.
      - boolean
-     - ``TRUE``	 
-   * - ``leveldbWriteBufferSize`` 
+     - ``TRUE``
+   * - ``inListJoinThreshold``
+     - SUPERUSER
+     - Session
+     - Sets the number of values above which an ``IN`` list is compiled as an inner join against the listed values, instead of being expanded into a chain of equality comparisons. Allowed values: any positive integer.
+     - uint
+     - ``100``
+   * - ``leveldbWriteBufferSize``
      - SUPERUSER
      - Session
      - Sets the buffer size.

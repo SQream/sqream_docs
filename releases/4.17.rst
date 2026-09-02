@@ -45,6 +45,10 @@ New Features
 
 ► (From 4.17.1.4) The default value of the :ref:`slowMessageLogWarningSec<slow_message_log_warning_sec>` flag is now ``1`` second, lowered from ``5`` seconds, so the metadata server logs slow messages more readily (SQ-23114).
 
+► (From 4.17.1.6) New ``PIVOT ARRAY`` and ``UNPIVOT ARRAY`` syntax, which pivots into a single array column instead of one column per value. Because they produce one column per aggregation rather than one per value, their value lists are not bounded by the maximum number of columns. Please see :ref:`PIVOT ARRAY & UNPIVOT ARRAY<pivot_unpivot_array>` (SQ-23033, SQ-23132).
+
+► (From 4.17.1.6) Large ``IN`` lists are compiled as an inner join against the listed values instead of a chain of equality comparisons, reducing compilation time. The new :ref:`inListJoinThreshold<in_list_join_threshold>` flag sets the number of values at which this applies, defaulting to ``100`` (SQ-23033).
+
 Utility Function Permissions
 ----------------------------
 The following utility functions no longer require the ``SUPERUSER`` permission:
@@ -157,6 +161,14 @@ Version 4.17 resolved Issues
 | SQ-23093                    | (v4.17.1.5) Resolved an execution error when merging arrays larger than 2 GB               |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23129                    | (v4.17.1.5) Improved UPDATE performance by applying partial metadata filters               |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-22805                    | (v4.17.1.6) Worker thread pool returns threads after a burst, improving resource use       |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23041                    | (v4.17.1.6) Node info is recorded reliably for concurrent statements                       |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23111                    | (v4.17.1.6) Statements are assigned to workers in turn, improving load distribution        |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23130                    | (v4.17.1.6) Corrected row count calculation in node info worker log output                 |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 
 Deprecation

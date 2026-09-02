@@ -34,6 +34,8 @@ SQreamDB supports SQL from the ANSI 92 syntax.
      - Metalanguage scripting enhances your interaction with SQL by providing conventions which allow dynamic generation, management, and automation of SQL code.
    * - :ref:`pivot_unpivot`
      - convert row-level data into columnar representation.
+   * - :ref:`pivot_unpivot_array`
+     - convert row-level data into a single array column, and expand an array column back into rows.
 
 
 
@@ -55,7 +57,8 @@ SQreamDB supports SQL from the ANSI 92 syntax.
    null_handling
    sqream_scripting
    pivot_unpivot
-   
+   pivot_unpivot_array
+
    
 
 
