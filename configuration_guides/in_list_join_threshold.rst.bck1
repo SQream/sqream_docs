@@ -18,10 +18,6 @@ The following describes the ``inListJoinThreshold`` flag:
 * **Default value** - ``100``
 * **Allowed values** - Any positive integer
 
-The join form applies to an ``IN`` list used as a filter condition, where a value that does not match drops the
-row. An ``IN`` used elsewhere in a statement keeps the comparison form regardless of this flag, as do lists of
-``ARRAY``, ``BLOB``, ``INTERVAL``, and ``DATETIME2`` values, which cannot serve as a join key.
-
 The flag may be set for the session:
 
 .. code-block:: postgres

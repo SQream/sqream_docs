@@ -45,9 +45,9 @@ New Features
 
 ► (From 4.17.1.4) The default value of the :ref:`slowMessageLogWarningSec<slow_message_log_warning_sec>` flag is now ``1`` second, lowered from ``5`` seconds, so the metadata server logs slow messages more readily (SQ-23114).
 
-► (From 4.17.1.6) New ``PIVOT ARRAY`` and ``UNPIVOT ARRAY`` syntax, which pivots into a single array column instead of one column per value. Because they produce one column per aggregation rather than one per value, their value lists are not bounded by the maximum number of columns. Please see :ref:`PIVOT ARRAY & UNPIVOT ARRAY<pivot_unpivot_array>` (SQ-23033, SQ-23132).
+► (From 4.17.1.6) New ``PIVOT ARRAY`` and ``UNPIVOT ARRAY`` syntax, which pivots into a single array column instead of one column per value. Because they produce one column per aggregation rather than one per value, their value lists are not bounded by the maximum number of columns. Please see :ref:`PIVOT ARRAY & UNPIVOT ARRAY<pivot_unpivot_array>` (SQ-23132).
 
-► (From 4.17.1.6) Large ``IN`` lists are compiled as an inner join against the listed values instead of a chain of equality comparisons, reducing compilation time. The new :ref:`inListJoinThreshold<in_list_join_threshold>` flag sets the number of values at which this applies, defaulting to ``100`` (SQ-23033).
+► (From 4.17.3) Large ``IN`` lists are compiled as an inner join against the listed values instead of a chain of equality comparisons, reducing compilation time. The new :ref:`inListJoinThreshold<in_list_join_threshold>` flag sets the number of values above which this applies, defaulting to ``100`` (SQ-23033).
 
 Utility Function Permissions
 ----------------------------
@@ -170,9 +170,18 @@ Version 4.17 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23130                    | (v4.17.1.6) Corrected row count calculation in node info worker log output                 |
 +-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23148                    | (v4.17.3) Improved chunk sizing when a join duplicates TEXT values, improving performance  |
++-----------------------------+--------------------------------------------------------------------------------------------+
 
 Deprecation
 -------------------
+
+► **Flag inListLimit deprecated**
+
+As of version 4.17.3, the ``inListLimit`` flag is no longer enforced. It previously capped the number of values
+permitted in an ``IN`` list and failed the statement with an error when the list was longer. Long lists are now
+compiled as a join against the listed values instead, so the cap is no longer needed. The flag remains settable,
+and sessions that set it are unaffected.
 
 ► **Flag maxBlobSizeNetworkInsert depracted**
 
