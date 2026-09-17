@@ -40,7 +40,7 @@ The following table shows the ``SHOW_SERVER_STATUS`` result columns;
    * - ``instance``
      - Shows the worker ID.
    * - ``connection_id``
-     - Shows the connection ID.
+     - Shows the client's connection ID, the same ID the worker records in its log.
    * - ``serverip``
      - Shows the worker end-point IP.
    * - ``serverport``

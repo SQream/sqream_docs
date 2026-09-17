@@ -49,6 +49,8 @@ New Features
 
 ► (From 4.17.3) Large ``IN`` lists are compiled as an inner join against the listed values instead of a chain of equality comparisons, reducing compilation time. The new :ref:`inListJoinThreshold<in_list_join_threshold>` flag sets the number of values above which this applies, defaulting to ``100`` (SQ-23033).
 
+► (From 4.17.4) Chunks are skipped by reading the dictionary of a dictionary-compressed ``TEXT`` column, so a statement filtering on several equality conditions at once scans fewer chunks. The chunk is skipped only where no row in it can match, so the result is unchanged. Two new flags control it: :ref:`skipChunksUsingDictColumn<skip_chunks_using_dict_column>` and :ref:`skipChunksUsingDictThreads<skip_chunks_using_dict_threads>` (SQ-23028).
+
 Utility Function Permissions
 ----------------------------
 The following utility functions no longer require the ``SUPERUSER`` permission:
@@ -172,6 +174,12 @@ Version 4.17 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23148                    | (v4.17.3) Improved chunk sizing when a join duplicates TEXT values, improving performance  |
 +-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23177                    | (v4.17.4) SHOW_SERVER_STATUS now reports the client connection ID in cluster mode          |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23189                    | (v4.17.4) Improved memory management when estimating CPU chunk memory                      |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23204                    | (v4.17.4) Removed temporary trace messages from the worker log                             |
++-----------------------------+--------------------------------------------------------------------------------------------+
 
 Deprecation
 -------------------
@@ -182,6 +190,10 @@ As of version 4.17.3, the ``inListLimit`` flag is no longer enforced. It previou
 permitted in an ``IN`` list and failed the statement with an error when the list was longer. Long lists are now
 compiled as a join against the listed values instead, so the cap is no longer needed. The flag remains settable,
 and sessions that set it are unaffected.
+
+Use :ref:`inListJoinThreshold<in_list_join_threshold>` in its place. It does not restore a limit — there is no
+longer one — but sets the number of values above which an ``IN`` list is compiled as a join, which is the
+setting to reach for when tuning how large ``IN`` lists perform.
 
 ► **Flag maxBlobSizeNetworkInsert depracted**
 
