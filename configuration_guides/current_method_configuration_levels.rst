@@ -204,7 +204,7 @@ Flag List
      - SUPERUSER
      - Session
      - Sets the number of values above which an ``IN`` list is compiled as an inner join against the listed values, instead of being expanded into a chain of equality comparisons. Allowed values: any positive integer.
-     - uint
+     - int
      - ``100``
    * - ``leveldbWriteBufferSize``
      - SUPERUSER

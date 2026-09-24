@@ -14,7 +14,7 @@ and raising it keeps the comparison form for larger ones.
 
 The following describes the ``inListJoinThreshold`` flag:
 
-* **Data type** - uint
+* **Data type** - int
 * **Default value** - ``100``
 * **Allowed values** - Any positive integer
 
