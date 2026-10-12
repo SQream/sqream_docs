@@ -27,7 +27,7 @@ Syntax
 
    FROM <from_clause>
    [
-     PIVOT ARRAY
+     PIVOT [DISTINCT] ARRAY
      (<pivot_expression1> [AS <pivot_expression1_name>] [, <pivot_expression2> [AS <pivot_expression2_name>], ... , <pivot_expressionN> [AS <pivot_expressionN_name>]]
        FOR <column_name>
        IN (<value1>, <value2>, ... , <valueN>)
@@ -47,6 +47,9 @@ Syntax
 
    pivot_expression := <aggregation function> ( <column being aggregated> )
 
+   -- with DISTINCT, a value rather than an aggregation:
+   pivot_expression := <scalar expression over one column>
+
 Parameters
 ==========
 
@@ -56,8 +59,10 @@ Parameters
 
    * - Parameter
      - Description
+   * - ``DISTINCT``
+     - Optional. States that the source holds at most one row for each combination of group and pivoted value, so no aggregation is needed. Each pivot expression is then a plain value, such as ``Revenue``, and the result is computed without grouping. See :ref:`pivot_distinct_array`
    * - ``pivot_expression``
-     - An aggregation over the column being summarized, such as ``SUM(Revenue)``. Each expression produces one array column in the result
+     - An aggregation over the column being summarized, such as ``SUM(Revenue)``. With ``DISTINCT``, a scalar expression over one column, such as ``Revenue`` or ``Revenue * 2``. Each expression produces one array column in the result
    * - ``pivot_expression_name``
      - Optional name for the resulting array column. When omitted, the name of the aggregated column is used
    * - ``column_name``
@@ -86,6 +91,10 @@ Limitations
 * ``UNPIVOT ARRAY`` does not accept an expression in place of the array column. A cast such as ``vals::bigint[]`` is a parsing error.
 * The array column and the label column of ``UNPIVOT ARRAY`` must have different names.
 * Listing fewer values than the array has cells expands only the listed cells. Cells beyond the end of the list produce no rows.
+* ``PIVOT DISTINCT ARRAY`` takes a value, not an aggregation. Passing an aggregate such as ``SUM(Revenue)`` returns ``PIVOT DISTINCT takes a value, not an aggregate``.
+* ``PIVOT DISTINCT ARRAY`` holds fixed-size values only. Pivoting a ``TEXT`` value returns ``PIVOT ARRAY can only hold fixed-size values``.
+* ``PIVOT DISTINCT ARRAY`` does not check that the rows are unique. If a group has more than one row for the same pivoted value, the cell holds one of those rows' values, and which one is not defined.
+* The value list must be given as literals or expressions. A subquery cannot supply the value list.
 
 PIVOT ARRAY Example
 ====================
@@ -152,6 +161,36 @@ Each aggregation produces its own array column. Aggregating twice returns two ar
 
 A pivot does not filter. A group whose rows all fall outside the listed values still produces a row, with every array
 cell set to null.
+
+.. _pivot_distinct_array:
+
+PIVOT DISTINCT ARRAY Example
+=============================
+In the ``Sales`` data above, each product has exactly one row per date, so there is nothing for ``SUM`` to add up. When
+you know that the source holds at most one row for each group and pivoted value, ``PIVOT DISTINCT ARRAY`` places each
+value directly in its cell and skips the aggregation, which is faster on large inputs.
+
+.. code-block:: postgres
+
+   SELECT * FROM (
+      SELECT ProductName, SalesDate, Revenue
+      FROM Sales
+   ) AS SourceTable
+   PIVOT DISTINCT ARRAY (
+      Revenue AS Revenues
+      FOR SalesDate IN ('2024-01-01', '2024-01-02')
+   );
+
+   productname | revenues
+   ------------+------------------
+   Product A   | [100.00, 120.00]
+   Product B   | [150.00, 180.00]
+   2 rows
+
+The result is the same as the ``SUM(Revenue)`` example because the rows are unique. ``DISTINCT`` is a promise you make
+about the data, and it is not checked: if a product had two rows for the same date, the cell would hold one of the two
+revenues rather than their sum. Use it only where the source guarantees uniqueness, for example a table keyed on the
+group and pivoted columns.
 
 Comparing PIVOT and PIVOT ARRAY
 ================================
@@ -343,3 +382,4 @@ See Also
 =========
 * :ref:`PIVOT & UNPIVOT<pivot_unpivot>` - the forms that produce one column per value
 * :ref:`inListJoinThreshold<in_list_join_threshold>` - the flag controlling how large ``IN`` lists are compiled
+* :ref:`pivotArrayJoinBeforeAggregate<pivot_array_join_before_aggregate>` - the flag changing the order in which ``PIVOT ARRAY`` matches values and aggregates

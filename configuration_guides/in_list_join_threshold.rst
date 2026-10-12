@@ -18,6 +18,10 @@ The following describes the ``inListJoinThreshold`` flag:
 * **Default value** - ``100``
 * **Allowed values** - Any positive integer
 
+A multi-column ``IN`` list such as ``(a, b) IN ((1, 2), (3, 4), ...)`` is also compiled as a join, against the listed
+rows. For such a list the threshold counts comparisons, one per column in each row, so a list comparing two columns is
+compiled as a join once it has more rows than half the threshold, which is more than ``50`` rows by default. See :ref:`in_subqueries`.
+
 The join form applies to an ``IN`` list used as a filter condition, where a value that does not match drops the
 row. An ``IN`` used elsewhere in a statement keeps the comparison form regardless of this flag, as do lists of
 ``ARRAY``, ``BLOB``, ``INTERVAL``, and ``DATETIME2`` values, which cannot serve as a join key.

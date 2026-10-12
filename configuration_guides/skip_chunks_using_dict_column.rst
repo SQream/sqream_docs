@@ -6,8 +6,17 @@
 Skipping Chunks Using a Dictionary
 ************************************
 The ``skipChunksUsingDictColumn`` flag controls whether the dictionary chunk filter runs. The filter reads the
-dictionary of a dictionary-compressed ``TEXT`` column directly, without decompressing the chunk, and skips the
-chunk when it can prove that no row in it satisfies every equality condition at once.
+stored values of a compressed chunk directly, without decompressing it, and skips the chunk when it can prove that
+no row in it satisfies every filter condition at once.
+
+The filter reads the following chunks:
+
+* ``TEXT`` columns compressed with dictionary compression
+* ``TINYINT``, ``SMALLINT``, ``INT``, ``BIGINT``, ``DATE``, ``DATETIME``, and ``REAL`` columns compressed with dictionary or RLE compression
+* ``DOUBLE`` columns compressed with RLE compression
+
+It tests the comparisons ``=``, ``<>``, ``<``, ``<=``, ``>``, and ``>=``, and the conditions built from them, such as
+``BETWEEN`` and ``IN`` lists. ``<>`` is not tested on ``TEXT`` columns.
 
 This is a third chunk-skipping layer, beside min/max metadata pruning and the chunk index. It answers a question
 the other two cannot: where each value on its own appears in nearly every chunk, only the combination of
@@ -22,11 +31,16 @@ The following describes the ``skipChunksUsingDictColumn`` flag:
 * **Default value** - ``true``
 * **Allowed values** - ``true``, ``false``
 
-Not every chunk can be decided. A column that permits nulls is filtered only where a chunk is known to hold none,
-and a chunk whose dictionary was written by another compression path is read rather than skipped. A query over
+Not every chunk can be decided. A ``TEXT`` column that permits nulls is filtered only where a chunk is known to hold
+none, and a chunk whose dictionary was written by another compression path is read rather than skipped. A query over
 such a column sees no change in the number of chunks scanned.
 
 Setting the flag to ``false`` turns the filter off, which is the baseline a result can be compared against. The
 flag is developer-only, so a session must have :ref:`developerMode<developer_mode>` set before it can be changed.
 
 The pool width used to read dictionaries is set by :ref:`skipChunksUsingDictThreads<skip_chunks_using_dict_threads>`.
+
+When a statement filters on several columns, the developer-only ``skipChunksUsingDictMaxMatchPercent`` flag (default
+``5``) sets the largest share of a column's distinct values that a condition other than an equality may match and
+still be used as the starting point for this test. Raising it lets broader conditions skip chunks, at the cost of
+extra work where none can be skipped, and it never changes a result.

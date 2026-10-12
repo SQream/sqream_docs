@@ -51,6 +51,14 @@ New Features
 
 ► (From 4.17.4) Chunks are skipped by reading the dictionary of a dictionary-compressed ``TEXT`` column, so a statement filtering on several equality conditions at once scans fewer chunks. The chunk is skipped only where no row in it can match, so the result is unchanged. Two new flags control it: :ref:`skipChunksUsingDictColumn<skip_chunks_using_dict_column>` and :ref:`skipChunksUsingDictThreads<skip_chunks_using_dict_threads>` (SQ-23028).
 
+► (From 4.17.6) New ``PIVOT DISTINCT`` and ``PIVOT DISTINCT ARRAY`` syntax, for sources holding at most one row per group and pivoted value. Each value is taken as it is instead of being aggregated, which is faster on large inputs. Please see :ref:`PIVOT & UNPIVOT<pivot_unpivot>` and :ref:`PIVOT DISTINCT ARRAY<pivot_distinct_array>`.
+
+► (From 4.17.6) The new :ref:`pivotArrayJoinBeforeAggregate<pivot_array_join_before_aggregate>` flag makes ``PIVOT ARRAY`` match the listed values before aggregating, which removes a full sort from the plan. It is off by default.
+
+► (From 4.17.6) ``IN`` and ``NOT IN`` accept a row of several columns, such as ``(a, b) IN (('A', 1), ('B', 2))``, and a subquery, such as ``(a, b) IN (SELECT x, y FROM t)``, including a correlated subquery. Long lists of rows are compiled as a join. The new :ref:`inSubqueryNullJoinLimit<in_subquery_null_join_limit>` flag caps the plan size of ``NOT IN`` over nullable columns. Please see :ref:`IN Subqueries and Multi-Column IN<in_subqueries>`.
+
+► (From 4.17.6) Dictionary chunk skipping, previously limited to equality conditions on ``TEXT`` columns, also covers numeric and date columns compressed with dictionary or RLE compression, range comparisons, and ``IN`` lists. Please see :ref:`skipChunksUsingDictColumn<skip_chunks_using_dict_column>`.
+
 Utility Function Permissions
 ----------------------------
 The following utility functions no longer require the ``SUPERUSER`` permission:
@@ -183,6 +191,10 @@ Version 4.17 resolved Issues
 | SQ-23204                    | (v4.17.4) Removed temporary trace messages from the worker log                             |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23170                    | (v4.17.5) Reduced compilation time for queries with very large select lists                |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-22929                    | (v4.17.6) Improved performance when a query fetches few rows from large compressed chunks  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23284                    | (v4.17.6) correct results for integer filters on fractional values                         |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 
 Deprecation
