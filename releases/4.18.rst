@@ -1,8 +1,8 @@
-.. _4.17:
+.. _4.18:
 
-*****************
+******************
 Release Notes 4.18
-*****************
+******************
 
 The 4.18 release notes were released on October 30, 2026
 
@@ -25,8 +25,9 @@ Compatibility Matrix
 
 New Features
 ------------
-► Feature 1
-► Feature 2
+► ``PIVOT ARRAY`` and ``PIVOT DISTINCT ARRAY`` accept a subquery in place of the list of values to pivot on. Please see :ref:`PIVOT ARRAY with a value query<pivot_array_value_query>`.
+
+► New ``SHOW_STUCK_UNLINKS`` utility function lists deleted files whose removal from disk has failed. Please see :ref:`SHOW_STUCK_UNLINKS<show_stuck_unlinks>`.
 
 Known Issues
 ------------
@@ -44,13 +45,31 @@ Version 4.18 resolved Issues
 +=============================+============================================================================================+
 | SQ-20823                    | Data sorting query failed in particular circumstances                                      |
 +-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-22773                    | Files left in the table folder after DROP TABLE are now removed from disk                  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-22929                    | Improved performance of queries that keep a small number of rows from each chunk           |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23036                    | Improved catalog table query performance                                                   |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23290                    | PIVOT ARRAY now accepts a subquery as its list of values                                   |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23297                    | Deleted files are now removed from disk after a worker disconnects                         |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23331                    | Improved chunk skipping on TEXT columns, for consistent query performance                  |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23334                    | Further improved performance of queries that keep a small number of rows from each chunk   |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23361                    | Metadata of deleted chunks is now cleaned up                                               |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23372                    | Improved performance of queries running in parallel                                        |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23373                    | Improved query performance on tables sorted with CLUSTER BY                                |
++-----------------------------+--------------------------------------------------------------------------------------------+
 
 Deprecation
 -------------------
 
-► **Deprecation 1**
-
-Ble Ble Ble
+► No deprecations in this version.
 
 Upgrading to Version 4.18
 -------------------------
@@ -65,6 +84,7 @@ Additional packages
 
 Storage upgrade
 """""""""""""""
+► ``Running storage upgrade and metadata backup listed below are mandatory for this version``
 
 1. Generate a back-up of the metadata by running the following command:
 

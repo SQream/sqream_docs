@@ -177,6 +177,8 @@ The following table shows the Utility commands:
      - Returns a single row result containing the saved query string
    * - :ref:`SHOW SERVER STATUS<show_server_status>`
      - Returns a list of active sessions across the cluster
+   * - :ref:`SHOW STUCK UNLINKS<show_stuck_unlinks>`
+     - Lists deleted files whose removal from disk has failed
    * - :ref:`SHUTDOWN SERVER<shutdown_server_command>`
      - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`STOP STATEMENT<stop_statement>`

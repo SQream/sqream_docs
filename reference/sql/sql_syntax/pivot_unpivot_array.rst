@@ -31,6 +31,8 @@ Syntax
      (<pivot_expression1> [AS <pivot_expression1_name>] [, <pivot_expression2> [AS <pivot_expression2_name>], ... , <pivot_expressionN> [AS <pivot_expressionN_name>]]
        FOR <column_name>
        IN (<value1>, <value2>, ... , <valueN>)
+       -- or, in place of the list:
+       IN (<value_query>)
      )
      [AS <pivoted_result_name>]
    ]
@@ -69,6 +71,8 @@ Parameters
      - The column whose values are being pivoted
    * - ``value1 ... valueN``
      - The values of ``column_name`` to pivot on. Their order is the order of the cells in the resulting array. Values may be literals or expressions, and must be distinct
+   * - ``value_query``
+     - A query returning one column, whose values are pivoted on instead of a written-out list. The values are cast to the type of ``column_name``, ``NULL`` values are ignored, and repeated values are kept once. The cells of the resulting array follow the values in ascending order, whatever order the query returns them in. See :ref:`pivot_array_value_query`
 
 .. list-table:: UNPIVOT ARRAY
    :widths: auto
@@ -86,7 +90,7 @@ Parameters
 Limitations
 =================
 * The value list of ``PIVOT ARRAY`` and ``UNPIVOT ARRAY`` is not bounded by the maximum number of columns, because the array forms produce one column per aggregation rather than one per value. The plain ``PIVOT`` and ``UNPIVOT`` forms are bounded, as described in :ref:`PIVOT & UNPIVOT<pivot_unpivot>`.
-* ``PIVOT ARRAY`` values must be distinct. Repeating a value returns ``Pivot values should be distinct``.
+* Values written out in a ``PIVOT ARRAY`` list must be distinct. Repeating a value returns ``Pivot values should be distinct``.
 * ``UNPIVOT ARRAY`` requires an array column. Passing a column of any other type returns ``UNPIVOT ARRAY needs an array column``.
 * ``UNPIVOT ARRAY`` does not accept an expression in place of the array column. A cast such as ``vals::bigint[]`` is a parsing error.
 * The array column and the label column of ``UNPIVOT ARRAY`` must have different names.
@@ -94,7 +98,10 @@ Limitations
 * ``PIVOT DISTINCT ARRAY`` takes a value, not an aggregation. Passing an aggregate such as ``SUM(Revenue)`` returns ``PIVOT DISTINCT takes a value, not an aggregate``.
 * ``PIVOT DISTINCT ARRAY`` holds fixed-size values only. Pivoting a ``TEXT`` value returns ``PIVOT ARRAY can only hold fixed-size values``.
 * ``PIVOT DISTINCT ARRAY`` does not check that the rows are unique. If a group has more than one row for the same pivoted value, the cell holds one of those rows' values, and which one is not defined.
-* The value list must be given as literals or expressions. A subquery cannot supply the value list.
+* A query can supply the values of ``PIVOT ARRAY`` and ``PIVOT DISTINCT ARRAY`` only. ``UNPIVOT ARRAY`` takes a written-out list, and the plain ``PIVOT`` form, which names a column after each value, cannot take a query either.
+* A value query must return exactly one column.
+* An ``ORDER BY`` in a value query affects the result only together with ``LIMIT``, where it decides which values are kept. The cells are always in ascending value order.
+* When a query supplies the values, the number of values is known only when the statement runs. A query returning more values than ``arrayMaxElementsNumber`` allows fails at run time rather than at compile time.
 
 PIVOT ARRAY Example
 ====================
@@ -161,6 +168,44 @@ Each aggregation produces its own array column. Aggregating twice returns two ar
 
 A pivot does not filter. A group whose rows all fall outside the listed values still produces a row, with every array
 cell set to null.
+
+.. _pivot_array_value_query:
+
+PIVOT ARRAY with a Value Query
+-------------------------------
+Instead of writing the values out, you can let a query supply them. This is useful when the values to pivot on are
+stored in a table, or are too many to list. Using the ``Sales`` data above, the following statement pivots on every
+date that appears in the table:
+
+.. code-block:: postgres
+
+   SELECT * FROM (
+      SELECT ProductName, SalesDate, Revenue
+      FROM Sales
+   ) AS SourceTable
+   PIVOT ARRAY (
+      SUM(Revenue) AS RevenueSums
+      FOR SalesDate IN (SELECT SalesDate FROM Sales)
+   );
+
+The query returns each date twice, once per product, and each date gets one cell. The cells are in ascending date
+order, so the result is the same as listing ``'2024-01-01', '2024-01-02'``.
+
+To keep only some of the values, filter or limit the query. With ``LIMIT``, the query's ``ORDER BY`` decides which
+values are kept, and the cells are still in ascending order:
+
+.. code-block:: postgres
+
+   SELECT * FROM (
+      SELECT ProductName, SalesDate, Revenue
+      FROM Sales
+   ) AS SourceTable
+   PIVOT ARRAY (
+      SUM(Revenue) AS RevenueSums
+      FOR SalesDate IN (SELECT DISTINCT SalesDate FROM Sales ORDER BY SalesDate DESC LIMIT 1)
+   );
+
+``PIVOT DISTINCT ARRAY`` accepts a value query in the same way.
 
 .. _pivot_distinct_array:
 
