@@ -29,6 +29,8 @@ New Features
 
 ► New ``SHOW_STUCK_UNLINKS`` utility function lists deleted files whose removal from disk has failed. Please see :ref:`SHOW_STUCK_UNLINKS<show_stuck_unlinks>`.
 
+► Dictionary chunk skipping also covers ``TEXT`` columns whose values vary in length, and numeric and date columns compressed with P4D compression. For a chunk that is not skipped, only the rows that might match the filter are copied to the GPU (SQ-23331, SQ-23334, SQ-23373). Please see :ref:`skipChunksUsingDictColumn<skip_chunks_using_dict_column>`.
+
 Known Issues
 ------------
 Using Grant operation on a specific UDF function fail.
@@ -64,6 +66,8 @@ Version 4.18 resolved Issues
 | SQ-23372                    | Improved performance of queries running in parallel                                        |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23373                    | Improved query performance on tables sorted with CLUSTER BY                                |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23590                    | Chunks cut down to their matching rows are now sized correctly, for consistent performance |
 +-----------------------------+--------------------------------------------------------------------------------------------+
 
 Deprecation

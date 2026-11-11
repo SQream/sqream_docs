@@ -41,3 +41,5 @@ reference/sql/sql_syntax/subqueries.rst.bck1
 releases/4.17.rst.bck10
 releases/4.18.rst.bck1
 releases/index.rst.bck1
+configuration_guides/skip_chunks_using_dict_column.rst.bck2
+configuration_guides/skip_chunks_using_dict_threads.rst.bck1
