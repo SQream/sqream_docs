@@ -54,7 +54,7 @@ Notes
 
 The following notes apply to the ``COUNT`` function:
 
-* When all rows contain ``NULL`` values, the function returns ``NULL``.
+* When all rows contain ``NULL`` values, ``COUNT(expr)`` returns ``0``. ``COUNT`` never returns ``NULL``.
 
 * ``COUNT(*)`` returns the number of items in a group, including duplicates and ``NULL`` values.
 

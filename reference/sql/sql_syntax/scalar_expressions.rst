@@ -166,7 +166,7 @@ The table below lists the operators in decreasing order of precedence.
      - left
    * - 
      - ``||``
-     - right
+     - left
    * - 
      - ``BETWEEN``, ``IN``, ``LIKE``, ``RLIKE``
      -

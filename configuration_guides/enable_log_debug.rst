@@ -11,4 +11,4 @@ The ``enableLogDebug`` flag enables creating and logging in the **clientLogger_d
 The following describes the ``enableLogDebug`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Default value** - ``TRUE``

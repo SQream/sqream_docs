@@ -59,7 +59,7 @@ SQreamDB compresses all columns and types. The data size noted is the maximum da
      -  38 digits
      - 16 bytes
      - ``0.12324567890123456789012345678901234567``
-     - ``DECIMAL``, ``NUMBER``
+     - ``DECIMAL``, ``NUMBER`` (note: ``NUMBER(p)`` with a single argument is mapped to an integer type: p ≤ 4 → ``SMALLINT``, p ≤ 9 → ``INT``, p ≤ 18 → ``BIGINT``, and p > 18 is rejected with ``Number type too large``; ``NUMBER`` and ``NUMBER(p, s)`` are ``NUMERIC``)
    * - ``DATE``
      - Date
      - 4 bytes

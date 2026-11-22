@@ -19,7 +19,7 @@ Syntax
             [ ORDER BY order [ ASC | DESC ] [, ...]]   
          )
 
-   offset ::= integer
+   offset ::= integer literal
 
 
 Arguments
@@ -33,7 +33,7 @@ Arguments
    * - Parameter
      - Description
    * - ``expr``
-     - Any value expression
+     - A ``TINYINT``, ``SMALLINT``, ``INT``, ``BIGINT``, ``REAL``, ``DOUBLE``, ``BOOL``, ``DATE``, ``DATETIME`` or ``TEXT`` expression. Arrays and ``DATETIME2`` are not supported.
    * - ``offset``
      - Specifies the offset of rows to scan back. If not specified, defaults to 1.
 

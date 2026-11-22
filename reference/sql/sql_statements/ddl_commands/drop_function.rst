@@ -9,7 +9,7 @@ DROP FUNCTION
 Permissions
 =============
 
-The role must have the ``DDL`` permission at the database level.
+The role must have the ``DDL`` permission on the function (``GRANT DDL ON FUNCTION ...``).
 
 Syntax
 ==========

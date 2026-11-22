@@ -16,7 +16,7 @@ Syntax
 .. code-block:: postgres
 
 	SELECT
-	  GET_DDL(['<schema_name>'.]'<table_name>')
+	  GET_DDL('[<schema_name>.]<table_name>')
 
 Parameters
 ==========

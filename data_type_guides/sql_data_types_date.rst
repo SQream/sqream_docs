@@ -32,7 +32,7 @@ The following table describes the Date types:
 Aliases
 ^^^^^^^^^^
 
-``DATETIME`` is also known as ``TIMESTAMP`` or ``DATETIME2``.
+``DATETIME`` is also known as ``TIMESTAMP``. ``DATETIME2`` is a separate type (nanosecond precision with UTC offset); see :ref:`DateTime2<sql_data_types_datetime2>`.
 
 
 Syntax

@@ -15,7 +15,7 @@ See also: :ref:`create_schema`, :ref:`alter_default_schema`, and :ref:`rename_sc
 Permissions
 =============
 
-The role must have the ``DDL`` permission at the database level.
+The role must have the ``DDL`` permission on the schema. ``DDL`` granted at the database level does not satisfy this.
 
 Syntax
 ==========
@@ -23,7 +23,7 @@ Syntax
 .. code-block:: postgres
 
    drop_schema_statement ::=
-       DROP SCHEMA schema_name
+       DROP SCHEMA [ IF EXISTS ] schema_name
        ;
 
    schema_name ::= identifier  
@@ -38,6 +38,8 @@ Parameters
    
    * - Parameter
      - Description
+   * - ``IF EXISTS``
+     - Drop the schema if it exists. Does not error if the schema does not exist.
    * - ``schema_name``
      - The name of the schema to drop
 

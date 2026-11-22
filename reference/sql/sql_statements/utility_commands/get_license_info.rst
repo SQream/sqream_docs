@@ -60,6 +60,24 @@ The following table shows the ``GET_LICENSE_INFO`` license information in the or
    * - ``cluster_size_left``
      - Shows the remaining available cluster size (GB) in the license.
      - 10
+   * - ``data_read_size_limit``
+     - Shows the data read size limit of the current license.
+     -
+   * - ``data_write_size_limit``
+     - Shows the data write size limit of the current license.
+     -
+   * - ``gpu_limit``
+     - Shows the GPU limit of the current license.
+     -
+   * - ``license_expiration_warn_days``
+     - Shows how many days before the license expires a warning is issued.
+     -
+   * - ``python_included``
+     - Shows whether Python is included in the license (``0`` - **No**, ``1`` - **Yes**).
+     -
+   * - ``python_expiry_date``
+     - Shows the expiration date of Python in the current license.
+     -
 	 
 Example
 ===========

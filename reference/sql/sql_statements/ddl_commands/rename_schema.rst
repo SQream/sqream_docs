@@ -11,7 +11,7 @@ Renaming schemas is mainly used for improving the clarity and organization of a 
 Permissions
 ===========
 
-The role must have the ``DDL`` permission at the database level.
+The role must have the ``DDL`` permission on the schema being renamed.
 
 Syntax
 ======
@@ -37,8 +37,8 @@ Parameters
    
    * - Parameter
      - Description
-   * - ``schema_name``
-     - The database name for the schema. Defaults to ``master`` if not specified.
+   * - ``database_name``
+     - The database containing the schema. Defaults to the current database if not specified.
    * - ``current_name``
      - The schema name to apply the change to.
    * - ``new_name``

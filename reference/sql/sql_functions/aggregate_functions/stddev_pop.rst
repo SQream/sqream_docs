@@ -21,7 +21,7 @@ Syntax
    STDEVP( expr )
 
    -- As a window function
-   STDDEVP_POP ( expr ) OVER (   
+   STDDEV_POP ( expr ) OVER (   
             [ PARTITION BY value_expression [, ...] ]
             [ ORDER BY value_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
             [ frame_clause ]

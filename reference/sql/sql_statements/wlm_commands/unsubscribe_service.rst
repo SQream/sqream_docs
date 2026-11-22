@@ -45,7 +45,8 @@ Parameters
 Notes
 ==========
 
-* If the service name does not currently exist, it will be created
+* If the worker is not subscribed to the service, the call fails with ``This node is not subscribed to this service.``
+* If the worker ID is unknown, the call fails with ``The instance id is not available.``
 
 .. warning:: ``UNSUBSCRIBE_SERVICE`` removes the service subscription immediately, but the setting applies for the duration of the session. To apply a persistent setting, use the ``initialSubscribedServices`` configuration setting. Read the :ref:`Workload manager guide<workload_manager>` for more information.
 
@@ -60,7 +61,7 @@ Each worker is assigned an automatic ID, and is subscribed to the ``'sqream'`` q
 .. code-block:: psql
    
    t=> SELECT SHOW_SUBSCRIBED_INSTANCES();
-   service | servernode | serverip      | serverport
+   service | server node | server ip     | server port
    --------+------------+---------------+-----------
    sqream  | node_9383  | 192.168.0.111 |       5000
    sqream  | node_9384  | 192.168.0.111 |       5001
@@ -76,7 +77,7 @@ We want to modify `node_9551` to leave the ETL queue:
    executed
    
    t=> SELECT SHOW_SUBSCRIBED_INSTANCES();
-   service | servernode | serverip      | serverport
+   service | server node | server ip     | server port
    --------+------------+---------------+-----------
    sqream  | node_9383  | 192.168.0.111 |       5000
    sqream  | node_9384  | 192.168.0.111 |       5001

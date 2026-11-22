@@ -30,6 +30,8 @@ Assume the following LDAP attributes are set to be associated with SQreamDB role
 
 Output
 
+The result set is a single text column, ``ldap_role_attributes``. The first row is a quoted, comma-separated header listing the attribute names, and each following row holds one role's values.
+
 .. code-block:: console
 
    role_name         | distinguishedName                         | primaryGroupID| userprincipalname    
@@ -41,4 +43,4 @@ Output
 Permissions
 ===========
 
-Using the ``ldap_get_attr`` command requires no special permissions.
+Using the ``ldap_get_attr`` command requires the ``SUPERUSER`` permission.

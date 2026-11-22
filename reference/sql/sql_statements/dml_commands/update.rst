@@ -29,7 +29,7 @@ It can be used to do the following:
 
 .. warning:: Using the ``UPDATE`` command on column clustered using a cluster key can undo your clustering.
 
-The ``UPDATE`` statement cannot be used to reference other tables in the ``WHERE`` or ``SET`` clauses.
+The ``WHERE`` clause may reference other tables through ``EXISTS`` or ``IN`` (subquery) conditions. These are enabled by default by the ``updateWhereExists`` flag.
 
 Syntax
 ======

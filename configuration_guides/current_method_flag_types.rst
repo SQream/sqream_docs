@@ -26,11 +26,11 @@ It is worth noting that the worker configuration file is not subject to frequent
    * - ``healerDetectionFrequencySeconds``
      - SUPERUSER
      - Determines the default frequency for the healer to check that its conditions are met.
-     - 
-     - ``86,400`` (seconds)
+     -
+     - ``3,600`` (seconds)
    * - ``isHealerOn``
      - SUPERUSER
-     - Enables the Query Healer, which periodically examines the progress of running statements and logs statements exceeding the ``healerMaxInactivityHours`` flag setting.
+     - Enables the Query Healer, which periodically examines the progress of running statements and logs statements exceeding the ``maxStatementInactivitySeconds`` flag setting.
      - boolean
      - ``TRUE``	
    * - ``logFormat``
@@ -70,16 +70,16 @@ It is worth noting that the worker configuration file is not subject to frequent
      - ``FALSE``	 	 
 	 
 	 
-   * - ``healerMaxInactivityHours``
+   * - ``maxStatementInactivitySeconds``
      - SUPERUSER
-     - Used for defining the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU.
-     - bigint
-     - ``5``
+     - Determines the maximum duration of statement inactivity before the healer acts on the statement.
+     - size_t
+     - ``18,000`` (seconds)
    * - ``limitQueryMemoryGB``
      - Anyone
      - Prevents a query from processing more memory than the defined value.
      - uint
-     - ``100000``
+     - ``10000``
 	 
 
 

@@ -8,6 +8,8 @@ CREATE FUNCTION
 
 See more in our :ref:`Python UDF (user-defined functions)<python_functions>` guide.
 
+.. note:: Python UDFs are disabled by default. Unless the ``enablePythonUdfs`` flag is set to ``true``, ``CREATE FUNCTION ... LANGUAGE PYTHON`` returns ``Python UDFs are not supported. Contact the system administrator for more information.``
+
 Permissions
 =============
 

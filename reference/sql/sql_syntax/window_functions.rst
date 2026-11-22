@@ -18,7 +18,7 @@ Syntax
       window_fn ( [ value_expr [, ...] ] )
          OVER (   
             [ PARTITION BY value_expression [, ...] ]
-            [ ORDER BY value_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
+            [ ORDER BY value_expression [ ASC | DESC ] [, ...] ]
             [ frame_clause ]
          )
       
@@ -47,18 +47,18 @@ Syntax
 
    frame_def ::= 
       UNBOUNDED PRECEDING
-      offset PRECEDING
+      row_offset PRECEDING
       CURRENT ROW
-      offset FOLLOWING
+      row_offset FOLLOWING
       UNBOUNDED FOLLOWING
 
-   offset ::=
+   frame_exclusion ::=
       EXCLUDE CURRENT ROW
       | EXCLUDE GROUP
       | EXCLUDE TIES
       | EXCLUDE NO OTHERS
-      
-   row_offset ::= numeric literal
+
+   row_offset ::= integer literal
 
 Arguments
 ============
@@ -168,6 +168,8 @@ The ``ORDER BY`` clause determines the order in which the rows of a partition ar
 
 Without ``ORDER BY``, rows are processed in an unspecified order.
 
+An explicit ``NULLS FIRST`` or ``NULLS LAST`` is rejected with ``NULLS ORDER is not supported``. ``NULL`` values sort first with ``ASC`` and last with ``DESC``, as described in :ref:`null_handling`.
+
 Frames 
 -------
 
@@ -179,7 +181,7 @@ A ``frame_start`` of ``UNBOUNDED PRECEDING`` means that the frame starts with th
 
 In ``RANGE`` mode, a frame_start of ``CURRENT ROW`` means the frame starts with the current row's first peer row (a row that the window's ``ORDER BY`` clause sorts as equivalent to the current row), while a ``frame_end`` of ``CURRENT ROW`` means the frame ends with the current row's last peer row. In ``ROWS`` mode, ``CURRENT ROW`` simply means the current row.
 
-In the ``offset PRECEDING`` and ``offset FOLLOWING`` frame options, the offset must be an expression not containing any variables, aggregate functions, or window functions. The meaning of the ``offset`` depends on the frame mode:
+In the ``offset PRECEDING`` and ``offset FOLLOWING`` frame options, the offset must be an integer literal. The meaning of the ``offset`` depends on the frame mode:
 
 * In ``ROWS`` mode, the offset must yield a non-null, non-negative integer, and the option means that the frame starts or ends the specified number of rows before or after the current row.
 
@@ -208,7 +210,8 @@ The ``frame_exclusion`` option allows rows around the current row to be excluded
 Limitations
 =================
 
-Window functions do not support the Numeric data type.
+* Window aggregate functions other than ``COUNT`` do not accept arguments of type ``NUMERIC``, ``DATETIME2`` or ``ARRAY``. These return ``Numeric data type is not supported with window functions.``, ``DateTime2 data type is not supported with window functions.`` or ``Array data types are not supported with window functions. ...``.
+* ``PERCENTILE_CONT`` and ``PERCENTILE_DISC`` cannot be used inside a window. This returns ``Unsupported use of Percentile inside a Window function``.
 
 Examples
 ==========

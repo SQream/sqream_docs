@@ -48,6 +48,6 @@ Convert a UNIX timestamp to ``DATETIME``
 .. code-block:: psql
 
    master=> SELECT FROM_UNIXTS(0), FROM_UNIXTS(1575636057);
-   to_unixtsms   | to_unixts 
-   --------------+-----------
-   1575642811562 | 1575642811
+   from_unixts         | from_unixts
+   --------------------+--------------------
+   1970-01-01 00:00:00 | 2019-12-06 12:40:57

@@ -29,13 +29,13 @@ The following table shows the ``SELECT get_total_chunks_size`` parameters:
      - Description
    * - ``OUTPUT_UNITS``
      - Mandatory
-     - Specifies the desired unit of measurement for the output size, with valid values of ``BYTE``, ``MB``, ``GB``, ``TB``, or ``PB``
+     - Specifies the desired unit of measurement for the output size, with valid values of ``BYTE``, ``KB``, ``MB``, ``GB``, ``TB``, or ``PB`` (case-insensitive)
    * - ``DATABASE_NAME``
      - Optional
      - Specifies the name of the database to analyze. If not specified, the function will analyze all databases in the cluster.
    * - ``SCHEMA_NAME``
      - Optional
-     - Specifies the name of the schema to analyze. If not specified, the function will analyze all schemas in the specified database.
+     - Specifies the name of the schema to analyze. Takes effect only together with ``TABLE_NAME``. Given alone, it is ignored and all schemas are analyzed.
    * - ``TABLE_NAME``
      - Optional
      - Specifies the name of a specific table to analyze. If not specified, the function will analyze all tables in the specified schema.
@@ -61,4 +61,4 @@ Output
 Permissions
 =============
 
-Using the ``get_total_chunks_size`` command requires no special permissions.
+Using the ``get_total_chunks_size`` command requires the ``SUPERUSER`` permission.

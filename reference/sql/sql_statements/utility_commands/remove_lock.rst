@@ -8,7 +8,7 @@ REMOVE LOCK
 
 The ``REMOVE LOCK`` utility function clears orphaned locks that block file cleanup and prevent operations on locked objects within the system.
 
-To remove all existing locks, see :ref:`remove_statement_locks`
+To remove all locks held by a specific statement, see :ref:`remove_statement_locks`
 
 Read more about locks in :ref:`concurrency_and_locks`.
 
@@ -48,7 +48,7 @@ Example
 
    .. code-block:: console
 
-	service |instanceid |connection_id |serverip     |serverport |database_name |user_name |clientip     |statementid |statement                                                                                                                      |statementstarttime  |statementstatus |statementstatusstart
+	service |instance id |connection_id |server ip    |server port |database_name |user_name |client ip    |statement id |statement                                                                                                                      |statement start time |statement status |statement status start
 	--------+-----------+--------------+-------------+-----------+--------------+----------+-------------+------------+-------------------------------------------------------------------------------------------------------------------------------+--------------------+----------------+--------------------
 	sqream  |node_9383  |1             |192.168.4.35 |5000       |master        |sqream    |192.168.4.35 |0           |COPY schema.table FROM WRAPPER parquet_fdw OPTIONS (location='/abc/*.c000', CONTINUE_ON_ERROR=true, ERROR_LOG='/abc/log_out'); |29-10-2023 14:20:08 |Executing       |29-10-2023 14:20:08
 
@@ -73,4 +73,4 @@ Example
 Permissions
 ===========
 
-This utility function requires a ``SUPERUSER`` permission on the database level.
+This utility function requires the cluster-level ``SUPERUSER`` permission.

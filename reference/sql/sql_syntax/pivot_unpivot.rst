@@ -22,6 +22,14 @@ Syntax
    
 	FROM <from_clause>
 	[
+	  UNPIVOT
+	  (<unpivot_expression>
+		FOR <column_name>
+		IN (<column1> [ [AS] <label1> ], <column2> [ [AS] <label2> ], ... , <columnN> [ [AS] <labelN> ])
+	  )
+	  [AS <unpivoted_result_name>]
+	]
+	[
 	  PIVOT [DISTINCT]
 	  (<pivot_expression1> AS <pivot_expression1_name> [, <pivot_expression2> AS <pivot_expression2_name>, .... , <pivot_expressionN> AS <pivot_expressionN_name>]
 		FOR <column_name>
@@ -29,15 +37,7 @@ Syntax
 	  )
 	  [AS <pivoted_result_name>]
 	]
-	[
-	  UNPIVOT
-	  (<unpivot_expression> 
-		FOR <column_name>
-		IN ([<name1> AS] expression1, [<name2> AS] expression2, ... , [<nameN> AS] <expressionN>)
-	  )
-	  [AS <unpivoted_result_name>]
-	]
-	
+
 	<rest of the query ...>
 
 	pivot_expression := <aggregation function> ( <column being aggregated> )
@@ -47,11 +47,15 @@ Syntax
 
 	unpivot_expression := <new output column created for values in result of the source query>
 
+When a query uses both, ``UNPIVOT`` must come before ``PIVOT``.
+
+In the ``UNPIVOT`` value list, the source column comes first and is required. The label is optional and comes after it. Without a label, the column's name is used.
+
 
 Limitations
 =================
 * The number of resulting columns for ``PIVOT`` is limited to 8,000.
-* The number of resulting columns for ``UNPIVOT`` is limited to 2,000.
+* The number of values listed in ``UNPIVOT`` is limited by ``maxNumberOfColumns``, 8,000 by default (the same limit as ``PIVOT``).
 * These limits apply because each listed value becomes a column. The :ref:`PIVOT ARRAY & UNPIVOT ARRAY<pivot_unpivot_array>` forms produce one column per aggregation rather than one per value, and their value lists are not bounded by the maximum number of columns.
 * ``PIVOT DISTINCT`` takes a value, not an aggregation. Passing an aggregate such as ``SUM(Revenue)`` returns ``PIVOT DISTINCT takes a value, not an aggregate``.
 * ``PIVOT DISTINCT`` does not check that the rows are unique. If a group has more than one row for the same pivoted value, the column holds one of those rows' values, and which one is not defined.

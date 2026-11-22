@@ -39,7 +39,7 @@ Notes
 
 * SQream DB removes the trailing spaces from strings by default, which may lead to unexpected results. See the examples for more information.
 
-* The :ref:`concat_function` provides alternative syntax for CONCAT and requires at least two arguments.
+* The :ref:`concat_function` provides alternative syntax for CONCAT and requires at least one argument.
 
 Examples
 ===========

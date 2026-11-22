@@ -17,7 +17,7 @@ The following is the correct syntax for the ``OCTET_LENGTH`` function:
 
 .. code-block:: postgres
 
-   OCTET_LEN( text_expr ) --> INT
+   OCTET_LENGTH( text_expr ) --> INT
 
 Arguments
 =========

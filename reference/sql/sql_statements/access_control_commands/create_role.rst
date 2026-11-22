@@ -52,7 +52,9 @@ SQream recommend that role names should follow these rules:
 
 * Follow rules for :ref:`identifiers`
 
-* A role has no permissions by default. Follow the examples below to see how to grant permissions to databases and tables.
+* A new role has no permissions of its own. It is automatically made a member of ``PUBLIC``, with ``INHERIT``, so it inherits whatever permissions ``PUBLIC`` holds, and its default schema is set to ``public``. Follow the examples below to see how to grant permissions to databases and tables.
+
+* The names ``superuser``, ``login``, ``password`` and ``ldap_bind_dn_admin_password`` cannot be used as role names.
 
 * Roles can be members of other roles.
 

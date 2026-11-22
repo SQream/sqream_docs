@@ -24,7 +24,7 @@ Syntax
 
 .. code-block:: postgres
 
-     ALTER DEFAULT PERMISSIONS FOR modifying_role_name
+     ALTER DEFAULT PERMISSIONS FOR modifying_role_name [, ...]
      [IN schema_name, ...]
      FOR { 
           SCHEMAS 
@@ -32,19 +32,17 @@ Syntax
           | FOREIGN TABLES 
           | VIEWS 
           | COLUMNS 
-          | SAVED_QUERIES
+          | SAVED QUERIES
           | FUNCTIONS
          }
           { grant_clause 
           | DROP grant_clause }
-          TO { modified_role_name | public 
-		 }
+          TO { role_name | CREATOR_ROLE } [, ...]
 
      grant_clause ::=
      GRANT
-        { CREATE FUNCTION
+        { CREATE
          | SUPERUSER
-         | CONNECT
          | USAGE
          | SELECT
          | INSERT
@@ -71,24 +69,35 @@ The following table describes the supported permissions:
    * - ``SUPERUSER``
      - Schema
      - The most privileged role, with full control over a cluster, database, or schema
-   * - ``USAGE``
+   * - ``CREATE``
      - Schema
+     - For a role to create and manage objects, it needs the ``CREATE`` and ``USAGE`` permissions at the respective level
+   * - ``USAGE``
+     - Schema, Saved Query
      - For a role to see tables in a schema, it needs the ``USAGE`` permissions
    * - ``SELECT``
-     - Table
+     - Table, Foreign Table, View, Column, Saved Query
      - Allows a user to run :ref:`select` queries on table contents
    * - ``INSERT``
-     - Table
+     - Table, Column
      - Allows a user to run :ref:`copy_from` and :ref:`insert` statements to load data into a table
    * - ``UPDATE``
-     - Table
+     - Table, Column
      - Allows a user to modify the value of certain columns in existing rows without creating a table
    * - ``DELETE``
-     - Table
+     - Table, Column
      - Allows a user to run :ref:`delete`, :ref:`truncate` statements to delete data from a table
    * - ``DDL``
-     - Schema, Table
+     - Schema, Table, Foreign Table, View, Column, Saved Query, Function
      - Allows a user to :ref:`alter tables<alter_table>`, rename columns and tables, etc.
+   * - ``EXECUTE``
+     - Function
+     - Allows a user to execute UDFs
+   * - ``ALL``
+     - Schema, Table, Foreign Table, View, Column, Saved Query, Function
+     - All of the above permissions for the respective object type
+
+``IN schema_name`` cannot be used with ``FOR SCHEMAS``, ``FOR SAVED QUERIES`` or ``FOR FUNCTIONS``.
 
 
 

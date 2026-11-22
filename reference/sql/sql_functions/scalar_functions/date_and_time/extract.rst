@@ -13,7 +13,7 @@ Syntax
 
 .. code-block:: postgres
 
-   EXTRACT( interval FROM date_expr ) --> DOUBLE
+   EXTRACT( interval FROM date_expr ) --> INT
    
    interval ::= 
         YEAR
@@ -24,7 +24,7 @@ Syntax
       | HOUR
       | MINUTE
       | SECOND
-      | MILLISECONDS
+      | MILLISECOND | MS
       | MICROSECOND | MU
       | NANOSECOND | NS
 
@@ -53,23 +53,23 @@ Valid date parts
    * - Date part
      - Definition
    * - ``YEAR``
-     - Year (0.0 - 9999.0)
+     - Year (0 - 9999)
    * - ``MONTH``
-     - Month (1.0-12.0)
+     - Month (1-12)
    * - ``DOY``
-     - Day of the year (1.0-365.0)
+     - Day of the year (1-365)
    * - ``DAY``
-     - Day of the month (1.0-31.0)
+     - Day of the month (1-31)
    * - ``WEEK``
-     - Week of the year (1.0-52.0)
+     - Week of the year (1-52)
    * - ``HOUR``
-     - Hour (0.0-23.0)
+     - Hour (0-23)
    * - ``MINUTE``
-     - Minute (0.0-59.0)
+     - Minute (0-59)
    * - ``SECOND``
-     - Seconds (0.0-59.0)
-   * - ``MILLISECONDS``
-     - Milliseconds (0.0-999.0)
+     - Seconds (0-59)
+   * - ``MILLISECOND`` (``MS``)
+     - Milliseconds (0-999)
    * - ``MICROSECOND``
      - ``MU``
      - Microseconds (0-999)
@@ -80,7 +80,7 @@ Valid date parts
 Returns
 ============
 
-* A floating point representing the date part value
+* An integer representing the date part value
 
 Notes
 ========
@@ -112,12 +112,12 @@ Break up a ``DATE`` into components
 
    master=> SELECT EXTRACT(YEAR FROM d) AS year, EXTRACT(MONTH FROM d) AS month, EXTRACT(DAY FROM d) AS day 
    .               FROM cool_dates;
-   year   | month | day 
-   -------+-------+-----
-   1955.0 |  11.0 |  5.0
-   1985.0 |  10.0 | 26.0
-     79.0 |   8.0 | 24.0
-   1997.0 |   1.0 |  1.0
-   1997.0 |  12.0 | 31.0
+   year | month | day
+   -----+-------+-----
+   1955 |    11 |   5
+   1985 |    10 |  26
+     79 |     8 |  24
+   1997 |     1 |   1
+   1997 |    12 |  31
 
 

@@ -237,7 +237,7 @@ three nullable columns. A statement over the limit fails with an error naming th
 * Every row in a list must have as many values as the left side. Otherwise the statement returns ``Every item of this IN list must be a row of 2 values``.
 * A single value on the left side cannot be compared with a list of rows. This returns ``This IN list item is a row, but the left side of IN is a single value``.
 * Rows cannot be nested inside rows.
-* A subquery cannot supply the value list of a ``PIVOT`` or ``PIVOT ARRAY``.
+* A subquery can supply the value list of ``PIVOT ARRAY`` and ``PIVOT DISTINCT ARRAY`` (see :ref:`pivot_array_value_query`). The column-per-value ``PIVOT`` and ``PIVOT DISTINCT`` forms still require a written-out list. Given a subquery, they return ``A subquery as the pivot value list needs PIVOT ARRAY or PIVOT DISTINCT ARRAY: ...``.
 
 Correlated subqueries
 =====================

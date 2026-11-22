@@ -40,7 +40,7 @@ The following table shows information relevant to the Floating Point data types.
      - Syntax
      - Data Size (Not Null, Uncompressed)	 
    * - ``DOUBLE`` is also known as ``FLOAT``.
-     - A double precision floating point can be entered as a regular literal, such as ``3.14``, ``2.718``, ``.34``, or ``2.71e-45``. To enter a ``REAL`` floating point number, cast the value. For example, ``(3.14 :: REAL)``.
+     - A ``DOUBLE`` can be entered as a literal with an exponent, such as ``2.71e-45``. A literal with a decimal point and no exponent, such as ``3.14``, is typed as ``NUMERIC`` unless the ``useLegacyDecimalLiterals`` flag is set. Cast it to get a ``DOUBLE``, for example ``(3.14 :: DOUBLE)``. To enter a ``REAL`` floating point number, cast the value. For example, ``(3.14 :: REAL)``.
      - Floating point types are either 4 or 8 bytes, but size could be lower after compression.
 
 Floating Point Examples
@@ -74,8 +74,6 @@ The following table shows the possible Floating Point value conversions:
    
    * - Type
      - Details
-   * - ``BOOL``
-     - ``1.0`` → ``true``, ``0.0`` → ``false``
    * - ``TINYINT``, ``SMALLINT``, ``INT``, ``BIGINT``
      - ``2.0`` → ``2``, ``3.14159265358979`` → ``3``, ``2.718281828459`` → ``2``, ``0.5`` → ``0``, ``1.5`` → ``1``
 

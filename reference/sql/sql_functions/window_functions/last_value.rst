@@ -17,7 +17,15 @@ The following shows the correct syntax for the LAST_VALUE function.
 
 Arguments
 ---------
-None
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+
+   * - Parameter
+     - Description
+   * - ``Selected_Column``
+     - The column to return the value from. Supported types: ``TINYINT``, ``SMALLINT``, ``INT``, ``BIGINT``, ``REAL``, ``DOUBLE``, ``BOOL``, ``DATE``, ``DATETIME`` or ``TEXT``. Arrays and ``DATETIME2`` are not supported.
 
 Returns
 ---------

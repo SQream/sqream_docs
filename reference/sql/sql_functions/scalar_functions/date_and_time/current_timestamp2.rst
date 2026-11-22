@@ -32,7 +32,7 @@ Notes
 
 * This function has a special ANSI SQL form and can be called without parentheses.
 
-* Aliases to this function include :ref:`SYSDATE2<sysdate2>` and :ref:`GETDATE2<getdate2>`.
+* Aliases to this function include ``SYSDATE2`` (no parentheses) and ``GETDATE2()``.
 
 * To get the date only, see :ref:`CURRENT_DATE<current_date>`.
 

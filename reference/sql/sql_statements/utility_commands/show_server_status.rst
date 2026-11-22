@@ -37,29 +37,29 @@ The following table shows the ``SHOW_SERVER_STATUS`` result columns;
    
    * - service
      - Statement Service Name
-   * - ``instance``
+   * - ``instance id``
      - Shows the worker ID.
    * - ``connection_id``
      - Shows the client's connection ID, the same ID the worker records in its log.
-   * - ``serverip``
+   * - ``server ip``
      - Shows the worker end-point IP.
-   * - ``serverport``
+   * - ``server port``
      - Shows the worker end-point port.
    * - ``database_name``
      - Shows the statement's database name.
    * - ``user_name``
      - Shows the username running the statement.
-   * - ``clientip``
+   * - ``client ip``
      - Shows the client IP.
-   * - ``statementid``
+   * - ``statement id``
      - Shows the statement ID.
    * - ``statement``
      - Shows the statement text.
-   * - ``statementstarttime``
+   * - ``statement start time``
      - Shows the statement start timestamp.
-   * - ``statementstatus``
+   * - ``statement status``
      - Shows the statement status (see table below).
-   * - ``statementstatusstart``
+   * - ``statement status start``
      - Shows the most recently updated timestamp.
 
 .. include from here: 66
@@ -100,7 +100,7 @@ The following example shows how to use the ``SHOW_SERVER_STATUS`` statement to g
 .. code-block:: psql
 
   SELECT SHOW_SERVER_STATUS();
-  service | instanceid | connection_id | serverip      | serverport | database_name | user_name        | clientip      | statementid | statement                                                                                             | statementstarttime  | statementstatus | statementstatusstart
+  service | instance id | connection_id | server ip     | server port | database_name | user_name        | client ip     | statement id | statement                                                                                             | statement start time | statement status | statement status start
   --------+------------+---------------+---------------+------------+---------------+------------------+---------------+-------------+-------------------------------------------------------------------------------------------------------+---------------------+-----------------+---------------------
   sqream  | sqream_2   |  19           | 192.168.0.111 |       5000 | master        | etl              | 192.168.0.011 |2484923      | SELECT t1.account, t1.msisd from table a t1 join table b t2 on t1.id = t2.id where t1.msid='123123';  | 2022-01-17 16:19:31 | Executing       | 2022-01-17 16:19:32
   sqream  | sqream_1   |  2            | 192.168.1.112 |       5000 | master        | etl              | 192.168.1.112 |2484924      | select show_server_status();                                                                          | 2022-01-17 16:19:39 | Executing       | 2022-01-17 16:19:39

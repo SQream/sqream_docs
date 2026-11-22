@@ -13,7 +13,7 @@ The following table describes the Boolean data type.
    * - Values
      - Syntax
      - Data Size (Not Null, Uncompressed)	 
-   * - ``true``, ``false`` (case sensitive)
+   * - ``true``, ``false`` (case-insensitive; ``TRUE`` and ``FALSE`` are equivalent)
      - When loading from CSV, ``BOOL`` columns can accept ``0`` as ``false`` and ``1`` as ``true``.
      - 1 byte, but resulting average data sizes may be lower after compression.
 	 
@@ -51,5 +51,3 @@ The following table shows the possible Boolean value conversions:
      - Details
    * - ``TINYINT``, ``SMALLINT``, ``INT``, ``BIGINT``
      - ``true`` → ``1``, ``false`` → ``0``
-   * - ``REAL``, ``DOUBLE``
-     - ``true`` → ``1.0``, ``false`` → ``0.0``

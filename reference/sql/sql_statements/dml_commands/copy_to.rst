@@ -33,7 +33,7 @@ The following is the correct syntax for using the **COPY TO** statement:
        )
        ;
        
-   fdw_name ::= csv_fdw | parquet_fdw | orc_fdw
+   fdw_name ::= csv_fdw | parquet_fdw | orc_fdw | json_fdw
    
    schema_name ::= identifer
   
@@ -56,6 +56,8 @@ The following is the correct syntax for using the **COPY TO** statement:
       | ENFORCE_SINGLE_FILE = { true | false }
  
       | QUOTE = { 'C' | E'\ooo' }
+
+      | COMPRESSION = { 'gzip' | 'none' } -- for JSON only
 
 
   delimiter ::= string
@@ -83,7 +85,7 @@ The following table shows the ``COPY_TO`` elements:
    * - ``query``
      - An SQL query that returns a table result, or a table name
    * - ``fdw_name``
-     - The name of the Foreign Data Wrapper to use. Supported FDWs are ``csv_fdw``, ``orc_fdw``, ``avro_fdw`` or ``parquet_fdw``.
+     - The name of the Foreign Data Wrapper to use. Supported FDWs are ``csv_fdw``, ``orc_fdw``, ``avro_fdw``, ``json_fdw`` or ``parquet_fdw``.
    * - ``LOCATION``
      - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access.
    * - ``HEADER``
@@ -98,6 +100,8 @@ The following table shows the ``COPY_TO`` elements:
      - Enforces the maximum file size (bytes). Permitted values: ``true`` - creates one file of unlimited size, ``false`` - permits creating several files together limited by the ``MAX_FILE_SIZE``. When set to ``true``, the single file size is not limited by the ``MAX_FILE_SIZE`` setting. When set to ``false``, the combined file sizes cannot exceed the ``MAX_FILE_SIZE``. Default value: ``TRUE``.
    * - ``QUOTE``
      - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in ``COPY FROM`` and foreign tables. The following characters cannot be an alternative quote character: ``"-.:\\0123456789abcdefghijklmnopqrstuvwxyzN"``
+   * - ``COMPRESSION``
+     - Compression of the exported JSON files, ``'gzip'`` or ``'none'``. This option is allowed only when using ``json_fdw``. ``'auto'`` cannot be used when writing and returns ``Cannot use compression 'auto' when writing a JSON file.``
 
 Usage Notes
 ===========
@@ -590,4 +594,4 @@ Using the ``MAX_FILE_SIZE`` and ``ENFORCE_SINGLE_FILE`` parameters:
 Permissions
 =============
 
-The role must have the ``SELECT`` permission on every table or schema that is referenced by the statement.
+The role must have the ``SELECT`` permission on every table, foreign table or view referenced by the statement (or on each referenced column), and ``USAGE`` on each referenced object's schema. Schemas do not take a ``SELECT`` permission.

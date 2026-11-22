@@ -13,7 +13,7 @@ Syntax
 
 .. code-block:: postgres
 
-	SELECT GET_VIEW_DDL(['<schema_name>'.]'<view_name>')
+	SELECT GET_VIEW_DDL('[<schema_name>.]<view_name>')
 
 Parameters
 ==========

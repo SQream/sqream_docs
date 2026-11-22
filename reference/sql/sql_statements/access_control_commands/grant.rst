@@ -72,7 +72,7 @@ Syntax
 	| DDL } [, ...] 
 	| ALL [PERMISSIONS] }
 	ON { FOREIGN TABLE <table_name> [, ...] 
-	| ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...]}
+	| ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...]}
 	TO <role> [, ...]
 
 	-- Grant function execution permission: 
@@ -87,7 +87,6 @@ Syntax
 	GRANT 
 	{
 	  { SELECT 
-	  | DDL
 	  | INSERT
 	  | UPDATE } [, ...] 
 	  | ALL [PERMISSIONS]
@@ -132,6 +131,8 @@ Syntax
 	-- Also allows the role2 to grant role1 to other roles:
 	GRANT <role1> [, ...] 
 	TO <role2> [,...] [WITH ADMIN OPTION]
+
+For column-level permissions, ``IN TABLE`` accepts ``SELECT``, ``INSERT`` and ``UPDATE`` (or ``ALL``), and ``IN FOREIGN TABLE`` accepts only ``SELECT`` (or ``ALL``). Column permissions are not supported on CSV foreign tables.
 
 
 Parameters
@@ -187,7 +188,7 @@ The following table describes the supported permissions:
      - Database
      - Allows a user to connect and use a database
    * - ``CREATE``
-     - Database, Schema, Table
+     - Database, Schema
      - For a role to create and manage objects, it needs the ``CREATE`` and ``USAGE`` permissions at the respective level
    * - ``USAGE``
      - Schema, Saved Query, Services

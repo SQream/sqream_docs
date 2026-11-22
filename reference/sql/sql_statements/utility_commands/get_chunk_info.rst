@@ -50,17 +50,35 @@ Returns
      - The id of the chunk
    * - ``extent_id``
      - The id of the extent
-   * - ``compressed_size``
-     - The size of the chunk's compressed data
+   * - ``uncompressed_size``
+     - The size of the chunk's compressed data (see the note below)
    * - ``uncompressed_size``
      - The size of the chunk's uncompressed data
+   * - ``compressed_Type``
+     - The compression type of the chunk
+   * - ``long_min``
+     - The chunk's minimum value, as an integer
+   * - ``long_max``
+     - The chunk's maximum value, as an integer
+   * - ``string_min``
+     - The chunk's minimum value, as a string
+   * - ``string_max``
+     - The chunk's maximum value, as a string
+   * - ``numeric_min``
+     - The chunk's minimum value, as a numeric
+   * - ``numeric_max``
+     - The chunk's maximum value, as a numeric
+   * - ``offset_in_file``
+     - The offset of the chunk within its file
+
+.. note:: The result set contains two columns named ``uncompressed_size``. The first one (the sixth column) holds the chunk's compressed size; the second one holds the uncompressed size.
 
 Examples
 ========
 
 .. code-block:: sql
 
-	SELECT get_chunk_info(mfg_ldc_lake, 17271948, 143);
+	SELECT get_chunk_info('mfg_ldc_lake', 17271948, 143);
 	
 Output:
 

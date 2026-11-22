@@ -15,6 +15,17 @@ Syntax
 
 	SELECT DUMP_DATABASE_DDL()
 
+Output
+======
+
+``DUMP_DATABASE_DDL`` returns a single column, ``ddl``, and includes UDFs. The statements are returned in the following order:
+
+#. ``CREATE SCHEMA`` statements, except for the ``public`` schema
+#. ``CREATE TABLE`` statements, including foreign tables
+#. ``CREATE VIEW`` statements, in dependency order
+#. ``SELECT SAVE_QUERY(...)`` statements for saved queries
+#. ``CREATE FUNCTION`` statements for UDFs
+
 Examples
 ========
 
@@ -38,33 +49,6 @@ Exporting database DDL to a file
 	OPTIONS
 	  (LOCATION = 's3://sqream-docs/database.ddl');
  
-Showing the ``CREATE`` Statements for UDFs
-------------------------------------------
- 
-``DUMP_DATABASE_DDL`` does not show UDFs. 
-
-To list available UDFs:
-
-#. Retrieve UDFs from catalog:
-   
-   .. code-block:: postgres
-
-	SELECT
-	  *
-	FROM
-	  sqream_catalog.user_defined_functions;
-
-   Output:
-
-   .. code-block:: console
-
-	database_name|function_id|function_name|
-	-------------+-----------+-------------+
-	master       |          0|add_months   |
-	master       |          2|my_distance  |
-   
-#. Export UDFs one-by-one using :ref:`GET_FUNCTION_DDL<get_function_ddl>`.
-
 Permissions
 ===========
 

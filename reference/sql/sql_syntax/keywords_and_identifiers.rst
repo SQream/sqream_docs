@@ -78,22 +78,22 @@ SQreamDB reserved keywords:
 .. glossary::
 
 	A
-		``ABORT``, ``ADD``, ``ALL``, ``ALTER``, ``ANALYSE``, ``ANALYZE``, ``AND``, ``ANY``, ``ARRAY``, ``AS``, ``ASC``, ``AUDITLOG``, ``AUTHORIZATION``
+		``ABORT``, ``ADD``, ``ALL``, ``ALTER``, ``AND``, ``ANY``, ``AS``, ``ASC``, ``AUDITLOG``, ``AUTHORIZATION``
 
 	B
-		``BACKUP``, ``BEGIN``, ``BETWEEN``, ``BIGINT``, ``BINARY``<, ``BOTH``, ``BREAK``, ``BROWSE``, ``BULK``, ``BY``
+		``BACKUP``, ``BEGIN``, ``BETWEEN``, ``BREAK``, ``BROWSE``, ``BULK``, ``BY``
 
 	C
-		``CASE``, ``CAST``, ``CASCADE``, ``CHECK``, ``CHECKPOINT``, ``CLOSE``, ``CLUSTERED``, ``COLLATE``, ``COLUMN``, ``COMMENT``<, ``COMPUTE``, ``CONCURRENTLY``, ``CONSTRAINT``, ``CONTAINSTABLE``, ``CONTINUE``, ``CONVERT``, ``CREATE``, ``CROSS``, ``CURRENT``, ``CURRENT_CATALOG``, ``CURRENT_ROLE``, ``CURRENT_TIME``, ``CURRENT_USER``, ``CURSOR``
+		``CASE``, ``CASCADE``, ``CHECK``, ``CHECKPOINT``, ``CLOSE``, ``CLUSTERED``, ``COLLATE``, ``COLUMN``, ``COMMIT``, ``COMPUTE``, ``CONSTRAINT``, ``CONTAINSTABLE``, ``CONTINUE``, ``CONVERT``, ``CREATE``, ``CROSS``, ``CURRENT``, ``CURRENT_TIME``, ``CURRENT_USER``, ``CURSOR``
 
 	D
-		``DATABASE``, ``DBCC``, ``DEALLOCATE``, ``DECLARE``, ``DEFAULT``, ``DEFERRABLE``, ``DELETE``, ``DENY``, ``DESC``, ``DISTINCT``, ``DISTRIBUTED``, ``DO``<, ``DROP``, ``DUMP``
+		``DATABASE``, ``DBCC``, ``DEALLOCATE``, ``DECLARE``, ``DEFAULT``, ``DELETE``, ``DENY``, ``DESC``, ``DISK``, ``DISTINCT``, ``DISTRIBUTED``, ``DROP``, ``DUMP``
 
 	E
 		``ELSE``, ``END``, ``ERRLVL``, ``ESCAPE``, ``EXEC``, ``EXECUTE``, ``EXCEPT``, ``EXISTS``, ``EXIT``, ``EXTERNAL``
 
 	F
-		``FALSE``, ``FETCH``, ``FILLFACTOR``, ``FILE``, ``FOR``, ``FOREIGN``, ``FREEZE``, ``FREETEXT``, ``FREETEXTTABLE``, ``FROM``, ``FULL``, ``FUNCTION``
+		``FETCH``, ``FILLFACTOR``, ``FILE``, ``FOR``, ``FOREIGN``, ``FREETEXT``, ``FREETEXTTABLE``, ``FROM``, ``FULL``, ``FUNCTION``
 
 	G
 		``GOTO``, ``GRANT``, ``GROUP``, ``HASH``, ``HAVING``, ``HOLDLOCK``
@@ -102,7 +102,7 @@ SQreamDB reserved keywords:
 		``HASH``, ``HAVING``, ``HOLDLOCK``
 
 	I
-		``IDENTITY``, ``IDENTITYCOL``, ``IDENTITY_INSERT``, ``IF``, ``ILIKE``, ``IN``, ``INITIALLY``, ``INNER``, ``INDEX``, ``INSERT``, ``IS``, ``ISCASTABLE``, ``ISNULL``<
+		``IDENTITY``, ``IDENTITYCOL``, ``IDENTITY_INSERT``, ``IF``, ``IN``, ``INNER``, ``INDEX``, ``INSERT``, ``INTERSECT``, ``INTO``, ``IS``
 
 	J
 		``JOIN``
@@ -111,34 +111,34 @@ SQreamDB reserved keywords:
 		``KEY``, ``KILL``
 
 	L
-		``LEFT``, ``LEADING``, ``LIKE``, ``LIMIT``, ``LINENO``, ``LOAD``, ``LOCALTIME``, ``LOCALTIMESTAMP``, ``LOOP``
+		``LEFT``, ``LIKE``, ``LIMIT``, ``LINENO``, ``LOAD``, ``LOOP``
 
 	M
 		``MERGE``
 
 	N
-		``NATIONAL``, ``NATURAL``, ``NOCHECK``, ``NONCLUSTERED``, ``NOT``, ``NOTNULL``<, ``NULL``, ``NULLIF``
+		``NATIONAL``, ``NATURAL``, ``NOCHECK``, ``NONCLUSTERED``, ``NOT``, ``NULL``, ``NULLIF``
 
 	O
-		``OFF``, ``OFFSET``, ``OFFSETS``, ``OF``, ``ON``, ``ONLY``, ``OPEN``, ``OPENDATASOURCE``, ``OPENQUERY``, ``OPENROWSET``, ``OPENXML``, ``OPTION``, ``OR``, ``ORDER``, ``OUTER``, ``OVER``, ``OVERLAPS``
+		``OFF``, ``OFFSETS``, ``OF``, ``ON``, ``OPEN``, ``OPENDATASOURCE``, ``OPENQUERY``, ``OPENROWSET``, ``OPENXML``, ``OPTION``, ``OR``, ``ORDER``, ``OUTER``, ``OVER``
 
 	P
-		``PERCENT``, ``PLACING``, ``PLAIN``, ``PLAINS``, ``PLAINTEXT``, ``PLB``, ``PLI``, ``PLM``, ``PLP``, ``PLSQL``, ``PRECISION``<<, ``PRIMARY``, ``PRINT``, ``PROC``, ``PROCEDURE``, ``PUBLICATION``, ``PUBLISH``, ``PUBLICIZE``
+		``PERCENT``, ``PIVOT``, ``PRECISION``, ``PRIMARY``, ``PRINT``, ``PROC``, ``PROCEDURE``
 
 	R
-		``RAISEERROR``, ``READ``, ``READTEXT``, ``REFERENCES``, ``RECONFIGURE``, ``REPLICATION``, ``RESTORE``, ``RESTRICT``, ``RETURN``, ``RETURNING``, ``REVERT``, ``REVOKE``, ``RIGHT``, ``RLIKE``, ``ROLLBACK``, ``ROWCOUNT``, ``ROWGUIDCOL``, ``RULE``
+		``RAISERROR``, ``READ``, ``READTEXT``, ``REFERENCES``, ``RECONFIGURE``, ``REPLICATION``, ``RESTORE``, ``RESTRICT``, ``RETURN``, ``REVERT``, ``REVOKE``, ``RIGHT``, ``ROLLBACK``, ``ROWCOUNT``, ``ROWGUIDCOL``, ``RULE``
 
 	S
-		``SAVE``, ``SCHEMA``, ``SECURITYAUDIT``, ``SELECT``, ``SESSION_USER``, ``SET``, ``SETUSER``, ``SHUTDOWN``, ``SIMILAR``, ``SOME``, ``STATISTICS``, ``SYMMETRIC``
+		``SAVE``, ``SCHEMA``, ``SECURITYAUDIT``, ``SELECT``, ``SESSION_USER``, ``SET``, ``SETUSER``, ``SHUTDOWN``, ``SOME``, ``STATISTICS``, ``SYSTEM_USER``
 
 	T
-		``TABLE``, ``TABLESAMPLE``, ``TEXTSIZE``, ``THEN``, ``TO``, ``TOP``, ``TRANSACTION``, ``TRAN``, ``TRIGGER``, ``TRUNCATE``, ``TRUE``
+		``TABLE``, ``TABLESAMPLE``, ``TEXTSIZE``, ``THEN``, ``TO``, ``TOP``, ``TRANSACTION``, ``TRAN``, ``TRIGGER``, ``TRUNCATE``, ``TSEQUAL``
 
 	U
 		``UNION``, ``UNIQUE``, ``UNPIVOT``, ``UPDATE``, ``UPDATETEXT``, ``USE``, ``USER``, ``USING``
 
 	V
-		``VARIADIC``, ``VERBOSE``, ``VIEW``, ``VALUES``, ``VARYING``
+		``VIEW``, ``VALUES``, ``VARYING``
 
 	W
 		``WAITFOR``, ``WHEN``, ``WHERE``, ``WHILE``, ``WINDOW``, ``WITH``, ``WRITETEXT``

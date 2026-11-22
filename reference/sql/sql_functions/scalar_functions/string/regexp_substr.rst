@@ -33,8 +33,6 @@ Arguments
      - The character index offset to start counting from. Defaults to 1
    * - ``occurrence``
      - Which occurrence to search for. Defaults to 1
-   * - ``return_position``
-     - Sets the position within the string to return. Using 0, the function returns the string position of the first character of the substring that matches the pattern. Defaults to 0
 
 Supported RegEx Patterns
 ========================
@@ -101,7 +99,7 @@ Supported RegEx Patterns
 Returns
 ============
 
-Returns the same type as the argument supplied, or Integer start position of a regex match, or an empty string (``''``) if no match was found.
+Returns the matching substring (same string type as ``string_expr``), or an empty string (``''``) if no match was found.
 
 Notes
 =======
@@ -157,7 +155,7 @@ Find players with 'o' in their name
    Shayne Whittington | Whittington  
    Russell Westbrook  | Westbrook    
 
-Using the ``return_position`` argument
+Using the ``occurrence`` argument
 ----------------------------------------
 
 Get the last name (or middle name) for players with 'o' in their first and last name.

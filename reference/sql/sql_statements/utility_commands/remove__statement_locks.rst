@@ -6,7 +6,7 @@
 REMOVE STATEMENT LOCKS
 **********************
 
-The ``REMOVE STATEMENT LOCKS`` utility function clears all orphaned locks that block file cleanup and prevent operations on locked objects within the system.
+The ``REMOVE STATEMENT LOCKS`` utility function clears all locks held by the given statement ID. It refuses while that statement is active, unless ``ignore_stmt_exists`` is ``true``.
 
 To remove specific locks, see :ref:`remove_lock`
 
@@ -17,7 +17,7 @@ Syntax
 
 .. code-block:: postgres
 
-	SELECT REMOVE_STATEMENT_LOCK(<stmt_id> [, <ignore_stmt_exists> ])
+	SELECT REMOVE_STATEMENT_LOCKS(<stmt_id> [, <ignore_stmt_exists> ])
 
 Example
 =======
@@ -29,4 +29,4 @@ Example
 Permissions
 ===========
 
-This utility function requires a ``SUPERUSER`` permission on the database level.
+This utility function requires the cluster-level ``SUPERUSER`` permission.

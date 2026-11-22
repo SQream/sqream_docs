@@ -22,7 +22,7 @@ Syntax
 
    saved_query_name ::= string_literal
 
-   argument ::= string_literal | number_literal
+   argument ::= string_literal | number_literal | boolean_literal | ARRAY[ literal [, ...] ] | GETDATE()
 
 Returns
 ==========

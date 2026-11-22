@@ -43,7 +43,7 @@ Arguments
    * - ``date_expr``
      - A ``DATE`` , ``DATETIME`` or ``DATETIME2`` expression
    * - ``interval``
-     - An interval representing a date part. See the table below or the syntax reference above for valid date parts. If not specified, sets the value to to midnight and returns a ``DATETIME``.
+     - An interval representing a date part. See the table below or the syntax reference above for valid date parts. If not specified, sets the value to midnight. Returns ``DATETIME`` for ``DATE``/``DATETIME`` input and ``DATETIME2`` for ``DATETIME2`` input.
 
 
 Valid date parts
@@ -93,7 +93,7 @@ Valid date parts
 Returns
 ============
 
-If no date part is specified, the return type is ``DATETIME``. Otherwise, the return type is the same as the argument supplied.
+If no date part is specified, ``DATE`` and ``DATETIME`` input return ``DATETIME``, and ``DATETIME2`` input returns ``DATETIME2``. Otherwise, the return type is the same as the argument supplied.
 
 Notes
 ========

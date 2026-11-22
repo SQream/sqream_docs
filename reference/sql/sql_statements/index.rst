@@ -116,7 +116,7 @@ The following table shows the Utility commands:
    * - :ref:`DROP SAVED QUERY<drop_saved_query>`
      - Drops a saved query
    * - :ref:`DUMP DATABASE DDL<dump_database_ddl>`
-     - View the ``CREATE TABLE`` statement for an current database
+     - View the DDL (schemas, tables, views, saved queries and UDFs) of the current database
    * - :ref:`EXECUTE SAVED QUERY<execute_saved_query>`
      - Executes a previously saved query
    * - :ref:`EXPLAIN<explain>`
@@ -166,7 +166,9 @@ The following table shows the Utility commands:
    * - :ref:`REMOVE LOCK<remove_lock>`
      - Clears locks
    * - :ref:`REMOVE STATEMENT LOCKS<remove_statement_locks>`
-     - Clears all locks in the system
+     - Clears all locks held by a specific statement
+   * - :ref:`SAVE QUERY<save_query>`
+     - Saves a query execution plan for later execution with ``EXECUTE_SAVED_QUERY``
    * - :ref:`SHOW CONNECTIONS<show_connections>`
      - Returns a list of active sessions on the current worker
    * - :ref:`SHOW LOCKS<show_locks>`

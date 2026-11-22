@@ -13,8 +13,10 @@ The following is the correct syntax for the ``PERCENTILE_DISC`` function:
 
 .. code-block:: postgres
 
-   PERCENTILE_DISC(double) WITHIN GROUP (ORDER BY <column>)   
-   
+   PERCENTILE_DISC(<numeric literal between 0 and 1>) WITHIN GROUP (ORDER BY <numeric column> [ASC|DESC])
+
+The function returns a value of the same type as the ``ORDER BY`` column. ``NULLS FIRST`` and ``NULLS LAST`` are not supported in the ``ORDER BY`` clause.
+
 Example
 ========
 The example in this section is based on the ``players`` table below:

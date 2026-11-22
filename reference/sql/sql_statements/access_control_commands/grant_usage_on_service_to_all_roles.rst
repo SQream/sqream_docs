@@ -38,7 +38,7 @@ Output:
 
 .. code-block::
 
-	role_name |  service_name |  status
+	Role name |  Service Name |  Status
 	----------+---------------+--------------------
 	role1     |  service1     |  Permission Granted
 	role1     |  service2     |  Permission Granted
@@ -60,7 +60,7 @@ Output:
 
 .. code-block::
 
-	role_name |  service_name |  status
+	Role name |  Service Name |  Status
 	----------+---------------+--------------------
 	role1     |  service1     |  Permission Granted
 	role2     |  service1     |  Permission Granted

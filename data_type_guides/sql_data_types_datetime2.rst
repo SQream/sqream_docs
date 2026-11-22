@@ -1,4 +1,4 @@
-.. _sql_data_types_date:
+.. _sql_data_types_datetime2:
 
 *************************
 DateTime2

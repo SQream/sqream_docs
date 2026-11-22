@@ -42,7 +42,7 @@ Getting the current SQream DB version
 .. code-block:: psql
 
    t=> SELECT SHOW_VERSION();
-   bytesread
+   bytes read
    ---------
    v2019.3
 

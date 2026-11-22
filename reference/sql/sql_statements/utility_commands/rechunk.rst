@@ -13,7 +13,7 @@ Syntax
 
 .. code-block:: postgres
 
-   SELECT rechunk('<schema_name>', '<table_name>')
+   SELECT rechunk(['<database_name>',] '<schema_name>', '<table_name>' [, '<case_sensitive_names>'])
 
 Parameters
 ==========

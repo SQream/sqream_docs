@@ -6,7 +6,7 @@ SUBSTRING
 
 the ``SUBSTRING`` function is used to extract a portion of a string based on specified starting position and length.
 
-.. note:: Some systems call this function ``SUBSTR``.
+.. note:: ``SUBSTR`` is accepted as an alias of ``SUBSTRING``.
 
 See also :ref:`regexp_substr`.
 

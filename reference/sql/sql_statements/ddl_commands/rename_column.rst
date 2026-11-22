@@ -56,9 +56,9 @@ Renaming a Quoted Name
 .. code-block:: postgres
 
 	ALTER TABLE 
-	  users RENAME COLUMN "mass" TO "Mass" (Kilograms);
+	  users RENAME COLUMN "mass" TO "Mass (Kilograms)";
    
 Permissions
 ===========
 
-The role must have the ``DDL`` permission at the database or table level.
+The role must have the ``DDL`` permission on the column or on its table (or ``SUPERUSER`` on the table's schema or database), and ``USAGE`` on the table's schema. ``DDL`` granted at the database level does not satisfy this.

@@ -29,7 +29,7 @@ Parameters
    * - ``table_id``
      - The id of the table related to the extent 
    * - ``column_id``
-     - The id of a specific extent to search for
+     - Optional. Restricts the output to the extents of this column ID
 
 Returns
 =======
@@ -41,19 +41,17 @@ Returns
    * - Parameter
      - Description
    * - ``database_name``
-     - The database within the chunk exists
+     - The database within the extent exists
    * - ``table_id``
-     - The id of the table related to the chunk 
+     - The id of the table related to the extent
    * - ``column_id``
-     - The id of the column related to the chunk
-   * - ``chunk_id``
-     - The id of the chunk
+     - The id of the column related to the extent
    * - ``extent_id``
      - The id of the extent
-   * - ``compressed_size``
-     - The size of the extent's compressed data
-   * - ``uncompressed_size``
-     - The size of the extent's uncompressed data
+   * - ``size``
+     - The size of the extent
+   * - ``path``
+     - The path of the extent's file
 
 Examples
 ========

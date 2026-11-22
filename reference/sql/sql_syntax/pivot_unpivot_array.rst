@@ -27,6 +27,14 @@ Syntax
 
    FROM <from_clause>
    [
+     UNPIVOT ARRAY
+     (<array_column>
+       FOR <label_column>
+       IN (<value1>, <value2>, ... , <valueN>)
+     )
+     [AS <unpivoted_result_name>]
+   ]
+   [
      PIVOT [DISTINCT] ARRAY
      (<pivot_expression1> [AS <pivot_expression1_name>] [, <pivot_expression2> [AS <pivot_expression2_name>], ... , <pivot_expressionN> [AS <pivot_expressionN_name>]]
        FOR <column_name>
@@ -36,14 +44,6 @@ Syntax
      )
      [AS <pivoted_result_name>]
    ]
-   [
-     UNPIVOT ARRAY
-     (<array_column>
-       FOR <label_column>
-       IN (<value1>, <value2>, ... , <valueN>)
-     )
-     [AS <unpivoted_result_name>]
-   ]
 
    <rest of the query ...>
 
@@ -51,6 +51,8 @@ Syntax
 
    -- with DISTINCT, a value rather than an aggregation:
    pivot_expression := <scalar expression over one column>
+
+When both appear in one ``SELECT``, ``UNPIVOT`` must come before ``PIVOT``.
 
 Parameters
 ==========
@@ -90,13 +92,14 @@ Parameters
 Limitations
 =================
 * The value list of ``PIVOT ARRAY`` and ``UNPIVOT ARRAY`` is not bounded by the maximum number of columns, because the array forms produce one column per aggregation rather than one per value. The plain ``PIVOT`` and ``UNPIVOT`` forms are bounded, as described in :ref:`PIVOT & UNPIVOT<pivot_unpivot>`.
+* A written-out value list of ``PIVOT ARRAY`` or ``PIVOT DISTINCT ARRAY`` can hold at most ``arrayMaxElementsNumber`` values (65,535 by default). A longer list is refused at compile time with ``PIVOT ARRAY: <n> values are listed, more than the 65535 an array may hold (arrayMaxElementsNumber)``. A value query is checked only when it runs, as described below.
 * Values written out in a ``PIVOT ARRAY`` list must be distinct. Repeating a value returns ``Pivot values should be distinct``.
 * ``UNPIVOT ARRAY`` requires an array column. Passing a column of any other type returns ``UNPIVOT ARRAY needs an array column``.
 * ``UNPIVOT ARRAY`` does not accept an expression in place of the array column. A cast such as ``vals::bigint[]`` is a parsing error.
 * The array column and the label column of ``UNPIVOT ARRAY`` must have different names.
 * Listing fewer values than the array has cells expands only the listed cells. Cells beyond the end of the list produce no rows.
 * ``PIVOT DISTINCT ARRAY`` takes a value, not an aggregation. Passing an aggregate such as ``SUM(Revenue)`` returns ``PIVOT DISTINCT takes a value, not an aggregate``.
-* ``PIVOT DISTINCT ARRAY`` holds fixed-size values only. Pivoting a ``TEXT`` value returns ``PIVOT ARRAY can only hold fixed-size values``.
+* ``PIVOT ARRAY`` and ``PIVOT DISTINCT ARRAY`` hold fixed-size values only. A pivot expression whose result is ``TEXT``, such as ``MAX(ProductName)`` with ``PIVOT ARRAY`` or ``ProductName`` with ``PIVOT DISTINCT ARRAY``, returns ``PIVOT ARRAY can only hold fixed-size values, but '<name>' is text``.
 * ``PIVOT DISTINCT ARRAY`` does not check that the rows are unique. If a group has more than one row for the same pivoted value, the cell holds one of those rows' values, and which one is not defined.
 * A query can supply the values of ``PIVOT ARRAY`` and ``PIVOT DISTINCT ARRAY`` only. ``UNPIVOT ARRAY`` takes a written-out list, and the plain ``PIVOT`` form, which names a column after each value, cannot take a query either.
 * A value query must return exactly one column.

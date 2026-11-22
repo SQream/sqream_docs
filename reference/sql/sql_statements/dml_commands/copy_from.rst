@@ -83,10 +83,11 @@ Syntax
 
 .. note:: 
 
-   Some options are applicable to CSVs only.
+   Some options are applicable to specific formats only.
 
-   These include:
-   ``OFFSET``, ``LIMIT``, ``DELIMITER``, ``RECORD_DELIMITER``, ``REJECTED_DATA``, ``DATETIME_FORMAT``
+   ``OFFSET``, ``LIMIT`` and ``DATETIME_FORMAT`` apply to CSV and JSON.
+
+   ``DELIMITER``, ``RECORD_DELIMITER``, ``REJECTED_DATA``, ``QUOTE``, ``ESCAPE`` and ``HEADER`` apply to CSV only.
 
 .. _copy_from_config_options:
 
@@ -183,7 +184,7 @@ Elements
    * - ``DELETE_SOURCE_ON_SUCCESS``
      - ``false``
      - ``true`` | ``false``
-     - When set to ``true``, the source file or files associated with the target path will be deleted after a successful completion of the ``COPY FROM`` operation. File deletion will not occur in the case of unsuccessful ``COPY FROM`` operations, such as when a user lacks delete permissions on their operating system. It's important to note that this parameter cannot be used concurrently with the ``OFFSET``, ``ERROR_LOG``, ``REJECTED_DATA``, ``ERROR_COUNT``, and ``LIMIT`` parameters. This parameter is supported for S3, HDFS, and GCP Object Storage.
+     - When set to ``true``, the source file or files associated with the target path will be deleted after a successful completion of the ``COPY FROM`` operation. File deletion will not occur in the case of unsuccessful ``COPY FROM`` operations, such as when a user lacks delete permissions on their operating system. It's important to note that this parameter cannot be used concurrently with the ``OFFSET``, ``ERROR_LOG``, ``REJECTED_DATA``, ``ERROR_COUNT``, ``CONTINUE_ON_ERROR``, and ``LIMIT`` parameters. This parameter is supported for S3, HDFS, and GCP Object Storage. It is not supported for Azure storage, where it returns ``DELETE_SOURCE_ON_SUCCESS FDW option is not supported for Azure storage.``
    * - ``ESCAPE``
      - ``“`` (double quotes)
      - ``{'\\' | E'\XXX')``
@@ -741,7 +742,7 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = E'\021');   
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = E'\021');   
 
 Loading a Text File with Multi-Character Delimiters
 ---------------------------------------------------
@@ -750,13 +751,13 @@ In the file below, the separator is ``^|``.
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = '^|');   
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = '^|');   
 
 In the file below, the separator is ``'|``. The quote character has to be repeated, as per the :ref:`literal quoting rules<string_literals>`.
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = ''''|');
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = ''''|');
    
 
 Loading Files with a Header Row
@@ -822,7 +823,7 @@ Loading Files from an Authenticated S3 Bucket
 
 .. code-block:: postgres
 
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = 's3://secret-bucket/*.csv', DELIMITER = '\r\n', OFFSET = 2, AWS_ID = '12345678', AWS_SECRET = 'super_secretive_secret');
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 's3://secret-bucket/*.csv', DELIMITER = '\r\n', OFFSET = 2, AWS_ID = '12345678', AWS_SECRET = 'super_secretive_secret');
    
 Saving Rejected Rows to a File
 ----------------------------------
@@ -880,7 +881,7 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 
 .. code-block:: postgres
 
-   COPY my_table (date_col1, date_col2, date_col3) FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/my_data.csv', offset = 2, datetime_format 'DMY');
+   COPY my_table (date_col1, date_col2, date_col3) FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/my_data.csv', offset = 2, datetime_format = 'DMY');
 
 Loading Specific Columns
 ------------------------

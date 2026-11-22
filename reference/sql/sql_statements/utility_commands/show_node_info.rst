@@ -264,7 +264,7 @@ This is a full list of node types:
 Statement statuses
 =======================
 
-.. include:: /reference/sql/sql_statements/monitoring_commands/show_server_status.rst
+.. include:: /reference/sql/sql_statements/utility_commands/show_server_status.rst
    :start-line: 67
    :end-line: 84
    
@@ -285,7 +285,7 @@ Getting execution details for a statement
 .. code-block:: psql
    
    t=> SELECT SHOW_SERVER_STATUS();
-   service | instanceid | connection_id | serverip     | serverport | database_name | user_name | clientip     | statementid | statement                                                       | statementstarttime  | statementstatus | statementstatusstart
+   service | instance id | connection_id | server ip    | server port | database_name | user_name | client ip    | statement id | statement                                                       | statement start time | statement status | statement status start
    --------+------------+---------------+--------------+------------+---------------+-----------+--------------+-------------+-----------------------------------------------------------------+---------------------+-----------------+---------------------
    sqream  |            |           152 | 192.168.1.91 |       5000 | t            | sqream    | 192.168.1.91 |         176 | SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | 2019-12-25 23:53:13 | Executing       | 2019-12-25 23:53:13
    sqream  |            |           151 | 192.168.1.91 |       5000 | t            | sqream    | 192.168.0.1  |         177 | SELECT show_server_status()                                     | 2019-12-25 23:51:31 | Executing       | 2019-12-25 23:53:13 

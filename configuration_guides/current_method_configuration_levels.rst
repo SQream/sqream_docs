@@ -53,8 +53,8 @@ Flag List
      - 
 	   ``16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536,``	   
 	   ``131072,262144,524288,1048576,2097152,4194304,8388608,16777216,``
-	   ``33554432,67108864,134217728,268435456,536870912,786432000,107374,``
-	   ``1824,1342177280,1610612736,1879048192,2147483648,2415919104,``
+	   ``33554432,67108864,134217728,268435456,536870912,786432000,1073741824,``
+	   ``1342177280,1610612736,1879048192,2147483648,2415919104,``
 	   ``2684354560,2952790016,3221225472``
    * - ``blockNewVarcharObjects`` 
      - SUPERUSER
@@ -66,8 +66,8 @@ Flag List
      - Anyone
      - Session
      - Sets the ondisk directory location for the spool to save files on. Allowed values: Any legal string.
-     - bigint
-     - Any legal string
+     - string
+     - ``/tmp``
    * - ``cacheDiskGB`` 
      - Anyone
      - Session
@@ -117,7 +117,7 @@ Flag List
      - boolean
      - ``FALSE``
    * - ``clientReconnectionTimeout``
-     - Anyone
+     - SUPERUSER
      - Cluster
      - Reconnection time out for the system in seconds.
      - Integer
@@ -148,7 +148,7 @@ Flag List
      - ``FALSE`` 	 
    * - ``defaultGracefulShutdownTimeoutMinutes``
      - SUPERUSER
-     - Cluster
+     - Session
      - Used for setting the amount of time to pass before SQream performs a graceful server shutdown. Allowed values - 1-4000000000. Related flags: ``is_healer_on`` and ``healer_max_inactivity_hours``
      - bigint
      - ``5``
@@ -211,7 +211,7 @@ Flag List
      - Session
      - Sets the buffer size.
      - uint
-     - ``524288``	
+     - ``67108864`` (64 MB)	
    * - ``maxAvgBlobSizeToCompressOnGpu`` 
      - Anyone
      - Session
@@ -253,7 +253,7 @@ Flag List
      - Session
      - Sets the name of the session tag. Allowed values: Any legal string.
      - string
-     - Any legal string
+     - ``default``
    * - ``spoolMemoryGB`` 
      - Anyone
      - Session
@@ -293,7 +293,7 @@ Flag List
      - Session
      - Sets the size of memory used during a query to trigger aborting the server.
      - uint
-     - ``0``
+     - ``131072``
    * - ``queueTimeoutMinutes``
      - Anyone
      - Session 

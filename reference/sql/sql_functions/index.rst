@@ -83,7 +83,7 @@ The following table shows the **conversion** functions:
    * - Function
      - Description
    * - :ref:`from_unixts`
-     - Converts a UNIX Timestamp to ``DATE`` or ``DATETIME``
+     - Converts a UNIX timestamp (``BIGINT``) to ``DATETIME``
    * - :ref:`to_hex`
      - Converts a number to a hexadecimal string representation
    * - :ref:`to_unixts`
@@ -112,6 +112,8 @@ The following table shows the **date and time** functions:
      - Returns the current date as ``DATE``
    * - :ref:`current_timestamp`
      - Equivalent to :ref:`getdate`
+   * - :ref:`current_timestamp2`
+     - Returns the current date and time as ``DATETIME2``
    * - :ref:`datepart`
      - Extracts a date or time element from a date expression
    * - :ref:`dateadd`
@@ -242,7 +244,7 @@ The following table shows the **string** functions:
    * - :ref:`crc64`
      - Calculates a CRC-64 hash of an argument
    * - :ref:`decode`
-     - Decodes or extracts binary data from a textual input string
+     - Compares an expression to a list of search values and returns the matching result (like ``CASE``); returns the default or ``NULL`` if none match
    * - :ref:`isprefixof`
      - Matches if a string is the prefix of another string
    * - :ref:`left`
@@ -329,6 +331,15 @@ The following table shows the **aggregate** functions:
    * - :ref:`min`
      -
      - Returns minimum value of all values
+   * - :ref:`mode`
+     -
+     - Returns the most common value in the selected column
+   * - :ref:`percentile_cont`
+     -
+     - Returns an interpolated value at the requested percentile of a column
+   * - :ref:`percentile_disc`
+     -
+     - Returns the value from the column closest to the requested percentile
    * - :ref:`sum`
      - 
      - Calculates the sum of all of the values or only distinct values
@@ -369,7 +380,9 @@ The following table shows the **window** functions:
    * - :ref:`sum`
      - Calculates the sum of all of the values  
    * - :ref:`rank`
-     - Calculates the rank of a row	 
+     - Calculates the rank of a row
+   * - :ref:`row_number`
+     - Returns the sequential number of each row within the partition
    * - :ref:`first_value`
      - Returns the value in the first row of a window
    * - :ref:`last_value`

@@ -11,7 +11,7 @@ The following shows the syntax for the SELECT ASCII function:
 
 .. code-block:: postgres
 
-	ASCII()
+	ASCII( text_expr ) --> INT
 
 Return
 ======

@@ -56,11 +56,11 @@ Examples
 
 .. note:: 
    The actual data type of the value changes based on context, the format used, and the value itself.
-   For example, any number containing the decimal point will be considered ``FLOAT`` by default.
+   For example, a number containing a decimal point and no exponent is considered ``NUMERIC`` by default.
    Any whole number will considered ``INT``, unless the value is larger than the :ref:`maximum value<data_type_guides>`, in which case the type will become a ``BIGINT``.
 
 .. note:: 
-   A numeric literal that contains neither a decimal point nor an exponent is considered ``INT`` by default if its value fits in type ``INT`` (32 bits). If not, it is considered ``BIGINT`` by default if its value fits in type ``BIGINT`` (64 bits). If neither are true, it is considered ``FLOAT``. Literals that contain decimal points and/or exponents are always considered ``FLOAT``.
+   A numeric literal that contains neither a decimal point nor an exponent is considered ``INT`` by default if its value fits in type ``INT`` (32 bits). If not, it is considered ``BIGINT`` by default if its value fits in type ``BIGINT`` (64 bits). If neither are true, it is considered ``FLOAT``. A literal with a decimal point and no exponent is typed as ``NUMERIC``, with the precision and scale needed for the digits written (for example, ``1234.56`` is ``NUMERIC(6,2)``). Only a literal with an exponent (for example, ``123.56e-45``) is typed as ``DOUBLE``. When the ``useLegacyDecimalLiterals`` flag is set to ``true``, decimal literals are typed as ``DOUBLE`` (see :ref:`use_legacy_decimal_literals`).
 
 .. _string_literals:
 
@@ -192,9 +192,9 @@ The character sequence inside the single quotes can contain escaped characters i
    * - ``\t``
      - Inserts a tab.	 
    * - ``\o``, ``\oo``, ```\ooo``` (``o`` = ``0`` - ``7``)
-     - Inserts an octal byte value. This sequence is currently not supported.
+     - Inserts an octal byte value. Only the ASCII range (``\000`` - ``\177``) is supported.
    * - ``\xh``, ``\xhh`` (``h`` = ``0`` - ``9``, ``A`` - ``F``)
-     - Inserts a hexadecimal byte value. This sequence is currently not supported.
+     - Inserts a hexadecimal byte value. Only the ASCII range (``\x0`` - ``\x7F``) is supported.
    * - ``\uxxxx``, ``\Uxxxxxxxx``
      - Inserts a 16 or 32-bit hexadecimal unicode character value (x = 0 - 9, A - F).
 	 
@@ -256,7 +256,7 @@ Examples
    
    CAST('2300' as BIGINT)
    
-   CAST(42 :: FLOAT)
+   CAST(42 AS FLOAT)
 
 .. _boolean_literals:
    

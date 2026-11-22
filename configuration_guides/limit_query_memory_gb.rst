@@ -11,4 +11,4 @@ The ``limitQueryMemoryGB`` flag prevents a query from processing more memory tha
 The following describes the ``limitQueryMemoryGB`` flag:
 
 * **Data type** - uint
-* **Default value** - ``100000``
+* **Default value** - ``10000``

@@ -53,4 +53,4 @@ Dropping a previously saved query
 Permissions
 =============
 
-Dropping a saved query requires ``DDL`` permissions on the saved query and ``SELECT`` permissions to access the tables referenced in the query.
+Dropping a saved query requires the ``DDL`` permission on the saved query.

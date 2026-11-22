@@ -50,7 +50,7 @@ Output
      - Date and time of highest GPU usage deviation
    * - ``actual_number_of_gpus``
      - GPU usage deviation
-   * - ``data_read_limit_license_value``
+   * - ``gpu_limit_license_value``
      - GPU quota limit as per license plan
 
 Examples
@@ -66,7 +66,7 @@ Output
 
 .. code-block:: console
 
-	 date         | actual_number_of_gpus   | data_read_limit_license_value
+	 date         | actual_number_of_gpus   | gpu_limit_license_value
 	--------------+-------------------------+---------------------------------
 	 2023-May-01  | 2                       | 1
 	 2023-May-02  | 3                       | 1
@@ -83,7 +83,7 @@ Output
 
 .. code-block:: console
 
-	 date         | actual_number_of_gpus   | data_read_limit_license_value
+	 date         | actual_number_of_gpus   | gpu_limit_license_value
 	--------------+-------------------------+---------------------------------
 	 2023 Apr     | 2                       | 1
 	

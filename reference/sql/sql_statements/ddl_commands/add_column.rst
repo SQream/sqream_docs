@@ -11,7 +11,7 @@ Syntax
 
 .. code-block:: postgres
 
-	ALTER TABLE [schema_name.]table_name { ADD COLUMN column_def [, ...] }
+	ALTER TABLE [schema_name.]table_name ADD COLUMN column_def [, ADD COLUMN column_def ...]
 
 	schema_name ::= identifier
 	
@@ -50,6 +50,8 @@ Usage Notes
 =========== 
 
 When adding an empty column, the default values for that column will be set to ``NULL``.
+
+Each column needs its own ``ADD COLUMN``, as shown in the "Adding Several Columns in One Command" example. ``ADD COLUMN a INT, b INT`` is a parse error.
 
 Examples
 ========
@@ -91,4 +93,4 @@ Follow SQreamDB :ref:`compression guide<compression>` for compression types and 
 Permissions
 ===========
 
-The role must have the ``DDL`` permission at the database or table level.
+The role must have the ``DDL`` permission on the table (or ``SUPERUSER`` on the table's schema or database), and ``USAGE`` on the table's schema. ``DDL`` granted at the database level does not satisfy this.

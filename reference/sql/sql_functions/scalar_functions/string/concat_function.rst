@@ -30,7 +30,7 @@ Arguments
 Returns
 ============
 
-The data type of the returned value is TEXT, If any input value is NULL, returns NULL.
+The data type of the returned value is ``TEXT``. ``NULL`` arguments are treated as empty strings, so a ``NULL`` argument does not make the result ``NULL``.
 
 Notes
 =======

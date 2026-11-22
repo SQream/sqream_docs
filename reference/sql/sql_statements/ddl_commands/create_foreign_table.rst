@@ -21,15 +21,15 @@ Syntax
 	  [ OPTIONS ( option_def [, ...  ] ) ]
 
 	fdw_name ::= 
-	  { csv_fdw | orc_fdw | parquet_fdw }
+	  { csv_fdw | orc_fdw | parquet_fdw | avro_fdw | json_fdw }
    
 	option_def ::= 
 	  LOCATION = '{ path_spec }'
 	 [
 	  | DELIMITER = '{ field_delimiter }' -- for CSV only
 	  | RECORD_DELIMITER = '{ record_delimiter }' -- for CSV only
-	  | AWS_ID '{ AWS ID }'
-	  | AWS_SECRET '{ AWS SECRET }'
+	  | AWS_ID = '{ AWS ID }'
+	  | AWS_SECRET = '{ AWS SECRET }'
 	  | QUOTE = {'C' | E'\ooo') -- for CSV only	  
 	 ]
    
@@ -40,16 +40,12 @@ Syntax
 	record_delimiter ::= delimiter_character
       
 	column_def ::= 
-	  { column_name type_name [ default ] [ column_constraint ] }
+	  { column_name type_name [ column_constraint ] }
 
 	column_name ::= identifier
-   
+
 	column_constraint ::=
 	  { NOT NULL | NULL }
-   
-	default ::=
-	  DEFAULT default_value
-	  | IDENTITY [ ( start_with [ , increment_by ] ) ]
 
 .. _cft_parameters:
 
@@ -69,7 +65,7 @@ Parameters
    * - ``table_name``
      - The name of the table to create, which must be unique inside the schema
    * - ``column_def``
-     - A comma separated list of column definitions. A minimal column definition includes a name and datatype. Other column constraints and default values may optionally be added. When creating foreign tables using CSV source files, it is mandatory to provide the complete table DDL
+     - A comma separated list of column definitions. A minimal column definition includes a name and datatype. Other column constraints may optionally be added. Foreign table columns cannot have ``DEFAULT`` or ``IDENTITY`` values, or a compression specification. When creating foreign tables using CSV source files, it is mandatory to provide the complete table DDL
    * - ``WRAPPER ...``
      - Specifies the format of the source files, such as ``parquet_fdw``, ``orc_fdw``, ``json_fdw``, or ``csv_fdw``
    * - ``LOCATION = ...``
@@ -178,7 +174,7 @@ Using a foreign table allows you to perform ETL-like operations by applying SQL 
 Using the ``OFFSET`` Parameter
 ------------------------------
 
-The ``OFFSET`` parameter may be used with Parquet and CSV textual formats. 
+The ``OFFSET`` parameter may be used with the CSV and JSON formats only. 
 
 .. code-block::
 
@@ -188,10 +184,10 @@ The ``OFFSET`` parameter may be used with Parquet and CSV textual formats.
 	  email TEXT NOT NULL
 	)
 	WRAPPER
-	  parquet_fdw
+	  csv_fdw
 	OPTIONS
 	  (
-	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet',
+	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.csv',
 	    OFFSET = 2
 	  );
 
@@ -239,6 +235,6 @@ Customizing Quotations Using Alternative Characters
 Permissions
 ===========
 
-The role must have the ``CREATE`` permission at the database level.
+The role must have the ``CREATE`` and ``USAGE`` permissions on the schema in which the foreign table is created.
 
 The automatic foreign table DDL resolution feature requires **Read** permissions.

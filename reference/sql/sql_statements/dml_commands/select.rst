@@ -17,7 +17,7 @@ When used alone, the statement is known as a "``SELECT`` statement" or "``SELECT
 Permissions
 ===========
 
-The role must have the ``SELECT`` permission on every table or schema that is referenced by the ``SELECT`` query.
+The role must have the ``SELECT`` permission on every table, foreign table or view referenced by the query (or on each referenced column), and ``USAGE`` on each referenced object's schema. Schemas do not take a ``SELECT`` permission. Use ``GRANT SELECT ON ALL TABLES IN SCHEMA`` to cover a schema's tables.
 
 Syntax
 ======
@@ -84,7 +84,7 @@ Syntax
        MERGE | LOOP
 
    order ::=
-       value_expr [ ASC | DESC ] [, ...]  [NULLS FIRST | LAST ]
+       value_expr [ ASC | DESC ] [, ...]
 
 
 Elements
@@ -107,7 +107,7 @@ Elements
    * - ``HAVING value_expr``
      - Only return values that match the expression. ``HAVING`` is like ``WHERE``, but for results of the aggregate functions.
    * - ``ORDER BY order``
-     - A comma separated list of ordering specifications, used to change the order of the results.
+     - A comma separated list of ordering specifications, used to change the order of the results. An explicit ``NULLS FIRST`` or ``NULLS LAST`` is rejected with ``NULLS ORDER is not supported``. ``NULL`` values sort first with ``ASC`` and last with ``DESC``, as described in :ref:`null_handling`.
    * - ``LIMIT num_rows``
      - Restricts the operation to only retrieve the first ``num_rows`` rows.
    * - ``UNION ALL``

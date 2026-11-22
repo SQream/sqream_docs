@@ -28,9 +28,9 @@ This function returns a list of active locks. If no locks are active in the clus
 
    * - Parameter
      - Description   
-   * - ``stmt_id``
+   * - ``statement_id``
      - Statement ID that caused the lock.
-   * - ``stmt_string``
+   * - ``statement_string``
      - Statement text
    * - ``username``
      - The role that executed the statement
@@ -40,7 +40,7 @@ This function returns a list of active locks. If no locks are active in the clus
      - The worker node's port
    * - ``locked_object``
      - The full qualified name of the object being locked, separated with ``$`` (e.g. ``table$t$public$nba2`` for table ``nba2`` in schema ``public``, in database ``t``
-   * - ``lockmode``
+   * - ``lock mode``
      - The locking mode (:ref:`inclusive<locking_modes>` or :ref:`exclusive<locking_modes>`).
    * - ``statement_start_time``
      - Timestamp the statement started

@@ -62,7 +62,7 @@ Each worker is assigned an automatic ID, and is subscribed to the ``'sqream'`` q
 .. code-block:: psql
    
    t=> SELECT SHOW_SUBSCRIBED_INSTANCES();
-   service | servernode | serverip      | serverport
+   service | server node | server ip     | server port
    --------+------------+---------------+-----------
    sqream  | node_9383  | 192.168.0.111 |       5000
    sqream  | node_9384  | 192.168.0.111 |       5001
@@ -77,7 +77,7 @@ We want to modify `node_9551` to join the ETL queue, which will be created when 
    executed
    
    t=> SELECT SHOW_SUBSCRIBED_INSTANCES();
-   service | servernode | serverip      | serverport
+   service | server node | server ip     | server port
    --------+------------+---------------+-----------
    sqream  | node_9383  | 192.168.0.111 |       5000
    sqream  | node_9384  | 192.168.0.111 |       5001

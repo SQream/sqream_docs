@@ -44,4 +44,4 @@ Examples
 Permissions
 ===========
 
-This utility command requires a permission to execute utility functions.
+This utility command requires no special permissions.

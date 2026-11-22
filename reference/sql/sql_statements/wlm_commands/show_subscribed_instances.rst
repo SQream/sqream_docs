@@ -13,7 +13,7 @@ See also :ref:`subscribe_service`, :ref:`unsubscribe_service`.
 Permissions
 =============
 
-To list the service queues, the current role must have the ``SUPERUSER`` permission.
+Listing the service queues requires no special permissions.
 
 Syntax
 ==========
@@ -21,12 +21,21 @@ Syntax
 .. code-block:: postgres
 
    show_subscribed_instances_statement ::=
-      SELECT SHOW_SUBSCRIBED_INSTANCES();
+      SELECT SHOW_SUBSCRIBED_INSTANCES( [ service_name ] );
+
+   service_name ::= text
 
 Parameters
 ============
 
-None
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+
+   * - Parameter
+     - Description
+   * - ``service_name``
+     - Optional. A service name, to list only the workers subscribed to that service. If no worker is subscribed to it, the function returns ``There are no instances in the cluster subscribed to this service.``
 
 Notes
 ==========
@@ -44,7 +53,7 @@ Each worker is assigned an automatic ID, and is subscribed to the ``'sqream'`` q
 .. code-block:: psql
    
    t=> SELECT SHOW_SUBSCRIBED_INSTANCES();
-   service | servernode | serverip      | serverport
+   service | server node | server ip     | server port
    --------+------------+---------------+-----------
    sqream  | node_9383  | 192.168.0.111 |       5000
    sqream  | node_9384  | 192.168.0.111 |       5001

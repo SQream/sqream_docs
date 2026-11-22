@@ -20,10 +20,9 @@ Syntax
    create_table_statement ::=
        CREATE [ OR REPLACE ] TABLE [<schema_name>.]<table_name> 
 	   {
-	    (<column_def> [, ...] [{NULL | NOT NULL}]
+	    (<column_def> [, ...] [{NULL | NOT NULL}]) [ CLUSTER BY <column_name> [, ...] ]
 	    | LIKE <source_table> [INCLUDE PERMISSIONS]
 	   }
-	   [ CLUSTER BY <column_name> [, ...] ]
 
    schema_name ::= identifier  
 
@@ -36,7 +35,7 @@ Syntax
    
    default ::=
        DEFAULT default_value
-       | IDENTITY [ ( start_with [ , increment_by ] ) ]
+       | IDENTITY [ ( start_with , increment_by ) ]
 
 Parameters
 ==========
@@ -71,7 +70,7 @@ The following parameters can be used when creating a table:
 Usage Notes
 ===========
 
-When using ``CREATE TABLE... LIKE``, the permissions from the source table are inherited by the newly created table. To add extra permissions to the new table, you can utilize the ``INCLUDE PERMISSIONS`` clause.
+With ``CREATE TABLE ... LIKE``, the new table receives only the default permissions for new tables. The source table's permissions are copied only when ``INCLUDE PERMISSIONS`` is specified.
 
 .. _default_values:
 
@@ -101,8 +100,8 @@ The following is the correct syntax for using the **DEFAULT** value constraints:
 
    default ::=
        DEFAULT default_value
-       | IDENTITY [ ( start_with [ , increment_by ] ) ] [ check_specification ]
-       | check_specification [ IDENTITY [ ( start_with [ , increment_by ] ) ]
+       | IDENTITY [ ( start_with , increment_by ) ] [ check_specification ]
+       | check_specification [ IDENTITY [ ( start_with , increment_by ) ]
 
    
    check_specification ::= 
@@ -136,6 +135,8 @@ The following table describes the identity parameters:
      - A value that is used for the very first row loaded into the table.
    * - ``increment_by``
      - Incremental value that is added to the identity value of the previous row that was loaded.
+
+If parentheses are given after ``IDENTITY``, both ``start_with`` and ``increment_by`` are required.
 
 Examples
 ========
@@ -229,10 +230,9 @@ The following is the correct syntax for duplicating the column structure of an e
 
    CREATE [OR REPLACE] TABLE <table_name>
    {
-     (<column_name> <column_type> [{NULL | NOT NULL}] [,...])
+     (<column_name> <column_type> [{NULL | NOT NULL}] [,...]) [CLUSTER BY ...]
      | LIKE <source_table_name> [INCLUDE PERMISSIONS]
    }
-   [CLUSTER BY ...]
    ;
 
 Examples
@@ -306,4 +306,4 @@ The following table describes which properties are copied from the target table 
 Permissions
 =============
 
-``CREATE TABLE`` requires ``CREATE`` permission at the schema level.
+``CREATE TABLE`` requires the ``CREATE`` and ``USAGE`` permissions on the target schema.
