@@ -128,7 +128,7 @@ The CSV is a standard CSV, but with two differences from SQream DB defaults:
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
 		RECORD_DELIMITER = '\r\n',
-	    OFFSET = 2;
+	    OFFSET = 2
 	);
 
 
@@ -177,7 +177,7 @@ Loading a TSV (tab separated value) file
 	OPTIONS
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
-	    DELIMITER = '\t';
+	    DELIMITER = '\t'
 	);
 
 Loading a text file with non-printable delimiter
@@ -234,7 +234,7 @@ Use ``OFFSET`` to skip rows.
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
 	    DELIMITER = '|',
-	    OFFSET  2
+	    OFFSET = 2
 	);
 
 .. _changing_record_delimiter:
@@ -307,7 +307,7 @@ Loading files from an HDFS storage
 	OPTIONS
 	  (
 	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv',
-		RECORD DELIMITER = '\r\n',
+		RECORD_DELIMITER = '\r\n',
 	    OFFSET = 2
 	);
 
@@ -328,7 +328,7 @@ See :ref:`capturing_rejected_rows` for more information about the error handling
 	    LOCATION = '/tmp/file.psv',
 	    DELIMITER = '|',
 	    CONTINUE_ON_ERROR = True,
-	    ERROR_LOG = '/temp/load_error.log' -- Save error log,
+	    ERROR_LOG = '/temp/load_error.log', -- Save error log
 	    REJECTED_DATA = '/temp/load_rejected.log' -- Only save rejected rows
 	  );
 
@@ -338,7 +338,7 @@ Stopping the load if a certain amount of rows were rejected
 .. code-block:: postgres
 
 	COPY
-	  table
+	  table_name
 	FROM
 	WRAPPER
 	  csv_fdw
@@ -362,7 +362,7 @@ Use glob patterns (wildcards) to load multiple files to one table.
 .. code-block:: postgres
 
 	COPY
-	  table  
+	  table_name
 	FROM
 	WRAPPER
 	  csv_fdw
@@ -380,7 +380,7 @@ When the source of the files does not match the table structure, tell the ``COPY
 .. code-block:: postgres
 
 	COPY
-	  table (fifth, first, third)
+	  table_name (fifth, first, third)
 	FROM
 	WRAPPER
 	  csv_fdw

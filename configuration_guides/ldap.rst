@@ -97,7 +97,7 @@ Only roles with admin privileges or higher may enable LDAP Authentication.
 
    .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapConnTimeoutSec = <15>;
+	ALTER SYSTEM SET ldapConnTimeoutSec = 15;
 
 7. Restart all sqreamd servers. 
 
@@ -261,7 +261,7 @@ Only roles with admin privileges and higher may enable LDAP Authentication.
 
    .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapConnTimeoutSec = <15>;
+	ALTER SYSTEM SET ldapConnTimeoutSec = 15;
 	
 11. To set the ``ldapGetAttributeList`` flag (optional), run:
 
@@ -297,7 +297,7 @@ User has value of elonm for attribute ``sAMAccountName``.
 
 	ALTER SYSTEM SET ldapIpAddress = 'ldaps://192.168.10.20';
 	
-	ALTER SYSTEM SET ldapPort = 5000
+	ALTER SYSTEM SET ldapPort = 5000;
 
 	ALTER SYSTEM SET ldapBindDn = 'CN=LDAP admin,OU=network admin,DC=sqream,DC=loc';
 
@@ -307,7 +307,7 @@ User has value of elonm for attribute ``sAMAccountName``.
 	
 	ALTER SYSTEM SET ldapConnTimeoutSec = 30;
 	
-	ALTER SYSTEM SET ldapSearchFilter =  "(memberOf=CN=SqreamGroup,CN=Builtin,DC=sqream,DC=loc)(memberOf=CN=Admins,CN=Builtin,DC=sqream,DC=loc)";
+	ALTER SYSTEM SET ldapSearchFilter = '(memberOf=CN=SqreamGroup,CN=Builtin,DC=sqream,DC=loc)(memberOf=CN=Admins,CN=Builtin,DC=sqream,DC=loc)';
 	
 	
 Logging in will be possible using the username elonm using sqream client  

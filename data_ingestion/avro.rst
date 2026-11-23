@@ -62,7 +62,7 @@ The following example shows the correct file structure used to create the ``CREA
 
 .. code-block:: postgres
    
-	CREATE TABLE nba (
+	CREATE FOREIGN TABLE nba (
 	  name TEXT(40),
 	  team TEXT(40),
 	  number BIGINT,
@@ -363,7 +363,7 @@ In the example below, the ``Position`` column is set to the default ``NULL``.
 
 .. code-block:: postgres
    
-	CREATE FOREIGN TABLE nba AS
+	CREATE TABLE nba AS
 	SELECT
 	  name,
 	  team,

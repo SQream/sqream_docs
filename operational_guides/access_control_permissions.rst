@@ -445,7 +445,7 @@ Grant view-level permissions to a role:
 
 .. code-block:: postgres
 
-	GRANT ALL PERMISSIONS ON VIEW "view_name" IN SCHEMA "schema_name" TO role_name;
+	GRANT ALL PERMISSIONS ON VIEW schema_name.view_name TO role_name;
 
 Grant usage permissions on a service to a role:
 
@@ -503,13 +503,13 @@ Revoke column-level permissions from a role:
 
 .. code-block:: postgres
 
-	REVOKE SELECT, DDL FROM COLUMN column_name IN TABLE schema_name.table_name FROM role_name;
+	REVOKE SELECT, DDL ON COLUMN column_name IN TABLE schema_name.table_name FROM role_name;
 
 Revoke view-level permissions from a role:
 
 .. code-block:: postgres
 
-	REVOKE ALL PERMISSIONS ON VIEW "view_name" IN SCHEMA "schema_name" FROM role_name;
+	REVOKE ALL PERMISSIONS ON VIEW schema_name.view_name FROM role_name;
 
 Revoke usage permissions on a service from a role:
 

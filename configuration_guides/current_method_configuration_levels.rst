@@ -18,13 +18,13 @@ Cluster flag syntax:
 
 .. code-block:: sql
 
-	ALTER SYSTEM SET <flagName>
+	ALTER SYSTEM SET <flagName> = <value>
 
 Session flag syntax:
 
 .. code-block:: sql
 
-	SET <flagName>
+	SET <flagName> = <value>
 
 Configuration file
 ------------------

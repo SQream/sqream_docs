@@ -253,8 +253,7 @@ In other cases, you may want to force SQream to use a specific compression schem
    CREATE TABLE t (
       id BIGINT NOT NULL CHECK('CS "sequence"'),
       y TEXT(110) CHECK('CS "lz4"'), -- General purpose text compression
-      z TEXT(80) CHECK('CS "dict"'), -- Low cardinality column
-      
+      z TEXT(80) CHECK('CS "dict"') -- Low cardinality column
    );
 
 However, if SQream finds that the given compression method cannot effectively compress the data, it will return to the default compression type.
