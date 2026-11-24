@@ -124,3 +124,4 @@ reference/sql/sql_syntax/literals.rst.bck1
 reference/sql/sql_syntax/pivot_unpivot_array.rst.bck2
 reference/sql/sql_syntax/scalar_expressions.rst.bck1
 reference/sql/sql_syntax/window_functions.rst.bck1
+reference/sql/sql_statements/utility_commands/show_node_info.rst.bck3
