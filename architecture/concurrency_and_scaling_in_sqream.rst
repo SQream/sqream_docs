@@ -125,14 +125,12 @@ Configuring the ``spoolMemoryGB`` using the legacy configuration file:
 
 	{
 		"diskSpaceMinFreePercent": 10,
-		"enableLogDebug": false,
 		"insertCompressors": 8,
 		"insertParsers": 8,
 		"isUnavailableNode": false,
 		"logBlackList": "webui",
 		"logDebugLevel": 6,
 		"nodeInfoLoggingSec": 60,
-		"useClientLog": true,
 		"useMetadataServer": true,
 		"spoolMemoryGB": 175,
 		"waitForClientSeconds": 18000,

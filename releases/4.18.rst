@@ -73,7 +73,7 @@ Version 4.18 resolved Issues
 Deprecation
 -------------------
 
-► No deprecations in this version.
+► As of version 4.18.0, the ``enableLogDebug``, ``endLogMessage``, and ``useClientLog`` configuration flags are deprecated (SQ-23723). These flags are still accepted, but they have had no effect since earlier versions, and they will be removed in a future version. Remove them from your configuration files and scripts, because a ``SET`` statement that uses one of them will fail once it is removed. To control logging, use ``logClientLevel`` for the client log and :ref:`logDebugLevel<log_debug_level>` for the debug log. Please see :ref:`Logging<logging>`.
 
 Upgrading to Version 4.18
 -------------------------

@@ -288,12 +288,6 @@ Flag List
      - Sets the maximum percentage CPU RAM that pinned memory can use.
      - uint
      - ``70``
-   * - ``memMergeBlobOffsetsCount``
-     - SUPERUSER
-     - Session
-     - Sets the size of memory used during a query to trigger aborting the server.
-     - uint
-     - ``131072``
    * - ``queueTimeoutMinutes``
      - Anyone
      - Session 
