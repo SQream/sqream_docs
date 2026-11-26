@@ -124,3 +124,12 @@ reference/sql/sql_syntax/literals.rst.bck1
 reference/sql/sql_syntax/pivot_unpivot_array.rst.bck2
 reference/sql/sql_syntax/scalar_expressions.rst.bck1
 reference/sql/sql_syntax/window_functions.rst.bck1
+reference/sql/sql_statements/utility_commands/show_node_info.rst.bck3
+architecture/concurrency_and_scaling_in_sqream.rst.bck1
+configuration_guides/current_method_configuring_your_parameter_values.rst.bck1
+configuration_guides/current_method_modification_methods.rst.bck1
+configuration_guides/end_log_message.rst.bck1
+feature_guides/workload_manager.rst.bck1
+operational_guides/logging.rst.bck1
+releases/4.18.rst.bck2
+releases/4.18.rst.bck3

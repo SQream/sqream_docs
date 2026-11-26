@@ -240,12 +240,40 @@ A few configuration settings alter the verbosity of the logs:
      - Used to control which log level should appear in the logs
      - ``4`` (``INFO``)
      - ``0`` SYSTEM (lowest) - ``4`` INFO (highest).  See :ref:`information level table<information_level>` above.
+   * - ``logDebugLevel``
+     - Used to control which log level should appear in the debug log (the ``sqdebug_*.log`` files). See :ref:`logDebugLevel<log_debug_level>`.
+     - ``4`` (``INFO``)
+     - ``0`` SYSTEM (lowest) - ``6`` TRACE (highest). See :ref:`information level table<information_level>` above.
    * - ``nodeInfoLoggingSec``
      -   
          Sets an interval for automatically logging long-running statements' :ref:`show_node_info` output.
          Output is written as a message type ``200``.
      - ``60`` (every minute)  
      - Positive whole number >=1.
+
+.. _debug_network_session:
+
+Logging Client-Server Messages
+------------------------------
+
+.. warning:: Use these flags only when SQream R&D specifically asks you to. They record every message exchanged between clients and the worker, which makes the logs grow quickly. Both flags require developer mode (``developerMode``) to be enabled.
+
+.. list-table:: Client-server message logging configuration
+   :widths: auto
+   :header-rows: 1
+   
+   * - Flag
+     - Description
+     - Default
+     - Values
+   * - ``debugNetworkSessionToFile``
+     - Writes each message a client sends to the worker, and each message the worker sends back, to the debug log (the ``sqdebug_*.log`` files) as ``Client sent:`` and ``Server sent:`` lines. Passwords and encryption keys sent by the client are masked.
+     - ``false``
+     - ``true``, ``false``
+   * - ``debugNetworkSession``
+     - Prints the same client and worker messages to the worker's standard output.
+     - ``false``
+     - ``true``, ``false``
 
 .. _log_rotation:
 

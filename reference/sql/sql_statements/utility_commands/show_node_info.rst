@@ -86,7 +86,7 @@ If the statement has finished, or the statment ID does not exist, the utility re
 Node types
 =============
 
-This is a full list of node types:
+The following table lists the node types and where each one runs. A node marked **CPU or GPU** runs wherever its input is.
 
 .. list-table:: Node types
    :widths: auto
@@ -96,16 +96,16 @@ This is a full list of node types:
      - Execution location
      - Description
    * - ``AddChunkId``
-     - 
+     - CPU
      - Used during insert operations
    * - ``AddSequences``
-     -
+     - CPU
      - Used during insert operations, with :ref:`identity columns<identity>`
    * - ``AddMinMaxMetadata``
-     - 
+     - CPU
      - Used to calculate ranges for the :ref:`chunk metadata system<metadata_system>`
    * - ``AddTopSortFilters``
-     - 
+     - GPU
      - An operation to optimize ``LIMIT`` when used alongside ``ORDER BY``
    * - ``Compress``
      - CPU and GPU
@@ -113,36 +113,21 @@ This is a full list of node types:
    * - ``CpuDecompress``
      - CPU
      - Decompression operation, common for longer ``TEXT`` types
-   * - ``CpuLoopJoin``
-     - CPU
-     - A non-indexed nested loop join, performed on the CPU
    * - ``CpuReduce``
      - CPU
      - A reduce process performed on the CPU, primarily with ``DISTINCT`` aggregates (e.g. ``COUNT(DISTINCT ...)``)
    * - ``CpuToGpu``, ``GpuToCpu``
-     - 
+     - Transfer between CPU and GPU
      - An operation that moves data to or from the GPU for processing
    * - ``CpuTransform``
      - CPU
      - A transform operation performed on the CPU, usually a :ref:`scalar function<scalar_functions>`
-   * - ``CrossJoin``
-     - 
-     - A join without a join condition
    * - ``DeferredGather``
      - CPU
      - Merges the results of GPU operations with a result set [#f0]_
-   * - ``Distinct``
-     - GPU
-     - Removes duplicate rows (usually as part of the ``DISTINCT`` operation)
-   * - ``Distinct_Merge``
-     - CPU
-     - The merge operation of the ``Distinct`` operation
    * - ``Filter``
      - GPU
      - A filtering operation, such as a ``WHERE`` or ``JOIN`` clause
-   * - ``GpuCopy``
-     - GPU
-     - Copies data between GPUs or within a single GPU
    * - ``GpuDecompress``
      - GPU
      - Decompression operation
@@ -155,8 +140,11 @@ This is a full list of node types:
    * - ``Hash``
      - CPU
      - Hashes the output result. Used internally.
+   * - ``Join``
+     - GPU
+     - A join operation, performed as either a sort-merge join or a nested loop join
    * - ``JoinSideMarker``
-     - 
+     - CPU
      - Used internally.
    * - ``LiteralValues``
      - CPU
@@ -164,14 +152,11 @@ This is a full list of node types:
    * - ``LocateFiles``
      - CPU
      - Validates external file paths for foreign data wrappers, expanding directories and GLOB patterns
-   * - ``LoopJoin``
-     - GPU
-     - A non-indexed nested loop join, performed on the GPU
    * - ``MarkMatchedJoinRows``
-     - 
+     - GPU
      - Used in outer joins, matches rows for larger join operations
    * - ``NullifyDuplicates``
-     - 
+     - CPU
      - Replaces duplicate values with ``NULL`` to calculate distinct aggregates
    * - ``NullSink``
      - CPU
@@ -204,55 +189,40 @@ This is a full list of node types:
      - CPU
      - Reads only table metadata as an optimization
    * - ``Rechunk``
-     - 
+     - CPU
      - Reorganize multiple small :ref:`chunks<chunks_and_extents>` into a full chunk. Commonly found after joins and when :ref:`HIGH_SELECTIVITY<high_selectivity>` is used
    * - ``Reduce``
      - GPU
      - A reduction operation, such as a ``GROUP BY``
    * - ``ReduceMerge``
-     - GPU
+     - CPU
      - A merge operation of a reduction operation, helps operate on larger-than-RAM data
    * - ``ReorderInput``
-     - 
+     - CPU or GPU
      - Change the order of arguments in preparation for the next operation
-   * - ``SeparatedGather``
-     - GPU
-     - Gathers additional columns for the result
    * - ``Sort``
      - GPU
      - Sort operation [#f1]_
    * - ``SortMerge``
      - CPU
      - A merge operation of a sort operation, helps operate on larger-than-RAM data
-   * - ``SortMergeJoin``
-     - GPU
-     - A sort-merge join, performed on the GPU
    * - ``TakeRowsFromChunk``
-     - 
+     - GPU
      - Take the first N rows from each chunk, to optimize ``LIMIT`` when used alongside ``ORDER BY``
    * - ``Top``
-     - 
+     - CPU or GPU
      - Limits the input size, when used with ``LIMIT`` (or its alias ``TOP``)
-   * - ``UdfTransform``
+   * - ``UDFPythonExecution``
      - CPU
      - Executes a :ref:`user defined function<python_functions>`
    * - ``UnionAll``
-     -
+     - CPU
      - Combines two sources of data when ``UNION ALL`` is used
-   * - ``VarCharJoiner``
-     - 
-     - Used internally
-   * - ``VarCharSplitter``
-     -
-     - Used intenrally
    * - ``Window``
-     - GPU
-     - Executes a non-ranking :ref:`window function<window_functions>`
-   * - ``WindowRanking``
-     - GPU
-     - Executes a ranking :ref:`window function<window_functions>`
+     - CPU and GPU
+     - Executes a :ref:`window function<window_functions>`, including ranking functions
    * - ``WriteTable``
-     - CPU 
+     - CPU
      - Writes the result set to a standard table stored on disk
 
 .. rubric:: Footnotes

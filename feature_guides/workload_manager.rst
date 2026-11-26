@@ -85,7 +85,6 @@ Creating the Configuration
 
 
 	{
-	  "debugNetworkSession": false,
 	  "diskSpaceMinFreePercent": 1,
 	  "maxNumAutoCompressedChunksThreshold" : 1,
 	  "insertMergeRowsThreshold":40000000,
@@ -96,7 +95,6 @@ Creating the Configuration
 	  "separatedGatherThreads": 16,
 	  "showFullExceptionInfo": true,
 	  "spoolMemoryGB":200,
-	  "useClientLog": true,
 	  "useMetadataServer":true
 	}
 
