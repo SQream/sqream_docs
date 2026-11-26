@@ -141,3 +141,6 @@ data_ingestion/csv.rst.bck1
 data_ingestion/csv.rst.bck2
 feature_guides/compression.rst.bck1
 operational_guides/access_control_permissions.rst.bck1
+configuration_guides/current_method_configuration_levels.rst.bck4
+reference/sql/sql_statements/utility_commands/stop_statement.rst.bck1
+configuration_guides/in_list_join_threshold.rst.bck3

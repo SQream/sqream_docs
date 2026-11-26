@@ -34,7 +34,15 @@ Parameters
 Notes
 =====
 
-This utility always succeeds even if the statement does not exist, or has already stopped.
+Once the caller is permitted to stop the statement, this utility succeeds even if the statement
+does not exist, or has already stopped. It fails only when the caller is neither a superuser nor
+the role that ran the statement.
+
+A statement cannot stop itself.
+
+In a cluster, a statement still waiting in the queue is registered on no worker, so the role that
+ran it is read from the queue. A statement that leaves the queue between the check and the stop
+is treated as a statement that was not found.
 
 Example
 =======
@@ -71,4 +79,11 @@ Example
 Permissions
 =============
 
-The role must have the ``SUPERUSER`` permissions.
+The role must either have the ``SUPERUSER`` permission, or be the role that ran the statement it
+is stopping.
+
+A role that is neither is refused:
+
+.. code-block:: console
+
+   Only a superuser or the role that ran statement 2484923 can stop it

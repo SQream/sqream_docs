@@ -31,6 +31,12 @@ New Features
 
 ► Dictionary chunk skipping also covers ``TEXT`` columns whose values vary in length, and numeric and date columns compressed with P4D compression. For a chunk that is not skipped, only the rows that might match the filter are copied to the GPU (SQ-23331, SQ-23334, SQ-23373). Please see :ref:`skipChunksUsingDictColumn<skip_chunks_using_dict_column>`.
 
+► As of version 4.18.1, ``STOP_STATEMENT`` may also be run by the role that ran the statement, and no longer requires ``SUPERUSER``. A role that is neither a superuser nor the statement's owner is refused (SQ-23316). Please see :ref:`STOP_STATEMENT<stop_statement>`.
+
+► As of version 4.18.1, an ``IN`` list longer than :ref:`inListJoinThreshold<in_list_join_threshold>` is compiled as an inner join, and now keeps chunk skipping on the listed column. The new :ref:`inListJoinMaxMetadataFilters<in_list_join_max_metadata_filters>` flag sets how many distinct values are kept as metadata filters, and :ref:`inListJoinMaxMetadataRanges<in_list_join_max_metadata_ranges>` how many ranges are kept past that limit. A dense list of ``INT`` or ``DATE`` values is compiled as the range it spans, controlled by the new :ref:`inListRangeMinValues<in_list_range_min_values>`, :ref:`inListRangeMaxMissingPercent<in_list_range_max_missing_percent>` and :ref:`inListRangeMissingMultiplier<in_list_range_missing_multiplier>` flags (SQ-23384). Please see :ref:`Compiling IN Lists<compiling_in_lists>`.
+
+► As of version 4.18.1, the new :ref:`aggregateBelowRank<aggregate_below_rank>` flag places an aggregation below a rank window function, so that the window sorts groups rather than rows. It is off by default (SQ-23633).
+
 Known Issues
 ------------
 Using Grant operation on a specific UDF function fail.
@@ -71,6 +77,20 @@ Version 4.18 resolved Issues
 +-----------------------------+--------------------------------------------------------------------------------------------+
 | SQ-23698                    | (v4.18.0.1) Statements load only the permission metadata they need, reducing compile time  |
 +-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23313                    | (v4.18.1) An ambiguous UNPIVOT ARRAY column name is now reported at the name itself        |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23596                    | (v4.18.1) Improved ReadTable column compaction performance                                 |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23602                    | (v4.18.1) Join filters now skip chunks by dictionary                                       |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23610                    | (v4.18.1) Window lag and lead now return the correct value across chunk boundaries         |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23643                    | (v4.18.1) Improved PIVOT compilation time on queries with many columns                     |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23644                    | (v4.18.1) PIVOT ARRAY with a value subquery now prunes chunks in both of its reads         |
++-----------------------------+--------------------------------------------------------------------------------------------+
+| SQ-23649                    | (v4.18.1) Improved window function spool usage                                             |
++-----------------------------+--------------------------------------------------------------------------------------------+
 
 Deprecation
 -------------------
@@ -86,7 +106,7 @@ Upgrading to this version requires an additional infrastructure, to support some
 Additional packages
 """""""""""""""""""
 
-   Please see additional installation requirements for In-process functions :ref:`in this page <installations_for_in-process_functions>`
+   Please see additional installation requirements for In-process functions :ref:`in this page <in_process_python_functions>`
 
 Storage upgrade
 """""""""""""""

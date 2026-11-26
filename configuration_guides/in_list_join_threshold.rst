@@ -31,3 +31,6 @@ The flag may be set for the session:
 .. code-block:: postgres
 
    SET inListJoinThreshold = 50;
+
+For the three forms an ``IN`` list is compiled into, and where this flag applies among them, see
+:ref:`Compiling IN Lists<compiling_in_lists>`.

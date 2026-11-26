@@ -15,6 +15,7 @@ This section summarizes the following operational guides:
 
    access_control
    accelerating_filtered_statements
+   compiling_in_lists
    creating_or_cloning_a_storage_cluster
    external_data
    foreign_tables
