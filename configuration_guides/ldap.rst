@@ -91,7 +91,7 @@ Only roles with admin privileges or higher may enable LDAP Authentication.
 
     .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapPort = <port_number>
+	ALTER SYSTEM SET ldapPort = <port_number>;
 	
 6. To set the ``ldapConnTimeoutSec`` flag (optional), run:
 
@@ -255,7 +255,7 @@ Only roles with admin privileges and higher may enable LDAP Authentication.
 
    .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapPort = <port_number>
+	ALTER SYSTEM SET ldapPort = <port_number>;
 	
 10. To set the ``ldapConnTimeoutSec`` flag (optional), run:
 

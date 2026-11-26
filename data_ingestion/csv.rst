@@ -287,7 +287,7 @@ Loading files from an authenticated S3 bucket
 	OPTIONS
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
-	    OFFSET = 2
+	    OFFSET = 2,
 	    AWS_ID = '12345678', 
 	    AWS_SECRET = 'super_secretive_secret'
 	);
