@@ -46,7 +46,7 @@ Flag List
      - Data Type
      - Default Value and Value Range
    * - ``aggregateBelowRank``
-     - SUPERUSER
+     - Anyone
      - Session
      - Places an aggregation below a rank window function, so that the window sorts groups rather than rows. Off by default, because the compiler cannot tell in advance how many groups the lower aggregation produces.
      - boolean
@@ -207,41 +207,47 @@ Flag List
      - boolean
      - ``TRUE``
    * - ``inListJoinMaxMetadataFilters``
-     - SUPERUSER
+     - Anyone
      - Session
      - Sets the largest number of distinct values per column that an ``IN`` list compiled as a join keeps as metadata filters, so that the scan still skips chunks. Allowed values: ``0`` or any positive integer, where ``0`` keeps no per-value filters.
      - int
      - ``1000``
    * - ``inListJoinMaxMetadataRanges``
-     - SUPERUSER
+     - Anyone
      - Session
      - Sets the largest number of ranges kept as metadata filters for a column whose distinct values outnumber ``inListJoinMaxMetadataFilters``. Allowed values: ``0`` or any positive integer, where ``0`` keeps no ranges.
      - int
      - ``32``
    * - ``inListJoinThreshold``
-     - SUPERUSER
+     - Anyone
      - Session
      - Sets the number of values above which an ``IN`` list is compiled as an inner join against the listed values, instead of being expanded into a chain of equality comparisons. Allowed values: any positive integer.
      - int
      - ``100``
    * - ``inListRangeMaxMissingPercent``
-     - SUPERUSER
+     - Anyone
      - Session
      - Sets the share of a range, as a percentage, that may be missing from a list compiled as a range. Allowed values: ``0`` to ``100``, where ``0`` requires no missing values.
      - int
      - ``10``
    * - ``inListRangeMinValues``
-     - SUPERUSER
+     - Anyone
      - Session
      - Sets the number of distinct values from which an ``IN`` list on a nearly consecutive ``INT`` or ``DATE`` column is compiled as the range its values span. Allowed values: ``0`` or any positive integer, where ``0`` turns the range form off.
      - int
      - ``20``
    * - ``inListRangeMissingMultiplier``
-     - SUPERUSER
+     - Anyone
      - Session
      - Caps the values missing from a list compiled as a range: the missing values times this flag may not exceed ``inListJoinThreshold``. Allowed values: ``0`` or any positive integer, where ``0`` lifts the cap.
      - int
      - ``2``
+   * - ``inSubqueryNullJoinLimit``
+     - Anyone
+     - Session
+     - Sets the largest number of joins that a single ``IN`` or ``NOT IN`` over a subquery may be compiled into. Allowed values: Any positive integer.
+     - int
+     - ``8``
    * - ``leveldbWriteBufferSize``
      - SUPERUSER
      - Session
@@ -278,6 +284,12 @@ Flag List
      - Sets the implicit cast in orc files, such as **int** to **tinyint** and vice versa.
      - boolean
      - ``TRUE``	
+   * - ``pivotArrayJoinBeforeAggregate``
+     - Anyone
+     - Session
+     - Matches the source rows of a ``PIVOT ARRAY`` statement against the listed values before aggregating them, rather than after. Allowed values: ``TRUE``, ``FALSE``.
+     - boolean
+     - ``FALSE``
    * - ``QueryTimeoutMinutes``
      - Anyone
      - Session
